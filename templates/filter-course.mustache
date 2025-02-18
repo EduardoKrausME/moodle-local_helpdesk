@@ -1,0 +1,55 @@
+{{!
+    This file is part of Moodle - https://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_kbi/filter-course
+
+    Example context (json):
+    {
+      "course_fullname": "Curso de Desenvolvimento Web",
+      "url_ajax": "https://example.com/user_ajax_endpoint"
+    }
+}}
+
+<div id="chart-course-button-open" style="display:none"
+     data-defaultfullname="{{#str}}findcourse, local_khelpdesk{{/str}}">
+    <label>{{#str}}course{{/str}}:</label>
+    <span class="select">
+        {{{course_fullname}}}
+    </span>
+
+    <span class="badge badge-danger cursor-pointer"
+          {{^course_id}}style="display:none"{{/course_id}}>X</span>
+
+    <input type="hidden" name="find_course" value="{{{course_id}}}">
+</div>
+<div id="chart-course-datatable-select" style="display:none;"
+     data-urlajax="{{{url_ajax}}}"
+     title="{{#str}}reports_selectcourse,local_kbi{{/str}}">
+    <table id="datatable_course_select" class="table table-hover">
+        <thead>
+        <tr>
+            <th class="text-center th_id" style="width: 20px">#</th>
+            <th class="text-center th_fullname">{{#str}}courses_name,local_kdashboard{{/str}}</th>
+            <th class="text-center th_shortname">{{#str}}courses_shortname,local_kdashboard{{/str}}</th>
+            <th class="text-center th_visible">{{#str}}visible,local_kdashboard{{/str}}</th>
+            <th class="text-center th_enrolments"
+                style="width:50px;white-space:nowrap;">{{#str}}courses_enrol,local_kdashboard{{/str}}</th>
+        </tr>
+        </thead>
+        <tbody class="hover-pointer"></tbody>
+    </table>
+</div>

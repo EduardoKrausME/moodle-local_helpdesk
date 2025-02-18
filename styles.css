@@ -1,0 +1,187 @@
+.path-local-helpdesk .container {
+  width: 100% !important;
+}
+.path-local-helpdesk .badge.priority-low {
+  background-color: #28a745; /* Verde */
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+.path-local-helpdesk .badge.priority-medium {
+  background-color: #ffc107; /* Amarelo */
+  color: #212529;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+.path-local-helpdesk .badge.priority-high {
+  background-color: #fd7e14; /* Laranja */
+  color: #fff;
+  border-radius: 4px;
+}
+.path-local-helpdesk .badge.priority-urgent {
+  background-color: #dc3545; /* Vermelho */
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+.path-local-helpdesk .badge.status-open {
+  background-color: #007bff; /* Azul */
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+.path-local-helpdesk .badge.status-in-progress {
+  background-color: #17a2b8; /* Ciano */
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+.path-local-helpdesk .badge.status-resolved {
+  background-color: #28a745; /* Verde */
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+.path-local-helpdesk .badge.status-closed {
+  background-color: #6c757d; /* Cinza */
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+.path-local-helpdesk .area-finds {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.path-local-helpdesk .area-finds .area-find {
+  display: flex;
+  align-items: center;
+}
+.path-local-helpdesk .area-finds .area-find label {
+  font-weight: bold;
+  margin-bottom: 0;
+  white-space: nowrap;
+  margin-right: 2px;
+}
+.path-local-helpdesk .area-finds .area-find select {
+  padding: 5px;
+  width: auto;
+}
+.path-local-helpdesk .user_picture {
+  min-width: 32px;
+  max-width: 32px;
+  width: 32px;
+}
+.path-local-helpdesk .ticket-details .ticket-profile {
+  display: flex;
+  justify-content: center;
+}
+.path-local-helpdesk .ticket-details .ticket-profile .ticket-profile-user {
+  display: flex;
+  align-items: center;
+}
+.path-local-helpdesk .ticket-details .about-list {
+  padding-top: 30px;
+}
+.path-local-helpdesk .ticket-details .about-list select {
+  width: auto;
+  padding: 5px 2px;
+}
+.path-local-helpdesk .ticket-details .response-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.path-local-helpdesk .ticket-details .ticket-attachments {
+  border: 1px dashed #d6d6d6;
+  background-color: #fff;
+  border-radius: 12px;
+  display: block;
+}
+.path-local-helpdesk .ticket-details .ticket-attachments:hover {
+  background-color: rgba(255, 255, 255, 0.4666666667);
+  text-decoration: none;
+}
+.path-local-helpdesk .response-message #fitem_id_message,
+.path-local-helpdesk .response-message #fitem_id_attachment,
+.path-local-helpdesk .response-message #fgroup_id_buttonar {
+  display: block !important;
+}
+.path-local-helpdesk .response-message #fitem_id_message label,
+.path-local-helpdesk .response-message #fitem_id_attachment label,
+.path-local-helpdesk .response-message #fgroup_id_buttonar label {
+  font-weight: bold;
+}
+.path-local-helpdesk .response-message #fitem_id_message .col-md-3,
+.path-local-helpdesk .response-message #fitem_id_message .col-md-9,
+.path-local-helpdesk .response-message #fitem_id_attachment .col-md-3,
+.path-local-helpdesk .response-message #fitem_id_attachment .col-md-9,
+.path-local-helpdesk .response-message #fgroup_id_buttonar .col-md-3,
+.path-local-helpdesk .response-message #fgroup_id_buttonar .col-md-9 {
+  display: block !important;
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+.path-local-helpdesk .card {
+  background-color: #f1f5f9 !important;
+  margin-bottom: 20px;
+}
+.path-local-helpdesk .card .card-header {
+  background-color: transparent !important;
+}
+.path-local-helpdesk .text-secondary {
+  color: #828c96 !important;
+}
+.path-local-helpdesk #chart-course-button-open {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.path-local-helpdesk #chart-course-datatable-select {
+  min-width: 800px;
+  min-height: 450px !important;
+}
+.path-local-helpdesk #chart-user-button-open {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.path-local-helpdesk #chart-user-datatable-select {
+  min-width: 800px;
+  min-height: 450px !important;
+}
+@media (min-width: 992px) {
+  .path-local-helpdesk .modal-xl {
+    max-width: 800px !important;
+  }
+}
+@media (min-width: 1200px) {
+  .path-local-helpdesk .modal-xl {
+    max-width: 1140px !important;
+  }
+}
+.path-local-helpdesk .select,
+.path-local-helpdesk select {
+  padding: 0.5rem 0.7rem;
+  font-size: 0.9rem;
+  line-height: 1.25;
+  color: #464a4c;
+  border: 1px solid #cecece;
+  border-radius: 0.25rem;
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  font-weight: 300;
+}
+.path-local-helpdesk .select {
+  display: inline-block;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyNCAxNSIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDE1IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTEyIDE1LTEyLTEyLjE2MiAyLjc5OS0yLjgzOCA5LjIwMSA5LjMyNCA5LjE5OS05LjMyNCAyLjgwMSAyLjgzOHoiIGZpbGw9IiM1ZjYzNjgiLz48L3N2Zz4=");
+  background-repeat: no-repeat;
+  background-position: center right 9px;
+  background-size: 17px;
+  padding-right: 32px;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=styles.css.map */

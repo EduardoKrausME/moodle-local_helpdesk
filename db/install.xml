@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMLDB PATH="local/helpdesk/db" VERSION="20250217" COMMENT="Database schema for local_khelpdesk plugin">
+    <TABLES>
+
+        <TABLE NAME="local_khelpdesk_ticket" COMMENT="Stores support tickets">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="idkey" TYPE="int" LENGTH="20" NOTNULL="true" COMMENT="Ticket ID"/>
+                <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" COMMENT="User who created the ticket"/>
+                <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="false" COMMENT="Course who created the ticket"/>
+                <FIELD NAME="categoryid" TYPE="int" LENGTH="10" NOTNULL="true" COMMENT="Ticket category"/>
+                <FIELD NAME="subject" TYPE="char" LENGTH="255" NOTNULL="true" COMMENT="Ticket title"/>
+                <FIELD NAME="description" TYPE="text" NOTNULL="true" COMMENT="Detailed description"/>
+                <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="true" DEFAULT="open"
+                       COMMENT="Ticket status (open, progress, resolved, closed)"/>
+                <FIELD NAME="priority" TYPE="char" LENGTH="20" NOTNULL="true" DEFAULT="medium"
+                       COMMENT="Priority (low, medium, high, urgent)"/>
+                <FIELD NAME="assignedto" TYPE="int" LENGTH="10" NULL="true" COMMENT="Assigned staff member"/>
+                <FIELD NAME="createdat" TYPE="int" LENGTH="20" NOTNULL="true" COMMENT="Timestamp of ticket creation"/>
+                <FIELD NAME="updatedat" TYPE="int" LENGTH="20" NULL="true" COMMENT="Timestamp of last update"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+                <KEY NAME="unique" TYPE="unique" FIELDS="idkey"/>
+                <KEY NAME="userid_fk" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
+                <KEY NAME="categoryid_fk" TYPE="foreign" FIELDS="categoryid" REFTABLE="local_khelpdesk_category"
+                     REFFIELDS="id"/>
+                <KEY NAME="assignedto_fk" TYPE="foreign" FIELDS="assignedto" REFTABLE="user" REFFIELDS="id"/>
+            </KEYS>
+        </TABLE>
+
+        <TABLE NAME="local_khelpdesk_category" COMMENT="Stores ticket categories">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" COMMENT="Category name"/>
+                <FIELD NAME="description" TYPE="text" NULL="true" COMMENT="Category description"/>
+                <FIELD NAME="createdat" TYPE="int" LENGTH="20" NOTNULL="true"
+                       COMMENT="Timestamp of category creation"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+            </KEYS>
+        </TABLE>
+
+        <TABLE NAME="local_khelpdesk_category_users"
+               COMMENT="Users who receive notifications for tickets in specific categories">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="categoryid" TYPE="int" LENGTH="10" NOTNULL="true" COMMENT="ID of the category"/>
+                <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true"
+                       COMMENT="ID of the user receiving notifications"/>
+                <FIELD NAME="created_at" TYPE="int" LENGTH="10" NOTNULL="true" COMMENT="Timestamp of creation"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+                <KEY NAME="fk_category" TYPE="foreign" FIELDS="categoryid" REFTABLE="local_khelpdesk_category"
+                     REFFIELDS="id" ONDELETE="cascade"/>
+                <KEY NAME="fk_user" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id" ONDELETE="cascade"/>
+            </KEYS>
+            <INDEXES>
+                <INDEX NAME="idx_category_user" UNIQUE="true" FIELDS="categoryid, userid"/>
+            </INDEXES>
+        </TABLE>
+
+        <TABLE NAME="local_khelpdesk_response" COMMENT="Stores responses to tickets">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="ticketid" TYPE="int" LENGTH="10" NOTNULL="true" COMMENT="Associated ticket"/>
+                <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" COMMENT="User who posted the response"/>
+                <FIELD NAME="type" TYPE="char" LENGTH="20" NOTNULL="true" COMMENT="Type response"/>
+                <FIELD NAME="message" TYPE="text" NOTNULL="true" COMMENT="Response message"/>
+                <FIELD NAME="createdat" TYPE="int" LENGTH="20" NOTNULL="true"
+                       COMMENT="Timestamp of response creation"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+                <KEY NAME="ticketid_fk" TYPE="foreign" FIELDS="ticketid" REFTABLE="local_khelpdesk_ticket"
+                     REFFIELDS="id"/>
+                <KEY NAME="userid_fk" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
+            </KEYS>
+        </TABLE>
+    </TABLES>
+</XMLDB>

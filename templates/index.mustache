@@ -1,0 +1,89 @@
+<form method="get">
+    <div class="area-finds">
+        <div class="area-find">
+            <label for="find_status">{{#str}}ticketstatus, local_khelpdesk{{/str}}: </label>
+            <select name="find_status" id="find_status">
+                <option value="">{{#str}}ticketstatusnotclosed, local_khelpdesk{{/str}}</option>
+                {{#status_options}}
+                    <option value="{{key}}" {{selected}}>{{lang}}</option>
+                {{/status_options}}
+            </select>
+        </div>
+
+        <div class="area-find">
+            <label for="find_priority">{{#str}}ticketpriority, local_khelpdesk{{/str}}: </label>
+            <select name="find_priority" id="find_priority">
+                <option value=""></option>
+                {{#priority_options}}
+                    <option value="{{key}}" {{selected}}>{{lang}}</option>
+                {{/priority_options}}
+            </select>
+        </div>
+
+        <div class="area-find">
+            <label for="find_category">{{#str}}ticketcategory, local_khelpdesk{{/str}}: </label>
+            <select name="find_category" id="find_category">
+                <option value=""></option>
+                {{#category_options}}
+                    <option value="{{key}}" {{selected}}>{{lang}}</option>
+                {{/category_options}}
+            </select>
+        </div>
+    </div>
+
+    <div class="area-finds" style="margin-top: 10px">
+        <div class="area-find">
+            {{{find_course}}}
+        </div>
+
+        <div class="area-find">
+            {{{find_user}}}
+        </div>
+
+        <input type="submit" value="{{#str}}search{{/str}}">
+    </div>
+</form>
+
+<table class="generaltable" cellspacing="0" cellpadding="5">
+    <thead>
+    <tr>
+        <th>&nbsp;</th>
+        <th>{{#str}}fullname{{/str}}</th>
+        <th>{{#str}}course{{/str}}</th>
+        <th>{{#str}}ticketsubject, local_khelpdesk{{/str}}</th>
+        <th>{{#str}}ticketstatus, local_khelpdesk{{/str}}</th>
+        <th>{{#str}}ticketpriority, local_khelpdesk{{/str}}</th>
+        <th>{{#str}}ticketcategory, local_khelpdesk{{/str}}</th>
+        <th>{{#str}}ticketcreatedat, local_khelpdesk{{/str}}</th>
+        {{#hasmanage}}
+            <th>&nbsp;</th>
+        {{/hasmanage}}
+    </tr>
+    </thead>
+    <tbody>
+    {{#tickets}}
+        <tr onclick="location.href='ticket.php?id={{idkey}}'">
+            <td><img src="{{user_picture}}" alt="{{user_fullname}}" class="user_picture"></td>
+            <td>{{user_fullname}}</td>
+            <td>{{course_fullname}}</td>
+            <td>{{subject}}</td>
+            <td>
+                <span class="badge status-{{status}}">{{status_translated}}</span>
+            </td>
+            <td>
+                <span class="badge priority-{{priority}}">{{priority_translated}}</span>
+            </td>
+            <td>{{category_translate}}</td>
+            <td>{{createdat}}</td>
+            {{#hasmanage}}
+                <td onclick="event.stopImmediatePropagation()">
+                    <a href="?action=edit&amp;id={{idkey}}" class="badge badge-success">{{#str}}edit{{/str}}</a>
+                </td>
+            {{/hasmanage}}
+        </tr>
+    {{/tickets}}
+    </tbody>
+</table>
+
+<!-- Link para adicionar novo ticket -->
+<p><a href="?action=add" class="btn btn-info">{{#str}}addticket, local_khelpdesk{{/str}}</a></p>

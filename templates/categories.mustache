@@ -1,0 +1,24 @@
+<table class="generaltable" cellspacing="0" cellpadding="5">
+    <thead>
+    <tr>
+        <th>{{#str}}categoryname, local_khelpdesk{{/str}}</th>
+        <th>{{#str}}categorydescription, local_khelpdesk{{/str}}</th>
+        <th style="white-space: nowrap; width: 100px;">&nbsp;</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#categories}}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{description}}</td>
+            <td style="white-space: nowrap; width: 100px;">
+                <a href="?action=edit&amp;id={{id}}" class="badge badge-success">{{#str}}edit{{/str}}</a>
+                <a href="?action=delete&amp;id={{id}}" class="badge badge-danger">{{#str}}delete{{/str}}</a>
+            </td>
+        </tr>
+    {{/categories}}
+    </tbody>
+</table>
+
+<!-- Link para adicionar nova categoria -->
+<p><a href="{{addcategoryurl}}" class="btn btn-info">{{#str}}addcategory, local_khelpdesk{{/str}}</a></p>
