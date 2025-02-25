@@ -24,13 +24,13 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2025021502;
+$plugin->version = 2025022500;
 $plugin->requires = 2019052000;
-$plugin->release = "1.0.0";
+$plugin->release = "1.0.1";
 $plugin->maturity = MATURITY_STABLE;
 $plugin->component = "local_khelpdesk";
 
 $plugin->dependencies = [
-    "local_kdashboard" => 2025021500,
+    "local_kdashboard" => 2025022100,
     "local_kbi" => 2025021500,
 ];
