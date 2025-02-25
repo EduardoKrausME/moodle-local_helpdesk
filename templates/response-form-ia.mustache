@@ -1,0 +1,86 @@
+<div class="btn btn-success"
+     id="geniai_btn_create">{{#str}}geniai_btn_create, local_khelpdesk{{/str}}</div>
+
+<div class="d-none" id="modal-response-form-ia">
+    <div>{{#str}}geniai_create_desc, local_khelpdesk{{/str}}</div>
+    <textarea id="ia-message"
+              style="width: 100%;height: 80px;"></textarea>
+    <button id="create-message"
+            class="btn btn-info">{{#str}}geniai_create_message, local_khelpdesk{{/str}}</button>
+    <div id="sugestion-ia"
+         style="border-left: 3px solid #9E9E9E;margin: 10px;padding-left: 10px; display: none"></div>
+    <button id="save-close"
+            class="btn btn-success"
+            style="display: none">{{#str}}geniai_like_message, local_khelpdesk{{/str}}</button>
+</div>
+
+{{#js}}
+    /*<script>*/
+    require(["jquery", "core/ajax", "core/notification", "core/modal_factory", "editor_tiny/editor"],
+            function($, Ajax, Notification, ModalFactory, tiny) {
+
+                var modal = false;
+
+                $("#geniai_btn_create").click(function() {
+                    if (modal) {
+                        modal.show();
+                    } else {
+
+                        ModalFactory.create({
+                            type: ModalFactory.types.DEFAULT,
+                            title: "{{#str}}geniai_title, local_khelpdesk{{/str}}",
+                            body: $("#modal-response-form-ia").html(),
+                        }).then(function(_modal) {
+                            modal = _modal;
+                            modal.show();
+
+                            $("#modal-response-form-ia").remove();
+
+                            local_khelpdesk_geniai_completions();
+                            $("#create-message").click(local_khelpdesk_geniai_completions);
+
+                            $("#save-close").click(function() {
+                                var editor = tiny.getInstanceForElementId("id_message");
+                                editor.execCommand("mceInsertContent", false, $("#sugestion-ia").html());
+
+                                modal.hide();
+                            });
+                        });
+                    }
+                });
+
+                function local_khelpdesk_geniai_completions() {
+
+                    let count = 0;
+                    $("#sugestion-ia").show().html("{{#str}}loading{{/str}}.");
+                    var interval = setInterval(function() {
+                        count = (count + 1) % 4; // Alterna entre 0, 1, 2, 3
+                        $("#sugestion-ia").html("{{#str}}loading{{/str}}" + ".".repeat(count));
+                    }, 500);
+                    setTimeout(function() {
+                        clearInterval(interval);
+                    }, 10000);
+
+                    Ajax.call([{
+                        methodname: "local_khelpdesk_geniai_completions",
+                        args: {
+                            ticketid: "{{{ticketid}}}",
+                            message: $("#ia-message").val(),
+                        }
+                    }])[0].then(function(data) {
+                        clearInterval(interval);
+
+                        if (data.error) {
+                            $("#sugestion-ia").show().html(data.error);
+                            $("#save-close").hide();
+                        } else {
+                            $("#save-close").show();
+                            $("#sugestion-ia").show().html(data.success);
+                        }
+
+                    }).catch(Notification.exception);
+                }
+
+            });
+
+{{/js}}

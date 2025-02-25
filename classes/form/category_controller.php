@@ -24,7 +24,9 @@
 
 namespace local_khelpdesk\form;
 
+use context_system;
 use local_khelpdesk\model\category;
+use local_khelpdesk\model\category_users;
 use moodle_url;
 
 defined('MOODLE_INTERNAL') || die();
@@ -50,7 +52,7 @@ class category_controller {
         $form = new category_form();
 
         if ($form->is_cancelled()) {
-            redirect(new moodle_url("/local/helpdesk/categories.php"));
+            redirect(new moodle_url("/local/khelpdesk/categories.php"));
         } else if ($data = $form->get_data()) {
 
             $data->createdat = time();
@@ -58,11 +60,15 @@ class category_controller {
             $category = new category($data);
             $category->save();
 
-            redirect(new moodle_url("/local/helpdesk/categories.php"));
+            $data = [
+                "id" => $category->get_id(),
+                "actionform" => "edit",
+            ];
+            redirect(new moodle_url("/local/khelpdesk/categories.php", $data));
         } else {
 
             $form->set_data([
-                "action" => "add",
+                "actionform" => "add",
             ]);
         }
 
@@ -83,22 +89,30 @@ class category_controller {
     public function update_category(category $category) {
         global $OUTPUT;
 
-        $form = new category_form();
+        $form = new category_form(null, ["id" => $category->get_id(), "category" => $category]);
 
         if ($form->is_cancelled()) {
-            redirect(new moodle_url("/local/helpdesk/categories.php"));
+            redirect(new moodle_url("/local/khelpdesk/categories.php"));
         } else if ($data = $form->get_data()) {
             $category->set_name($data->name);
             $category->set_description($data->description);
             $category->save();
-            redirect(new moodle_url("/local/helpdesk/categories.php"));
-        } else {
 
+            if ($this->process_users($category)) {
+                $data = [
+                    "id" => $category->get_id(),
+                    "actionform" => "edit",
+                ];
+                redirect(new moodle_url("/local/khelpdesk/categories.php", $data));
+            }
+
+            redirect(new moodle_url("/local/khelpdesk/categories.php"));
+        } else {
             $form->set_data([
                 "id" => $category->get_id(),
                 "name" => $category->get_name(),
                 "description" => $category->get_description(),
-                "action" => "edit",
+                "actionform" => "edit",
             ]);
         }
 
@@ -106,5 +120,84 @@ class category_controller {
         echo $OUTPUT->heading(get_string("updatecategory", "local_khelpdesk"));
         $form->display();
         echo $OUTPUT->footer();
+    }
+
+    /**
+     * Function process_users
+     *
+     * @param category $category
+     *
+     * @return bool
+     *
+     * @throws \coding_exception
+     * @throws \dml_exception
+     */
+    private function process_users(category $category) {
+        global $DB, $USER;
+
+        $roleid = $category->get_role_id();
+
+        // Process incoming user to the category.
+        if (optional_param("add", false, PARAM_BOOL) && confirm_sesskey()) {
+            $users = optional_param_array("addselect", [], PARAM_INT);
+
+            foreach ($users as $userid) {
+
+                $categoryusers = new category_users([
+                    "categoryid" => $category->get_id(),
+                    "userid" => $userid,
+                    "createdat" => time(),
+                ]);
+                $categoryusers->save();
+
+                if ($DB->record_exists("role_assignments", ["roleid" => $roleid, "userid" => $userid])) {
+                    continue;
+                } else {
+                    $roleassignments = [
+                        "roleid" => $roleid,
+                        "userid" => $userid,
+                        "contextid" => context_system::instance()->id,
+                        "timemodified" => time(),
+                        "modifierid" => $USER->id,
+                        "component" => "",
+                        "itemid" => "0",
+                        "sortorder" => "0",
+                    ];
+                    $DB->insert_record("role_assignments", $roleassignments);
+                }
+            }
+
+            return true;
+        }
+
+        // Process removing user to the category.
+        if (optional_param("remove", false, PARAM_BOOL) && confirm_sesskey()) {
+
+            $users = optional_param_array("removeselect", [], PARAM_INT);
+
+            foreach ($users as $userid) {
+
+                $categoryusers = category_users::get_all(null, ["categoryid" => $category->get_id(), "userid" => $userid]);
+                /** @var category_users $categoryuser */
+                foreach ($categoryusers as $categoryuser) {
+                    $categoryuser->delete();
+
+                    // Validates if there is no other category with this user.
+                    $testuser = category_users::get_all(null, ["userid" => $userid]);
+                    if (!$testuser) {
+                        $roleassignments = [
+                            "roleid" => $roleid,
+                            "contextid" => context_system::instance()->id,
+                            "userid" => $userid,
+                        ];
+                        $DB->delete_records("role_assignments", $roleassignments);
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        return false;
     }
 }

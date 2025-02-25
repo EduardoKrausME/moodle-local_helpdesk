@@ -261,6 +261,7 @@ class response {
      */
     public function set_userid($userid) {
         $this->userid = $userid;
+        $this->user = null;
     }
 
     /**

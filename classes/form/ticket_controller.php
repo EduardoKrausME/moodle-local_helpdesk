@@ -24,6 +24,7 @@
 
 namespace local_khelpdesk\form;
 
+use local_khelpdesk\mail\ticket_mail;
 use moodle_url;
 use local_khelpdesk\model\ticket;
 
@@ -46,10 +47,11 @@ class ticket_controller {
         $form = new ticket_form();
 
         if ($form->is_cancelled()) {
-            redirect(new moodle_url("/local/helpdesk/index.php"));
+            redirect(new moodle_url("/local/khelpdesk/index.php"));
         } else if ($data = $form->get_data()) {
             $ticket = new ticket([
                 "userid" => $USER->id,
+                "courseid" => $data->courseid,
                 "categoryid" => $data->categoryid,
                 "subject" => $data->subject,
                 "description" => $data->description["text"],
@@ -59,7 +61,6 @@ class ticket_controller {
                 "updatedat" => time(),
                 "assignedto" => 0,
             ]);
-
             $ticket->save();
 
             $context = \context_system::instance();
@@ -72,10 +73,14 @@ class ticket_controller {
                     "local_khelpdesk", "ticket", $ticket->get_id(), $options);
             }
 
-            redirect(new moodle_url("/local/helpdesk/index.php"));
+            $mail = new ticket_mail();
+            $mail->send_ticket($ticket);
+
+            redirect(new moodle_url("/local/khelpdesk/index.php"));
         } else {
             $form->set_data([
                 "action" => "add",
+                "courseid" => optional_param("courseid", 0, PARAM_INT),
             ]);
         }
 
@@ -104,7 +109,7 @@ class ticket_controller {
         $form = new ticket_form(null, ["ticket" => $ticket]);
 
         if ($form->is_cancelled()) {
-            redirect(new moodle_url("/local/helpdesk/index.php"));
+            redirect(new moodle_url("/local/khelpdesk/index.php"));
         } else if ($data = $form->get_data()) {
             $ticket->set_subject($data->subject);
             $ticket->set_description($data->description["text"]);
@@ -113,7 +118,7 @@ class ticket_controller {
 
             $ticket->save();
 
-            redirect(new moodle_url("/local/helpdesk/index.php"));
+            redirect(new moodle_url("/local/khelpdesk/index.php"));
         } else {
             $form->set_data([
                 "id" => $ticket->get_id(),

@@ -24,6 +24,8 @@
 
 namespace local_khelpdesk\model;
 
+use context_system;
+
 /**
  * Class category
  *
@@ -109,6 +111,9 @@ class category {
      */
     public function delete() {
         global $DB;
+
+        require_capability("local/khelpdesk:categorydelete", context_system::instance());
+
         return $DB->delete_records("local_khelpdesk_category", ["id" => $this->id]);
     }
 
@@ -121,6 +126,51 @@ class category {
      */
     public function get_id() {
         return $this->id;
+    }
+
+    /**
+     * Function create_role
+     *
+     * @return int
+     * @throws \coding_exception
+     * @throws \dml_exception
+     */
+    public function get_role_id() {
+        global $DB, $USER;
+
+        $rolename = get_string("pluginname", "local_khelpdesk");
+        $roleshortname = get_string("pluginname", "local_khelpdesk");
+        $roledescription = get_string("category_role_description", "local_khelpdesk");
+        $rolearchetype = "";
+
+        $role = $DB->get_record("role", ["shortname" => $roleshortname]);
+        if ($role) {
+            return $role->id;
+        }
+
+        $roleid = create_role($rolename, $roleshortname, $roledescription, $rolearchetype);
+        set_role_contextlevels($roleid, [CONTEXT_SYSTEM]);
+
+        $capabilities = [
+            "contextid" => context_system::instance()->id,
+            "roleid" => $roleid,
+            "capability" => "local/khelpdesk:ticketmanage",
+            "permission" => 1,
+            "timemodified" => time(),
+            "modifierid" => $USER->id,
+        ];
+        $DB->insert_record("role_capabilities", $capabilities);
+        $capabilities = [
+            "contextid" => context_system::instance()->id,
+            "roleid" => $roleid,
+            "capability" => "local/kdashboard:ajax",
+            "permission" => 1,
+            "timemodified" => time(),
+            "modifierid" => $USER->id,
+        ];
+        $DB->insert_record("role_capabilities", $capabilities);
+
+        return $roleid;
     }
 
     /**

@@ -34,46 +34,56 @@ require_admin();
 
 $context = context_system::instance();
 $PAGE->set_context($context);
-$PAGE->set_url("/local/helpdesk/categories.php");
-$PAGE->set_title(get_string("categories", "local_khelpdesk"));
-$PAGE->set_heading(get_string("categories", "local_khelpdesk"));
+$PAGE->set_url("/local/khelpdesk/categories.php");
 
-$PAGE->navbar->add(get_string("tickets", "local_khelpdesk"),
-    new moodle_url("/local/helpdesk/"));
-$PAGE->navbar->add(get_string("categories", "local_khelpdesk"),
-    new moodle_url("/local/helpdesk/categories.php"));
+$PAGE->navbar->add(get_string("tickets", "local_khelpdesk"), new moodle_url("/local/khelpdesk/"));
+$PAGE->navbar->add(get_string("categories", "local_khelpdesk"), new moodle_url("/local/khelpdesk/categories.php"));
 
-$templatecontext = new stdClass();
-$templatecontext->categories = [];
-$templatecontext->addcategoryurl = new moodle_url("/local/helpdesk/categories.php", ["action" => "add"]);
+require_login(null, false);
+require_capability("local/khelpdesk:ticketmanage", $context);
 
-$action = optional_param("action", "", PARAM_ALPHA);
+$templatecontext = [
+    "categories" => [],
+    "addcategoryurl" => new moodle_url("/local/khelpdesk/categories.php", ["actionform" => "add"]),
+    "has_categorydelete" => has_capability("local/khelpdesk:categorydelete", $context),
+];
+
+$actionform = optional_param("actionform", "", PARAM_ALPHA);
 $categoryid = optional_param("id", 0, PARAM_INT);
 
-if ($action == "add") {
-
+if ($actionform == "add") {
     $PAGE->navbar->add(get_string("createcategory", "local_khelpdesk"));
+
+    $PAGE->set_title(get_string("createcategory", "local_khelpdesk"));
+    $PAGE->set_heading(get_string("createcategory", "local_khelpdesk"));
 
     $controller = new category_controller();
     $controller->insert_category();
-} else if ($action == "edit" && $categoryid > 0) {
+} else if ($actionform == "edit" && $categoryid > 0) {
 
     $category = category::get_by_id($categoryid);
 
+    $PAGE->navbar->add(get_string("editcategory", "local_khelpdesk"));
     $PAGE->navbar->add($category->get_name());
-    $PAGE->navbar->add(get_string("createcategory", "local_khelpdesk"));
+
+    $PAGE->set_title(get_string("editcategory", "local_khelpdesk"));
+    $PAGE->set_heading(get_string("editcategory", "local_khelpdesk"));
 
     $controller = new category_controller();
-    $controller->update_category($categoryid);
-} else if ($action == "delete" && $categoryid > 0) {
+    $controller->update_category($category);
+
+} else if ($actionform == "delete" && $categoryid > 0) {
 
     $category = category::get_by_id($categoryid);
+
+    $PAGE->set_title(get_string("deletecategory", "local_khelpdesk"));
+    $PAGE->set_heading(get_string("deletecategory", "local_khelpdesk"));
 
     $PAGE->navbar->add(get_string("deletecategory", "local_khelpdesk"));
 
     $ticket = $DB->get_records("local_khelpdesk_ticket", ["id" => $category->get_id()], "", "subject", 0, 1);
     if ($ticket) {
-        redirect(new moodle_url("/local/helpdesk/categories.php"),
+        redirect(new moodle_url("/local/khelpdesk/categories.php"),
             get_string("deletecategoryusedata", "local_khelpdesk"), null,
             \core\output\notification::NOTIFY_ERROR);
     }
@@ -83,18 +93,18 @@ if ($action == "add") {
 
         $category->delete();
 
-        redirect(new moodle_url("/local/helpdesk/categories.php"),
+        redirect(new moodle_url("/local/khelpdesk/categories.php"),
             get_string("deletesuccesscategory", "local_khelpdesk"), null,
             \core\output\notification::NOTIFY_SUCCESS);
     }
 
     echo $OUTPUT->header();
 
-    $cancelurl = new moodle_url("/local/helpdesk/categories.php");
-    $continueurl = new moodle_url("/local/helpdesk/categories.php",
+    $cancelurl = new moodle_url("/local/khelpdesk/categories.php");
+    $continueurl = new moodle_url("/local/khelpdesk/categories.php",
         [
             "id" => $category->get_id(),
-            "action" => "delete",
+            "actionform" => "delete",
             "confirm" => md5($category->get_id() . sesskey()),
             "sesskey" => sesskey(),
         ]);
@@ -109,11 +119,15 @@ if ($action == "add") {
 } else {
     $categories = category::get_all();
 
+    $PAGE->set_title(get_string("categories", "local_khelpdesk"));
+    $PAGE->set_heading(get_string("categories", "local_khelpdesk"));
+
+    /** @var category $category */
     foreach ($categories as $category) {
-        $templatecontext->categories[] = [
-            "id" => $category->id,
-            "name" => $category->name,
-            "description" => $category->description,
+        $templatecontext["categories"][] = [
+            "id" => $category->get_id(),
+            "name" => $category->get_name(),
+            "description" => $category->get_description(),
         ];
     }
 }

@@ -28,10 +28,7 @@ use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
-use local_khelpdesk\model\category;
 use local_khelpdesk\model\response;
-use local_kbi\local\util\details_util;
-use local_kbi\local\vo\local_kbi_block;
 
 defined('MOODLE_INTERNAL') || die;
 global $CFG;
@@ -92,7 +89,7 @@ class ticket extends external_api {
             "value" => $value,
         ]);
         $context = \context_system::instance();
-        require_capability("local/helpdesk:manage", $context);
+        require_capability("local/khelpdesk:ticketmanage", $context);
         self::validate_context($context);
 
         $ticket = \local_khelpdesk\model\ticket::get_by_id($params["idkey"]);
@@ -100,24 +97,14 @@ class ticket extends external_api {
         switch ($params["column"]) {
             case "status":
                 if ($params["value"] != $ticket->get_status()) {
-                    $ticket->set_status($params["value"]);
-                    $ticket->save();
-
-                    $status = \local_khelpdesk\model\ticket::status_translated($params["value"]);
-                    $savestatus = get_string("lognewstatus", "local_khelpdesk", $status);
-                    response::create_status($ticket, $savestatus);
+                    $ticket->change_status($params["value"]);
                 } else {
                     $savestatus = get_string("lognowupdate", "local_khelpdesk");
                 }
                 break;
             case "priority":
                 if ($params["value"] != $ticket->get_priority()) {
-                    $ticket->set_priority($params["value"]);
-                    $ticket->save();
-
-                    $priority = \local_khelpdesk\model\ticket::priority_translated($params["value"]);
-                    $savestatus = get_string("lognewpriority", "local_khelpdesk", $priority);
-                    response::create_status($ticket, $savestatus);
+                    $ticket->change_priority($params["value"]);
                 } else {
                     $savestatus = get_string("lognowupdate", "local_khelpdesk");
                 }

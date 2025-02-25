@@ -200,8 +200,10 @@ class ticket {
             return $this->category;
         }
 
-        $this->category = $DB->get_record("local_khelpdesk_category", ["id" => $this->get_categoryid()]);
-        return new category($this->category);
+        $this->category = new category(
+            $DB->get_record("local_khelpdesk_category", ["id" => $this->get_categoryid()])
+        );
+        return $this->category;
     }
 
     /**
@@ -281,6 +283,52 @@ class ticket {
     }
 
     /**
+     * Function has_closed
+     *
+     * @return bool
+     */
+    public function has_closed() {
+        if ($this->get_status() == self::STATUS_CLOSED) {
+            return true;
+        }
+        if ($this->get_status() == self::STATUS_RESOLVED) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Function get_status_options
+     *
+     * @param $selected
+     *
+     * @return array
+     * @throws \coding_exception
+     */
+    public static function get_status_options($selected) {
+        return [
+            [
+                "key" => "open",
+                "label" => get_string("status_open", "local_khelpdesk"),
+                "selected" => $selected == "open" ? "selected" : "",
+            ], [
+                "key" => "progress",
+                "label" => get_string("status_progress", "local_khelpdesk"),
+                "selected" => $selected == "progress" ? "selected" : "",
+            ], [
+                "key" => "resolved",
+                "label" => get_string("status_resolved", "local_khelpdesk"),
+                "selected" => $selected == "resolved" ? "selected" : "",
+            ], [
+                "key" => "closed",
+                "label" => get_string("status_closed", "local_khelpdesk"),
+                "selected" => $selected == "closed" ? "selected" : "",
+            ],
+        ];
+    }
+
+    /**
      * Function get_status_translated
      *
      * @return string
@@ -320,6 +368,36 @@ class ticket {
      */
     public function get_priority() {
         return $this->priority;
+    }
+
+    /**
+     * Function get_priority_options
+     *
+     * @param $selected
+     *
+     * @return array
+     * @throws \coding_exception
+     */
+    public static function get_priority_options($selected) {
+        return [
+            [
+                "key" => "low",
+                "label" => get_string("priority_low", "local_khelpdesk"),
+                "selected" => $selected == "low" ? "selected" : "",
+            ], [
+                "key" => "medium",
+                "label" => get_string("priority_medium", "local_khelpdesk"),
+                "selected" => $selected == "medium" ? "selected" : "",
+            ], [
+                "key" => "high",
+                "label" => get_string("priority_high", "local_khelpdesk"),
+                "selected" => $selected == "high" ? "selected" : "",
+            ], [
+                "key" => "urgent",
+                "label" => get_string("priority_urgent", "local_khelpdesk"),
+                "selected" => $selected == "urgent" ? "selected" : "",
+            ],
+        ];
     }
 
     /**
@@ -390,8 +468,8 @@ class ticket {
      * @param $categoryid
      */
     public function set_categoryid($categoryid) {
-        $this->category = null;
         $this->categoryid = $categoryid;
+        $this->category = null;
     }
 
     /**
@@ -440,12 +518,62 @@ class ticket {
     }
 
     /**
+     * Function change_status
+     *
+     * @param $newstatus
+     *
+     * @return bool
+     *
+     * @throws \coding_exception
+     * @throws \dml_exception
+     */
+    public function change_status($newstatus) {
+        if ($this->get_status() == $newstatus) {
+            return false;
+        }
+
+        $this->set_status($newstatus);
+        $this->save();
+
+        $status = self::status_translated($newstatus);
+        $savestatus = get_string("lognewstatus", "local_khelpdesk", $status);
+        response::create_status($this, $savestatus);
+
+        return true;
+    }
+
+    /**
      * Function set_priority
      *
      * @param $priority
      */
     public function set_priority($priority) {
         $this->priority = $priority;
+    }
+
+    /**
+     * Function change_priority
+     *
+     * @param $newpriority
+     *
+     * @return bool
+     *
+     * @throws \coding_exception
+     * @throws \dml_exception
+     */
+    public function change_priority($newpriority) {
+        if ($this->get_priority() == $newpriority) {
+            return false;
+        }
+
+        $this->set_priority($newpriority);
+        $this->save();
+
+        $priority = self::priority_translated($newpriority);
+        $savestatus = get_string("lognewpriority", "local_khelpdesk", $priority);
+        response::create_status($this, $savestatus);
+
+        return true;
     }
 
     /**

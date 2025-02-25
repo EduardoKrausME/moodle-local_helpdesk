@@ -15,41 +15,46 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    @template local_kbi/filter-course
+    @template local_khelpdesk/filter-course
 
     Example context (json):
     {
       "course_fullname": "Curso de Desenvolvimento Web",
+      "course_id": 123,
       "url_ajax": "https://example.com/user_ajax_endpoint"
     }
 }}
 
-<div id="chart-course-button-open" style="display:none"
+<div id="chart-course-button-open" style="{{#url_ajax}}display:none{{/url_ajax}}"
      data-defaultfullname="{{#str}}findcourse, local_khelpdesk{{/str}}">
     <label>{{#str}}course{{/str}}:</label>
-    <span class="select">
+    <span class="select {{^url_ajax}}no-arrou{{/url_ajax}}">
         {{{course_fullname}}}
     </span>
 
-    <span class="badge badge-danger cursor-pointer"
-          {{^course_id}}style="display:none"{{/course_id}}>X</span>
+    {{#url_ajax}}
+        <span class="badge badge-danger cursor-pointer"
+              {{^course_id}}style="display:none"{{/course_id}}>X</span>
+    {{/url_ajax}}
 
-    <input type="hidden" name="find_course" value="{{{course_id}}}">
+    <input type="hidden" name="courseid" value="{{{course_id}}}">
 </div>
-<div id="chart-course-datatable-select" style="display:none;"
-     data-urlajax="{{{url_ajax}}}"
-     title="{{#str}}reports_selectcourse,local_kbi{{/str}}">
-    <table id="datatable_course_select" class="table table-hover">
-        <thead>
-        <tr>
-            <th class="text-center th_id" style="width: 20px">#</th>
-            <th class="text-center th_fullname">{{#str}}courses_name,local_kdashboard{{/str}}</th>
-            <th class="text-center th_shortname">{{#str}}courses_shortname,local_kdashboard{{/str}}</th>
-            <th class="text-center th_visible">{{#str}}visible,local_kdashboard{{/str}}</th>
-            <th class="text-center th_enrolments"
-                style="width:50px;white-space:nowrap;">{{#str}}courses_enrol,local_kdashboard{{/str}}</th>
-        </tr>
-        </thead>
-        <tbody class="hover-pointer"></tbody>
-    </table>
-</div>
+{{#url_ajax}}
+    <div id="chart-course-datatable-select" style="display:none;"
+         data-urlajax="{{{url_ajax}}}"
+         title="{{#str}}reports_selectcourse,local_kbi{{/str}}">
+        <table id="datatable_course_select" class="table table-hover">
+            <thead>
+            <tr>
+                <th class="text-center th_id" style="width: 20px">#</th>
+                <th class="text-center th_fullname">{{#str}}courses_name,local_kdashboard{{/str}}</th>
+                <th class="text-center th_shortname">{{#str}}courses_shortname,local_kdashboard{{/str}}</th>
+                <th class="text-center th_visible">{{#str}}visible,local_kdashboard{{/str}}</th>
+                <th class="text-center th_enrolments"
+                    style="width:50px;white-space:nowrap;">{{#str}}courses_enrol,local_kdashboard{{/str}}</th>
+            </tr>
+            </thead>
+            <tbody class="hover-pointer"></tbody>
+        </table>
+    </div>
+{{/url_ajax}}

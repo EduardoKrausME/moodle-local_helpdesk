@@ -24,6 +24,8 @@
 
 namespace local_khelpdesk\form;
 
+use local_khelpdesk\model\ticket;
+
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir . "/formslib.php");
@@ -38,8 +40,11 @@ class response_form extends \moodleform {
      * Function definition
      *
      * @throws \coding_exception
+     * @throws \dml_exception
      */
     protected function definition() {
+        global $OUTPUT, $PAGE, $CFG;
+
         $mform = $this->_form;
 
         $mform->addElement("hidden", "id");
@@ -53,6 +58,30 @@ class response_form extends \moodleform {
             "maxbytes" => 0,
         ]);
         $mform->setType("message", PARAM_RAW);
+        $mform->addRule("message", null, "required");
+
+        if ($this->_customdata["hasticketmanage"]) {
+            $apikey = get_config("local_geniai", "apikey");
+            if (isset($apikey[5])) {
+                /** @var ticket $ticket */
+                $ticket = $this->_customdata["ticket"];
+                $button = $OUTPUT->render_from_template("local_khelpdesk/response-form-ia", [
+                    "ticketid" => $ticket->get_id(),
+                ]);
+                $mform->addElement("static", "create_local_geniai", get_string("geniai_title", "local_khelpdesk"), $button);
+            } else {
+
+                if (file_exists("{$CFG->dirroot}/local/geniai/lib.php")) {
+                    $link = "{$CFG->wwwroot}/admin/settings.php?section=local_geniai";
+                } else {
+                    $link = "https://moodle.org/plugins/local_geniai";
+                }
+
+                $message = get_string("geniai_missing", "local_khelpdesk", $link);
+                $message = $PAGE->get_renderer("core")->render(new \core\output\notification($message, "warning"));
+                $mform->addElement("static", "missing_local_geniai", get_string("geniai_title", "local_khelpdesk"), $message);
+            }
+        }
 
         $mform->addElement("filemanager", "attachment", get_string("attachment", "local_khelpdesk"), null, [
             "maxfiles" => 5,
@@ -61,6 +90,13 @@ class response_form extends \moodleform {
             "maxbytes" => 0,
         ]);
 
-        $this->add_action_buttons(true, get_string("savechanges"));
+        $itens = [
+            $mform->createElement("submit", "submitbutton", get_string("ticketresponse", "local_khelpdesk")),
+            $mform->createElement("submit", "resolvedbutton", get_string("ticketresponseandresolved", "local_khelpdesk")),
+            $mform->createElement("submit", "closebutton", get_string("ticketresponseandclose", "local_khelpdesk")),
+            $mform->createElement("cancel"),
+        ];
+        $mform->addGroup($itens, "buttonar", "", [" "], true);
+        $mform->closeHeaderBefore("buttonar");
     }
 }

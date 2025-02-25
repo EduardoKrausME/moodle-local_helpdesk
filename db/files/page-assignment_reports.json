@@ -1,0 +1,38 @@
+{
+    "title": "lang::report_assignment_reports_page_title::local_khelpdesk",
+    "description": "lang::report_assignment_reports_page_description::local_khelpdesk",
+    "user_id": null,
+    "category": {
+        "title": "lang::pluginname::local_khelpdesk",
+        "description": ""
+    },
+    "blocks": [
+        {
+            "refkey": null,
+            "type": "block-1",
+            "sequence": 1,
+            "elements": [
+                {
+                    "refkey": "tickets_by_agent",
+                    "title": "lang::report_assignment_reports_tickets_by_agent_cat_title::local_khelpdesk",
+                    "block_num": 1,
+                    "type": "table",
+                    "theme": "light",
+                    "css": "",
+                    "html_before": "",
+                    "html_after": "",
+                    "commandsql": "SELECT u.id,\r\n       u.firstname,\r\n       u.lastname,\r\n       COUNT(r.id) AS total_tickets\r\n  FROM mdl_local_khelpdesk_response r\r\n  JOIN mdl_user u ON r.userid = u.id\r\nGROUP BY r.userid\r\nORDER BY total_tickets DESC",
+                    "cache": "1d",
+                    "reload": "none",
+                    "info": "{\n    \"column\": {\n        \"id\": {\n            \"key\": \"id\",\n            \"title\": \"#\",\n            \"type\": \"userphotoRenderer\",\n            \"mustache\": \"{{{id}}}\"\n        },\n        \"firstname\": {\n            \"key\": \"firstname\",\n            \"title\": \"lang::u_fullname::local_kbi\",\n            \"type\": \"userfullname\",\n            \"mustache\": \"<a href=\\\"{{{config.wwwroot}}}\\\/user\\\/view.php?id={{{u_id}}}\\\"\\r\\n   target=\\\"profile\\\">{{{u_fullname}}}<\\\/a>\"\n        },\n        \"lastname\": {\n            \"key\": \"lastname\",\n            \"title\": \"lastname\",\n            \"type\": \"none\",\n            \"mustache\": \"\"\n        },\n        \"total_tickets\": {\n            \"key\": \"total_tickets\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_total_tickets::local_khelpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"{{{total_tickets}}}\"\n        }\n    }\n}"
+                }
+            ]
+        },
+        {
+            "refkey": null,
+            "type": "block-1",
+            "sequence": 2,
+            "elements": []
+        }
+    ]
+}

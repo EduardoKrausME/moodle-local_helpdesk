@@ -50,17 +50,32 @@ class ticket_form extends \moodleform {
         $mform->addElement("hidden", "id");
         $mform->setType("id", PARAM_INT);
 
+        $mform->addElement("hidden", "courseid");
+        $mform->setType("courseid", PARAM_INT);
+
         $mform->addElement("hidden", "action");
         $mform->setType("action", PARAM_TEXT);
 
         $mform->addElement("text", "subject", get_string("subject", "local_khelpdesk"));
         $mform->setType("subject", PARAM_TEXT);
+        $mform->addRule("subject", null, "required");
+
+        $categories = category::get_all();
+        $categoryoptions = ["" => "..:: " . get_string("select") . " ::.."];
+        /** @var category $category */
+        foreach ($categories as $category) {
+            $categoryoptions[$category->get_id()] = $category->get_name();
+        }
+        $mform->addElement("select", "categoryid", get_string("category", "local_khelpdesk"), $categoryoptions);
+        $mform->setType("categoryid", PARAM_INT);
+        $mform->addRule("categoryid", null, "required");
 
         $mform->addElement("editor", "description", get_string("ticketdescription", "local_khelpdesk"), null, [
             "maxfiles" => 0,
             "maxbytes" => 0,
         ]);
         $mform->setType("description", PARAM_RAW);
+        $mform->addRule("description", null, "required");
 
         $priorityoptions = [
             ticket::PRIORITY_LOW => get_string("ticketprioritylow", "local_khelpdesk"),
@@ -70,15 +85,7 @@ class ticket_form extends \moodleform {
         ];
         $mform->addElement("select", "priority", get_string("priority", "local_khelpdesk"), $priorityoptions);
         $mform->setType("priority", PARAM_TEXT);
-
-        $categories = category::get_all();
-        $categoryoptions = ["0" => ""];
-        /** @var category $category */
-        foreach ($categories as $category) {
-            $categoryoptions[$category->get_id()] = $category->get_name();
-        }
-        $mform->addElement("select", "categoryid", get_string("category", "local_khelpdesk"), $categoryoptions);
-        $mform->setType("categoryid", PARAM_INT);
+        $mform->addRule("priority", null, "required");
 
         $mform->addElement("filemanager", "attachment", get_string("attachment", "local_khelpdesk"), null, [
             "maxfiles" => 5,
@@ -87,6 +94,6 @@ class ticket_form extends \moodleform {
             "maxbytes" => 0,
         ]);
 
-        $this->add_action_buttons(true, get_string("savechanges"));
+        $this->add_action_buttons(true, get_string("createticket", "local_khelpdesk"));
     }
 }

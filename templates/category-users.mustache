@@ -1,0 +1,26 @@
+<h3>{{#str}}category_users_title, local_khelpdesk{{/str}}</h3>
+
+<a href="{{config.wwwroot}}/admin/roles/assign.php?contextid={{contextid}}&roleid={{roleid}}"
+    target="_blank" class="btn btn-info">{{#str}}khelpdesk_manage_users, local_khelpdesk{{/str}}</a>
+
+<div class="select-users mt-2">
+    <div id="existingcell">
+        <label for="removeselect">{{#str}}category_users_responses, local_khelpdesk{{/str}}</label>
+        {{{existinguserselector}}}
+    </div>
+    <div id="buttonscell">
+        <div id="addcontrols">
+            <input class="btn btn-secondary" name="add" id="add" type="submit"
+            value="<<&nbsp;{{#str}}add{{/str}}" title="{{#str}}add{{/str}}"/><br/>
+        </div>
+
+        <div id="removecontrols">
+            <input class="btn btn-secondary" name="remove" id="remove" type="submit"
+            value="{{#str}}remove{{/str}}&nbsp;>>" title="{{#str}}remove{{/str}}"/>
+        </div>
+    </div>
+    <div id="potentialcell">
+        <label for="addselect">{{#str}}category_users_all, local_khelpdesk{{/str}}</label>
+        {{{potentialuserselector}}}
+    </div>
+</div>

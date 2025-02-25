@@ -37,7 +37,7 @@ class filter {
         if (!$loadkopere) {
             $loadkopere = true;
 
-            require_once "{$CFG->dirroot}/local/kdashboard/autoload.php";
+            require_once("{$CFG->dirroot}/local/kdashboard/autoload.php");
             get_klang();
         }
     }
@@ -49,6 +49,8 @@ class filter {
      * @param $courseid
      *
      * @return mixed
+     * @throws \coding_exception
+     * @throws \dml_exception
      */
     public static function create_filter_course($coursefullname, $courseid) {
         global $OUTPUT, $PAGE;
@@ -58,10 +60,16 @@ class filter {
         $data = [
             "course_fullname" => $coursefullname,
             "course_id" => $courseid,
-            "url_ajax" => local_kdashboard_makeurl("courses", "load_all_courses", [], "view-ajax"),
+            "url_ajax" => false,
         ];
-        $PAGE->requires->js_call_amd("local_khelpdesk/filter_course", "init");
-        return $OUTPUT->render_from_template('local_khelpdesk/filter-course', $data);
+
+        $context = \context_system::instance();
+        if (has_capability("local/khelpdesk:ticketmanage", $context)) {
+            $data["url_ajax"] = local_kdashboard_makeurl("courses", "load_all_courses", [], "view-ajax");
+            $PAGE->requires->js_call_amd("local_khelpdesk/filter_course", "init");
+        }
+
+        return $OUTPUT->render_from_template("local_khelpdesk/filter-course", $data);
     }
 
     /**
@@ -83,6 +91,6 @@ class filter {
             "url_ajax" => local_kdashboard_makeurl("users", "load_all_users", [], "view-ajax"),
         ];
         $PAGE->requires->js_call_amd("local_khelpdesk/filter_user", "init");
-        return $OUTPUT->render_from_template('local_khelpdesk/filter-user', $data);
+        return $OUTPUT->render_from_template("local_khelpdesk/filter-user", $data);
     }
 }

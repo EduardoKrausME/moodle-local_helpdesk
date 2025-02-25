@@ -71,7 +71,6 @@
                 has_info
             {{/has_info}}
         {{/responses}}
-
     </div>
 
     <div class="col-md-5 col-lg-4 col-xxl-3">
@@ -106,49 +105,65 @@
                             <span class="text-secondary">{{course_fullname}}</span>
                         </div>
                     {{/course_fullname}}
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="fw-medium">{{#str}}ticketstatus, local_khelpdesk{{/str}}:</span>
-                        {{#hasmanage}}
-                            <select name="changue_status" id="changue_status"
-                                    data-column="status">
-                                {{#status_options}}
-                                    <option value="{{key}}" {{selected}}>{{lang}}</option>
-                                {{/status_options}}
-                            </select>
-                        {{/hasmanage}}
-                        {{^hasmanage}}
+                    {{#has_closed}}
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-medium">{{#str}}ticketstatus, local_khelpdesk{{/str}}:</span>
                             <span class="badge status-{{status}}">{{status_translated}}</span>
-                        {{/hasmanage}}
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="fw-medium">{{#str}}ticketpriority, local_khelpdesk{{/str}}:</span>
-
-                        {{#hasmanage}}
-                            <select name="changue_priority" id="changue_priority"
-                                    data-column="priority">
-                                {{#priority_options}}
-                                    <option value="{{key}}" {{selected}}>{{lang}}</option>
-                                {{/priority_options}}
-                            </select>
-                        {{/hasmanage}}
-                        {{^hasmanage}}
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-medium">{{#str}}ticketpriority, local_khelpdesk{{/str}}:</span>
                             <span class="badge priority-{{priority}}">{{priority_translated}}</span>
-                        {{/hasmanage}}
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="fw-medium">{{#str}}ticketcategory, local_khelpdesk{{/str}}:</span>
-                        {{#hasmanage}}
-                            <select name="changue_category" id="changue_category"
-                                    data-column="category">
-                                {{#category_options}}
-                                    <option value="{{key}}" {{selected}}>{{lang}}</option>
-                                {{/category_options}}
-                            </select>
-                        {{/hasmanage}}
-                        {{^hasmanage}}
-                            <span class="text-secondary">{{category_translate}}</span>
-                        {{/hasmanage}}
-                    </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-medium">{{#str}}ticketcategory, local_khelpdesk{{/str}}:</span>
+                                <span class="text-secondary">{{category_translate}}</span>
+                        </div>
+                    {{/has_closed}}
+                    {{^has_closed}}
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-medium">{{#str}}ticketstatus, local_khelpdesk{{/str}}:</span>
+                            {{#hasticketmanage}}
+                                <select name="changue_status" id="changue_status"
+                                        data-column="status">
+                                    {{#status_options}}
+                                        <option value="{{key}}" {{selected}}>{{label}}</option>
+                                    {{/status_options}}
+                                </select>
+                            {{/hasticketmanage}}
+                            {{^hasticketmanage}}
+                                <span class="badge status-{{status}}">{{status_translated}}</span>
+                            {{/hasticketmanage}}
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-medium">{{#str}}ticketpriority, local_khelpdesk{{/str}}:</span>
+
+                            {{#hasticketmanage}}
+                                <select name="changue_priority" id="changue_priority"
+                                        data-column="priority">
+                                    {{#priority_options}}
+                                        <option value="{{key}}" {{selected}}>{{label}}</option>
+                                    {{/priority_options}}
+                                </select>
+                            {{/hasticketmanage}}
+                            {{^hasticketmanage}}
+                                <span class="badge priority-{{priority}}">{{priority_translated}}</span>
+                            {{/hasticketmanage}}
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-medium">{{#str}}ticketcategory, local_khelpdesk{{/str}}:</span>
+                            {{#hasticketmanage}}
+                                <select name="changue_category" id="changue_category"
+                                        data-column="category">
+                                    {{#category_options}}
+                                        <option value="{{key}}" {{selected}}>{{label}}</option>
+                                    {{/category_options}}
+                                </select>
+                            {{/hasticketmanage}}
+                            {{^hasticketmanage}}
+                                <span class="text-secondary">{{category_translate}}</span>
+                            {{/hasticketmanage}}
+                        </div>
+                    {{/has_closed}}
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <span class="fw-medium">{{#str}}ticketcreatedat, local_khelpdesk{{/str}}:</span>
                         <span class="text-secondary">{{createdat}}</span>
@@ -179,10 +194,47 @@
     </div>
 </div>
 
+{{^has_closed}}
+    <div id="response-message-area" style="display:flex;gap:12px;">
+        <button id="response-message-open"
+                class="btn btn-success">{{#str}}replytoticket, local_khelpdesk{{/str}}
+        </button>
+
+        <div style="width:40px">&nbsp;</div>
+
+        <button id="response-message-resolved"
+                class="btn btn-info">{{#str}}markticketasresolved, local_khelpdesk{{/str}}
+        </button>
+        <button id="response-message-closed"
+                class="btn btn-danger">{{#str}}markticketasclosed, local_khelpdesk{{/str}}
+        </button>
+    </div>
+{{/has_closed}}
+
 {{#js}}
     /*
     <script>*/
     require(["jquery", "core/ajax", "core/notification"], function($, Ajax, Notification) {
+
+        $("#response-message-open").click(function() {
+            $("#response-message-area").hide(300);
+            $(".response-message").show(300);
+        });
+
+        $("#response-message-resolved").click(function() {
+            $("#response-message-area").hide(300);
+            location.href = "?id=
+                {{idkey}}&newstatus=resolved"
+        });
+        $("#response-message-resolved").click(function() {
+            $("#response-message-area").hide(300);
+            location.href = "?id=
+                {{idkey}}&newstatus=closed"
+        });
+
+        $("#id_buttonar_resolvedbutton").removeClass("btn-primary").addClass("btn-info");
+        $("#id_buttonar_closebutton").removeClass("btn-primary").addClass("btn-danger");
+
         $("#changue_status,#changue_priority,#changue_category").on("change", function() {
             var value = $(this).val();
 

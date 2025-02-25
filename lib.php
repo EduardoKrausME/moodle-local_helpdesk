@@ -23,7 +23,78 @@
  */
 
 /**
- * Serve the files from the helpdesk file areas
+ * Function local_khelpdesk_extends_navigation
+ *
+ * @param global_navigation $nav
+ *
+ * @throws coding_exception
+ * @throws dml_exception
+ */
+function local_khelpdesk_extends_navigation(global_navigation $nav) {
+    local_khelpdesk_extend_navigation($nav);
+}
+
+
+/**
+ * Function local_khelpdesk_extend_navigation
+ *
+ * @param global_navigation $nav
+ *
+ * @throws coding_exception
+ * @throws dml_exception
+ */
+function local_khelpdesk_extend_navigation(global_navigation $nav) {
+    global $PAGE, $COURSE, $SITE, $CFG;
+
+    if (!isloggedin()) {
+        return;
+    }
+
+    $context = context_system::instance();
+
+    if (!has_capability("local/khelpdesk:view", $context)) {
+        return;
+    }
+
+    if (!has_capability("local/khelpdesk:ticketmanage", $context)) {
+        if (!isset(get_config("local_khelpdesk", "menu")[2])) {
+            return;
+        } else if (get_config("local_khelpdesk", "menu") == "none") {
+            return;
+        } else if (get_config("local_khelpdesk", "menu") == "course") {
+            if ($COURSE->id == $SITE->id) {
+                return;
+            }
+        }
+    }
+
+    $courseid = "";
+    if ($COURSE->id != $SITE->id) {
+        $courseid = $COURSE->id;
+    }
+
+    try {
+        $mynode = $PAGE->navigation->find("myprofile", navigation_node::TYPE_ROOTNODE);
+        $mynode->collapse = true;
+        $mynode->make_inactive();
+
+        $name = get_string("pluginname", "local_khelpdesk");
+        if ($courseid) {
+            $url = new moodle_url("/local/khelpdesk/?courseid={$courseid}");
+        } else {
+            $url = new moodle_url("/local/khelpdesk/");
+        }
+        $nav->add($name, $url);
+        $node = $mynode->add($name, $url, 0, null, "khelpdesk_admin", new pix_icon("i/pie_chart", "", "local_khelpdesk"));
+        $node->showinflatnavigation = true;
+
+        $CFG->custommenuitems .= "\n-{$name}|{$url}";
+    } catch (Exception $e) { // phpcs:disable
+    }
+}
+
+/**
+ * Serve the files from the khelpdesk file areas
  *
  * @param stdClass $course    the course object
  * @param stdClass $cm        the course module object
@@ -42,7 +113,7 @@ function local_khelpdesk_pluginfile($course, $cm, context $context, $filearea, $
 
     require_login($course, true, $cm);
 
-    if (!has_capability("local/helpdesk:view", $context)) {
+    if (!has_capability("local/khelpdesk:view", $context)) {
         return false;
     }
 

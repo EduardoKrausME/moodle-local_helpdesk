@@ -1,54 +1,80 @@
-.path-local-helpdesk {
+.path-local-khelpdesk {
     .container {
         width: 100% !important;
     }
     .badge {
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 4px;
         &.priority-low {
             background-color: #28a745; /* Verde */
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 4px;
         }
         &.priority-medium {
             background-color: #ffc107; /* Amarelo */
             color: #212529;
-            padding: 5px 10px;
-            border-radius: 4px;
         }
         &.priority-high {
             background-color: #fd7e14; /* Laranja */
-            color: #fff;
-            border-radius: 4px;
         }
         &.priority-urgent {
             background-color: #dc3545; /* Vermelho */
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 4px;
         }
         &.status-open {
             background-color: #007bff; /* Azul */
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 4px;
         }
         &.status-in-progress {
             background-color: #17a2b8; /* Ciano */
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 4px;
         }
         &.status-resolved {
             background-color: #28a745; /* Verde */
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 4px;
         }
         &.status-closed {
             background-color: #6c757d; /* Cinza */
+        }
+    }
+    .top-tikets-infos {
+        .ticket-card {
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 21px 3px rgba(139, 132, 118, .05);
+            border: none;
+            margin-bottom: 1.25rem;
+            transition: all .3s ease;
+            border-radius: 0.8em;
             color: #fff;
-            padding: 5px 10px;
-            border-radius: 4px;
+            &:before {
+                content: "◦";
+                position: absolute;
+                right: -31px;
+                top: -1px;
+                font-size: 368px;
+                line-height: 30px;
+                color: #fff;
+                opacity: .25;
+            }
+            .top-ticket-title {
+                font-size: 19px;
+                line-height: 1.6;
+                margin-bottom: 3px;
+                color: #fff;
+            }
+            h3 {
+                color: #fff;
+                font-size: 30px;
+                margin-left: 7px;
+            }
+        }
+        .ticket-card-1 {
+            background-color: #2196F3 ;
+        }
+        .ticket-card-2 {
+            background-color: #00BCD4 ;
+        }
+        .ticket-card-3 {
+            background-color: #4CAF50 ;
+        }
+        .ticket-card-4 {
+            background-color: #C0CA33 ;
         }
     }
     .area-finds {
@@ -110,11 +136,14 @@
         }
     }
     .response-message {
+        display: none;
         #fitem_id_message,
         #fitem_id_attachment,
-        #fgroup_id_buttonar {
+        #fgroup_id_buttonar,
+        #fitem_id_create_local_geniai {
             display: block !important;
-            label {
+            label,
+            .col-form-label {
                 font-weight: bold;
             }
             .col-md-3,
@@ -163,9 +192,30 @@
         }
     }
     
+    .control-buttons {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .select-users {
+        display: flex;
+        background: #dee2e661;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 13px;
+        #existingcell,
+        #potentialcell {
+            width: 50%;
+        }
+        #buttonscell {
+            padding: 10px;
+        }
+    }
+    
     .select,
     select {
-        padding: .5rem .7rem;
+        padding: 8px 11px;
         font-size: .9rem;
         line-height: 1.25;
         color: #464a4c;
@@ -175,7 +225,7 @@
         transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
         font-weight: 300;
     }
-    .select {
+    .select:not(.no-arrou) {
         display: inline-block;
         // background-image: url(data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0.001 4.501 24 15'><path fill='#5F6368' d='M12,19.501L0,7.339l2.799-2.838L12,13.825l9.199-9.324L24,7.339L12,19.501z'/></svg>);
         background-image: url("data:image/svg+xml;base64,PHN2ZyBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyNCAxNSIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDE1IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTEyIDE1LTEyLTEyLjE2MiAyLjc5OS0yLjgzOCA5LjIwMSA5LjMyNCA5LjE5OS05LjMyNCAyLjgwMSAyLjgzOHoiIGZpbGw9IiM1ZjYzNjgiLz48L3N2Zz4=");
@@ -184,5 +234,9 @@
         background-size: 17px;
         padding-right: 32px;
         cursor: pointer;
+    }
+    
+    #id_subject {
+        width: 90%;
     }
 }

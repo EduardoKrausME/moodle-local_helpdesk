@@ -12,8 +12,10 @@
             <td>{{name}}</td>
             <td>{{description}}</td>
             <td style="white-space: nowrap; width: 100px;">
-                <a href="?action=edit&amp;id={{id}}" class="badge badge-success">{{#str}}edit{{/str}}</a>
-                <a href="?action=delete&amp;id={{id}}" class="badge badge-danger">{{#str}}delete{{/str}}</a>
+                <a href="?actionform=edit&amp;id={{id}}" class="badge badge-success">{{#str}}edit{{/str}}</a>
+                {{#has_categorydelete}}
+                    <a href="?actionform=delete&amp;id={{id}}" class="badge badge-danger">{{#str}}delete{{/str}}</a>
+                {{/has_categorydelete}}
             </td>
         </tr>
     {{/categories}}

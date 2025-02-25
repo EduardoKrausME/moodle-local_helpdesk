@@ -26,12 +26,21 @@ defined('MOODLE_INTERNAL') || die;
 
 $functions = [
     "local_khelpdesk_ticket_column" => [
-        "classpath" => "local/helpdesk/classes/external/ticket.php",
+        "classpath" => "local/khelpdesk/classes/external/ticket.php",
         "classname" => "\\local_khelpdesk\\external\\ticket",
         "methodname" => "column",
         "description" => "Saves the column of the ticket",
         "type" => "write",
         "ajax" => true,
-        "capabilities" => "local/helpdesk:manager",
+        "capabilities" => "local/khelpdesk:ticketmanager",
+    ],
+    "local_khelpdesk_geniai_completions" => [
+        "classpath" => "local/khelpdesk/classes/external/geniai.php",
+        "classname" => "\\local_khelpdesk\\external\\geniai",
+        "methodname" => "completions",
+        "description" => "get the completions of the geniai",
+        "type" => "read",
+        "ajax" => true,
+        "capabilities" => "local/khelpdesk:geniaimanager",
     ],
 ];

@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $capabilities = [
-    "local/helpdesk:view" => [
+    "local/khelpdesk:view" => [
         "captype" => "write",
         "contextlevel" => CONTEXT_SYSTEM,
         "archetypes" => [
@@ -33,11 +33,29 @@ $capabilities = [
             "student" => CAP_ALLOW,
         ],
     ],
-    "local/helpdesk:manage" => [
+    "local/khelpdesk:ticketmanage" => [
         "captype" => "write",
         "contextlevel" => CONTEXT_SYSTEM,
         "archetypes" => [
             "teacher" => CAP_ALLOW,
+            "editingteacher" => CAP_ALLOW,
+            "coursecreator" => CAP_ALLOW,
+            "manager" => CAP_ALLOW,
+        ],
+    ],
+    "local/khelpdesk:categorymanage" => [
+        "captype" => "write",
+        "contextlevel" => CONTEXT_SYSTEM,
+        "archetypes" => [
+            "editingteacher" => CAP_ALLOW,
+            "coursecreator" => CAP_ALLOW,
+            "manager" => CAP_ALLOW,
+        ],
+    ],
+    "local/khelpdesk:categorydelete" => [
+        "captype" => "write",
+        "contextlevel" => CONTEXT_SYSTEM,
+        "archetypes" => [
             "editingteacher" => CAP_ALLOW,
             "coursecreator" => CAP_ALLOW,
             "manager" => CAP_ALLOW,

@@ -44,26 +44,32 @@ if ($ticket->get_courseid()) {
     require_login();
 }
 $PAGE->set_context($context);
-$PAGE->set_url("/local/helpdesk/ticket.php?id={$ticketid}");
+$PAGE->set_url("/local/khelpdesk/ticket.php?id={$ticketid}");
 $PAGE->set_title($ticket->get_subject());
 $PAGE->set_heading($ticket->get_subject());
 $PAGE->set_secondary_navigation(false);
 
 if ($USER->id != $ticket->get_userid()) {
-    require_capability("local/helpdesk:manage", $context);
+    require_capability("local/khelpdesk:ticketmanage", $context);
 } else {
-    require_capability("local/helpdesk:view", $context);
+    require_capability("local/khelpdesk:view", $context);
 }
 
-$hasview = $hasmanage = has_capability("local/helpdesk:manage", $context);
+$hasview = $hasticketmanage = has_capability("local/khelpdesk:ticketmanage", $context);
 if (!$hasview) {
-    $hasview = has_capability("local/helpdesk:view", $context);
+    $hasview = has_capability("local/khelpdesk:view", $context);
+}
+
+$newstatus = optional_param("newstatus", false, PARAM_TEXT);
+if ($newstatus && in_array($newstatus, [ticket::STATUS_CLOSED, ticket::STATUS_RESOLVED])) {
+    $ticket->change_status($newstatus);
+    redirect(new moodle_url("/local/khelpdesk/ticket.php?id={$ticketid}"));
 }
 
 $PAGE->navbar->add(get_string("tickets", "local_khelpdesk"),
-    new moodle_url("/local/helpdesk/"));
+    new moodle_url("/local/khelpdesk/"));
 $PAGE->navbar->add($ticket->get_subject(),
-    new moodle_url("/local/helpdesk/ticket.php?id={$ticketid}"));
+    new moodle_url("/local/khelpdesk/ticket.php?id={$ticketid}"));
 
 // Categorys.
 $categorys = category::get_all(null, null, "name ASC");
@@ -72,50 +78,15 @@ $categoryoptions = [];
 foreach ($categorys as $category) {
     $categoryoptions[] = [
         "key" => $category->get_id(),
-        "lang" => $category->get_name(),
+        "label" => $category->get_name(),
         "selected" => $ticket->get_categoryid() == $category->get_id() ? "selected" : "",
     ];
 }
 
+
 $templatecontext = [
-    "status_options" => [
-        [
-            "key" => "open",
-            "lang" => get_string("status_open", "local_khelpdesk"),
-            "selected" => $ticket->get_status() == "open" ? "selected" : "",
-        ], [
-            "key" => "progress",
-            "lang" => get_string("status_progress", "local_khelpdesk"),
-            "selected" => $ticket->get_status() == "progress" ? "selected" : "",
-        ], [
-            "key" => "resolved",
-            "lang" => get_string("status_resolved", "local_khelpdesk"),
-            "selected" => $ticket->get_status() == "resolved" ? "selected" : "",
-        ], [
-            "key" => "closed",
-            "lang" => get_string("status_closed", "local_khelpdesk"),
-            "selected" => $ticket->get_status() == "closed" ? "selected" : "",
-        ],
-    ],
-    "priority_options" => [
-        [
-            "key" => "low",
-            "lang" => get_string("priority_low", "local_khelpdesk"),
-            "selected" => $ticket->get_priority() == "low" ? "selected" : "",
-        ], [
-            "key" => "medium",
-            "lang" => get_string("priority_medium", "local_khelpdesk"),
-            "selected" => $ticket->get_priority() == "medium" ? "selected" : "",
-        ], [
-            "key" => "high",
-            "lang" => get_string("priority_high", "local_khelpdesk"),
-            "selected" => $ticket->get_priority() == "high" ? "selected" : "",
-        ], [
-            "key" => "urgent",
-            "lang" => get_string("priority_urgent", "local_khelpdesk"),
-            "selected" => $ticket->get_priority() == "urgent" ? "selected" : "",
-        ],
-    ],
+    "status_options" => ticket::get_status_options($ticket->get_status()),
+    "priority_options" => ticket::get_priority_options($ticket->get_priority()),
     "category_options" => $categoryoptions,
     "user" => $ticket->get_user(),
     "user_fullname" => fullname($ticket->get_user()),
@@ -133,7 +104,7 @@ $templatecontext = [
     "createdat" => userdate($ticket->get_createdat()),
     "description" => $ticket->get_description(),
 
-    "hasmanage" => $hasmanage,
+    "hasticketmanage" => $hasticketmanage,
 
     "responses" => [],
     "allfiles" => [],
@@ -169,18 +140,22 @@ foreach ($responses as $response) {
 }
 
 $templatecontext["allfiles_count"] = count($templatecontext["allfiles"]);
+$templatecontext["has_closed"] = $ticket->has_closed();
 
 
 echo $OUTPUT->header();
 echo $OUTPUT->render_from_template("local_khelpdesk/ticket", $templatecontext);
 
-echo \html_writer::start_tag("div", ["class" => "row response-message"]);
-echo \html_writer::start_tag("div", ["class" => "col-md-7 col-lg-8 col-xxl-9"]);
+// Closed ticket not answered.
+if ($ticket->get_status() != ticket::STATUS_CLOSED) {
 
-$responsecontroller = new response_controller();
-$responsecontroller->insert_response($ticket);
-
-echo \html_writer::end_tag("div");
-echo \html_writer::end_tag("div");
+    echo \html_writer::start_tag("div", ["class" => "response-message card"]);
+    $responsecontroller = new response_controller();
+    $responsecontroller->insert_response($ticket, $hasticketmanage);
+    echo \html_writer::end_tag("div");
+} else {
+    $message = get_string("ticketclosed", "local_khelpdesk");
+    $html = $PAGE->get_renderer("core")->render(new \core\output\notification($message, "success"));
+}
 
 echo $OUTPUT->footer();

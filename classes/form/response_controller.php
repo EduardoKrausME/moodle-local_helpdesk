@@ -24,6 +24,7 @@
 
 namespace local_khelpdesk\form;
 
+use local_khelpdesk\mail\ticket_mail;
 use local_khelpdesk\model\response;
 use local_khelpdesk\model\ticket;
 use moodle_url;
@@ -42,18 +43,20 @@ class response_controller {
      * Function insert_response
      *
      * @param ticket $ticket
+     * @param bool $hasticketmanage
      *
+     * @throws \coding_exception
      * @throws \core\exception\moodle_exception
      * @throws \dml_exception
      * @throws \moodle_exception
      */
-    public function insert_response($ticket) {
+    public function insert_response($ticket, $hasticketmanage) {
         global $USER;
 
-        $form = new response_form();
+        $form = new response_form(null, ["ticket" => $ticket, "hasticketmanage" => $hasticketmanage]);
 
         if ($form->is_cancelled()) {
-            redirect(new moodle_url("/local/helpdesk/ticket.php?id={$ticket->get_idkey()}"));
+            redirect(new moodle_url("/local/khelpdesk/ticket.php?id={$ticket->get_idkey()}"));
         } else if ($data = $form->get_data()) {
 
             $response = new response([
@@ -75,7 +78,21 @@ class response_controller {
                     "local_khelpdesk", "response", $response->get_id(), $options);
             }
 
-            redirect(new moodle_url("/local/helpdesk/ticket.php?id={$ticket->get_idkey()}"));
+            $mail = new ticket_mail();
+            $mail->send_response($ticket, $response);
+
+            if ($ticket->get_status() == ticket::STATUS_OPEN) {
+                $ticket->change_status(ticket::STATUS_PROGRESS);
+            }
+
+            if (isset($data->buttonar["resolvedbutton"])) {
+                $ticket->change_status(ticket::STATUS_RESOLVED);
+            }
+            if (isset($data->buttonar["closebutton"])) {
+                $ticket->change_status(ticket::STATUS_CLOSED);
+            }
+
+            redirect(new moodle_url("/local/khelpdesk/ticket.php?id={$ticket->get_idkey()}"));
         } else {
             $form->set_data([
                 "id" => $ticket->get_id(),

@@ -24,6 +24,9 @@
 
 namespace local_khelpdesk\form;
 
+use context_system;
+use local_khelpdesk\model\category;
+
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir . "/formslib.php");
@@ -39,24 +42,51 @@ class category_form extends \moodleform {
      * Define a estrutura do formulário.
      *
      * @throws \coding_exception
+     * @throws \dml_exception
      */
     public function definition() {
+        global $OUTPUT;
+
         $mform = $this->_form;
 
         $mform->addElement("hidden", "id");
         $mform->setType("id", PARAM_INT);
 
-        $mform->addElement("hidden", "action");
-        $mform->setType("action", PARAM_TEXT);
+        $mform->addElement("hidden", "actionform");
+        $mform->setType("actionform", PARAM_TEXT);
 
         $mform->addElement("text", "name", get_string("categoryname", "local_khelpdesk"), ["size" => "50"]);
         $mform->setType("name", PARAM_TEXT);
-        $mform->addRule("name", null, "required", null, "client");
+        $mform->addRule("name", null, "required");
 
         $mform->addElement("textarea", "description", get_string("categorydescription", "local_khelpdesk"));
         $mform->setType("description", PARAM_TEXT);
 
-        $this->add_action_buttons(true, get_string("createcategory", "local_khelpdesk"));
+        if (isset($this->_customdata["id"])) {
+            /** @var category $category */
+            $category = $this->_customdata["category"];
+
+            $data = ["categoryid" => $this->_customdata["id"]];
+            $templatecontext = [
+                "existinguserselector" => (new category_existing_selector("removeselect", $data))->display(true),
+                "potentialuserselector" => (new category_candidate_selector("addselect", $data))->display(true),
+                "contextid" => context_system::instance()->id,
+                "roleid" => $category->get_role_id(),
+            ];
+            $html = $OUTPUT->render_from_template("local_khelpdesk/category-users", $templatecontext);
+            $mform->addElement("html", $html);
+        } else {
+            $message = get_string("category_users_info", "local_khelpdesk");
+            global $PAGE;
+            $html = $PAGE->get_renderer("core")->render(new \core\output\notification($message, "info"));
+            $mform->addElement("html", $html);
+        }
+
+        if (isset($this->_customdata["id"])) {
+            $this->add_action_buttons(true, get_string("createcategory", "local_khelpdesk"));
+        } else {
+            $this->add_action_buttons(true, get_string("editticket", "local_khelpdesk"));
+        }
     }
 
     /**

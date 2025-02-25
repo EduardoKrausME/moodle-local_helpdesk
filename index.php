@@ -24,6 +24,7 @@
 
 use local_khelpdesk\form\ticket_controller;
 use local_khelpdesk\model\category;
+use local_khelpdesk\model\category_users;
 use local_khelpdesk\model\ticket;
 
 require_once(__DIR__ . "/../../config.php");
@@ -36,45 +37,74 @@ $ticketid = optional_param("id", false, PARAM_INT);
 $findpriority = optional_param("find_priority", false, PARAM_TEXT);
 $findstatus = optional_param("find_status", false, PARAM_TEXT);
 $findcategory = optional_param("find_category", false, PARAM_INT);
-$findcourse = optional_param("find_course", false, PARAM_INT);
+$courseid = optional_param("courseid", false, PARAM_INT);
 $finduser = optional_param("find_user", false, PARAM_INT);
 
-if ($findcourse) {
-    $context = context_course::instance($findcourse);
-    require_login($findcourse, false);
+if ($courseid) {
+    $context = context_course::instance($courseid);
+    require_login($courseid, false);
 } else {
     $context = context_system::instance();
-    require_login();
+    require_login(null, false);
 }
 $PAGE->set_context($context);
-$PAGE->set_url("/local/helpdesk/index.php");
+$PAGE->set_url("/local/khelpdesk/index.php");
 $PAGE->set_title(get_string("tickets", "local_khelpdesk"));
 $PAGE->set_heading(get_string("tickets", "local_khelpdesk"));
 $PAGE->set_secondary_navigation(false);
 
-$hasview = $hasmanage = has_capability("local/helpdesk:manage", $context);
-if (!$hasview) {
-    $hasview = has_capability("local/helpdesk:view", $context);
+$hasticketview = $hasticketmanage = has_capability("local/khelpdesk:ticketmanage", $context);
+$hascategorymanage = has_capability("local/khelpdesk:categorymanage", $context);
+if (!$hasticketview) {
+    $hasticketview = has_capability("local/khelpdesk:view", $context);
 }
 
-$PAGE->navbar->add(get_string("tickets", "local_khelpdesk"),
-    new moodle_url("/local/helpdesk/"));
+require_capability("local/khelpdesk:view", $context);
 
-// Categorys.
-$categorys = category::get_all(null, null, "name ASC");
+$PAGE->navbar->add(get_string("tickets", "local_khelpdesk"),
+    new moodle_url("/local/khelpdesk/"));
+
+// Categories.
 $categoryoptions = [];
-/** @var category $category */
-foreach ($categorys as $category) {
-    $categoryoptions[] = [
-        "key" => $category->get_id(),
-        "lang" => $category->get_name(),
-        "selected" => $findcategory == $category->get_id() ? "selected" : "",
-    ];
+if ($hasticketmanage) {
+    $categorys = category::get_all(null, null, "name ASC");
+    /** @var category $category */
+    foreach ($categorys as $category) {
+
+        $option = [
+            "key" => $category->get_id(),
+            "label" => $category->get_name(),
+            "selected" => $findcategory == $category->get_id() ? "selected" : "",
+        ];
+
+        if ($hascategorymanage) {
+            $categoryoptions[] = $option;
+        } else {
+            if (category_users::get_all(null, ["categoryid" => $category->get_id(), "userid" => $USER->id])) {
+                $categoryoptions[] = $option;
+            }
+        }
+    }
+} else {
+    $categorys = category::get_all(null, null, "name ASC");
+    /** @var category $category */
+    foreach ($categorys as $category) {
+        $categoryoptions[] = [
+            "key" => $category->get_id(),
+            "label" => $category->get_name(),
+            "selected" => $findcategory == $category->get_id() ? "selected" : "",
+        ];
+    }
+}
+
+if (count($categoryoptions) == 0 && $hascategorymanage) {
+    redirect("/local/khelpdesk/categories.php?actionform=add",
+        get_string("createcategoryfirst", "local_khelpdesk"), null, "warning");
 }
 
 $coursefullname = get_string("findcourse", "local_khelpdesk");
-if ($findcourse) {
-    $course = $DB->get_record("course", ["id" => $findcourse]);
+if ($courseid) {
+    $course = $DB->get_record("course", ["id" => $courseid]);
     $coursefullname = $course->fullname;
 }
 $userfullname = get_string("finduser", "local_khelpdesk");
@@ -84,55 +114,24 @@ if ($finduser) {
 }
 
 $templatecontext = [
-    "status_options" => [
-        [
-            "key" => "open",
-            "lang" => get_string("status_open", "local_khelpdesk"),
-            "selected" => $findstatus == "open" ? "selected" : "",
-        ], [
-            "key" => "progress",
-            "lang" => get_string("status_progress", "local_khelpdesk"),
-            "selected" => $findstatus == "progress" ? "selected" : "",
-        ], [
-            "key" => "resolved",
-            "lang" => get_string("status_resolved", "local_khelpdesk"),
-            "selected" => $findstatus == "resolved" ? "selected" : "",
-        ], [
-            "key" => "closed",
-            "lang" => get_string("status_closed", "local_khelpdesk"),
-            "selected" => $findstatus == "closed" ? "selected" : "",
-        ],
-    ],
-    "priority_options" => [
-        [
-            "key" => "low",
-            "lang" => get_string("priority_low", "local_khelpdesk"),
-            "selected" => $findpriority == "low" ? "selected" : "",
-        ], [
-            "key" => "medium",
-            "lang" => get_string("priority_medium", "local_khelpdesk"),
-            "selected" => $findpriority == "medium" ? "selected" : "",
-        ], [
-            "key" => "high",
-            "lang" => get_string("priority_high", "local_khelpdesk"),
-            "selected" => $findpriority == "high" ? "selected" : "",
-        ], [
-            "key" => "urgent",
-            "lang" => get_string("priority_urgent", "local_khelpdesk"),
-            "selected" => $findpriority == "urgent" ? "selected" : "",
-        ],
-    ],
-    "hasmanage" => $hasmanage,
+    "status_options" => ticket::get_status_options($findstatus),
+    "priority_options" => ticket::get_priority_options($findpriority),
     "category_options" => $categoryoptions,
-    "find_course" => \local_khelpdesk\util\filter::create_filter_course($coursefullname, $findcourse),
-    "find_user" => \local_khelpdesk\util\filter::create_filter_user($userfullname, $finduser),
+    "find_course" => \local_khelpdesk\util\filter::create_filter_course($coursefullname, $courseid),
+    "find_user" => $hasticketmanage ? \local_khelpdesk\util\filter::create_filter_user($userfullname, $finduser) : "",
     "tickets" => [],
+
+    "courseid" => $courseid,
+
+    "has_manage" => $hasticketmanage,
+    "has_categorymanage" => $hascategorymanage,
+    "has_siteconfig" => has_capability("moodle/site:config", $context),
 ];
 
 if ($action == "add") {
     $controller = new ticket_controller();
     $controller->insert_ticket();
-} else if ($action == "edit" && $ticketid && $hasmanage) {
+} else if ($action == "edit" && $ticketid && $hasticketmanage) {
     $controller = new ticket_controller();
     $controller->update_ticket($ticketid);
 } else {
@@ -143,19 +142,19 @@ if ($action == "add") {
     if ($findstatus) {
         $params["status"] = $findstatus;
     } else {
-        $params[] = "status NOT IN('closed')";
+        $params[] = "status NOT IN('resolved','closed')";
     }
     if ($findcategory) {
         $params["categoryid"] = $findcategory;
     }
-    if ($findcourse) {
-        $params["courseid"] = $findcourse;
+    if ($courseid) {
+        $params["courseid"] = $courseid;
     }
-    if($finduser){
-        $params["userid"] = $finduser;
-    }
-    if (!$hasmanage) {
+
+    if (!$hasticketmanage) {
         $params["userid"] = $USER->id;
+    } else if ($finduser) {
+        $params["userid"] = $finduser;
     }
 
     $order = "
@@ -201,5 +200,18 @@ if ($action == "add") {
 }
 
 echo $OUTPUT->header();
+if ($hasticketmanage) {
+    $templatecontexttop = [
+        "all_open_tickets" => $DB->get_field_select("local_khelpdesk_ticket",
+            "COUNT(*)", "status NOT IN('closed','resolved')"),
+        "unanswered_tickets" => $DB->get_field_select("local_khelpdesk_ticket",
+            "COUNT(*)", "status NOT IN('open')"),
+        "completed_tickets" => $DB->get_field_select("local_khelpdesk_ticket",
+            "COUNT(*)", "status IN('closed','resolved')"),
+        "urgent_tickets" => $DB->get_field_select("local_khelpdesk_ticket",
+            "COUNT(*)", "status NOT IN('closed','resolved') AND priority IN('urgent','high')"),
+    ];
+    echo $OUTPUT->render_from_template("local_khelpdesk/index-top", $templatecontexttop);
+}
 echo $OUTPUT->render_from_template("local_khelpdesk/index", $templatecontext);
 echo $OUTPUT->footer();

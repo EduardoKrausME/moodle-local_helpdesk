@@ -1,0 +1,32 @@
+{
+    "title": "lang::report_response_reports_page_title::local_khelpdesk",
+    "description": "lang::report_response_reports_page_description::local_khelpdesk",
+    "user_id": null,
+    "category": {
+        "title": "lang::pluginname::local_khelpdesk",
+        "description": ""
+    },
+    "blocks": [
+        {
+            "refkey": null,
+            "type": "block-1",
+            "sequence": 1,
+            "elements": [
+                {
+                    "refkey": "avg_responses_per_ticket",
+                    "title": "lang::report_response_reports_avg_responses_per_ticket_cat_title::local_khelpdesk",
+                    "block_num": 1,
+                    "type": "table",
+                    "theme": "light",
+                    "css": "",
+                    "html_before": "",
+                    "html_after": "",
+                    "commandsql": "SELECT c.name AS categoria,\r\n       AVG(respostas_por_ticket.qtd_respostas) AS media_respostas_por_ticket\r\n  FROM (\r\n        SELECT ticketid, COUNT(r.id) AS qtd_respostas\r\n        FROM mdl_local_khelpdesk_response r\r\n        GROUP BY r.ticketid\r\n    ) AS respostas_por_ticket\r\n  JOIN mdl_local_khelpdesk_ticket   t ON t.id = respostas_por_ticket.ticketid\r\n  JOIN mdl_local_khelpdesk_category c ON c.id = t.categoryid\r\nGROUP BY c.name",
+                    "cache": "1d",
+                    "reload": "none",
+                    "info": "{\n    \"column\": {\n        \"categoria\": {\n            \"key\": \"categoria\",\n            \"title\": \"lang::category::local_khelpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{categoria}}} \"\n        },\n        \"media_respostas_por_ticket\": {\n            \"key\": \"media_respostas_por_ticket\",\n            \"title\": \"lang::report_response_reports_avg_responses_per_ticket_media_respostas_por_ticket::local_khelpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"{{{media_respostas_por_ticket}}}\"\n        }\n    }\n}"
+                }
+            ]
+        }
+    ]
+}
