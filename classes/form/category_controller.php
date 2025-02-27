@@ -17,16 +17,16 @@
 /**
  * file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_khelpdesk\form;
+namespace local_helpdesk\form;
 
 use context_system;
-use local_khelpdesk\model\category;
-use local_khelpdesk\model\category_users;
+use local_helpdesk\model\category;
+use local_helpdesk\model\category_users;
 use moodle_url;
 
 defined('MOODLE_INTERNAL') || die();
@@ -36,7 +36,7 @@ require_once($CFG->libdir . "/formslib.php");
 /**
  * Class category_controller
  *
- * @package local_khelpdesk\form
+ * @package local_helpdesk\form
  */
 class category_controller {
 
@@ -52,7 +52,7 @@ class category_controller {
         $form = new category_form();
 
         if ($form->is_cancelled()) {
-            redirect(new moodle_url("/local/khelpdesk/categories.php"));
+            redirect(new moodle_url("/local/helpdesk/categories.php"));
         } else if ($data = $form->get_data()) {
 
             $data->createdat = time();
@@ -64,7 +64,7 @@ class category_controller {
                 "id" => $category->get_id(),
                 "actionform" => "edit",
             ];
-            redirect(new moodle_url("/local/khelpdesk/categories.php", $data));
+            redirect(new moodle_url("/local/helpdesk/categories.php", $data));
         } else {
 
             $form->set_data([
@@ -92,7 +92,7 @@ class category_controller {
         $form = new category_form(null, ["id" => $category->get_id(), "category" => $category]);
 
         if ($form->is_cancelled()) {
-            redirect(new moodle_url("/local/khelpdesk/categories.php"));
+            redirect(new moodle_url("/local/helpdesk/categories.php"));
         } else if ($data = $form->get_data()) {
             $category->set_name($data->name);
             $category->set_description($data->description);
@@ -103,10 +103,10 @@ class category_controller {
                     "id" => $category->get_id(),
                     "actionform" => "edit",
                 ];
-                redirect(new moodle_url("/local/khelpdesk/categories.php", $data));
+                redirect(new moodle_url("/local/helpdesk/categories.php", $data));
             }
 
-            redirect(new moodle_url("/local/khelpdesk/categories.php"));
+            redirect(new moodle_url("/local/helpdesk/categories.php"));
         } else {
             $form->set_data([
                 "id" => $category->get_id(),
@@ -117,7 +117,7 @@ class category_controller {
         }
 
         echo $OUTPUT->header();
-        echo $OUTPUT->heading(get_string("updatecategory", "local_khelpdesk"));
+        echo $OUTPUT->heading(get_string("updatecategory", "local_helpdesk"));
         $form->display();
         echo $OUTPUT->footer();
     }

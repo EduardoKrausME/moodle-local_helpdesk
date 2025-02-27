@@ -17,19 +17,19 @@
 /**
  * file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_khelpdesk\model;
+namespace local_helpdesk\model;
 
 use context_system;
 
 /**
  * Class category
  *
- * @package local_khelpdesk\model
+ * @package local_helpdesk\model
  */
 class category {
     /** @var int */
@@ -64,7 +64,7 @@ class category {
      */
     public static function get_by_id($categoryid) {
         global $DB;
-        $record = $DB->get_record("local_khelpdesk_category", ["id" => $categoryid]);
+        $record = $DB->get_record("local_helpdesk_category", ["id" => $categoryid]);
 
         if ($record) {
             return new self($record);
@@ -84,7 +84,7 @@ class category {
      * @throws \dml_exception
      */
     public static function get_all($wheres = null, $params = [], $order = null) {
-        return model_base::get_all("local_khelpdesk_category", self::class, $wheres, $params, $order);
+        return model_base::get_all("local_helpdesk_category", self::class, $wheres, $params, $order);
     }
 
     /**
@@ -97,9 +97,9 @@ class category {
         global $DB;
 
         if ($this->id) {
-            return $DB->update_record("local_khelpdesk_category", get_object_vars($this));
+            return $DB->update_record("local_helpdesk_category", get_object_vars($this));
         } else {
-            return $this->id = $DB->insert_record("local_khelpdesk_category", get_object_vars($this));
+            return $this->id = $DB->insert_record("local_helpdesk_category", get_object_vars($this));
         }
     }
 
@@ -112,9 +112,9 @@ class category {
     public function delete() {
         global $DB;
 
-        require_capability("local/khelpdesk:categorydelete", context_system::instance());
+        require_capability("local/helpdesk:categorydelete", context_system::instance());
 
-        return $DB->delete_records("local_khelpdesk_category", ["id" => $this->id]);
+        return $DB->delete_records("local_helpdesk_category", ["id" => $this->id]);
     }
 
     // Getters.
@@ -138,9 +138,9 @@ class category {
     public function get_role_id() {
         global $DB, $USER;
 
-        $rolename = get_string("pluginname", "local_khelpdesk");
-        $roleshortname = get_string("pluginname", "local_khelpdesk");
-        $roledescription = get_string("category_role_description", "local_khelpdesk");
+        $rolename = get_string("pluginname", "local_helpdesk");
+        $roleshortname = get_string("pluginname", "local_helpdesk");
+        $roledescription = get_string("category_role_description", "local_helpdesk");
         $rolearchetype = "";
 
         $role = $DB->get_record("role", ["shortname" => $roleshortname]);
@@ -154,7 +154,7 @@ class category {
         $capabilities = [
             "contextid" => context_system::instance()->id,
             "roleid" => $roleid,
-            "capability" => "local/khelpdesk:ticketmanage",
+            "capability" => "local/helpdesk:ticketmanage",
             "permission" => 1,
             "timemodified" => time(),
             "modifierid" => $USER->id,
@@ -163,7 +163,7 @@ class category {
         $capabilities = [
             "contextid" => context_system::instance()->id,
             "roleid" => $roleid,
-            "capability" => "local/kdashboard:ajax",
+            "capability" => "local/kopere_dashboard:ajax",
             "permission" => 1,
             "timemodified" => time(),
             "modifierid" => $USER->id,

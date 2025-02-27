@@ -17,20 +17,20 @@
 /**
  * install file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use local_kbi\local\util\install_for_file;
+use local_kopere_bi\local\util\install_for_file;
 
 /**
- * Function xmldb_local_khelpdesk_install
+ * Function xmldb_local_helpdesk_install
  *
  * @return bool
  * @throws dml_exception
  */
-function xmldb_local_khelpdesk_install() {
+function xmldb_local_helpdesk_install() {
     // Load report pages.
     $pagefiles = glob(__DIR__ . "/files/page-*.json");
     foreach ($pagefiles as $pagefile) {

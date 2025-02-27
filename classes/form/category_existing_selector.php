@@ -17,12 +17,12 @@
 /**
  * file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_khelpdesk\form;
+namespace local_helpdesk\form;
 
 use user_selector_base;
 
@@ -33,7 +33,7 @@ require_once($CFG->dirroot . "/user/selector/lib.php");
 /**
  * Class category_existing_selector
  *
- * @package local_khelpdesk\form
+ * @package local_helpdesk\form
  */
 class category_existing_selector extends user_selector_base {
     /** @var int */
@@ -73,7 +73,7 @@ class category_existing_selector extends user_selector_base {
         $countfields = "SELECT COUNT(1)";
 
         $sql = "  FROM {user} u
-                  JOIN {local_khelpdesk_category_users} hcu ON ( hcu.userid = u.id AND hcu.categoryid = :categoryid )
+                  JOIN {local_helpdesk_category_user} hcu ON ( hcu.userid = u.id AND hcu.categoryid = :categoryid )
                  {$this->userfieldsjoin}
                 WHERE {$wherecondition}";
 

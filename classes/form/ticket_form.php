@@ -17,15 +17,15 @@
 /**
  * file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_khelpdesk\form;
+namespace local_helpdesk\form;
 
-use local_khelpdesk\model\category;
-use local_khelpdesk\model\ticket;
+use local_helpdesk\model\category;
+use local_helpdesk\model\ticket;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -34,7 +34,7 @@ require_once($CFG->libdir . "/formslib.php");
 /**
  * Class ticket_form
  *
- * @package local_khelpdesk\form
+ * @package local_helpdesk\form
  */
 class ticket_form extends \moodleform {
 
@@ -56,7 +56,7 @@ class ticket_form extends \moodleform {
         $mform->addElement("hidden", "action");
         $mform->setType("action", PARAM_TEXT);
 
-        $mform->addElement("text", "subject", get_string("subject", "local_khelpdesk"));
+        $mform->addElement("text", "subject", get_string("subject", "local_helpdesk"));
         $mform->setType("subject", PARAM_TEXT);
         $mform->addRule("subject", null, "required");
 
@@ -66,11 +66,11 @@ class ticket_form extends \moodleform {
         foreach ($categories as $category) {
             $categoryoptions[$category->get_id()] = $category->get_name();
         }
-        $mform->addElement("select", "categoryid", get_string("category", "local_khelpdesk"), $categoryoptions);
+        $mform->addElement("select", "categoryid", get_string("category", "local_helpdesk"), $categoryoptions);
         $mform->setType("categoryid", PARAM_INT);
         $mform->addRule("categoryid", null, "required");
 
-        $mform->addElement("editor", "description", get_string("ticketdescription", "local_khelpdesk"), null, [
+        $mform->addElement("editor", "description", get_string("ticketdescription", "local_helpdesk"), null, [
             "maxfiles" => 0,
             "maxbytes" => 0,
         ]);
@@ -78,22 +78,22 @@ class ticket_form extends \moodleform {
         $mform->addRule("description", null, "required");
 
         $priorityoptions = [
-            ticket::PRIORITY_LOW => get_string("ticketprioritylow", "local_khelpdesk"),
-            ticket::PRIORITY_MEDIUM => get_string("ticketprioritymedium", "local_khelpdesk"),
-            ticket::PRIORITY_HIGH => get_string("ticketpriorityhigh", "local_khelpdesk"),
-            ticket::PRIORITY_URGENT => get_string("ticketpriorityurgent", "local_khelpdesk"),
+            ticket::PRIORITY_LOW => get_string("ticketprioritylow", "local_helpdesk"),
+            ticket::PRIORITY_MEDIUM => get_string("ticketprioritymedium", "local_helpdesk"),
+            ticket::PRIORITY_HIGH => get_string("ticketpriorityhigh", "local_helpdesk"),
+            ticket::PRIORITY_URGENT => get_string("ticketpriorityurgent", "local_helpdesk"),
         ];
-        $mform->addElement("select", "priority", get_string("priority", "local_khelpdesk"), $priorityoptions);
+        $mform->addElement("select", "priority", get_string("priority", "local_helpdesk"), $priorityoptions);
         $mform->setType("priority", PARAM_TEXT);
         $mform->addRule("priority", null, "required");
 
-        $mform->addElement("filemanager", "attachment", get_string("attachment", "local_khelpdesk"), null, [
+        $mform->addElement("filemanager", "attachment", get_string("attachment", "local_helpdesk"), null, [
             "maxfiles" => 5,
             "subdirs" => 0,
             "accepted_types" => "*",
             "maxbytes" => 0,
         ]);
 
-        $this->add_action_buttons(true, get_string("createticket", "local_khelpdesk"));
+        $this->add_action_buttons(true, get_string("createticket", "local_helpdesk"));
     }
 }

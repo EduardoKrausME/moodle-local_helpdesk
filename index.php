@@ -17,15 +17,15 @@
 /**
  * file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use local_khelpdesk\form\ticket_controller;
-use local_khelpdesk\model\category;
-use local_khelpdesk\model\category_users;
-use local_khelpdesk\model\ticket;
+use local_helpdesk\form\ticket_controller;
+use local_helpdesk\model\category;
+use local_helpdesk\model\category_users;
+use local_helpdesk\model\ticket;
 
 require_once(__DIR__ . "/../../config.php");
 
@@ -48,21 +48,21 @@ if ($courseid) {
     require_login(null, false);
 }
 $PAGE->set_context($context);
-$PAGE->set_url("/local/khelpdesk/index.php");
-$PAGE->set_title(get_string("tickets", "local_khelpdesk"));
-$PAGE->set_heading(get_string("tickets", "local_khelpdesk"));
+$PAGE->set_url("/local/helpdesk/index.php");
+$PAGE->set_title(get_string("tickets", "local_helpdesk"));
+$PAGE->set_heading(get_string("tickets", "local_helpdesk"));
 $PAGE->set_secondary_navigation(false);
 
-$hasticketview = $hasticketmanage = has_capability("local/khelpdesk:ticketmanage", $context);
-$hascategorymanage = has_capability("local/khelpdesk:categorymanage", $context);
+$hasticketview = $hasticketmanage = has_capability("local/helpdesk:ticketmanage", $context);
+$hascategorymanage = has_capability("local/helpdesk:categorymanage", $context);
 if (!$hasticketview) {
-    $hasticketview = has_capability("local/khelpdesk:view", $context);
+    $hasticketview = has_capability("local/helpdesk:view", $context);
 }
 
-require_capability("local/khelpdesk:view", $context);
+require_capability("local/helpdesk:view", $context);
 
-$PAGE->navbar->add(get_string("tickets", "local_khelpdesk"),
-    new moodle_url("/local/khelpdesk/"));
+$PAGE->navbar->add(get_string("tickets", "local_helpdesk"),
+    new moodle_url("/local/helpdesk/"));
 
 // Categories.
 $categoryoptions = [];
@@ -98,16 +98,16 @@ if ($hasticketmanage) {
 }
 
 if (count($categoryoptions) == 0 && $hascategorymanage) {
-    redirect("/local/khelpdesk/categories.php?actionform=add",
-        get_string("createcategoryfirst", "local_khelpdesk"), null, "warning");
+    redirect("/local/helpdesk/categories.php?actionform=add",
+        get_string("createcategoryfirst", "local_helpdesk"), null, "warning");
 }
 
-$coursefullname = get_string("findcourse", "local_khelpdesk");
+$coursefullname = get_string("findcourse", "local_helpdesk");
 if ($courseid) {
     $course = $DB->get_record("course", ["id" => $courseid]);
     $coursefullname = $course->fullname;
 }
-$userfullname = get_string("finduser", "local_khelpdesk");
+$userfullname = get_string("finduser", "local_helpdesk");
 if ($finduser) {
     $user = $DB->get_record("user", ["id" => $finduser]);
     $userfullname = fullname($user);
@@ -117,8 +117,8 @@ $templatecontext = [
     "status_options" => ticket::get_status_options($findstatus),
     "priority_options" => ticket::get_priority_options($findpriority),
     "category_options" => $categoryoptions,
-    "find_course" => \local_khelpdesk\util\filter::create_filter_course($coursefullname, $courseid),
-    "find_user" => $hasticketmanage ? \local_khelpdesk\util\filter::create_filter_user($userfullname, $finduser) : "",
+    "find_course" => \local_helpdesk\util\filter::create_filter_course($coursefullname, $courseid),
+    "find_user" => $hasticketmanage ? \local_helpdesk\util\filter::create_filter_user($userfullname, $finduser) : "",
     "tickets" => [],
 
     "courseid" => $courseid,
@@ -202,16 +202,16 @@ if ($action == "add") {
 echo $OUTPUT->header();
 if ($hasticketmanage) {
     $templatecontexttop = [
-        "all_open_tickets" => $DB->get_field_select("local_khelpdesk_ticket",
+        "all_open_tickets" => $DB->get_field_select("local_helpdesk_ticket",
             "COUNT(*)", "status NOT IN('closed','resolved')"),
-        "unanswered_tickets" => $DB->get_field_select("local_khelpdesk_ticket",
+        "unanswered_tickets" => $DB->get_field_select("local_helpdesk_ticket",
             "COUNT(*)", "status NOT IN('open')"),
-        "completed_tickets" => $DB->get_field_select("local_khelpdesk_ticket",
+        "completed_tickets" => $DB->get_field_select("local_helpdesk_ticket",
             "COUNT(*)", "status IN('closed','resolved')"),
-        "urgent_tickets" => $DB->get_field_select("local_khelpdesk_ticket",
+        "urgent_tickets" => $DB->get_field_select("local_helpdesk_ticket",
             "COUNT(*)", "status NOT IN('closed','resolved') AND priority IN('urgent','high')"),
     ];
-    echo $OUTPUT->render_from_template("local_khelpdesk/index-top", $templatecontexttop);
+    echo $OUTPUT->render_from_template("local_helpdesk/index-top", $templatecontexttop);
 }
-echo $OUTPUT->render_from_template("local_khelpdesk/index", $templatecontext);
+echo $OUTPUT->render_from_template("local_helpdesk/index", $templatecontext);
 echo $OUTPUT->footer();

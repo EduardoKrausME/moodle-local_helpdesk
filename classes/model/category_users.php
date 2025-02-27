@@ -17,17 +17,17 @@
 /**
  * file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_khelpdesk\model;
+namespace local_helpdesk\model;
 
 /**
  * Class category_users
  *
- * @package local_khelpdesk\model
+ * @package local_helpdesk\model
  */
 class category_users {
     /** @var int */
@@ -62,7 +62,7 @@ class category_users {
      */
     public static function get_by_id($categoryid) {
         global $DB;
-        $record = $DB->get_record("local_khelpdesk_category_users", ["id" => $categoryid]);
+        $record = $DB->get_record("local_helpdesk_category_user", ["id" => $categoryid]);
 
         if ($record) {
             return new self($record);
@@ -82,7 +82,7 @@ class category_users {
      * @throws \dml_exception
      */
     public static function get_all($wheres = null, $params = [], $order = null) {
-        return model_base::get_all("local_khelpdesk_category_users", self::class, $wheres, $params, $order);
+        return model_base::get_all("local_helpdesk_category_user", self::class, $wheres, $params, $order);
     }
 
     /**
@@ -95,9 +95,9 @@ class category_users {
         global $DB;
 
         if ($this->id) {
-            return $DB->update_record("local_khelpdesk_category_users", get_object_vars($this));
+            return $DB->update_record("local_helpdesk_category_user", get_object_vars($this));
         } else {
-            return $this->id = $DB->insert_record("local_khelpdesk_category_users", get_object_vars($this));
+            return $this->id = $DB->insert_record("local_helpdesk_category_user", get_object_vars($this));
         }
     }
 
@@ -109,7 +109,7 @@ class category_users {
      */
     public function delete() {
         global $DB;
-        return $DB->delete_records("local_khelpdesk_category_users", ["id" => $this->id]);
+        return $DB->delete_records("local_helpdesk_category_user", ["id" => $this->id]);
     }
 
     // Getters ans setters.

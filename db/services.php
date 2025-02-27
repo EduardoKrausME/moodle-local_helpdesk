@@ -17,7 +17,7 @@
 /**
  * service file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2024 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -25,22 +25,22 @@
 defined('MOODLE_INTERNAL') || die;
 
 $functions = [
-    "local_khelpdesk_ticket_column" => [
-        "classpath" => "local/khelpdesk/classes/external/ticket.php",
-        "classname" => "\\local_khelpdesk\\external\\ticket",
+    "local_helpdesk_ticket_column" => [
+        "classpath" => "local/helpdesk/classes/external/ticket.php",
+        "classname" => "\\local_helpdesk\\external\\ticket",
         "methodname" => "column",
         "description" => "Saves the column of the ticket",
         "type" => "write",
         "ajax" => true,
-        "capabilities" => "local/khelpdesk:ticketmanager",
+        "capabilities" => "local/helpdesk:ticketmanager",
     ],
-    "local_khelpdesk_geniai_completions" => [
-        "classpath" => "local/khelpdesk/classes/external/geniai.php",
-        "classname" => "\\local_khelpdesk\\external\\geniai",
+    "local_helpdesk_geniai_completions" => [
+        "classpath" => "local/helpdesk/classes/external/geniai.php",
+        "classname" => "\\local_helpdesk\\external\\geniai",
         "methodname" => "completions",
         "description" => "get the completions of the geniai",
         "type" => "read",
         "ajax" => true,
-        "capabilities" => "local/khelpdesk:geniaimanager",
+        "capabilities" => "local/helpdesk:ticketmanage",
     ],
 ];

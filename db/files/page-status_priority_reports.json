@@ -1,9 +1,9 @@
 {
-    "title": "lang::report_status_priority_reports_page_title::local_khelpdesk",
-    "description": "lang::report_status_priority_reports_page_description::local_khelpdesk",
+    "title": "lang::report_status_priority_reports_page_title::local_helpdesk",
+    "description": "lang::report_status_priority_reports_page_description::local_helpdesk",
     "user_id": null,
     "category": {
-        "title": "lang::pluginname::local_khelpdesk",
+        "title": "lang::pluginname::local_helpdesk",
         "description": ""
     },
     "blocks": [
@@ -14,17 +14,17 @@
             "elements": [
                 {
                     "refkey": "tickets_by_status",
-                    "title": "lang::report_status_priority_reports_tickets_by_status_cat_title::local_khelpdesk",
+                    "title": "lang::report_status_priority_reports_tickets_by_status_cat_title::local_helpdesk",
                     "block_num": 1,
                     "type": "table",
                     "theme": "light",
                     "css": "",
                     "html_before": "",
                     "html_after": "",
-                    "commandsql": "SELECT c.name AS category_name,\r\n       t.status,\r\n       COUNT(t.id) AS total_tickets\r\n  FROM mdl_local_khelpdesk_ticket t\r\n  JOIN mdl_local_khelpdesk_category c ON t.categoryid = c.id\r\nGROUP BY c.name, t.status\r\nORDER BY total_tickets DESC",
+                    "commandsql": "SELECT c.name AS category_name,\r\n       t.status,\r\n       COUNT(t.id) AS total_tickets\r\n  FROM mdl_local_helpdesk_ticket t\r\n  JOIN mdl_local_helpdesk_category c ON t.categoryid = c.id\r\nGROUP BY c.name, t.status\r\nORDER BY total_tickets DESC",
                     "cache": "1d",
                     "reload": "none",
-                    "info": "{\n    \"column\": {\n        \"category_name\": {\n            \"key\": \"category_name\",\n            \"title\": \"lang::category::local_khelpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{category_name}}}\"\n        },\n        \"status\": {\n            \"key\": \"status\",\n            \"title\": \"lang::status::moodle\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{status}}}\"\n        },\n        \"total_tickets\": {\n            \"key\": \"total_tickets\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_total_tickets::local_khelpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"{{{total_tickets}}}\"\n        }\n    }\n}"
+                    "info": "{\n    \"column\": {\n        \"category_name\": {\n            \"key\": \"category_name\",\n            \"title\": \"lang::category::local_helpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{category_name}}}\"\n        },\n        \"status\": {\n            \"key\": \"status\",\n            \"title\": \"lang::status::moodle\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{status}}}\"\n        },\n        \"total_tickets\": {\n            \"key\": \"total_tickets\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_total_tickets::local_helpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"{{{total_tickets}}}\"\n        }\n    }\n}"
                 }
             ]
         },
@@ -35,17 +35,17 @@
             "elements": [
                 {
                     "refkey": "priority_distribution",
-                    "title": "lang::report_status_priority_reports_priority_distribution_cat_title::local_khelpdesk",
+                    "title": "lang::report_status_priority_reports_priority_distribution_cat_title::local_helpdesk",
                     "block_num": 1,
                     "type": "table",
                     "theme": "light",
                     "css": "",
                     "html_before": "",
                     "html_after": "",
-                    "commandsql": "SELECT t.priority,\r\n       COUNT(t.id) AS total_tickets\r\n  FROM mdl_local_khelpdesk_ticket t\r\nGROUP BY t.priority\r\nORDER BY CASE\r\n            WHEN priority = 'urgent' THEN 1\r\n            WHEN priority = 'high'   THEN 2\r\n            WHEN priority = 'medium' THEN 3\r\n            WHEN priority = 'low'    THEN 4\r\n            ELSE 5\r\n        END",
+                    "commandsql": "SELECT t.priority,\r\n       COUNT(t.id) AS total_tickets\r\n  FROM mdl_local_helpdesk_ticket t\r\nGROUP BY t.priority\r\nORDER BY CASE\r\n            WHEN priority = 'urgent' THEN 1\r\n            WHEN priority = 'high'   THEN 2\r\n            WHEN priority = 'medium' THEN 3\r\n            WHEN priority = 'low'    THEN 4\r\n            ELSE 5\r\n        END",
                     "cache": "1d",
                     "reload": "none",
-                    "info": "{\n    \"column\": {\n        \"priority\": {\n            \"key\": \"priority\",\n            \"title\": \"lang::priority::local_khelpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{priority}}}\"\n        },\n        \"total_tickets\": {\n            \"key\": \"total_tickets\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_total_tickets::local_khelpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"{{{total_tickets}}}\"\n        }\n    }\n}"
+                    "info": "{\n    \"column\": {\n        \"priority\": {\n            \"key\": \"priority\",\n            \"title\": \"lang::priority::local_helpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{priority}}}\"\n        },\n        \"total_tickets\": {\n            \"key\": \"total_tickets\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_total_tickets::local_helpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"{{{total_tickets}}}\"\n        }\n    }\n}"
                 }
             ]
         }

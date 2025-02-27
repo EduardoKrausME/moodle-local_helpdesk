@@ -1,7 +1,7 @@
 # local Kopere Helpdesk
 
 ## Overview
-**local_khelpdesk** is a Moodle local plugin that provides a ticketing system for managing helpdesk requests. It allows users to create and track tickets while enabling administrators and support teams to manage and respond efficiently.  
+**local_helpdesk** is a Moodle local plugin that provides a ticketing system for managing helpdesk requests. It allows users to create and track tickets while enabling administrators and support teams to manage and respond efficiently.  
 
 ## Features
 - Users can create and manage support tickets.  

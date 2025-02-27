@@ -17,12 +17,12 @@
 /**
  * file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_khelpdesk\external;
+namespace local_helpdesk\external;
 
 use external_api;
 use external_function_parameters;
@@ -30,7 +30,7 @@ use external_single_structure;
 use external_value;
 use local_geniai\external\api;
 use local_geniai\local\markdown\parse_markdown;
-use local_khelpdesk\model\response;
+use local_helpdesk\model\response;
 
 defined('MOODLE_INTERNAL') || die;
 global $CFG;
@@ -39,7 +39,7 @@ require_once("{$CFG->libdir}/externallib.php");
 /**
  * Class geniai
  *
- * @package local_khelpdesk\external
+ * @package local_helpdesk\external
  */
 class geniai extends external_api {
 
@@ -94,10 +94,10 @@ class geniai extends external_api {
             "message" => $message,
         ]);
         $context = \context_system::instance();
-        require_capability("local/khelpdesk:ticketmanage", $context);
+        require_capability("local/helpdesk:ticketmanage", $context);
         self::validate_context($context);
 
-        $ticket = \local_khelpdesk\model\ticket::get_by_id($params["ticketid"]);
+        $ticket = \local_helpdesk\model\ticket::get_by_id($params["ticketid"]);
 
         $params = [
             "ticketid" => $ticket->get_id(),
@@ -117,7 +117,7 @@ class geniai extends external_api {
                 $messages = [
                     [
                         "role" => "system",
-                        "content" => get_string("geniai_prompt_1", "local_khelpdesk",
+                        "content" => get_string("geniai_prompt_1", "local_helpdesk",
                             [
                                 "userfullname" => $userfullname,
                                 "userticket" => "# {$ticket->get_subject()}\n\n{$ticketmessage}",
@@ -130,7 +130,7 @@ class geniai extends external_api {
                 $messages = [
                     [
                         "role" => "system",
-                        "content" => get_string("geniai_prompt_1", "local_khelpdesk",
+                        "content" => get_string("geniai_prompt_1", "local_helpdesk",
                             [
                                 "userfullname" => $userfullname,
                                 "userticket" => "# {$ticket->get_subject()}\n\n{$ticketmessage}",
@@ -157,7 +157,7 @@ class geniai extends external_api {
             if (isset($params["message"][10])) {
                 $messages[] = [
                     "role" => "system",
-                    "content" => get_string("geniai_prompt_3", "local_khelpdesk",
+                    "content" => get_string("geniai_prompt_3", "local_helpdesk",
                         [
                             "message" => $params["message"],
                             "userlang" => $userlang,
@@ -166,7 +166,7 @@ class geniai extends external_api {
             } else {
                 $messages[] = [
                     "role" => "system",
-                    "content" => get_string("geniai_prompt_4", "local_khelpdesk",
+                    "content" => get_string("geniai_prompt_4", "local_helpdesk",
                         [
                             "message" => $params["message"],
                             "userlang" => $userlang,

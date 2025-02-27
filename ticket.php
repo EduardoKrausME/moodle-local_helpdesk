@@ -17,16 +17,16 @@
 /**
  * file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use local_khelpdesk\form\response_controller;
-use local_khelpdesk\model\category;
-use local_khelpdesk\model\response;
-use local_khelpdesk\model\ticket;
-use local_khelpdesk\util\files;
+use local_helpdesk\form\response_controller;
+use local_helpdesk\model\category;
+use local_helpdesk\model\response;
+use local_helpdesk\model\ticket;
+use local_helpdesk\util\files;
 
 require_once(__DIR__ . "/../../config.php");
 
@@ -44,32 +44,32 @@ if ($ticket->get_courseid()) {
     require_login();
 }
 $PAGE->set_context($context);
-$PAGE->set_url("/local/khelpdesk/ticket.php?id={$ticketid}");
+$PAGE->set_url("/local/helpdesk/ticket.php?id={$ticketid}");
 $PAGE->set_title($ticket->get_subject());
 $PAGE->set_heading($ticket->get_subject());
 $PAGE->set_secondary_navigation(false);
 
 if ($USER->id != $ticket->get_userid()) {
-    require_capability("local/khelpdesk:ticketmanage", $context);
+    require_capability("local/helpdesk:ticketmanage", $context);
 } else {
-    require_capability("local/khelpdesk:view", $context);
+    require_capability("local/helpdesk:view", $context);
 }
 
-$hasview = $hasticketmanage = has_capability("local/khelpdesk:ticketmanage", $context);
+$hasview = $hasticketmanage = has_capability("local/helpdesk:ticketmanage", $context);
 if (!$hasview) {
-    $hasview = has_capability("local/khelpdesk:view", $context);
+    $hasview = has_capability("local/helpdesk:view", $context);
 }
 
 $newstatus = optional_param("newstatus", false, PARAM_TEXT);
 if ($newstatus && in_array($newstatus, [ticket::STATUS_CLOSED, ticket::STATUS_RESOLVED])) {
     $ticket->change_status($newstatus);
-    redirect(new moodle_url("/local/khelpdesk/ticket.php?id={$ticketid}"));
+    redirect(new moodle_url("/local/helpdesk/ticket.php?id={$ticketid}"));
 }
 
-$PAGE->navbar->add(get_string("tickets", "local_khelpdesk"),
-    new moodle_url("/local/khelpdesk/"));
+$PAGE->navbar->add(get_string("tickets", "local_helpdesk"),
+    new moodle_url("/local/helpdesk/"));
 $PAGE->navbar->add($ticket->get_subject(),
-    new moodle_url("/local/khelpdesk/ticket.php?id={$ticketid}"));
+    new moodle_url("/local/helpdesk/ticket.php?id={$ticketid}"));
 
 // Categorys.
 $categorys = category::get_all(null, null, "name ASC");
@@ -144,7 +144,7 @@ $templatecontext["has_closed"] = $ticket->has_closed();
 
 
 echo $OUTPUT->header();
-echo $OUTPUT->render_from_template("local_khelpdesk/ticket", $templatecontext);
+echo $OUTPUT->render_from_template("local_helpdesk/ticket", $templatecontext);
 
 // Closed ticket not answered.
 if ($ticket->get_status() != ticket::STATUS_CLOSED) {
@@ -154,7 +154,7 @@ if ($ticket->get_status() != ticket::STATUS_CLOSED) {
     $responsecontroller->insert_response($ticket, $hasticketmanage);
     echo \html_writer::end_tag("div");
 } else {
-    $message = get_string("ticketclosed", "local_khelpdesk");
+    $message = get_string("ticketclosed", "local_helpdesk");
     $html = $PAGE->get_renderer("core")->render(new \core\output\notification($message, "success"));
 }
 

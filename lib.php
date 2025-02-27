@@ -17,33 +17,33 @@
 /**
  * lib file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
- * Function local_khelpdesk_extends_navigation
+ * Function local_helpdesk_extends_navigation
  *
  * @param global_navigation $nav
  *
  * @throws coding_exception
  * @throws dml_exception
  */
-function local_khelpdesk_extends_navigation(global_navigation $nav) {
-    local_khelpdesk_extend_navigation($nav);
+function local_helpdesk_extends_navigation(global_navigation $nav) {
+    local_helpdesk_extend_navigation($nav);
 }
 
 
 /**
- * Function local_khelpdesk_extend_navigation
+ * Function local_helpdesk_extend_navigation
  *
  * @param global_navigation $nav
  *
  * @throws coding_exception
  * @throws dml_exception
  */
-function local_khelpdesk_extend_navigation(global_navigation $nav) {
+function local_helpdesk_extend_navigation(global_navigation $nav) {
     global $PAGE, $COURSE, $SITE, $CFG;
 
     if (!isloggedin()) {
@@ -52,16 +52,16 @@ function local_khelpdesk_extend_navigation(global_navigation $nav) {
 
     $context = context_system::instance();
 
-    if (!has_capability("local/khelpdesk:view", $context)) {
+    if (!has_capability("local/helpdesk:view", $context)) {
         return;
     }
 
-    if (!has_capability("local/khelpdesk:ticketmanage", $context)) {
-        if (!isset(get_config("local_khelpdesk", "menu")[2])) {
+    if (!has_capability("local/helpdesk:ticketmanage", $context)) {
+        if (!isset(get_config("local_helpdesk", "menu")[2])) {
             return;
-        } else if (get_config("local_khelpdesk", "menu") == "none") {
+        } else if (get_config("local_helpdesk", "menu") == "none") {
             return;
-        } else if (get_config("local_khelpdesk", "menu") == "course") {
+        } else if (get_config("local_helpdesk", "menu") == "course") {
             if ($COURSE->id == $SITE->id) {
                 return;
             }
@@ -78,14 +78,14 @@ function local_khelpdesk_extend_navigation(global_navigation $nav) {
         $mynode->collapse = true;
         $mynode->make_inactive();
 
-        $name = get_string("pluginname", "local_khelpdesk");
+        $name = get_string("pluginname", "local_helpdesk");
         if ($courseid) {
-            $url = new moodle_url("/local/khelpdesk/?courseid={$courseid}");
+            $url = new moodle_url("/local/helpdesk/?courseid={$courseid}");
         } else {
-            $url = new moodle_url("/local/khelpdesk/");
+            $url = new moodle_url("/local/helpdesk/");
         }
         $nav->add($name, $url);
-        $node = $mynode->add($name, $url, 0, null, "khelpdesk_admin", new pix_icon("i/pie_chart", "", "local_khelpdesk"));
+        $node = $mynode->add($name, $url, 0, null, "helpdesk_admin", new pix_icon("i/pie_chart", "", "local_helpdesk"));
         $node->showinflatnavigation = true;
 
         $CFG->custommenuitems .= "\n-{$name}|{$url}";
@@ -94,7 +94,7 @@ function local_khelpdesk_extend_navigation(global_navigation $nav) {
 }
 
 /**
- * Serve the files from the khelpdesk file areas
+ * Serve the files from the helpdesk file areas
  *
  * @param stdClass $course    the course object
  * @param stdClass $cm        the course module object
@@ -109,11 +109,11 @@ function local_khelpdesk_extend_navigation(global_navigation $nav) {
  * @throws moodle_exception
  * @throws require_login_exception
  */
-function local_khelpdesk_pluginfile($course, $cm, context $context, $filearea, $args, $forcedownload, array $options = []) {
+function local_helpdesk_pluginfile($course, $cm, context $context, $filearea, $args, $forcedownload, array $options = []) {
 
     require_login($course, true, $cm);
 
-    if (!has_capability("local/khelpdesk:view", $context)) {
+    if (!has_capability("local/helpdesk:view", $context)) {
         return false;
     }
 
@@ -131,7 +131,7 @@ function local_khelpdesk_pluginfile($course, $cm, context $context, $filearea, $
 
     // Retrieve the file from the Files API.
     $fs = get_file_storage();
-    $file = $fs->get_file($context->id, "local_khelpdesk", $filearea, $itemid, $filepath, $filename);
+    $file = $fs->get_file($context->id, "local_helpdesk", $filearea, $itemid, $filepath, $filename);
     if ($file) {
         send_stored_file($file, 86400, 0, $forcedownload, $options);
         return true;

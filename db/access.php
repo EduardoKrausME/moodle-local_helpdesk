@@ -17,7 +17,7 @@
 /**
  * access file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $capabilities = [
-    "local/khelpdesk:view" => [
+    "local/helpdesk:view" => [
         "captype" => "write",
         "contextlevel" => CONTEXT_SYSTEM,
         "archetypes" => [
@@ -33,7 +33,7 @@ $capabilities = [
             "student" => CAP_ALLOW,
         ],
     ],
-    "local/khelpdesk:ticketmanage" => [
+    "local/helpdesk:ticketmanage" => [
         "captype" => "write",
         "contextlevel" => CONTEXT_SYSTEM,
         "archetypes" => [
@@ -43,7 +43,7 @@ $capabilities = [
             "manager" => CAP_ALLOW,
         ],
     ],
-    "local/khelpdesk:categorymanage" => [
+    "local/helpdesk:categorymanage" => [
         "captype" => "write",
         "contextlevel" => CONTEXT_SYSTEM,
         "archetypes" => [
@@ -52,7 +52,7 @@ $capabilities = [
             "manager" => CAP_ALLOW,
         ],
     ],
-    "local/khelpdesk:categorydelete" => [
+    "local/helpdesk:categorydelete" => [
         "captype" => "write",
         "contextlevel" => CONTEXT_SYSTEM,
         "archetypes" => [

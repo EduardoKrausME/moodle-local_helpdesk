@@ -14,12 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace local_khelpdesk\util;
+namespace local_helpdesk\util;
 
 /**
  * Class filter
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2024 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -37,8 +37,8 @@ class filter {
         if (!$loadkopere) {
             $loadkopere = true;
 
-            require_once("{$CFG->dirroot}/local/kdashboard/autoload.php");
-            get_klang();
+            require_once("{$CFG->dirroot}/local/kopere_dashboard/autoload.php");
+            get_kopere_lang();
         }
     }
 
@@ -64,12 +64,12 @@ class filter {
         ];
 
         $context = \context_system::instance();
-        if (has_capability("local/khelpdesk:ticketmanage", $context)) {
-            $data["url_ajax"] = local_kdashboard_makeurl("courses", "load_all_courses", [], "view-ajax");
-            $PAGE->requires->js_call_amd("local_khelpdesk/filter_course", "init");
+        if (has_capability("local/helpdesk:ticketmanage", $context)) {
+            $data["url_ajax"] = local_kopere_dashboard_makeurl("courses", "load_all_courses", [], "view-ajax");
+            $PAGE->requires->js_call_amd("local_helpdesk/filter_course", "init");
         }
 
-        return $OUTPUT->render_from_template("local_khelpdesk/filter-course", $data);
+        return $OUTPUT->render_from_template("local_helpdesk/filter-course", $data);
     }
 
     /**
@@ -88,9 +88,9 @@ class filter {
         $data = [
             "user_fullname" => $userfullname,
             "user_id" => $userid,
-            "url_ajax" => local_kdashboard_makeurl("users", "load_all_users", [], "view-ajax"),
+            "url_ajax" => local_kopere_dashboard_makeurl("users", "load_all_users", [], "view-ajax"),
         ];
-        $PAGE->requires->js_call_amd("local_khelpdesk/filter_user", "init");
-        return $OUTPUT->render_from_template("local_khelpdesk/filter-user", $data);
+        $PAGE->requires->js_call_amd("local_helpdesk/filter_user", "init");
+        return $OUTPUT->render_from_template("local_helpdesk/filter-user", $data);
     }
 }

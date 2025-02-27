@@ -17,21 +17,21 @@
 /**
  * file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_khelpdesk\form;
+namespace local_helpdesk\form;
 
-use local_khelpdesk\mail\ticket_mail;
+use local_helpdesk\mail\ticket_mail;
 use moodle_url;
-use local_khelpdesk\model\ticket;
+use local_helpdesk\model\ticket;
 
 /**
  * Class ticket_controller
  *
- * @package local_khelpdesk\form
+ * @package local_helpdesk\form
  */
 class ticket_controller {
 
@@ -47,7 +47,7 @@ class ticket_controller {
         $form = new ticket_form();
 
         if ($form->is_cancelled()) {
-            redirect(new moodle_url("/local/khelpdesk/index.php"));
+            redirect(new moodle_url("/local/helpdesk/index.php"));
         } else if ($data = $form->get_data()) {
             $ticket = new ticket([
                 "userid" => $USER->id,
@@ -70,13 +70,13 @@ class ticket_controller {
                     "embed" => true,
                 ];
                 file_save_draft_area_files($data->attachment, $context->id,
-                    "local_khelpdesk", "ticket", $ticket->get_id(), $options);
+                    "local_helpdesk", "ticket", $ticket->get_id(), $options);
             }
 
             $mail = new ticket_mail();
             $mail->send_ticket($ticket);
 
-            redirect(new moodle_url("/local/khelpdesk/index.php"));
+            redirect(new moodle_url("/local/helpdesk/index.php"));
         } else {
             $form->set_data([
                 "action" => "add",
@@ -84,8 +84,8 @@ class ticket_controller {
             ]);
         }
 
-        $PAGE->set_title(get_string("addticket", "local_khelpdesk"));
-        $PAGE->set_heading(get_string("addticket", "local_khelpdesk"));
+        $PAGE->set_title(get_string("addticket", "local_helpdesk"));
+        $PAGE->set_heading(get_string("addticket", "local_helpdesk"));
         echo $OUTPUT->header();
         $form->display();
         echo $OUTPUT->footer();
@@ -109,7 +109,7 @@ class ticket_controller {
         $form = new ticket_form(null, ["ticket" => $ticket]);
 
         if ($form->is_cancelled()) {
-            redirect(new moodle_url("/local/khelpdesk/index.php"));
+            redirect(new moodle_url("/local/helpdesk/index.php"));
         } else if ($data = $form->get_data()) {
             $ticket->set_subject($data->subject);
             $ticket->set_description($data->description["text"]);
@@ -118,7 +118,7 @@ class ticket_controller {
 
             $ticket->save();
 
-            redirect(new moodle_url("/local/khelpdesk/index.php"));
+            redirect(new moodle_url("/local/helpdesk/index.php"));
         } else {
             $form->set_data([
                 "id" => $ticket->get_id(),
@@ -134,8 +134,8 @@ class ticket_controller {
             ]);
         }
 
-        $PAGE->set_title(get_string("editticket", "local_khelpdesk"));
-        $PAGE->set_heading(get_string("editticket", "local_khelpdesk"));
+        $PAGE->set_title(get_string("editticket", "local_helpdesk"));
+        $PAGE->set_heading(get_string("editticket", "local_helpdesk"));
         echo $OUTPUT->header();
         $form->display();
         echo $OUTPUT->footer();

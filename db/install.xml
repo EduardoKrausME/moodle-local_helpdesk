@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="local/khelpdesk/db" VERSION="20250219" COMMENT="Database schema for local_khelpdesk plugin"
+<XMLDB PATH="local/helpdesk/db" VERSION="20250219" COMMENT="Database schema for local_helpdesk plugin"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
     <TABLES>
-        <TABLE NAME="local_khelpdesk_category" COMMENT="Stores ticket categories">
+        <TABLE NAME="local_helpdesk_category" COMMENT="Stores ticket categories">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Category name"/>
@@ -15,7 +15,7 @@
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
             </KEYS>
         </TABLE>
-        <TABLE NAME="local_khelpdesk_category_users" COMMENT="Users who receive notifications for tickets in specific categories">
+        <TABLE NAME="local_helpdesk_category_user" COMMENT="Users who receive notifications for tickets in specific categories">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="categoryid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="ID of the category"/>
@@ -24,14 +24,14 @@
             </FIELDS>
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-                <KEY NAME="fk_category" TYPE="foreign" FIELDS="categoryid" REFTABLE="local_khelpdesk_category" REFFIELDS="id"/>
+                <KEY NAME="fk_category" TYPE="foreign" FIELDS="categoryid" REFTABLE="local_helpdesk_category" REFFIELDS="id"/>
                 <KEY NAME="fk_user" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
             </KEYS>
             <INDEXES>
                 <INDEX NAME="idx_category_user" UNIQUE="true" FIELDS="categoryid, userid"/>
             </INDEXES>
         </TABLE>
-        <TABLE NAME="local_khelpdesk_ticket" COMMENT="Stores support tickets">
+        <TABLE NAME="local_helpdesk_ticket" COMMENT="Stores support tickets">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="idkey" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="Ticket ID"/>
@@ -50,11 +50,11 @@
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
                 <KEY NAME="unique" TYPE="unique" FIELDS="idkey"/>
                 <KEY NAME="userid_fk" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
-                <KEY NAME="categoryid_fk" TYPE="foreign" FIELDS="categoryid" REFTABLE="local_khelpdesk_category" REFFIELDS="id"/>
+                <KEY NAME="categoryid_fk" TYPE="foreign" FIELDS="categoryid" REFTABLE="local_helpdesk_category" REFFIELDS="id"/>
                 <KEY NAME="assignedto_fk" TYPE="foreign" FIELDS="assignedto" REFTABLE="user" REFFIELDS="id"/>
             </KEYS>
         </TABLE>
-        <TABLE NAME="local_khelpdesk_response" COMMENT="Stores responses to tickets">
+        <TABLE NAME="local_helpdesk_response" COMMENT="Stores responses to tickets">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="ticketid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Associated ticket"/>
@@ -65,7 +65,7 @@
             </FIELDS>
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-                <KEY NAME="ticketid_fk" TYPE="foreign" FIELDS="ticketid" REFTABLE="local_khelpdesk_ticket" REFFIELDS="id"/>
+                <KEY NAME="ticketid_fk" TYPE="foreign" FIELDS="ticketid" REFTABLE="local_helpdesk_ticket" REFFIELDS="id"/>
                 <KEY NAME="userid_fk" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
             </KEYS>
         </TABLE>

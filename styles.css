@@ -1,38 +1,38 @@
 @charset "UTF-8";
-.path-local-khelpdesk .container {
+.path-local-helpdesk .container {
     width: 100% !important;
 }
-.path-local-khelpdesk .badge {
+.path-local-helpdesk .badge {
     color: #fff;
     padding: 5px 10px;
     border-radius: 4px;
 }
-.path-local-khelpdesk .badge.priority-low {
+.path-local-helpdesk .badge.priority-low {
     background-color: #28a745; /* Verde */
 }
-.path-local-khelpdesk .badge.priority-medium {
+.path-local-helpdesk .badge.priority-medium {
     background-color: #ffc107; /* Amarelo */
     color: #212529;
 }
-.path-local-khelpdesk .badge.priority-high {
+.path-local-helpdesk .badge.priority-high {
     background-color: #fd7e14; /* Laranja */
 }
-.path-local-khelpdesk .badge.priority-urgent {
+.path-local-helpdesk .badge.priority-urgent {
     background-color: #dc3545; /* Vermelho */
 }
-.path-local-khelpdesk .badge.status-open {
+.path-local-helpdesk .badge.status-open {
     background-color: #007bff; /* Azul */
 }
-.path-local-khelpdesk .badge.status-in-progress {
+.path-local-helpdesk .badge.status-in-progress {
     background-color: #17a2b8; /* Ciano */
 }
-.path-local-khelpdesk .badge.status-resolved {
+.path-local-helpdesk .badge.status-resolved {
     background-color: #28a745; /* Verde */
 }
-.path-local-khelpdesk .badge.status-closed {
+.path-local-helpdesk .badge.status-closed {
     background-color: #6c757d; /* Cinza */
 }
-.path-local-khelpdesk .top-tikets-infos .ticket-card {
+.path-local-helpdesk .top-tikets-infos .ticket-card {
     position: relative;
     overflow: hidden;
     box-shadow: 0 0 21px 3px rgba(139, 132, 118, 0.05);
@@ -42,7 +42,7 @@
     border-radius: 0.8em;
     color: #fff;
 }
-.path-local-khelpdesk .top-tikets-infos .ticket-card:before {
+.path-local-helpdesk .top-tikets-infos .ticket-card:before {
     content: "◦";
     position: absolute;
     right: -31px;
@@ -52,175 +52,175 @@
     color: #fff;
     opacity: 0.25;
 }
-.path-local-khelpdesk .top-tikets-infos .ticket-card .top-ticket-title {
+.path-local-helpdesk .top-tikets-infos .ticket-card .top-ticket-title {
     font-size: 19px;
     line-height: 1.6;
     margin-bottom: 3px;
     color: #fff;
 }
-.path-local-khelpdesk .top-tikets-infos .ticket-card h3 {
+.path-local-helpdesk .top-tikets-infos .ticket-card h3 {
     color: #fff;
     font-size: 30px;
     margin-left: 7px;
 }
-.path-local-khelpdesk .top-tikets-infos .ticket-card-1 {
+.path-local-helpdesk .top-tikets-infos .ticket-card-1 {
     background-color: #2196f3;
 }
-.path-local-khelpdesk .top-tikets-infos .ticket-card-2 {
+.path-local-helpdesk .top-tikets-infos .ticket-card-2 {
     background-color: #00bcd4;
 }
-.path-local-khelpdesk .top-tikets-infos .ticket-card-3 {
+.path-local-helpdesk .top-tikets-infos .ticket-card-3 {
     background-color: #4caf50;
 }
-.path-local-khelpdesk .top-tikets-infos .ticket-card-4 {
+.path-local-helpdesk .top-tikets-infos .ticket-card-4 {
     background-color: #c0ca33;
 }
-.path-local-khelpdesk .area-finds {
+.path-local-helpdesk .area-finds {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     flex-wrap: wrap;
     gap: 12px;
 }
-.path-local-khelpdesk .area-finds .area-find {
+.path-local-helpdesk .area-finds .area-find {
     display: flex;
     align-items: center;
 }
-.path-local-khelpdesk .area-finds .area-find label {
+.path-local-helpdesk .area-finds .area-find label {
     font-weight: bold;
     margin-bottom: 0;
     white-space: nowrap;
     margin-right: 2px;
 }
-.path-local-khelpdesk .area-finds .area-find select {
+.path-local-helpdesk .area-finds .area-find select {
     padding: 5px;
     width: auto;
 }
-.path-local-khelpdesk .user_picture {
+.path-local-helpdesk .user_picture {
     min-width: 32px;
     max-width: 32px;
     width: 32px;
 }
-.path-local-khelpdesk .ticket-details .ticket-profile {
+.path-local-helpdesk .ticket-details .ticket-profile {
     display: flex;
     justify-content: center;
 }
-.path-local-khelpdesk .ticket-details .ticket-profile .ticket-profile-user {
+.path-local-helpdesk .ticket-details .ticket-profile .ticket-profile-user {
     display: flex;
     align-items: center;
 }
-.path-local-khelpdesk .ticket-details .about-list {
+.path-local-helpdesk .ticket-details .about-list {
     padding-top: 30px;
 }
-.path-local-khelpdesk .ticket-details .about-list select {
+.path-local-helpdesk .ticket-details .about-list select {
     width: auto;
     padding: 5px 2px;
 }
-.path-local-khelpdesk .ticket-details .response-header {
+.path-local-helpdesk .ticket-details .response-header {
     display: flex;
     align-items: center;
     gap: 8px;
 }
-.path-local-khelpdesk .ticket-details .ticket-attachments {
+.path-local-helpdesk .ticket-details .ticket-attachments {
     border: 1px dashed #d6d6d6;
     background-color: #fff;
     border-radius: 12px;
     display: block;
 }
-.path-local-khelpdesk .ticket-details .ticket-attachments:hover {
+.path-local-helpdesk .ticket-details .ticket-attachments:hover {
     background-color: rgba(255, 255, 255, 0.4666666667);
     text-decoration: none;
 }
-.path-local-khelpdesk .response-message {
+.path-local-helpdesk .response-message {
     display: none;
 }
-.path-local-khelpdesk .response-message #fitem_id_message,
-.path-local-khelpdesk .response-message #fitem_id_attachment,
-.path-local-khelpdesk .response-message #fgroup_id_buttonar,
-.path-local-khelpdesk .response-message #fitem_id_create_local_geniai {
+.path-local-helpdesk .response-message #fitem_id_message,
+.path-local-helpdesk .response-message #fitem_id_attachment,
+.path-local-helpdesk .response-message #fgroup_id_buttonar,
+.path-local-helpdesk .response-message #fitem_id_create_local_geniai {
     display: block !important;
 }
-.path-local-khelpdesk .response-message #fitem_id_message label,
-.path-local-khelpdesk .response-message #fitem_id_message .col-form-label,
-.path-local-khelpdesk .response-message #fitem_id_attachment label,
-.path-local-khelpdesk .response-message #fitem_id_attachment .col-form-label,
-.path-local-khelpdesk .response-message #fgroup_id_buttonar label,
-.path-local-khelpdesk .response-message #fgroup_id_buttonar .col-form-label,
-.path-local-khelpdesk .response-message #fitem_id_create_local_geniai label,
-.path-local-khelpdesk .response-message #fitem_id_create_local_geniai .col-form-label {
+.path-local-helpdesk .response-message #fitem_id_message label,
+.path-local-helpdesk .response-message #fitem_id_message .col-form-label,
+.path-local-helpdesk .response-message #fitem_id_attachment label,
+.path-local-helpdesk .response-message #fitem_id_attachment .col-form-label,
+.path-local-helpdesk .response-message #fgroup_id_buttonar label,
+.path-local-helpdesk .response-message #fgroup_id_buttonar .col-form-label,
+.path-local-helpdesk .response-message #fitem_id_create_local_geniai label,
+.path-local-helpdesk .response-message #fitem_id_create_local_geniai .col-form-label {
     font-weight: bold;
 }
-.path-local-khelpdesk .response-message #fitem_id_message .col-md-3,
-.path-local-khelpdesk .response-message #fitem_id_message .col-md-9,
-.path-local-khelpdesk .response-message #fitem_id_attachment .col-md-3,
-.path-local-khelpdesk .response-message #fitem_id_attachment .col-md-9,
-.path-local-khelpdesk .response-message #fgroup_id_buttonar .col-md-3,
-.path-local-khelpdesk .response-message #fgroup_id_buttonar .col-md-9,
-.path-local-khelpdesk .response-message #fitem_id_create_local_geniai .col-md-3,
-.path-local-khelpdesk .response-message #fitem_id_create_local_geniai .col-md-9 {
+.path-local-helpdesk .response-message #fitem_id_message .col-md-3,
+.path-local-helpdesk .response-message #fitem_id_message .col-md-9,
+.path-local-helpdesk .response-message #fitem_id_attachment .col-md-3,
+.path-local-helpdesk .response-message #fitem_id_attachment .col-md-9,
+.path-local-helpdesk .response-message #fgroup_id_buttonar .col-md-3,
+.path-local-helpdesk .response-message #fgroup_id_buttonar .col-md-9,
+.path-local-helpdesk .response-message #fitem_id_create_local_geniai .col-md-3,
+.path-local-helpdesk .response-message #fitem_id_create_local_geniai .col-md-9 {
     display: block !important;
     flex: 0 0 100%;
     max-width: 100%;
 }
-.path-local-khelpdesk .card {
+.path-local-helpdesk .card {
     background-color: #f1f5f9 !important;
     margin-bottom: 20px;
 }
-.path-local-khelpdesk .card .card-header {
+.path-local-helpdesk .card .card-header {
     background-color: transparent !important;
 }
-.path-local-khelpdesk .text-secondary {
+.path-local-helpdesk .text-secondary {
     color: #828c96 !important;
 }
-.path-local-khelpdesk #chart-course-button-open {
+.path-local-helpdesk #chart-course-button-open {
     display: flex;
     align-items: center;
     gap: 6px;
 }
-.path-local-khelpdesk #chart-course-datatable-select {
+.path-local-helpdesk #chart-course-datatable-select {
     min-width: 800px;
     min-height: 450px !important;
 }
-.path-local-khelpdesk #chart-user-button-open {
+.path-local-helpdesk #chart-user-button-open {
     display: flex;
     align-items: center;
     gap: 6px;
 }
-.path-local-khelpdesk #chart-user-datatable-select {
+.path-local-helpdesk #chart-user-datatable-select {
     min-width: 800px;
     min-height: 450px !important;
 }
 @media (min-width: 992px) {
-    .path-local-khelpdesk .modal-xl {
+    .path-local-helpdesk .modal-xl {
         max-width: 800px !important;
     }
 }
 @media (min-width: 1200px) {
-    .path-local-khelpdesk .modal-xl {
+    .path-local-helpdesk .modal-xl {
         max-width: 1140px !important;
     }
 }
-.path-local-khelpdesk .control-buttons {
+.path-local-helpdesk .control-buttons {
     display: flex;
     align-items: center;
     gap: 12px;
 }
-.path-local-khelpdesk .select-users {
+.path-local-helpdesk .select-users {
     display: flex;
     background: rgba(222, 226, 230, 0.3803921569);
     padding: 10px;
     border-radius: 6px;
     margin-bottom: 13px;
 }
-.path-local-khelpdesk .select-users #existingcell,
-.path-local-khelpdesk .select-users #potentialcell {
+.path-local-helpdesk .select-users #existingcell,
+.path-local-helpdesk .select-users #potentialcell {
     width: 50%;
 }
-.path-local-khelpdesk .select-users #buttonscell {
+.path-local-helpdesk .select-users #buttonscell {
     padding: 10px;
 }
-.path-local-khelpdesk .select,
-.path-local-khelpdesk select {
+.path-local-helpdesk .select,
+.path-local-helpdesk select {
     padding: 8px 11px;
     font-size: 0.9rem;
     line-height: 1.25;
@@ -231,7 +231,7 @@
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
     font-weight: 300;
 }
-.path-local-khelpdesk .select:not(.no-arrou) {
+.path-local-helpdesk .select:not(.no-arrou) {
     display: inline-block;
     background-image: url("data:image/svg+xml;base64,PHN2ZyBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyNCAxNSIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDE1IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTEyIDE1LTEyLTEyLjE2MiAyLjc5OS0yLjgzOCA5LjIwMSA5LjMyNCA5LjE5OS05LjMyNCAyLjgwMSAyLjgzOHoiIGZpbGw9IiM1ZjYzNjgiLz48L3N2Zz4=");
     background-repeat: no-repeat;
@@ -240,6 +240,6 @@
     padding-right: 32px;
     cursor: pointer;
 }
-.path-local-khelpdesk #id_subject {
+.path-local-helpdesk #id_subject {
     width: 90%;
 }

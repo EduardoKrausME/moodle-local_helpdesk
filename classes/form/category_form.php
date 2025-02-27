@@ -17,15 +17,15 @@
 /**
  * file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_khelpdesk\form;
+namespace local_helpdesk\form;
 
 use context_system;
-use local_khelpdesk\model\category;
+use local_helpdesk\model\category;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -34,7 +34,7 @@ require_once($CFG->libdir . "/formslib.php");
 /**
  * Class category_form
  *
- * @package local_khelpdesk\form
+ * @package local_helpdesk\form
  */
 class category_form extends \moodleform {
 
@@ -55,11 +55,11 @@ class category_form extends \moodleform {
         $mform->addElement("hidden", "actionform");
         $mform->setType("actionform", PARAM_TEXT);
 
-        $mform->addElement("text", "name", get_string("categoryname", "local_khelpdesk"), ["size" => "50"]);
+        $mform->addElement("text", "name", get_string("categoryname", "local_helpdesk"), ["size" => "50"]);
         $mform->setType("name", PARAM_TEXT);
         $mform->addRule("name", null, "required");
 
-        $mform->addElement("textarea", "description", get_string("categorydescription", "local_khelpdesk"));
+        $mform->addElement("textarea", "description", get_string("categorydescription", "local_helpdesk"));
         $mform->setType("description", PARAM_TEXT);
 
         if (isset($this->_customdata["id"])) {
@@ -73,19 +73,19 @@ class category_form extends \moodleform {
                 "contextid" => context_system::instance()->id,
                 "roleid" => $category->get_role_id(),
             ];
-            $html = $OUTPUT->render_from_template("local_khelpdesk/category-users", $templatecontext);
+            $html = $OUTPUT->render_from_template("local_helpdesk/category-users", $templatecontext);
             $mform->addElement("html", $html);
         } else {
-            $message = get_string("category_users_info", "local_khelpdesk");
+            $message = get_string("category_users_info", "local_helpdesk");
             global $PAGE;
             $html = $PAGE->get_renderer("core")->render(new \core\output\notification($message, "info"));
             $mform->addElement("html", $html);
         }
 
         if (isset($this->_customdata["id"])) {
-            $this->add_action_buttons(true, get_string("createcategory", "local_khelpdesk"));
+            $this->add_action_buttons(true, get_string("createcategory", "local_helpdesk"));
         } else {
-            $this->add_action_buttons(true, get_string("editticket", "local_khelpdesk"));
+            $this->add_action_buttons(true, get_string("editticket", "local_helpdesk"));
         }
     }
 
@@ -102,7 +102,7 @@ class category_form extends \moodleform {
         $errors = parent::validation($data, $files);
 
         if (empty($data["name"])) {
-            $errors["name"] = get_string("error:emptyname", "local_khelpdesk");
+            $errors["name"] = get_string("error:emptyname", "local_helpdesk");
         }
 
         return $errors;

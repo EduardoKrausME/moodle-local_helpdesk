@@ -1,9 +1,9 @@
 {
-    "title": "lang::report_category_reports_page_title::local_khelpdesk",
-    "description": "lang::report_category_reports_page_description::local_khelpdesk",
+    "title": "lang::report_category_reports_page_title::local_helpdesk",
+    "description": "lang::report_category_reports_page_description::local_helpdesk",
     "user_id": null,
     "category": {
-        "title": "lang::pluginname::local_khelpdesk",
+        "title": "lang::pluginname::local_helpdesk",
         "description": ""
     },
     "blocks": [
@@ -14,17 +14,17 @@
             "elements": [
                 {
                     "refkey": "most_demanded_categories",
-                    "title": "lang::report_category_reports_most_demanded_categories_cat_title::local_khelpdesk",
+                    "title": "lang::report_category_reports_most_demanded_categories_cat_title::local_helpdesk",
                     "block_num": 1,
                     "type": "table",
                     "theme": "light",
                     "css": "",
                     "html_before": "",
                     "html_after": "",
-                    "commandsql": "SELECT \r\n    c.id AS category_id,\r\n    c.name AS category_name,\r\n    COUNT(t.id) AS total_tickets\r\nFROM mdl_local_khelpdesk_ticket t\r\nJOIN mdl_local_khelpdesk_category c ON t.categoryid = c.id\r\nGROUP BY c.id, c.name\r\nORDER BY total_tickets DESC",
+                    "commandsql": "SELECT \r\n    c.id AS category_id,\r\n    c.name AS category_name,\r\n    COUNT(t.id) AS total_tickets\r\nFROM mdl_local_helpdesk_ticket t\r\nJOIN mdl_local_helpdesk_category c ON t.categoryid = c.id\r\nGROUP BY c.id, c.name\r\nORDER BY total_tickets DESC",
                     "cache": "1d",
                     "reload": "none",
-                    "info": "{\n    \"column\": {\n        \"category_id\": {\n            \"key\": \"category_id\",\n            \"title\": \"category_id\",\n            \"type\": \"none\",\n            \"mustache\": \"\"\n        },\n        \"category_name\": {\n            \"key\": \"category_name\",\n            \"title\": \"lang::category::local_khelpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{category_name}}}\"\n        },\n        \"total_tickets\": {\n            \"key\": \"total_tickets\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_total_tickets::local_khelpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"{{{total_tickets}}}\"\n        }\n    }\n}"
+                    "info": "{\n    \"column\": {\n        \"category_id\": {\n            \"key\": \"category_id\",\n            \"title\": \"category_id\",\n            \"type\": \"none\",\n            \"mustache\": \"\"\n        },\n        \"category_name\": {\n            \"key\": \"category_name\",\n            \"title\": \"lang::category::local_helpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{category_name}}}\"\n        },\n        \"total_tickets\": {\n            \"key\": \"total_tickets\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_total_tickets::local_helpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"{{{total_tickets}}}\"\n        }\n    }\n}"
                 }
             ]
         },
@@ -35,17 +35,17 @@
             "elements": [
                 {
                     "refkey": "avg_resolution_time_by_category",
-                    "title": "lang::report_category_reports_avg_resolution_time_by_category_cat_title::local_khelpdesk",
+                    "title": "lang::report_category_reports_avg_resolution_time_by_category_cat_title::local_helpdesk",
                     "block_num": 1,
                     "type": "table",
                     "theme": "light",
                     "css": "",
                     "html_before": "",
                     "html_after": "",
-                    "commandsql": "SELECT c.name AS categoria,\r\n       AVG( t.updatedat - t.createdat ) AS avg_response_time_seconds \r\n  FROM mdl_local_khelpdesk_ticket t\r\n  JOIN mdl_local_khelpdesk_category c ON t.categoryid = c.id\r\n WHERE t.status IN('resolved','closed')\r\nGROUP BY c.name\r\nORDER BY avg_response_time_seconds DESC\r\n",
+                    "commandsql": "SELECT c.name AS categoria,\r\n       AVG( t.updatedat - t.createdat ) AS avg_response_time_seconds \r\n  FROM mdl_local_helpdesk_ticket t\r\n  JOIN mdl_local_helpdesk_category c ON t.categoryid = c.id\r\n WHERE t.status IN('resolved','closed')\r\nGROUP BY c.name\r\nORDER BY avg_response_time_seconds DESC\r\n",
                     "cache": "1d",
                     "reload": "none",
-                    "info": "{\n    \"column\": {\n        \"categoria\": {\n            \"key\": \"categoria\",\n            \"title\": \"lang::category::local_khelpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{categoria}}}\"\n        },\n        \"avg_response_time_seconds\": {\n            \"key\": \"avg_response_time_seconds\",\n            \"title\": \"lang::report_general_reports_avg_resolution_time_avg_resolution_time_hours::local_khelpdesk\",\n            \"type\": \"datetimeRenderer\",\n            \"mustache\": \"\"\n        }\n    }\n}"
+                    "info": "{\n    \"column\": {\n        \"categoria\": {\n            \"key\": \"categoria\",\n            \"title\": \"lang::category::local_helpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{categoria}}}\"\n        },\n        \"avg_response_time_seconds\": {\n            \"key\": \"avg_response_time_seconds\",\n            \"title\": \"lang::report_general_reports_avg_resolution_time_avg_resolution_time_hours::local_helpdesk\",\n            \"type\": \"datetimeRenderer\",\n            \"mustache\": \"\"\n        }\n    }\n}"
                 }
             ]
         }

@@ -17,7 +17,7 @@
 /**
  * file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -96,10 +96,10 @@ You love responding with inspiring messages, avoiding lists, and providing detai
 
 Now, based on this history, create a response and return only in the "{$a->userlang}" language and only in MARKDOWN format.';
 $string['geniai_title'] = 'Artificial Intelligence';
-$string['khelpdesk:categorydelete'] = 'Allows deleting categories.';
-$string['khelpdesk:ticketmanage'] = 'Allows managing the khelpdesk, including responding to and closing tickets.';
-$string['khelpdesk:view'] = 'Allows viewing khelpdesk tickets and creating them for oneself.';
-$string['khelpdesk_manage_users'] = 'View users with permission to manage this role category';
+$string['helpdesk:categorydelete'] = 'Allows deleting categories.';
+$string['helpdesk:ticketmanage'] = 'Allows managing the Helpdesk, including responding to and closing tickets.';
+$string['helpdesk:view'] = 'Allows viewing Helpdesk tickets and creating them for oneself.';
+$string['helpdesk_manage_users'] = 'View users with permission to manage this role category';
 $string['index_top_all_open_tickets'] = 'All Open Tickets';
 $string['index_top_completed_tickets'] = 'Completed Tickets';
 $string['index_top_unanswered_tickets'] = 'Unanswered Tickets';
@@ -109,7 +109,7 @@ $string['lognewcategory'] = 'Category changed to <strong>{$a}</strong>!';
 $string['lognewpriority'] = 'Priority changed to <strong>{$a}</strong>!';
 $string['lognewstatus'] = 'Status changed to <strong>{$a}</strong>!';
 $string['lognowupdate'] = 'No changes made!';
-$string['mailticket_create_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.khelpdesk]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - Ticket <strong>#{[event.tiketidlink]}</strong></p>
+$string['mailticket_create_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.helpdesk]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - Ticket <strong>#{[event.tiketidlink]}</strong></p>
 <p>Dear {[to.fullname]},</p>
 <p>{[from.fullname]} has created ticket #{[event.tiketidlink]}:</p>
 <blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">
@@ -119,7 +119,7 @@ $string['mailticket_create_message'] = '<p><strong>{[moodle.fullname]}</strong> 
 <p>Best regards,<br>
 Support Team</p>';
 $string['mailticket_subject'] = '{[event.subjectname]} - Ticket: #{[event.tiketidname]}';
-$string['mailticket_update_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.khelpdesk]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - Ticket <strong>#{[event.tiketidlink]}</strong></p>
+$string['mailticket_update_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.helpdesk]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - Ticket <strong>#{[event.tiketidlink]}</strong></p>
 <p>Dear {[to.fullname]},</p>
 <p>Our team has reviewed your case and added new information:</p>
 <blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">
@@ -143,7 +143,7 @@ Support Team</p>';
 $string['markticketasclosed'] = 'Mark Ticket as Closed';
 $string['markticketasresolved'] = 'Mark Ticket as Resolved';
 $string['openuserby'] = 'Opened by';
-$string['pluginname'] = 'khelpdesk';
+$string['pluginname'] = 'Helpdesk';
 $string['priority'] = 'Priority';
 $string['priority_high'] = 'High';
 $string['priority_low'] = 'Low';
@@ -190,7 +190,7 @@ $string['report_user_reports_users_with_most_tickets_open_userid'] = 'User ID';
 
 $string['savechanges'] = 'Save Changes';
 $string['setting_course'] = 'Show only inside the course';
-$string['setting_menu_description'] = 'Select whether to show the khelpdesk menu in the system menu at the top of Moodle.';
+$string['setting_menu_description'] = 'Select whether to show the HelpDesk menu in the system menu at the top of Moodle.';
 $string['setting_menu_title'] = 'Show in menu';
 $string['setting_none'] = 'Do not show';
 $string['setting_system'] = 'Show throughout the system';

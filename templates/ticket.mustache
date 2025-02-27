@@ -1,3 +1,66 @@
+{{!
+    This file is part of Moodle - https://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_helpdesk/ticket
+
+    Example context (json):
+    {
+      "subject": "System Error: Unable to Load Dashboard",
+      "description": "Users are experiencing an issue where the dashboard fails to load. The page remains blank after login.",
+      "ticketfiles_count": 1,
+      "ticketfiles": [
+        {
+          "fullurl": "https://example.com/files/error_screenshot.png",
+          "filename": "error_screenshot.png",
+          "mimetype": "image/png"
+        }
+      ],
+      "responses": [
+        {
+          "has_message": true,
+          "user_fullname": "Admin Support",
+          "user_picture": "https://example.com/images/admin_avatar.jpg",
+          "createdat": "2025-02-27 14:30",
+          "message": "We are investigating the issue and will update you shortly.",
+          "responsefiles_count": 1,
+          "responsefiles": [
+            {
+              "fullurl": "https://example.com/files/log_report.txt",
+              "filename": "log_report.txt",
+              "mimetype": "text/plain"
+            }
+          ]
+        },
+        {
+          "has_status": true,
+          "user_fullname": "Admin Support",
+          "user_picture": "https://example.com/images/admin_avatar.jpg",
+          "createdat": "2025-02-27 16:45",
+          "message": "The issue has been resolved. Please refresh your browser and try again."
+        }
+      ],
+      "user_fullname": "John Doe",
+      "user_picture": "https://example.com/images/user_avatar.jpg",
+      "user": {
+        "phone1": "+1 555-1234",
+        "phone2": "+1 555
+
+}}
+
 <div class="ticket-details row">
 
     <div class="col-md-7 col-lg-8 col-xxl-9">
@@ -96,7 +159,7 @@
             <div class="card-body">
                 <div class="about-list pt-0">
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="fw-medium">{{#str}}ticketid, local_khelpdesk{{/str}}:</span>
+                        <span class="fw-medium">{{#str}}ticketid, local_helpdesk{{/str}}:</span>
                         <span class="text-secondary">#{{{idkey}}}</span>
                     </div>
                     {{#course_fullname}}
@@ -107,21 +170,21 @@
                     {{/course_fullname}}
                     {{#has_closed}}
                         <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fw-medium">{{#str}}ticketstatus, local_khelpdesk{{/str}}:</span>
+                            <span class="fw-medium">{{#str}}ticketstatus, local_helpdesk{{/str}}:</span>
                             <span class="badge status-{{status}}">{{status_translated}}</span>
                         </div>
                         <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fw-medium">{{#str}}ticketpriority, local_khelpdesk{{/str}}:</span>
+                            <span class="fw-medium">{{#str}}ticketpriority, local_helpdesk{{/str}}:</span>
                             <span class="badge priority-{{priority}}">{{priority_translated}}</span>
                         </div>
                         <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fw-medium">{{#str}}ticketcategory, local_khelpdesk{{/str}}:</span>
+                            <span class="fw-medium">{{#str}}ticketcategory, local_helpdesk{{/str}}:</span>
                                 <span class="text-secondary">{{category_translate}}</span>
                         </div>
                     {{/has_closed}}
                     {{^has_closed}}
                         <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fw-medium">{{#str}}ticketstatus, local_khelpdesk{{/str}}:</span>
+                            <span class="fw-medium">{{#str}}ticketstatus, local_helpdesk{{/str}}:</span>
                             {{#hasticketmanage}}
                                 <select name="changue_status" id="changue_status"
                                         data-column="status">
@@ -135,7 +198,7 @@
                             {{/hasticketmanage}}
                         </div>
                         <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fw-medium">{{#str}}ticketpriority, local_khelpdesk{{/str}}:</span>
+                            <span class="fw-medium">{{#str}}ticketpriority, local_helpdesk{{/str}}:</span>
 
                             {{#hasticketmanage}}
                                 <select name="changue_priority" id="changue_priority"
@@ -150,7 +213,7 @@
                             {{/hasticketmanage}}
                         </div>
                         <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fw-medium">{{#str}}ticketcategory, local_khelpdesk{{/str}}:</span>
+                            <span class="fw-medium">{{#str}}ticketcategory, local_helpdesk{{/str}}:</span>
                             {{#hasticketmanage}}
                                 <select name="changue_category" id="changue_category"
                                         data-column="category">
@@ -165,18 +228,18 @@
                         </div>
                     {{/has_closed}}
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="fw-medium">{{#str}}ticketcreatedat, local_khelpdesk{{/str}}:</span>
+                        <span class="fw-medium">{{#str}}ticketcreatedat, local_helpdesk{{/str}}:</span>
                         <span class="text-secondary">{{createdat}}</span>
                     </div>
                     <div class="alert alert-success"
                          style="display:none"
-                         id="local_khelpdesk_ticket_column"></div>
+                         id="local_helpdesk_ticket_column"></div>
                 </div>
             </div>
         </div>
         <div class="card">
             <div class="card-header">
-                <h5>{{#str}}attachment, local_khelpdesk{{/str}}</h5>
+                <h5>{{#str}}attachment, local_helpdesk{{/str}}</h5>
             </div>
             {{#allfiles_count}}
                 <div class="card-body">
@@ -197,62 +260,58 @@
 {{^has_closed}}
     <div id="response-message-area" style="display:flex;gap:12px;">
         <button id="response-message-open"
-                class="btn btn-success">{{#str}}replytoticket, local_khelpdesk{{/str}}
+                class="btn btn-success">{{#str}}replytoticket, local_helpdesk{{/str}}
         </button>
 
         <div style="width:40px">&nbsp;</div>
 
         <button id="response-message-resolved"
-                class="btn btn-info">{{#str}}markticketasresolved, local_khelpdesk{{/str}}
+                class="btn btn-info">{{#str}}markticketasresolved, local_helpdesk{{/str}}
         </button>
         <button id="response-message-closed"
-                class="btn btn-danger">{{#str}}markticketasclosed, local_khelpdesk{{/str}}
+                class="btn btn-danger">{{#str}}markticketasclosed, local_helpdesk{{/str}}
         </button>
     </div>
 {{/has_closed}}
 
 {{#js}}
-    /*
-    <script>*/
-    require(["jquery", "core/ajax", "core/notification"], function($, Ajax, Notification) {
+require(["jquery", "core/ajax", "core/notification"], function($, Ajax, Notification) {
 
-        $("#response-message-open").click(function() {
-            $("#response-message-area").hide(300);
-            $(".response-message").show(300);
-        });
-
-        $("#response-message-resolved").click(function() {
-            $("#response-message-area").hide(300);
-            location.href = "?id=
-                {{idkey}}&newstatus=resolved"
-        });
-        $("#response-message-resolved").click(function() {
-            $("#response-message-area").hide(300);
-            location.href = "?id=
-                {{idkey}}&newstatus=closed"
-        });
-
-        $("#id_buttonar_resolvedbutton").removeClass("btn-primary").addClass("btn-info");
-        $("#id_buttonar_closebutton").removeClass("btn-primary").addClass("btn-danger");
-
-        $("#changue_status,#changue_priority,#changue_category").on("change", function() {
-            var value = $(this).val();
-
-            Ajax.call([{
-                methodname: "local_khelpdesk_ticket_column",
-                args: {
-                    idkey: "{{{idkey}}}",
-                    column: $(this).attr("data-column"),
-                    value: value,
-                }
-            }])[0].then(function(data) {
-                console.log(data.status);
-                $("#local_khelpdesk_ticket_column").show(200).html(data.status);
-                setTimeout(function() {
-                    $("#local_khelpdesk_ticket_column").show(200);
-                }, 2000);
-
-            }).catch(Notification.exception);
-        });
+    $("#response-message-open").click(function() {
+        $("#response-message-area").hide(300);
+        $(".response-message").show(300);
     });
+
+    $("#response-message-resolved").click(function() {
+        $("#response-message-area").hide(300);
+        location.href = "?id={{idkey}}&newstatus=resolved"
+    });
+    $("#response-message-resolved").click(function() {
+        $("#response-message-area").hide(300);
+        location.href = "?id={{idkey}}&newstatus=closed"
+    });
+
+    $("#id_buttonar_resolvedbutton").removeClass("btn-primary").addClass("btn-info");
+    $("#id_buttonar_closebutton").removeClass("btn-primary").addClass("btn-danger");
+
+    $("#changue_status,#changue_priority,#changue_category").on("change", function() {
+        var value = $(this).val();
+
+        Ajax.call([{
+            methodname: "local_helpdesk_ticket_column",
+            args: {
+                idkey: "{{{idkey}}}",
+                column: $(this).attr("data-column"),
+                value: value,
+            }
+        }])[0].then(function(data) {
+            console.log(data.status);
+            $("#local_helpdesk_ticket_column").show(200).html(data.status);
+            setTimeout(function() {
+                $("#local_helpdesk_ticket_column").show(200);
+            }, 2000);
+
+        }).catch(Notification.exception);
+    });
+});
 {{/js}}

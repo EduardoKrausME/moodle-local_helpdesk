@@ -1,11 +1,40 @@
-<h3>{{#str}}category_users_title, local_khelpdesk{{/str}}</h3>
+{{!
+    This file is part of Moodle - https://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_helpdesk/category-users
+
+    Example context (json):
+    {
+      "contextid": 12345,
+      "roleid": 6789,
+      "existinguserselector": "<select><option value='1'>User 1</option><option value='2'>User 2</option></select>",
+      "potentialuserselector": "<select><option value='3'>User 3</option><option value='4'>User 4</option></select>"
+    }
+
+}}
+
+<h3>{{#str}}category_users_title, local_helpdesk{{/str}}</h3>
 
 <a href="{{config.wwwroot}}/admin/roles/assign.php?contextid={{contextid}}&roleid={{roleid}}"
-    target="_blank" class="btn btn-info">{{#str}}khelpdesk_manage_users, local_khelpdesk{{/str}}</a>
+    target="_blank" class="btn btn-info">{{#str}}helpdesk_manage_users, local_helpdesk{{/str}}</a>
 
 <div class="select-users mt-2">
     <div id="existingcell">
-        <label for="removeselect">{{#str}}category_users_responses, local_khelpdesk{{/str}}</label>
+        <label for="removeselect">{{#str}}category_users_responses, local_helpdesk{{/str}}</label>
         {{{existinguserselector}}}
     </div>
     <div id="buttonscell">
@@ -20,7 +49,7 @@
         </div>
     </div>
     <div id="potentialcell">
-        <label for="addselect">{{#str}}category_users_all, local_khelpdesk{{/str}}</label>
+        <label for="addselect">{{#str}}category_users_all, local_helpdesk{{/str}}</label>
         {{{potentialuserselector}}}
     </div>
 </div>

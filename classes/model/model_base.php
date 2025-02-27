@@ -17,17 +17,17 @@
 /**
  * file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_khelpdesk\model;
+namespace local_helpdesk\model;
 
 /**
  * Class model_base
  *
- * @package local_khelpdesk\model
+ * @package local_helpdesk\model
  */
 class model_base {
     /**

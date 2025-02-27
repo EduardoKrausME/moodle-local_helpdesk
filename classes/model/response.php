@@ -17,17 +17,17 @@
 /**
  * file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_khelpdesk\model;
+namespace local_helpdesk\model;
 
 /**
  * Class response
  *
- * @package local_khelpdesk\model
+ * @package local_helpdesk\model
  */
 class response {
 
@@ -74,7 +74,7 @@ class response {
      */
     public static function get_by_id($responseid) {
         global $DB;
-        $record = $DB->get_record("local_khelpdesk_response", ["id" => $responseid]);
+        $record = $DB->get_record("local_helpdesk_response", ["id" => $responseid]);
 
         if ($record) {
             return new self($record);
@@ -94,7 +94,7 @@ class response {
      * @throws \dml_exception
      */
     public static function get_all($wheres = null, $params = [], $order = null) {
-        return model_base::get_all("local_khelpdesk_response", self::class, $wheres, $params, $order);
+        return model_base::get_all("local_helpdesk_response", self::class, $wheres, $params, $order);
     }
 
     /**
@@ -107,9 +107,9 @@ class response {
         global $DB;
 
         if ($this->id) {
-            return $DB->update_record("local_khelpdesk_response", get_object_vars($this));
+            return $DB->update_record("local_helpdesk_response", get_object_vars($this));
         } else {
-            return $this->id = $DB->insert_record("local_khelpdesk_response", get_object_vars($this));
+            return $this->id = $DB->insert_record("local_helpdesk_response", get_object_vars($this));
         }
     }
 
@@ -164,7 +164,7 @@ class response {
      */
     public function delete() {
         global $DB;
-        return $DB->delete_records("local_khelpdesk_response", ["id" => $this->id]);
+        return $DB->delete_records("local_helpdesk_response", ["id" => $this->id]);
     }
 
     // Getters.

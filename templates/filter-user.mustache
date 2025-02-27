@@ -15,7 +15,7 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    @template local_khelpdesk/filter-user
+    @template local_helpdesk/filter-user
 
     Example context (json):
     {
@@ -24,8 +24,8 @@
     }
 }}
 <div id="chart-user-button-open" style="display: none"
-     data-defaultfullname="{{#str}}finduser, local_khelpdesk{{/str}}">
-    <label>{{#str}}openuserby, local_khelpdesk{{/str}}:</label>
+     data-defaultfullname="{{#str}}finduser, local_helpdesk{{/str}}">
+    <label>{{#str}}openuserby, local_helpdesk{{/str}}:</label>
     <span class="select">
         {{{user_fullname}}}
     </span>
@@ -37,14 +37,14 @@
 </div>
 <div id="chart-user-datatable-select" style="display:none;"
      data-urlajax="{{{url_ajax}}}"
-     title="{{#str}}reports_selectuser, local_kbi{{/str}}">
+     title="{{#str}}reports_selectuser, local_kopere_bi{{/str}}">
     <table id="datatable_user_select" class="table table-hover">
         <thead>
         <tr>
             <th class="text-center th_id">#</th>
-            <th class="text-center th_fullname">{{#str}}user_table_fullname,local_kdashboard{{/str}}</th>
-            <th class="text-center th_username">{{#str}}user_table_username,local_kdashboard{{/str}}</th>
-            <th class="text-center th_email">{{#str}}user_table_email,local_kdashboard{{/str}}</th>
+            <th class="text-center th_fullname">{{#str}}user_table_fullname,local_kopere_dashboard{{/str}}</th>
+            <th class="text-center th_username">{{#str}}user_table_username,local_kopere_dashboard{{/str}}</th>
+            <th class="text-center th_email">{{#str}}user_table_email,local_kopere_dashboard{{/str}}</th>
         </tr>
         </thead>
         <tbody class="hover-pointer"></tbody>

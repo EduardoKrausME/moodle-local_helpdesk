@@ -1,9 +1,9 @@
 {
-    "title": "lang::report_general_reports_page_title::local_khelpdesk",
-    "description": "lang::report_general_reports_page_description::local_khelpdesk",
+    "title": "lang::report_general_reports_page_title::local_helpdesk",
+    "description": "lang::report_general_reports_page_description::local_helpdesk",
     "user_id": null,
     "category": {
-        "title": "lang::pluginname::local_khelpdesk",
+        "title": "lang::pluginname::local_helpdesk",
         "description": ""
     },
     "blocks": [
@@ -14,17 +14,17 @@
             "elements": [
                 {
                     "refkey": "avg_time_first_response",
-                    "title": "lang::report_general_reports_avg_time_first_response_cat_title::local_khelpdesk",
+                    "title": "lang::report_general_reports_avg_time_first_response_cat_title::local_helpdesk",
                     "block_num": 1,
                     "type": "table",
                     "theme": "light",
                     "css": "",
                     "html_before": "",
                     "html_after": "",
-                    "commandsql": "SELECT c.name, AVG(r.createdat - t.createdat) AS avg_response_time\r\n  FROM mdl_local_khelpdesk_ticket   t\r\n  JOIN mdl_local_khelpdesk_response r ON t.id = r.ticketid\r\n  JOIN mdl_local_khelpdesk_category c ON c.id = t.categoryid\r\n WHERE r.id = (SELECT MIN(r2.id) \r\n                 FROM mdl_local_khelpdesk_response r2 \r\n                WHERE r2.ticketid = t.id)",
+                    "commandsql": "SELECT c.name, AVG(r.createdat - t.createdat) AS avg_response_time\r\n  FROM mdl_local_helpdesk_ticket   t\r\n  JOIN mdl_local_helpdesk_response r ON t.id = r.ticketid\r\n  JOIN mdl_local_helpdesk_category c ON c.id = t.categoryid\r\n WHERE r.id = (SELECT MIN(r2.id) \r\n                 FROM mdl_local_helpdesk_response r2 \r\n                WHERE r2.ticketid = t.id)",
                     "cache": "1d",
                     "reload": "2h",
-                    "info": "{\n    \"column\": {\n        \"name\": {\n            \"key\": \"name\",\n            \"title\": \"lang::category::local_khelpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{name}}}\"\n        },\n        \"avg_response_time\": {\n            \"key\": \"avg_response_time\",\n            \"title\": \"lang::report_general_reports_avg_time_first_response_avg_response_time::local_khelpdesk\",\n            \"type\": \"timeRenderer\",\n            \"mustache\": \"\"\n        }\n    }\n}"
+                    "info": "{\n    \"column\": {\n        \"name\": {\n            \"key\": \"name\",\n            \"title\": \"lang::category::local_helpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{name}}}\"\n        },\n        \"avg_response_time\": {\n            \"key\": \"avg_response_time\",\n            \"title\": \"lang::report_general_reports_avg_time_first_response_avg_response_time::local_helpdesk\",\n            \"type\": \"timeRenderer\",\n            \"mustache\": \"\"\n        }\n    }\n}"
                 }
             ]
         },
@@ -35,17 +35,17 @@
             "elements": [
                 {
                     "refkey": "tickets_created_by_period",
-                    "title": "lang::report_general_reports_tickets_created_by_period_cat_title::local_khelpdesk",
+                    "title": "lang::report_general_reports_tickets_created_by_period_cat_title::local_helpdesk",
                     "block_num": 1,
                     "type": "table",
                     "theme": "light",
                     "css": "",
                     "html_before": "",
                     "html_after": "",
-                    "commandsql": "SELECT c.name AS categoria,\r\n       FROM_UNIXTIME(t.createdat, '%Y-%m-%d') AS data_criacao,\r\n       COUNT(t.id) AS total_tickets\r\n  FROM mdl_local_khelpdesk_ticket   t\r\n  JOIN mdl_local_khelpdesk_category c ON t.categoryid = c.id\r\nGROUP BY c.name, data_criacao\r\nORDER BY data_criacao DESC, total_tickets DESC",
+                    "commandsql": "SELECT c.name AS categoria,\r\n       FROM_UNIXTIME(t.createdat, '%Y-%m-%d') AS data_criacao,\r\n       COUNT(t.id) AS total_tickets\r\n  FROM mdl_local_helpdesk_ticket   t\r\n  JOIN mdl_local_helpdesk_category c ON t.categoryid = c.id\r\nGROUP BY c.name, data_criacao\r\nORDER BY data_criacao DESC, total_tickets DESC",
                     "cache": "6h",
                     "reload": "none",
-                    "info": "{\n    \"column\": {\n        \"categoria\": {\n            \"key\": \"categoria\",\n            \"title\": \"lang::category::local_khelpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{categoria}}}\"\n        },\n        \"data_criacao\": {\n            \"key\": \"data_criacao\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_data_criacao::local_khelpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{data_criacao}}}\"\n        },\n        \"total_tickets\": {\n            \"key\": \"total_tickets\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_total_tickets::local_khelpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"{{{total_tickets}}}\"\n        }\n    }\n}"
+                    "info": "{\n    \"column\": {\n        \"categoria\": {\n            \"key\": \"categoria\",\n            \"title\": \"lang::category::local_helpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{categoria}}}\"\n        },\n        \"data_criacao\": {\n            \"key\": \"data_criacao\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_data_criacao::local_helpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{data_criacao}}}\"\n        },\n        \"total_tickets\": {\n            \"key\": \"total_tickets\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_total_tickets::local_helpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"{{{total_tickets}}}\"\n        }\n    }\n}"
                 }
             ]
         },
@@ -56,17 +56,17 @@
             "elements": [
                 {
                     "refkey": "tickets_resolved_by_period",
-                    "title": "lang::report_general_reports_tickets_resolved_by_period_cat_title::local_khelpdesk",
+                    "title": "lang::report_general_reports_tickets_resolved_by_period_cat_title::local_helpdesk",
                     "block_num": 1,
                     "type": "table",
                     "theme": "light",
                     "css": "",
                     "html_before": "",
                     "html_after": "",
-                    "commandsql": "SELECT c.name AS category_name,\r\n       FROM_UNIXTIME(t.updatedat, '%Y-%m') AS period,\r\n       COUNT(t.id) AS total_resolved\r\n  FROM mdl_local_khelpdesk_ticket   t\r\n  JOIN mdl_local_khelpdesk_category c ON t.categoryid = c.id\r\n WHERE t.status = 'resolved'\r\nGROUP BY c.name, period\r\nORDER BY period DESC, total_resolved DESC",
+                    "commandsql": "SELECT c.name AS category_name,\r\n       FROM_UNIXTIME(t.updatedat, '%Y-%m') AS period,\r\n       COUNT(t.id) AS total_resolved\r\n  FROM mdl_local_helpdesk_ticket   t\r\n  JOIN mdl_local_helpdesk_category c ON t.categoryid = c.id\r\n WHERE t.status = 'resolved'\r\nGROUP BY c.name, period\r\nORDER BY period DESC, total_resolved DESC",
                     "cache": "1d",
                     "reload": "none",
-                    "info": "{\n    \"column\": {\n        \"category_name\": {\n            \"key\": \"category_name\",\n            \"title\": \"lang::category::local_khelpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{category_name}}}\"\n        },\n        \"period\": {\n            \"key\": \"period\",\n            \"title\": \"lang::report_general_reports_tickets_resolved_by_period_period::local_khelpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{period}}}\"\n        },\n        \"total_resolved\": {\n            \"key\": \"total_resolved\",\n            \"title\": \"lang::report_general_reports_tickets_resolved_by_period_total_resolved::local_khelpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"{{{total_resolved}}}\"\n        }\n    }\n}"
+                    "info": "{\n    \"column\": {\n        \"category_name\": {\n            \"key\": \"category_name\",\n            \"title\": \"lang::category::local_helpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{category_name}}}\"\n        },\n        \"period\": {\n            \"key\": \"period\",\n            \"title\": \"lang::report_general_reports_tickets_resolved_by_period_period::local_helpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{period}}}\"\n        },\n        \"total_resolved\": {\n            \"key\": \"total_resolved\",\n            \"title\": \"lang::report_general_reports_tickets_resolved_by_period_total_resolved::local_helpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"{{{total_resolved}}}\"\n        }\n    }\n}"
                 }
             ]
         },
@@ -77,17 +77,17 @@
             "elements": [
                 {
                     "refkey": "avg_resolution_time",
-                    "title": "lang::report_general_reports_avg_resolution_time_cat_title::local_khelpdesk",
+                    "title": "lang::report_general_reports_avg_resolution_time_cat_title::local_helpdesk",
                     "block_num": 1,
                     "type": "table",
                     "theme": "light",
                     "css": "",
                     "html_before": "",
                     "html_after": "",
-                    "commandsql": "SELECT c.name AS category_name,\r\n       COUNT(t.id) AS total_tickets,\r\n       ROUND(AVG(t.updatedat - t.createdat) \/ 3600, 2) AS avg_resolution_time_hours\r\n  FROM mdl_local_khelpdesk_ticket   t\r\n  JOIN mdl_local_khelpdesk_category c ON t.categoryid = c.id\r\n WHERE t.status IN ('resolved', 'closed')\r\nGROUP BY c.name\r\nORDER BY avg_resolution_time_hours ASC",
+                    "commandsql": "SELECT c.name AS category_name,\r\n       COUNT(t.id) AS total_tickets,\r\n       ROUND(AVG(t.updatedat - t.createdat) \/ 3600, 2) AS avg_resolution_time_hours\r\n  FROM mdl_local_helpdesk_ticket   t\r\n  JOIN mdl_local_helpdesk_category c ON t.categoryid = c.id\r\n WHERE t.status IN ('resolved', 'closed')\r\nGROUP BY c.name\r\nORDER BY avg_resolution_time_hours ASC",
                     "cache": "1d",
                     "reload": "none",
-                    "info": "{\n    \"column\": {\n        \"category_name\": {\n            \"key\": \"category_name\",\n            \"title\": \"lang::category::local_khelpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{category_name}}}\"\n        },\n        \"total_tickets\": {\n            \"key\": \"total_tickets\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_total_tickets::local_khelpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"{{{total_tickets}}}\"\n        },\n        \"avg_resolution_time_hours\": {\n            \"key\": \"avg_resolution_time_hours\",\n            \"title\": \"lang::report_general_reports_avg_resolution_time_avg_resolution_time_hours::local_khelpdesk\",\n            \"type\": \"timeRenderer\",\n            \"mustache\": \"\"\n        }\n    }\n}"
+                    "info": "{\n    \"column\": {\n        \"category_name\": {\n            \"key\": \"category_name\",\n            \"title\": \"lang::category::local_helpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{category_name}}}\"\n        },\n        \"total_tickets\": {\n            \"key\": \"total_tickets\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_total_tickets::local_helpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"{{{total_tickets}}}\"\n        },\n        \"avg_resolution_time_hours\": {\n            \"key\": \"avg_resolution_time_hours\",\n            \"title\": \"lang::report_general_reports_avg_resolution_time_avg_resolution_time_hours::local_helpdesk\",\n            \"type\": \"timeRenderer\",\n            \"mustache\": \"\"\n        }\n    }\n}"
                 }
             ]
         }

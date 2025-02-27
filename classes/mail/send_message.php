@@ -17,22 +17,22 @@
 /**
  * ticket file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_khelpdesk\mail;
+namespace local_helpdesk\mail;
 
-use local_khelpdesk\model\category_users;
-use local_khelpdesk\model\ticket;
-use local_kdashboard\output\events\send_events;
-use local_kdashboard\util\release;
+use local_helpdesk\model\category_users;
+use local_helpdesk\model\ticket;
+use local_kopere_dashboard\output\events\send_events;
+use local_kopere_dashboard\util\release;
 
 /**
  * Class send_message
  *
- * @package local_khelpdesk\mail
+ * @package local_helpdesk\mail
  */
 class send_message extends send_events {
     /**
@@ -123,8 +123,8 @@ class send_message extends send_events {
                 $eventdata->courseid = SITEID;
             }
             $eventdata->modulename = "moodle";
-            $eventdata->component = "local_kdashboard";
-            $eventdata->name = "kdashboard_messages";
+            $eventdata->component = "local_kopere_dashboard";
+            $eventdata->name = "kopere_dashboard_messages";
             $eventdata->userfrom = $userfrom;
             $eventdata->userto = $userto;
             $eventdata->subject = $sendsubject;

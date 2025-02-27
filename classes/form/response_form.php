@@ -17,14 +17,14 @@
 /**
  * file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_khelpdesk\form;
+namespace local_helpdesk\form;
 
-use local_khelpdesk\model\ticket;
+use local_helpdesk\model\ticket;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -33,7 +33,7 @@ require_once($CFG->libdir . "/formslib.php");
 /**
  * Class response_form
  *
- * @package local_khelpdesk\form
+ * @package local_helpdesk\form
  */
 class response_form extends \moodleform {
     /**
@@ -53,7 +53,7 @@ class response_form extends \moodleform {
         $mform->addElement("hidden", "idkey");
         $mform->setType("idkey", PARAM_INT);
 
-        $mform->addElement("editor", "message", get_string("ticketmessage", "local_khelpdesk"), null, [
+        $mform->addElement("editor", "message", get_string("ticketmessage", "local_helpdesk"), null, [
             "maxfiles" => 0,
             "maxbytes" => 0,
         ]);
@@ -65,10 +65,10 @@ class response_form extends \moodleform {
             if (isset($apikey[5])) {
                 /** @var ticket $ticket */
                 $ticket = $this->_customdata["ticket"];
-                $button = $OUTPUT->render_from_template("local_khelpdesk/response-form-ia", [
+                $button = $OUTPUT->render_from_template("local_helpdesk/response-form-ia", [
                     "ticketid" => $ticket->get_id(),
                 ]);
-                $mform->addElement("static", "create_local_geniai", get_string("geniai_title", "local_khelpdesk"), $button);
+                $mform->addElement("static", "create_local_geniai", get_string("geniai_title", "local_helpdesk"), $button);
             } else {
 
                 if (file_exists("{$CFG->dirroot}/local/geniai/lib.php")) {
@@ -77,13 +77,13 @@ class response_form extends \moodleform {
                     $link = "https://moodle.org/plugins/local_geniai";
                 }
 
-                $message = get_string("geniai_missing", "local_khelpdesk", $link);
+                $message = get_string("geniai_missing", "local_helpdesk", $link);
                 $message = $PAGE->get_renderer("core")->render(new \core\output\notification($message, "warning"));
-                $mform->addElement("static", "missing_local_geniai", get_string("geniai_title", "local_khelpdesk"), $message);
+                $mform->addElement("static", "missing_local_geniai", get_string("geniai_title", "local_helpdesk"), $message);
             }
         }
 
-        $mform->addElement("filemanager", "attachment", get_string("attachment", "local_khelpdesk"), null, [
+        $mform->addElement("filemanager", "attachment", get_string("attachment", "local_helpdesk"), null, [
             "maxfiles" => 5,
             "subdirs" => 0,
             "accepted_types" => "*",
@@ -91,9 +91,9 @@ class response_form extends \moodleform {
         ]);
 
         $itens = [
-            $mform->createElement("submit", "submitbutton", get_string("ticketresponse", "local_khelpdesk")),
-            $mform->createElement("submit", "resolvedbutton", get_string("ticketresponseandresolved", "local_khelpdesk")),
-            $mform->createElement("submit", "closebutton", get_string("ticketresponseandclose", "local_khelpdesk")),
+            $mform->createElement("submit", "submitbutton", get_string("ticketresponse", "local_helpdesk")),
+            $mform->createElement("submit", "resolvedbutton", get_string("ticketresponseandresolved", "local_helpdesk")),
+            $mform->createElement("submit", "closebutton", get_string("ticketresponseandclose", "local_helpdesk")),
             $mform->createElement("cancel"),
         ];
         $mform->addGroup($itens, "buttonar", "", [" "], true);

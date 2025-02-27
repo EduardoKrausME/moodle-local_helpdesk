@@ -16,12 +16,12 @@
 /**
  * filter_course file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(["jquery", "core/modal_factory", "local_kdashboard/dataTables_init"], function($, ModalFactory, dataTables_init) {
+define(["jquery", "core/modal_factory", "local_kopere_dashboard/dataTables_init"], function($, ModalFactory, dataTables_init) {
     return {
         init: function() {
             var data_course_block_select = false;

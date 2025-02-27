@@ -17,16 +17,16 @@
 /**
  * file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_khelpdesk\form;
+namespace local_helpdesk\form;
 
-use local_khelpdesk\mail\ticket_mail;
-use local_khelpdesk\model\response;
-use local_khelpdesk\model\ticket;
+use local_helpdesk\mail\ticket_mail;
+use local_helpdesk\model\response;
+use local_helpdesk\model\ticket;
 use moodle_url;
 
 defined('MOODLE_INTERNAL') || die();
@@ -36,7 +36,7 @@ require_once($CFG->libdir . "/formslib.php");
 /**
  * Class response_controller
  *
- * @package local_khelpdesk\form
+ * @package local_helpdesk\form
  */
 class response_controller {
     /**
@@ -56,7 +56,7 @@ class response_controller {
         $form = new response_form(null, ["ticket" => $ticket, "hasticketmanage" => $hasticketmanage]);
 
         if ($form->is_cancelled()) {
-            redirect(new moodle_url("/local/khelpdesk/ticket.php?id={$ticket->get_idkey()}"));
+            redirect(new moodle_url("/local/helpdesk/ticket.php?id={$ticket->get_idkey()}"));
         } else if ($data = $form->get_data()) {
 
             $response = new response([
@@ -75,7 +75,7 @@ class response_controller {
                     "embed" => true,
                 ];
                 file_save_draft_area_files($data->attachment, $context->id,
-                    "local_khelpdesk", "response", $response->get_id(), $options);
+                    "local_helpdesk", "response", $response->get_id(), $options);
             }
 
             $mail = new ticket_mail();
@@ -92,7 +92,7 @@ class response_controller {
                 $ticket->change_status(ticket::STATUS_CLOSED);
             }
 
-            redirect(new moodle_url("/local/khelpdesk/ticket.php?id={$ticket->get_idkey()}"));
+            redirect(new moodle_url("/local/helpdesk/ticket.php?id={$ticket->get_idkey()}"));
         } else {
             $form->set_data([
                 "id" => $ticket->get_id(),

@@ -1,9 +1,75 @@
+{{!
+    This file is part of Moodle - https://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_helpdesk/index
+
+    Example context (json):
+    {
+      "status_options": [
+        {
+          "key": "open",
+          "label": "Open",
+          "selected": "selected"
+        }
+      ],
+      "priority_options": [
+        {
+          "key": "high",
+          "label": "High",
+          "selected": ""
+        }
+      ],
+      "category_options": [
+        {
+          "key": "technical",
+          "label": "Technical",
+          "selected": ""
+        }
+      ],
+      "has_manage": true,
+      "has_categorymanage": true,
+      "has_siteconfig": true,
+      "tickets": [
+        {
+          "idkey": 1,
+          "user_picture": "user1.jpg",
+          "user_fullname": "John Doe",
+          "course_fullname": "Math 101",
+          "subject": "Issue with Homework Submission",
+          "status": "open",
+          "status_translated": "Open",
+          "priority": "high",
+          "priority_translated": "High",
+          "category_translate": "Technical",
+          "createdat": "2025-02-25",
+          "user_picture": "john_doe.jpg"
+        }
+      ],
+      "courseid": 123
+    }
+
+}}
+
 <form method="get">
     <div class="area-finds">
         <div class="area-find">
-            <label for="find_status">{{#str}}ticketstatus, local_khelpdesk{{/str}}: </label>
+            <label for="find_status">{{#str}}ticketstatus, local_helpdesk{{/str}}: </label>
             <select name="find_status" id="find_status">
-                <option value="">{{#str}}ticketstatusnotclosed, local_khelpdesk{{/str}}</option>
+                <option value="">{{#str}}ticketstatusnotclosed, local_helpdesk{{/str}}</option>
                 {{#status_options}}
                     <option value="{{key}}" {{selected}}>{{label}}</option>
                 {{/status_options}}
@@ -12,7 +78,7 @@
 
         {{#has_manage}}
             <div class="area-find">
-                <label for="find_priority">{{#str}}ticketpriority, local_khelpdesk{{/str}}: </label>
+                <label for="find_priority">{{#str}}ticketpriority, local_helpdesk{{/str}}: </label>
                 <select name="find_priority" id="find_priority">
                     <option value=""></option>
                     {{#priority_options}}
@@ -23,7 +89,7 @@
         {{/has_manage}}
 
         <div class="area-find">
-            <label for="find_category">{{#str}}ticketcategory, local_khelpdesk{{/str}}: </label>
+            <label for="find_category">{{#str}}ticketcategory, local_helpdesk{{/str}}: </label>
             <select name="find_category" id="find_category">
                 <option value=""></option>
                 {{#category_options}}
@@ -53,11 +119,11 @@
         <th>&nbsp;</th>
         <th>{{#str}}fullname{{/str}}</th>
         <th>{{#str}}course{{/str}}</th>
-        <th>{{#str}}ticketsubject, local_khelpdesk{{/str}}</th>
-        <th>{{#str}}ticketstatus, local_khelpdesk{{/str}}</th>
-        <th>{{#str}}ticketpriority, local_khelpdesk{{/str}}</th>
-        <th>{{#str}}ticketcategory, local_khelpdesk{{/str}}</th>
-        <th>{{#str}}ticketcreatedat, local_khelpdesk{{/str}}</th>
+        <th>{{#str}}ticketsubject, local_helpdesk{{/str}}</th>
+        <th>{{#str}}ticketstatus, local_helpdesk{{/str}}</th>
+        <th>{{#str}}ticketpriority, local_helpdesk{{/str}}</th>
+        <th>{{#str}}ticketcategory, local_helpdesk{{/str}}</th>
+        <th>{{#str}}ticketcreatedat, local_helpdesk{{/str}}</th>
         {{#has_manage}}
             <th>&nbsp;</th>
         {{/has_manage}}
@@ -90,17 +156,17 @@
 
 <div class="control-buttons">
     <a href="?action=add&courseid={{courseid}}" class="btn btn-info text-nowrap">{{#str}}
-    addticket, local_khelpdesk{{/str}}</a>
+    addticket, local_helpdesk{{/str}}</a>
 
     <div style="width: 100%"></div>
     {{#has_categorymanage}}
         <a href="categories.php"
-           class="btn btn-success text-nowrap">{{#str}}categories, local_khelpdesk{{/str}}</a>
+           class="btn btn-success text-nowrap">{{#str}}categories, local_helpdesk{{/str}}</a>
     {{/has_categorymanage}}
     {{#has_siteconfig}}
-        <a href="/admin/settings.php?section=local_khelpdesk"
+        <a href="/admin/settings.php?section=local_helpdesk"
            target="_blank">
-            <img src="/theme/image.php/boost/local_khelpdesk/0/settings"
+            <img src="/theme/image.php/boost/local_helpdesk/0/settings"
                  style="width: 36px;height: 36px;min-width: 36px;min-height: 36px">
         </a>
     {{/has_siteconfig}}

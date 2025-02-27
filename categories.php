@@ -17,13 +17,13 @@
 /**
  * file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use local_khelpdesk\form\category_controller;
-use local_khelpdesk\model\category;
+use local_helpdesk\form\category_controller;
+use local_helpdesk\model\category;
 
 require_once(__DIR__ . "/../../config.php");
 require_once($CFG->libdir . "/adminlib.php");
@@ -34,57 +34,59 @@ require_admin();
 
 $context = context_system::instance();
 $PAGE->set_context($context);
-$PAGE->set_url("/local/khelpdesk/categories.php");
+$PAGE->set_url("/local/helpdesk/categories.php");
 
-$PAGE->navbar->add(get_string("tickets", "local_khelpdesk"), new moodle_url("/local/khelpdesk/"));
-$PAGE->navbar->add(get_string("categories", "local_khelpdesk"), new moodle_url("/local/khelpdesk/categories.php"));
+$PAGE->navbar->add(get_string("tickets", "local_helpdesk"), new moodle_url("/local/helpdesk/"));
+$PAGE->navbar->add(get_string("categories", "local_helpdesk"), new moodle_url("/local/helpdesk/categories.php"));
 
 require_login(null, false);
-require_capability("local/khelpdesk:ticketmanage", $context);
+require_capability("local/helpdesk:ticketmanage", $context);
 
 $templatecontext = [
     "categories" => [],
-    "addcategoryurl" => new moodle_url("/local/khelpdesk/categories.php", ["actionform" => "add"]),
-    "has_categorydelete" => has_capability("local/khelpdesk:categorydelete", $context),
+    "has_categorydelete" => has_capability("local/helpdesk:categorydelete", $context),
 ];
 
 $actionform = optional_param("actionform", "", PARAM_ALPHA);
 $categoryid = optional_param("id", 0, PARAM_INT);
 
 if ($actionform == "add") {
-    $PAGE->navbar->add(get_string("createcategory", "local_khelpdesk"));
+    $PAGE->navbar->add(get_string("createcategory", "local_helpdesk"));
 
-    $PAGE->set_title(get_string("createcategory", "local_khelpdesk"));
-    $PAGE->set_heading(get_string("createcategory", "local_khelpdesk"));
+    $PAGE->set_title(get_string("createcategory", "local_helpdesk"));
+    $PAGE->set_heading(get_string("createcategory", "local_helpdesk"));
 
     $controller = new category_controller();
     $controller->insert_category();
-} else if ($actionform == "edit" && $categoryid > 0) {
+    die;
+}
+else if ($actionform == "edit" && $categoryid > 0) {
 
     $category = category::get_by_id($categoryid);
 
-    $PAGE->navbar->add(get_string("editcategory", "local_khelpdesk"));
+    $PAGE->navbar->add(get_string("editcategory", "local_helpdesk"));
     $PAGE->navbar->add($category->get_name());
 
-    $PAGE->set_title(get_string("editcategory", "local_khelpdesk"));
-    $PAGE->set_heading(get_string("editcategory", "local_khelpdesk"));
+    $PAGE->set_title(get_string("editcategory", "local_helpdesk"));
+    $PAGE->set_heading(get_string("editcategory", "local_helpdesk"));
 
     $controller = new category_controller();
     $controller->update_category($category);
 
-} else if ($actionform == "delete" && $categoryid > 0) {
+}
+else if ($actionform == "delete" && $categoryid > 0) {
 
     $category = category::get_by_id($categoryid);
 
-    $PAGE->set_title(get_string("deletecategory", "local_khelpdesk"));
-    $PAGE->set_heading(get_string("deletecategory", "local_khelpdesk"));
+    $PAGE->set_title(get_string("deletecategory", "local_helpdesk"));
+    $PAGE->set_heading(get_string("deletecategory", "local_helpdesk"));
 
-    $PAGE->navbar->add(get_string("deletecategory", "local_khelpdesk"));
+    $PAGE->navbar->add(get_string("deletecategory", "local_helpdesk"));
 
-    $ticket = $DB->get_records("local_khelpdesk_ticket", ["id" => $category->get_id()], "", "subject", 0, 1);
+    $ticket = $DB->get_records("local_helpdesk_ticket", ["id" => $category->get_id()], "", "subject", 0, 1);
     if ($ticket) {
-        redirect(new moodle_url("/local/khelpdesk/categories.php"),
-            get_string("deletecategoryusedata", "local_khelpdesk"), null,
+        redirect(new moodle_url("/local/helpdesk/categories.php"),
+            get_string("deletecategoryusedata", "local_helpdesk"), null,
             \core\output\notification::NOTIFY_ERROR);
     }
 
@@ -93,15 +95,15 @@ if ($actionform == "add") {
 
         $category->delete();
 
-        redirect(new moodle_url("/local/khelpdesk/categories.php"),
-            get_string("deletesuccesscategory", "local_khelpdesk"), null,
+        redirect(new moodle_url("/local/helpdesk/categories.php"),
+            get_string("deletesuccesscategory", "local_helpdesk"), null,
             \core\output\notification::NOTIFY_SUCCESS);
     }
 
     echo $OUTPUT->header();
 
-    $cancelurl = new moodle_url("/local/khelpdesk/categories.php");
-    $continueurl = new moodle_url("/local/khelpdesk/categories.php",
+    $cancelurl = new moodle_url("/local/helpdesk/categories.php");
+    $continueurl = new moodle_url("/local/helpdesk/categories.php",
         [
             "id" => $category->get_id(),
             "actionform" => "delete",
@@ -110,17 +112,18 @@ if ($actionform == "add") {
         ]);
     $continuebutton = new \single_button($continueurl, get_string("delete"), "post", "danger");
     echo $OUTPUT->confirm(
-        get_string("confirmdeletecategory", "local_khelpdesk", $category->get_name()),
+        get_string("confirmdeletecategory", "local_helpdesk", $category->get_name()),
         $continuebutton,
         $cancelurl);
 
     echo $OUTPUT->footer();
     die;
-} else {
+}
+else {
     $categories = category::get_all();
 
-    $PAGE->set_title(get_string("categories", "local_khelpdesk"));
-    $PAGE->set_heading(get_string("categories", "local_khelpdesk"));
+    $PAGE->set_title(get_string("categories", "local_helpdesk"));
+    $PAGE->set_heading(get_string("categories", "local_helpdesk"));
 
     /** @var category $category */
     foreach ($categories as $category) {
@@ -133,5 +136,5 @@ if ($actionform == "add") {
 }
 
 echo $OUTPUT->header();
-echo $OUTPUT->render_from_template("local_khelpdesk/categories", $templatecontext);
+echo $OUTPUT->render_from_template("local_helpdesk/categories", $templatecontext);
 echo $OUTPUT->footer();

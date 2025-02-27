@@ -17,15 +17,15 @@
 /**
  * upgrade file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use local_kbi\local\util\install_for_file;
+use local_kopere_bi\local\util\install_for_file;
 
 /**
- * Function xmldb_local_khelpdesk_upgrade
+ * Function xmldb_local_helpdesk_upgrade
  *
  * @param $oldversion
  *
@@ -36,7 +36,7 @@ use local_kbi\local\util\install_for_file;
  * @throws moodle_exception
  * @throws upgrade_exception
  */
-function xmldb_local_khelpdesk_upgrade($oldversion) {
+function xmldb_local_helpdesk_upgrade($oldversion) {
     if ($oldversion < 2025022500) {
         // Load report pages.
         $pagefiles = glob(__DIR__ . "/files/page-*.json");
@@ -44,7 +44,7 @@ function xmldb_local_khelpdesk_upgrade($oldversion) {
             install_for_file::page_file($pagefile);
         }
 
-        upgrade_plugin_savepoint(true, 2025022500, "local", "khelpdesk");
+        upgrade_plugin_savepoint(true, 2025022500, "local", "helpdesk");
     }
 
     return true;

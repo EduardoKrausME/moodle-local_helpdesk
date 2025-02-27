@@ -17,12 +17,12 @@
 /**
  * file files
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_khelpdesk\util;
+namespace local_helpdesk\util;
 
 use context_system;
 use moodle_url;
@@ -30,7 +30,7 @@ use moodle_url;
 /**
  * Class files
  *
- * @package local_khelpdesk\model
+ * @package local_helpdesk\model
  */
 class files {
     /**
@@ -51,7 +51,7 @@ class files {
         $sql = "
             SELECT *
               FROM {files}
-             WHERE component   = 'local_khelpdesk'
+             WHERE component   = 'local_helpdesk'
                AND filearea    = :filearea
                AND itemid      = :itemid
                AND filename LIKE '__%'";
@@ -59,7 +59,7 @@ class files {
         foreach ($files as $file) {
             $path = implode("/", [
                 $context->id,
-                "local_khelpdesk",
+                "local_helpdesk",
                 $filearea,
                 $file->itemid,
                 $file->filename,

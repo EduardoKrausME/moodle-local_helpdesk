@@ -1,86 +1,110 @@
+{{!
+    This file is part of Moodle - https://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_helpdesk/response-form-ia
+
+    Example context (json):
+    {
+      "ticketid": 12345
+    }
+
+}}
+
 <div class="btn btn-success"
-     id="geniai_btn_create">{{#str}}geniai_btn_create, local_khelpdesk{{/str}}</div>
+     id="geniai_btn_create">{{#str}}geniai_btn_create, local_helpdesk{{/str}}</div>
 
 <div class="d-none" id="modal-response-form-ia">
-    <div>{{#str}}geniai_create_desc, local_khelpdesk{{/str}}</div>
+    <div>{{#str}}geniai_create_desc, local_helpdesk{{/str}}</div>
     <textarea id="ia-message"
               style="width: 100%;height: 80px;"></textarea>
     <button id="create-message"
-            class="btn btn-info">{{#str}}geniai_create_message, local_khelpdesk{{/str}}</button>
+            class="btn btn-info">{{#str}}geniai_create_message, local_helpdesk{{/str}}</button>
     <div id="sugestion-ia"
          style="border-left: 3px solid #9E9E9E;margin: 10px;padding-left: 10px; display: none"></div>
     <button id="save-close"
             class="btn btn-success"
-            style="display: none">{{#str}}geniai_like_message, local_khelpdesk{{/str}}</button>
+            style="display: none">{{#str}}geniai_like_message, local_helpdesk{{/str}}</button>
 </div>
 
 {{#js}}
-    /*<script>*/
-    require(["jquery", "core/ajax", "core/notification", "core/modal_factory", "editor_tiny/editor"],
-            function($, Ajax, Notification, ModalFactory, tiny) {
+require(["jquery", "core/ajax", "core/notification", "core/modal_factory", "editor_tiny/editor"],
+        function($, Ajax, Notification, ModalFactory, tiny) {
 
-                var modal = false;
+            var modal = false;
 
-                $("#geniai_btn_create").click(function() {
-                    if (modal) {
+            $("#geniai_btn_create").click(function() {
+                if (modal) {
+                    modal.show();
+                } else {
+
+                    ModalFactory.create({
+                        type: ModalFactory.types.DEFAULT,
+                        title: "{{#str}}geniai_title, local_helpdesk{{/str}}",
+                        body: $("#modal-response-form-ia").html(),
+                    }).then(function(_modal) {
+                        modal = _modal;
                         modal.show();
-                    } else {
 
-                        ModalFactory.create({
-                            type: ModalFactory.types.DEFAULT,
-                            title: "{{#str}}geniai_title, local_khelpdesk{{/str}}",
-                            body: $("#modal-response-form-ia").html(),
-                        }).then(function(_modal) {
-                            modal = _modal;
-                            modal.show();
+                        $("#modal-response-form-ia").remove();
 
-                            $("#modal-response-form-ia").remove();
+                        local_helpdesk_geniai_completions();
+                        $("#create-message").click(local_helpdesk_geniai_completions);
 
-                            local_khelpdesk_geniai_completions();
-                            $("#create-message").click(local_khelpdesk_geniai_completions);
+                        $("#save-close").click(function() {
+                            var editor = tiny.getInstanceForElementId("id_message");
+                            editor.execCommand("mceInsertContent", false, $("#sugestion-ia").html());
 
-                            $("#save-close").click(function() {
-                                var editor = tiny.getInstanceForElementId("id_message");
-                                editor.execCommand("mceInsertContent", false, $("#sugestion-ia").html());
-
-                                modal.hide();
-                            });
+                            modal.hide();
                         });
-                    }
-                });
-
-                function local_khelpdesk_geniai_completions() {
-
-                    let count = 0;
-                    $("#sugestion-ia").show().html("{{#str}}loading{{/str}}.");
-                    var interval = setInterval(function() {
-                        count = (count + 1) % 4; // Alterna entre 0, 1, 2, 3
-                        $("#sugestion-ia").html("{{#str}}loading{{/str}}" + ".".repeat(count));
-                    }, 500);
-                    setTimeout(function() {
-                        clearInterval(interval);
-                    }, 10000);
-
-                    Ajax.call([{
-                        methodname: "local_khelpdesk_geniai_completions",
-                        args: {
-                            ticketid: "{{{ticketid}}}",
-                            message: $("#ia-message").val(),
-                        }
-                    }])[0].then(function(data) {
-                        clearInterval(interval);
-
-                        if (data.error) {
-                            $("#sugestion-ia").show().html(data.error);
-                            $("#save-close").hide();
-                        } else {
-                            $("#save-close").show();
-                            $("#sugestion-ia").show().html(data.success);
-                        }
-
-                    }).catch(Notification.exception);
+                    });
                 }
-
             });
 
+            function local_helpdesk_geniai_completions() {
+
+                let count = 0;
+                $("#sugestion-ia").show().html("{{#str}}loading{{/str}}.");
+                var interval = setInterval(function() {
+                    count = (count + 1) % 4; // Alterna entre 0, 1, 2, 3
+                    $("#sugestion-ia").html("{{#str}}loading{{/str}}" + ".".repeat(count));
+                }, 500);
+                setTimeout(function() {
+                    clearInterval(interval);
+                }, 10000);
+
+                Ajax.call([{
+                    methodname: "local_helpdesk_geniai_completions",
+                    args: {
+                        ticketid: "{{{ticketid}}}",
+                        message: $("#ia-message").val(),
+                    }
+                }])[0].then(function(data) {
+                    clearInterval(interval);
+
+                    if (data.error) {
+                        $("#sugestion-ia").show().html(data.error);
+                        $("#save-close").hide();
+                    } else {
+                        $("#save-close").show();
+                        $("#sugestion-ia").show().html(data.success);
+                    }
+
+                }).catch(Notification.exception);
+            }
+
+        });
 {{/js}}

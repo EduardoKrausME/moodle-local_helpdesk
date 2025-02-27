@@ -17,18 +17,18 @@
 /**
  * file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_khelpdesk\external;
+namespace local_helpdesk\external;
 
 use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
-use local_khelpdesk\model\response;
+use local_helpdesk\model\response;
 
 defined('MOODLE_INTERNAL') || die;
 global $CFG;
@@ -37,7 +37,7 @@ require_once("{$CFG->libdir}/externallib.php");
 /**
  * Class ticket
  *
- * @package local_khelpdesk\external
+ * @package local_helpdesk\external
  */
 class ticket extends external_api {
 
@@ -89,24 +89,24 @@ class ticket extends external_api {
             "value" => $value,
         ]);
         $context = \context_system::instance();
-        require_capability("local/khelpdesk:ticketmanage", $context);
+        require_capability("local/helpdesk:ticketmanage", $context);
         self::validate_context($context);
 
-        $ticket = \local_khelpdesk\model\ticket::get_by_id($params["idkey"]);
+        $ticket = \local_helpdesk\model\ticket::get_by_id($params["idkey"]);
 
         switch ($params["column"]) {
             case "status":
                 if ($params["value"] != $ticket->get_status()) {
                     $ticket->change_status($params["value"]);
                 } else {
-                    $savestatus = get_string("lognowupdate", "local_khelpdesk");
+                    $savestatus = get_string("lognowupdate", "local_helpdesk");
                 }
                 break;
             case "priority":
                 if ($params["value"] != $ticket->get_priority()) {
                     $ticket->change_priority($params["value"]);
                 } else {
-                    $savestatus = get_string("lognowupdate", "local_khelpdesk");
+                    $savestatus = get_string("lognowupdate", "local_helpdesk");
                 }
                 break;
             case "category":
@@ -116,10 +116,10 @@ class ticket extends external_api {
                     $ticket->save();
 
                     $category = $ticket->get_category();
-                    $savestatus = get_string("lognewcategory", "local_khelpdesk", $category->get_name());
+                    $savestatus = get_string("lognewcategory", "local_helpdesk", $category->get_name());
                     response::create_status($ticket, $savestatus);
                 } else {
-                    $savestatus = get_string("lognowupdate", "local_khelpdesk");
+                    $savestatus = get_string("lognowupdate", "local_helpdesk");
                 }
                 break;
             default:

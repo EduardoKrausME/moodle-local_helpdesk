@@ -17,17 +17,17 @@
 /**
  * file
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_khelpdesk\model;
+namespace local_helpdesk\model;
 
 /**
  * Class ticket
  *
- * @package local_khelpdesk\model
+ * @package local_helpdesk\model
  */
 class ticket {
 
@@ -101,9 +101,9 @@ class ticket {
         global $DB;
 
         if ($ticketid > 10000000) {
-            $record = $DB->get_record("local_khelpdesk_ticket", ["idkey" => $ticketid]);
+            $record = $DB->get_record("local_helpdesk_ticket", ["idkey" => $ticketid]);
         } else {
-            $record = $DB->get_record("local_khelpdesk_ticket", ["id" => $ticketid]);
+            $record = $DB->get_record("local_helpdesk_ticket", ["id" => $ticketid]);
         }
 
         if ($record) {
@@ -124,7 +124,7 @@ class ticket {
      * @throws \dml_exception
      */
     public static function get_all($wheres = null, $params = [], $order = null) {
-        return model_base::get_all("local_khelpdesk_ticket", self::class, $wheres, $params, $order);
+        return model_base::get_all("local_helpdesk_ticket", self::class, $wheres, $params, $order);
     }
 
     /**
@@ -137,10 +137,10 @@ class ticket {
         global $DB;
 
         if ($this->id) {
-            return $DB->update_record("local_khelpdesk_ticket", get_object_vars($this));
+            return $DB->update_record("local_helpdesk_ticket", get_object_vars($this));
         } else {
             $this->idkey = substr("0" . time(), -8);
-            return $this->id = $DB->insert_record("local_khelpdesk_ticket", get_object_vars($this));
+            return $this->id = $DB->insert_record("local_helpdesk_ticket", get_object_vars($this));
         }
     }
 
@@ -152,7 +152,7 @@ class ticket {
      */
     public function delete() {
         global $DB;
-        return $DB->delete_records("local_khelpdesk_ticket", ["id" => $this->id]);
+        return $DB->delete_records("local_helpdesk_ticket", ["id" => $this->id]);
     }
 
     // Getters.
@@ -201,7 +201,7 @@ class ticket {
         }
 
         $this->category = new category(
-            $DB->get_record("local_khelpdesk_category", ["id" => $this->get_categoryid()])
+            $DB->get_record("local_helpdesk_category", ["id" => $this->get_categoryid()])
         );
         return $this->category;
     }
@@ -310,19 +310,19 @@ class ticket {
         return [
             [
                 "key" => "open",
-                "label" => get_string("status_open", "local_khelpdesk"),
+                "label" => get_string("status_open", "local_helpdesk"),
                 "selected" => $selected == "open" ? "selected" : "",
             ], [
                 "key" => "progress",
-                "label" => get_string("status_progress", "local_khelpdesk"),
+                "label" => get_string("status_progress", "local_helpdesk"),
                 "selected" => $selected == "progress" ? "selected" : "",
             ], [
                 "key" => "resolved",
-                "label" => get_string("status_resolved", "local_khelpdesk"),
+                "label" => get_string("status_resolved", "local_helpdesk"),
                 "selected" => $selected == "resolved" ? "selected" : "",
             ], [
                 "key" => "closed",
-                "label" => get_string("status_closed", "local_khelpdesk"),
+                "label" => get_string("status_closed", "local_helpdesk"),
                 "selected" => $selected == "closed" ? "selected" : "",
             ],
         ];
@@ -349,13 +349,13 @@ class ticket {
     public static function status_translated($status) {
         switch ($status) {
             case self::STATUS_OPEN:
-                return get_string("status_open", "local_khelpdesk");
+                return get_string("status_open", "local_helpdesk");
             case self::STATUS_PROGRESS:
-                return get_string("status_progress", "local_khelpdesk");
+                return get_string("status_progress", "local_helpdesk");
             case self::STATUS_RESOLVED:
-                return get_string("status_resolved", "local_khelpdesk");
+                return get_string("status_resolved", "local_helpdesk");
             case self::STATUS_CLOSED:
-                return get_string("status_closed", "local_khelpdesk");
+                return get_string("status_closed", "local_helpdesk");
             default:
                 return $status;
         }
@@ -382,19 +382,19 @@ class ticket {
         return [
             [
                 "key" => "low",
-                "label" => get_string("priority_low", "local_khelpdesk"),
+                "label" => get_string("priority_low", "local_helpdesk"),
                 "selected" => $selected == "low" ? "selected" : "",
             ], [
                 "key" => "medium",
-                "label" => get_string("priority_medium", "local_khelpdesk"),
+                "label" => get_string("priority_medium", "local_helpdesk"),
                 "selected" => $selected == "medium" ? "selected" : "",
             ], [
                 "key" => "high",
-                "label" => get_string("priority_high", "local_khelpdesk"),
+                "label" => get_string("priority_high", "local_helpdesk"),
                 "selected" => $selected == "high" ? "selected" : "",
             ], [
                 "key" => "urgent",
-                "label" => get_string("priority_urgent", "local_khelpdesk"),
+                "label" => get_string("priority_urgent", "local_helpdesk"),
                 "selected" => $selected == "urgent" ? "selected" : "",
             ],
         ];
@@ -421,13 +421,13 @@ class ticket {
     public static function priority_translated($priority) {
         switch ($priority) {
             case self::PRIORITY_LOW:
-                return get_string("priority_low", "local_khelpdesk");
+                return get_string("priority_low", "local_helpdesk");
             case self::PRIORITY_MEDIUM:
-                return get_string("priority_medium", "local_khelpdesk");
+                return get_string("priority_medium", "local_helpdesk");
             case self::PRIORITY_HIGH:
-                return get_string("priority_high", "local_khelpdesk");
+                return get_string("priority_high", "local_helpdesk");
             case self::PRIORITY_URGENT:
-                return get_string("priority_urgent", "local_khelpdesk");
+                return get_string("priority_urgent", "local_helpdesk");
             default:
                 return $priority;
         }
@@ -536,7 +536,7 @@ class ticket {
         $this->save();
 
         $status = self::status_translated($newstatus);
-        $savestatus = get_string("lognewstatus", "local_khelpdesk", $status);
+        $savestatus = get_string("lognewstatus", "local_helpdesk", $status);
         response::create_status($this, $savestatus);
 
         return true;
@@ -570,7 +570,7 @@ class ticket {
         $this->save();
 
         $priority = self::priority_translated($newpriority);
-        $savestatus = get_string("lognewpriority", "local_khelpdesk", $priority);
+        $savestatus = get_string("lognewpriority", "local_helpdesk", $priority);
         response::create_status($this, $savestatus);
 
         return true;
