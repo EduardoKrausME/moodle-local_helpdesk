@@ -17,20 +17,20 @@
 /**
  * Version File
  *
- * @package   local_khelpdesk
+ * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2025022500;
+$plugin->version = 2025022700;
 $plugin->requires = 2019052000;
-$plugin->release = "1.0.1";
+$plugin->release = "1.0.2";
 $plugin->maturity = MATURITY_STABLE;
-$plugin->component = "local_khelpdesk";
+$plugin->component = "local_helpdesk";
 
 $plugin->dependencies = [
-    "local_kdashboard" => 2025022100,
-    "local_kbi" => 2025021500,
+    "local_kopere_dashboard" => 2025022100,
+    "local_kopere_bi" => 2025022500,
 ];
