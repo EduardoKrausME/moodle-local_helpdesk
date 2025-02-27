@@ -133,9 +133,6 @@ class ticket {
         global $DB;
 
         if ($this->id) {
-            echo '<pre>aaaaaa';
-            print_r(get_object_vars($this));
-            echo '</pre>';
             return $DB->update_record("local_helpdesk_ticket", get_object_vars($this));
         } else {
             $this->idkey = substr("0" . time(), -8);
