@@ -23,7 +23,7 @@
 .path-local-helpdesk .badge.status-open {
     background-color: #007bff; /* Azul */
 }
-.path-local-helpdesk .badge.status-in-progress {
+.path-local-helpdesk .badge.status-progress {
     background-color: #17a2b8; /* Ciano */
 }
 .path-local-helpdesk .badge.status-resolved {
