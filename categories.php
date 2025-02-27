@@ -58,7 +58,6 @@ if ($actionform == "add") {
 
     $controller = new category_controller();
     $controller->insert_category();
-    die;
 } else if ($actionform == "edit" && $categoryid > 0) {
 
     $category = category::get_by_id($categoryid);
