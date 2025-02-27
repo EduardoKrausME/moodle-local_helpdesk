@@ -75,6 +75,7 @@ class category_controller {
         echo $OUTPUT->header();
         $form->display();
         echo $OUTPUT->footer();
+        die;
     }
 
     /**
@@ -120,6 +121,7 @@ class category_controller {
         echo $OUTPUT->heading(get_string("updatecategory", "local_helpdesk"));
         $form->display();
         echo $OUTPUT->footer();
+        die;
     }
 
     /**
