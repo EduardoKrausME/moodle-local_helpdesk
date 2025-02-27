@@ -70,6 +70,8 @@ require(["jquery", "core/ajax", "core/notification", "core/modal_factory", "edit
 
                             modal.hide();
                         });
+
+                        return _modal;
                     }).catch(Notification.exception);
                 }
             });
