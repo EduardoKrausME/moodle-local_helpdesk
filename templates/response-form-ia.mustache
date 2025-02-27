@@ -61,8 +61,8 @@ require(["jquery", "core/ajax", "core/notification", "core/modal_factory", "edit
 
                         $("#modal-response-form-ia").remove();
 
-                        local_helpdesk_geniai_completions();
-                        $("#create-message").click(local_helpdesk_geniai_completions);
+                        geniaiCompletions();
+                        $("#create-message").click(geniaiCompletions);
 
                         $("#save-close").click(function() {
                             var editor = tiny.getInstanceForElementId("id_message");
@@ -70,11 +70,11 @@ require(["jquery", "core/ajax", "core/notification", "core/modal_factory", "edit
 
                             modal.hide();
                         });
-                    });
+                    }).catch(Notification.exception);
                 }
             });
 
-            function local_helpdesk_geniai_completions() {
+            function geniaiCompletions() {
 
                 let count = 0;
                 $("#sugestion-ia").show().html("{{#str}}loading{{/str}}.");
@@ -87,7 +87,7 @@ require(["jquery", "core/ajax", "core/notification", "core/modal_factory", "edit
                 }, 10000);
 
                 Ajax.call([{
-                    methodname: "local_helpdesk_geniai_completions",
+                    methodname: "geniaiCompletions",
                     args: {
                         ticketid: "{{{ticketid}}}",
                         message: $("#ia-message").val(),
