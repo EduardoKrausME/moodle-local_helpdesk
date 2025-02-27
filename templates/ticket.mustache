@@ -307,11 +307,11 @@ require(["jquery", "core/ajax", "core/notification"], function($, Ajax, Notifica
 
     $("#response-message-resolved").click(function() {
         $("#response-message-area").hide(300);
-        location.href = "?id={{idkey}}&newstatus=resolved"
+        location.href = "?id={{idkey}}&newstatus=resolved";
     });
     $("#response-message-resolved").click(function() {
         $("#response-message-area").hide(300);
-        location.href = "?id={{idkey}}&newstatus=closed"
+        location.href = "?id={{idkey}}&newstatus=closed";
     });
 
     $("#id_buttonar_resolvedbutton").removeClass("btn-primary").addClass("btn-info");
@@ -328,12 +328,10 @@ require(["jquery", "core/ajax", "core/notification"], function($, Ajax, Notifica
                 value: value,
             }
         }])[0].then(function(data) {
-            console.log(data.status);
             $("#local_helpdesk_ticket_column").show(200).html(data.status);
             setTimeout(function() {
                 $("#local_helpdesk_ticket_column").show(200);
             }, 2000);
-
         }).catch(Notification.exception);
     });
 });
