@@ -145,14 +145,19 @@ $string['markticketasclosed'] = 'Mark Ticket as Closed';
 $string['markticketasresolved'] = 'Mark Ticket as Resolved';
 $string['openuserby'] = 'Opened by';
 $string['pluginname'] = 'Helpdesk';
+$string['privacy:metadata:assignedto'] = 'Unique identifier of the user to whom a ticket was assigned to be responded to or managed.';
+$string['privacy:metadata:category_user_userid'] = 'Unique identifier of the user assigned to a specific category within the support ticket system.';
+$string['privacy:metadata:local_helpdesk_category_user'] = 'Information about users assigned to ticket categories for organizational and management purposes.';
+$string['privacy:metadata:local_helpdesk_response'] = 'Information about the responses provided to tickets, including the content of the response and the user responsible for it.';
+$string['privacy:metadata:local_helpdesk_ticket'] = 'Information about the tickets created in the system, including user data, category, status, and response history.';
+$string['privacy:metadata:response_userid'] = 'Unique identifier of the user who provided a response to a ticket within the helpdesk system.';
+$string['privacy:metadata:ticket_userid'] = 'Unique identifier of the user who created or managed a ticket in the helpdesk system.';
 $string['priority'] = 'Priority';
 $string['priority_high'] = 'High';
 $string['priority_low'] = 'Low';
 $string['priority_medium'] = 'Medium';
 $string['priority_urgent'] = 'Urgent';
 $string['replytoticket'] = 'Reply to ticket';
-
-
 $string['report_assignment_reports_page_description'] = 'Report on ticket distribution and performance of assigned agents.';
 $string['report_assignment_reports_page_title'] = 'Assignment Reports';
 $string['report_assignment_reports_tickets_by_agent_cat_title'] = 'Tickets by Agent';
@@ -187,8 +192,6 @@ $string['report_user_reports_page_description'] = 'Report on users who created t
 $string['report_user_reports_page_title'] = 'User Reports';
 $string['report_user_reports_users_with_most_tickets_open_cat_title'] = 'Users with Most Opened Tickets';
 $string['report_user_reports_users_with_most_tickets_open_userid'] = 'User ID';
-
-
 $string['savechanges'] = 'Save Changes';
 $string['setting_course'] = 'Show only inside the course';
 $string['setting_menu_description'] = 'Select whether to show the HelpDesk menu in the system menu at the top of Moodle.';
