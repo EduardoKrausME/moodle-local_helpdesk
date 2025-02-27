@@ -86,10 +86,10 @@ class provider implements
      */
     public static function get_contexts_for_userid(int $userid): \core_privacy\local\request\contextlist {
         $sql = "SELECT ctx.id
-                  FROM {%s} kopere
+                  FROM {%s} helpdesk
                   JOIN {context} ctx
-                    ON ctx.instanceid = kopere.userid
-                 WHERE kopere.userid = :userid";
+                    ON ctx.instanceid = helpdesk.userid
+                 WHERE helpdesk.userid = :userid";
 
         $contextlist = new contextlist();
         $contextlist->add_from_sql(sprintf($sql, 'local_helpdesk_category_user'), ['userid' => $userid]);
@@ -113,9 +113,9 @@ class provider implements
         }
 
         $sql = "SELECT ctx.id
-                  FROM {%s} kopere
+                  FROM {%s} helpdesk
                   JOIN {context} ctx
-                    ON ctx.instanceid = kopere.userid
+                    ON ctx.instanceid = helpdesk.userid
                  WHERE ctx.instanceid = :contextid";
 
         $userlist->add_from_sql(sprintf($sql, 'local_helpdesk_category_user'), ['contextid' => $context->id]);
