@@ -103,6 +103,7 @@ require(["jquery", "core/ajax", "core/notification", "core/modal_factory", "edit
                         $("#sugestion-ia").show().html(data.success);
                     }
 
+                    return data;
                 }).catch(Notification.exception);
             }
 
