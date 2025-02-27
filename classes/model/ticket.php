@@ -64,13 +64,9 @@ class ticket {
     /** @var string */
     protected $description;
     /** @var string */
-    protected $message;
-    /** @var string */
     protected $status;
     /** @var string */
     protected $priority;
-    /** @var int */
-    protected $assignedto;
     /** @var int */
     protected $createdat;
     /** @var int */
@@ -137,6 +133,9 @@ class ticket {
         global $DB;
 
         if ($this->id) {
+            echo '<pre>aaaaaa';
+            print_r(get_object_vars($this));
+            echo '</pre>';
             return $DB->update_record("local_helpdesk_ticket", get_object_vars($this));
         } else {
             $this->idkey = substr("0" . time(), -8);
@@ -262,15 +261,6 @@ class ticket {
      */
     public function get_description() {
         return $this->description;
-    }
-
-    /**
-     * Function get_message
-     *
-     * @return mixed
-     */
-    public function get_message() {
-        return $this->message;
     }
 
     /**
@@ -434,15 +424,6 @@ class ticket {
     }
 
     /**
-     * Function set_assignedto
-     *
-     * @return int
-     */
-    public function get_assignedto() {
-        return $this->assignedto;
-    }
-
-    /**
      * Function get_createdat
      *
      * @return mixed
@@ -497,15 +478,6 @@ class ticket {
      */
     public function set_description($description) {
         $this->description = $description;
-    }
-
-    /**
-     * Function set_message
-     *
-     * @param $message
-     */
-    public function set_message($message) {
-        $this->message = $message;
     }
 
     /**
@@ -574,15 +546,6 @@ class ticket {
         response::create_status($this, $savestatus);
 
         return true;
-    }
-
-    /**
-     * Function set_assignedto
-     *
-     * @param $assignedto
-     */
-    public function set_assignedto($assignedto) {
-        $this->assignedto = $assignedto;
     }
 
     /**

@@ -42,7 +42,6 @@
                 <FIELD NAME="description" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Detailed description"/>
                 <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="true" DEFAULT="open" SEQUENCE="false" COMMENT="Ticket status (open, progress, resolved, closed)"/>
                 <FIELD NAME="priority" TYPE="char" LENGTH="20" NOTNULL="true" DEFAULT="medium" SEQUENCE="false" COMMENT="Priority (low, medium, high, urgent)"/>
-                <FIELD NAME="assignedto" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Assigned staff member"/>
                 <FIELD NAME="createdat" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="Timestamp of ticket creation"/>
                 <FIELD NAME="updatedat" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="Timestamp of last update"/>
             </FIELDS>
@@ -51,7 +50,6 @@
                 <KEY NAME="unique" TYPE="unique" FIELDS="idkey"/>
                 <KEY NAME="userid_fk" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
                 <KEY NAME="categoryid_fk" TYPE="foreign" FIELDS="categoryid" REFTABLE="local_helpdesk_category" REFFIELDS="id"/>
-                <KEY NAME="assignedto_fk" TYPE="foreign" FIELDS="assignedto" REFTABLE="user" REFFIELDS="id"/>
             </KEYS>
         </TABLE>
         <TABLE NAME="local_helpdesk_response" COMMENT="Stores responses to tickets">

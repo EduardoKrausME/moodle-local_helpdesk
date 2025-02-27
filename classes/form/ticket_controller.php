@@ -59,7 +59,6 @@ class ticket_controller {
                 "priority" => $data->priority,
                 "createdat" => time(),
                 "updatedat" => time(),
-                "assignedto" => 0,
             ]);
             $ticket->save();
 
@@ -89,6 +88,7 @@ class ticket_controller {
         echo $OUTPUT->header();
         $form->display();
         echo $OUTPUT->footer();
+        die;
     }
 
     /**
@@ -111,6 +111,9 @@ class ticket_controller {
         if ($form->is_cancelled()) {
             redirect(new moodle_url("/local/helpdesk/index.php"));
         } else if ($data = $form->get_data()) {
+            echo '<pre>';
+            print_r($_POST);
+            echo '</pre>';
             $ticket->set_subject($data->subject);
             $ticket->set_description($data->description["text"]);
             $ticket->set_priority($data->priority);
@@ -118,6 +121,8 @@ class ticket_controller {
 
             $ticket->save();
 
+
+            die;
             redirect(new moodle_url("/local/helpdesk/index.php"));
         } else {
             $form->set_data([
@@ -127,7 +132,6 @@ class ticket_controller {
                 "description" => $ticket->get_description(),
                 "status" => $ticket->get_status(),
                 "priority" => $ticket->get_priority(),
-                "assignedto" => $ticket->get_assignedto(),
                 "createdat" => $ticket->get_createdat(),
                 "updatedat" => $ticket->get_updatedat(),
                 "action" => "edit",
@@ -139,5 +143,6 @@ class ticket_controller {
         echo $OUTPUT->header();
         $form->display();
         echo $OUTPUT->footer();
+        die;
     }
 }

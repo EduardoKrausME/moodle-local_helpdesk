@@ -63,7 +63,6 @@ class provider implements
         $collection->add_database_table('local_helpdesk_ticket',
             [
                 'userid' => 'privacy:metadata:ticket_userid',
-                'assignedto' => 'privacy:metadata:assignedto',
             ],
             'privacy:metadata:local_helpdesk_ticket'
         );

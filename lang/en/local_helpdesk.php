@@ -24,7 +24,6 @@
 
 $string['addcategory'] = 'Add New Category';
 $string['addticket'] = 'Add Ticket';
-$string['assignedto'] = 'Assigned to';
 $string['attachment'] = 'Attachments';
 $string['cancel'] = 'Cancel';
 $string['categories'] = 'Ticket Categories';
@@ -150,7 +149,6 @@ $string['priority_high'] = 'High';
 $string['priority_low'] = 'Low';
 $string['priority_medium'] = 'Medium';
 $string['priority_urgent'] = 'Urgent';
-$string['privacy:metadata:assignedto'] = 'Unique identifier of the user to whom a ticket was assigned to be responded to or managed.';
 $string['privacy:metadata:category_user_userid'] = 'Unique identifier of the user assigned to a specific category within the support ticket system.';
 $string['privacy:metadata:local_helpdesk_category_user'] = 'Information about users assigned to ticket categories for organizational and management purposes.';
 $string['privacy:metadata:local_helpdesk_response'] = 'Information about the responses provided to tickets, including the content of the response and the user responsible for it.';
@@ -204,7 +202,6 @@ $string['status_open'] = 'Open';
 $string['status_progress'] = 'In Progress';
 $string['status_resolved'] = 'Resolved';
 $string['subject'] = 'Subject';
-$string['ticketassignedto'] = 'Assign to User';
 $string['ticketcategory'] = 'Ticket Category';
 $string['ticketclosed'] = 'The ticket is closed.';
 $string['ticketcreated'] = 'Ticket successfully created';
