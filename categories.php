@@ -26,7 +26,8 @@ use local_helpdesk\form\category_controller;
 use local_helpdesk\model\category;
 
 require_once(__DIR__ . "/../../config.php");
-require_once($CFG->libdir . "/adminlib.php");
+require_once("{$CFG->libdir}/adminlib.php");
+require_once(__DIR__ . "/lib.php");
 
 global $DB, $OUTPUT, $PAGE, $USER;
 
@@ -41,6 +42,9 @@ $PAGE->navbar->add(get_string("categories", "local_helpdesk"), new moodle_url("/
 
 require_login(null, false);
 require_capability("local/helpdesk:ticketmanage", $context);
+
+// Add HelpDesk secondary nav.
+local_helpdesk_set_secondarynav();
 
 $templatecontext = [
     "categories" => [],

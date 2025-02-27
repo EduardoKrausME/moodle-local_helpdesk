@@ -138,3 +138,46 @@ function local_helpdesk_pluginfile($course, $cm, context $context, $filearea, $a
     }
     return false;
 }
+
+/**
+ * Function local_helpdesk_set_secondarynav
+ *
+ * @throws \core\exception\moodle_exception
+ * @throws coding_exception
+ * @throws dml_exception
+ */
+function local_helpdesk_set_secondarynav() {
+    global $PAGE;
+
+    $PAGE->set_secondarynav(local_helpdesk_get_navigation());
+    $PAGE->set_secondary_navigation(true);
+    $PAGE->set_secondary_active_tab("helpdesk");
+}
+
+/**
+ * Builds a secondary navigation for all admin screens
+ *
+ * @return \core\navigation\views\secondary
+ *
+ * @throws \core\exception\moodle_exception
+ * @throws coding_exception
+ * @throws dml_exception
+ */
+function local_helpdesk_get_navigation() {
+    global $PAGE;
+
+    $nav = new \core\navigation\views\secondary($PAGE);
+
+    $surl = new moodle_url("/local/helpdesk/", []);
+    $nav->add_node($nav::create(get_string("tickets", "local_helpdesk"), $surl));
+
+    $surl = new moodle_url("/local/helpdesk/categories.php", []);
+    $nav->add_node($nav::create(get_string("categories", "local_helpdesk"), $surl));
+
+    if (has_capability("local/kopere_dashboard:view", context_system::instance())) {
+        $surl = new moodle_url("/local/kopere_dashboard/view.php", ["classname" => "bi-dashboard", "method" => "start"]);
+        $nav->add_node($nav::create(get_string("report_general_reports_page_title", "local_helpdesk"), $surl));
+    }
+
+    return $nav;
+}

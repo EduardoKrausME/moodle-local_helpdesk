@@ -29,6 +29,7 @@ use local_helpdesk\model\ticket;
 use local_helpdesk\util\files;
 
 require_once(__DIR__ . "/../../config.php");
+require_once(__DIR__ . "/lib.php");
 
 global $DB, $OUTPUT, $PAGE, $USER;
 
@@ -47,7 +48,6 @@ $PAGE->set_context($context);
 $PAGE->set_url("/local/helpdesk/ticket.php?id={$ticketid}");
 $PAGE->set_title($ticket->get_subject());
 $PAGE->set_heading($ticket->get_subject());
-$PAGE->set_secondary_navigation(false);
 
 if ($USER->id != $ticket->get_userid()) {
     require_capability("local/helpdesk:ticketmanage", $context);
@@ -58,6 +58,13 @@ if ($USER->id != $ticket->get_userid()) {
 $hasview = $hasticketmanage = has_capability("local/helpdesk:ticketmanage", $context);
 if (!$hasview) {
     $hasview = has_capability("local/helpdesk:view", $context);
+}
+
+// Add HelpDesk secondary nav.
+if ($hasticketmanage) {
+    local_helpdesk_set_secondarynav();
+} else {
+    $PAGE->set_secondary_navigation(false);
 }
 
 $newstatus = optional_param("newstatus", false, PARAM_TEXT);

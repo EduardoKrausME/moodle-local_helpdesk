@@ -28,6 +28,7 @@ use local_helpdesk\model\category_users;
 use local_helpdesk\model\ticket;
 
 require_once(__DIR__ . "/../../config.php");
+require_once(__DIR__ . "/lib.php");
 
 global $DB, $OUTPUT, $PAGE, $USER;
 
@@ -51,7 +52,6 @@ $PAGE->set_context($context);
 $PAGE->set_url("/local/helpdesk/index.php");
 $PAGE->set_title(get_string("tickets", "local_helpdesk"));
 $PAGE->set_heading(get_string("tickets", "local_helpdesk"));
-$PAGE->set_secondary_navigation(false);
 
 $hasticketview = $hasticketmanage = has_capability("local/helpdesk:ticketmanage", $context);
 $hascategorymanage = has_capability("local/helpdesk:categorymanage", $context);
@@ -60,6 +60,13 @@ if (!$hasticketview) {
 }
 
 require_capability("local/helpdesk:view", $context);
+
+// Add HelpDesk secondary nav.
+if ($hasticketmanage) {
+    local_helpdesk_set_secondarynav();
+} else {
+    $PAGE->set_secondary_navigation(false);
+}
 
 $PAGE->navbar->add(get_string("tickets", "local_helpdesk"),
     new moodle_url("/local/helpdesk/"));
