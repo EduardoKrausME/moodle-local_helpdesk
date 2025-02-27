@@ -59,8 +59,7 @@ if ($actionform == "add") {
     $controller = new category_controller();
     $controller->insert_category();
     die;
-}
-else if ($actionform == "edit" && $categoryid > 0) {
+} else if ($actionform == "edit" && $categoryid > 0) {
 
     $category = category::get_by_id($categoryid);
 
@@ -73,8 +72,7 @@ else if ($actionform == "edit" && $categoryid > 0) {
     $controller = new category_controller();
     $controller->update_category($category);
 
-}
-else if ($actionform == "delete" && $categoryid > 0) {
+} else if ($actionform == "delete" && $categoryid > 0) {
 
     $category = category::get_by_id($categoryid);
 
@@ -118,8 +116,7 @@ else if ($actionform == "delete" && $categoryid > 0) {
 
     echo $OUTPUT->footer();
     die;
-}
-else {
+} else {
     $categories = category::get_all();
 
     $PAGE->set_title(get_string("categories", "local_helpdesk"));
