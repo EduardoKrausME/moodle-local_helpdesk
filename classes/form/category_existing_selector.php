@@ -28,7 +28,7 @@ use user_selector_base;
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot . "/user/selector/lib.php");
+require_once("{$CFG->dirroot}/user/selector/lib.php");
 
 /**
  * Class category_existing_selector

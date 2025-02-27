@@ -29,7 +29,7 @@ use local_helpdesk\model\ticket;
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->libdir . "/formslib.php");
+require_once("{$CFG->libdir}/formslib.php");
 
 /**
  * Class ticket_form

@@ -28,7 +28,7 @@ use user_selector_base;
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot . "/user/selector/lib.php");
+require_once("{$CFG->dirroot}/user/selector/lib.php");
 
 /**
  * Class category_candidate_selector
@@ -69,7 +69,7 @@ class category_candidate_selector extends user_selector_base {
 
         $params["categoryid"] = $this->categoryid;
 
-        $fields      = "SELECT u.id, " . $this->userfieldsselects;
+        $fields = "SELECT u.id, " . $this->userfieldsselects;
         $countfields = "SELECT COUNT(1)";
 
         $sql = " FROM {user} u
