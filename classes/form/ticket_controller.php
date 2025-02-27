@@ -111,9 +111,6 @@ class ticket_controller {
         if ($form->is_cancelled()) {
             redirect(new moodle_url("/local/helpdesk/index.php"));
         } else if ($data = $form->get_data()) {
-            echo '<pre>';
-            print_r($_POST);
-            echo '</pre>';
             $ticket->set_subject($data->subject);
             $ticket->set_description($data->description["text"]);
             $ticket->set_priority($data->priority);
@@ -121,8 +118,6 @@ class ticket_controller {
 
             $ticket->save();
 
-
-            die;
             redirect(new moodle_url("/local/helpdesk/index.php"));
         } else {
             $form->set_data([
