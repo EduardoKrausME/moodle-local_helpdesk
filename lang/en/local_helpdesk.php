@@ -98,6 +98,7 @@ Now, based on this history, create a response and return only in the "{$a->userl
 $string['geniai_title'] = 'Artificial Intelligence';
 $string['helpdesk:categorydelete'] = 'Allows deleting categories.';
 $string['helpdesk:ticketmanage'] = 'Allows managing the Helpdesk, including responding to and closing tickets.';
+$string['helpdesk:categorymanage'] = 'Allows managing the Helpdesk categories';
 $string['helpdesk:view'] = 'Allows viewing Helpdesk tickets and creating them for oneself.';
 $string['helpdesk_manage_users'] = 'View users with permission to manage this role category';
 $string['index_top_all_open_tickets'] = 'All Open Tickets';
