@@ -80,7 +80,7 @@
             <div class="area-find">
                 <label for="find_priority">{{#str}}ticketpriority, local_helpdesk{{/str}}: </label>
                 <select name="find_priority" id="find_priority">
-                    <option value="{{empty}}"></option>
+                    <option value="{{empty}}">..:: {{#str}}selectanoptions{{/str}} ::..</option>
                     {{#priority_options}}
                         <option value="{{key}}" {{selected}}>{{label}}</option>
                     {{/priority_options}}
@@ -91,7 +91,7 @@
         <div class="area-find">
             <label for="find_category">{{#str}}ticketcategory, local_helpdesk{{/str}}: </label>
             <select name="find_category" id="find_category">
-                <option value="{{empty}}"></option>
+                <option value="{{empty}}">..:: {{#str}}selectanoptions{{/str}} ::..</option>
                 {{#category_options}}
                     <option value="{{key}}" {{selected}}>{{label}}</option>
                 {{/category_options}}
