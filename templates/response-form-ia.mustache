@@ -81,7 +81,7 @@ require(["jquery", "core/ajax", "core/notification", "core/modal_factory", "edit
                 let count = 0;
                 $("#sugestion-ia").show().html("{{#str}}loading{{/str}}.");
                 var interval = setInterval(function() {
-                    count = (count + 1) % 4; // Alterna entre 0, 1, 2, 3
+                    count = (count + 1) % 4; // Toggles between 0, 1, 2, 3
                     $("#sugestion-ia").html("{{#str}}loading{{/str}}" + ".".repeat(count));
                 }, 500);
                 setTimeout(function() {
