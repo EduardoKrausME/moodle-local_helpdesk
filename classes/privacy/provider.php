@@ -54,23 +54,23 @@ class provider implements
      * @return collection A listing of user data stored through this system.
      */
     public static function get_metadata(collection $collection): collection {
-        $collection->add_database_table('local_helpdesk_category_user',
+        $collection->add_database_table("local_helpdesk_category_user",
             [
-                'userid' => 'privacy:metadata:category_user_userid',
+                "userid" => "privacy:metadata:category_user_userid",
             ],
-            'privacy:metadata:local_helpdesk_category_user'
+            "privacy:metadata:local_helpdesk_category_user"
         );
-        $collection->add_database_table('local_helpdesk_ticket',
+        $collection->add_database_table("local_helpdesk_ticket",
             [
-                'userid' => 'privacy:metadata:ticket_userid',
+                "userid" => "privacy:metadata:ticket_userid",
             ],
-            'privacy:metadata:local_helpdesk_ticket'
+            "privacy:metadata:local_helpdesk_ticket"
         );
-        $collection->add_database_table('local_helpdesk_response',
+        $collection->add_database_table("local_helpdesk_response",
             [
-                'userid' => 'privacy:metadata:response_userid',
+                "userid" => "privacy:metadata:response_userid",
             ],
-            'privacy:metadata:local_helpdesk_response'
+            "privacy:metadata:local_helpdesk_response"
         );
         return $collection;
     }
@@ -91,9 +91,9 @@ class provider implements
                  WHERE helpdesk.userid = :userid";
 
         $contextlist = new contextlist();
-        $contextlist->add_from_sql(sprintf($sql, 'local_helpdesk_category_user'), ['userid' => $userid]);
-        $contextlist->add_from_sql(sprintf($sql, 'local_helpdesk_ticket'), ['userid' => $userid]);
-        $contextlist->add_from_sql(sprintf($sql, 'local_helpdesk_response'), ['userid' => $userid]);
+        $contextlist->add_from_sql(sprintf($sql, "local_helpdesk_category_user"), ["userid" => $userid]);
+        $contextlist->add_from_sql(sprintf($sql, "local_helpdesk_ticket"), ["userid" => $userid]);
+        $contextlist->add_from_sql(sprintf($sql, "local_helpdesk_response"), ["userid" => $userid]);
 
         return $contextlist;
     }
@@ -117,9 +117,9 @@ class provider implements
                     ON ctx.instanceid = helpdesk.userid
                  WHERE ctx.instanceid = :contextid";
 
-        $userlist->add_from_sql(sprintf($sql, 'local_helpdesk_category_user'), ['contextid' => $context->id]);
-        $userlist->add_from_sql(sprintf($sql, 'local_helpdesk_ticket'), ['contextid' => $context->id]);
-        $userlist->add_from_sql(sprintf($sql, 'local_helpdesk_response'), ['contextid' => $context->id]);
+        $userlist->add_from_sql(sprintf($sql, "local_helpdesk_category_user"), ["contextid" => $context->id]);
+        $userlist->add_from_sql(sprintf($sql, "local_helpdesk_ticket"), ["contextid" => $context->id]);
+        $userlist->add_from_sql(sprintf($sql, "local_helpdesk_response"), ["contextid" => $context->id]);
     }
 
     /**
@@ -170,8 +170,8 @@ class provider implements
 
         // User context / Privacy and policies / Data requests.
         $subcontext = [
-            get_string('privacyandpolicies', 'admin'),
-            get_string('datarequests', 'tool_dataprivacy'),
+            get_string("privacyandpolicies", "admin"),
+            get_string("datarequests", "tool_dataprivacy"),
         ];
         writer::with_context($context)->export_data($subcontext, (object)$contextdatatowrite);
 
@@ -193,10 +193,10 @@ class provider implements
             return;
         }
 
-        $where = ['userid' => $context->instanceid];
-        $DB->delete_records_select('local_helpdesk_category_user', 'userid = :userid', $where);
-        $DB->delete_records_select('local_helpdesk_ticket', 'userid = :userid', $where);
-        $DB->delete_records_select('local_helpdesk_response', 'userid = :userid', $where);
+        $where = ["userid" => $context->instanceid];
+        $DB->delete_records_select("local_helpdesk_category_user", "userid = :userid", $where);
+        $DB->delete_records_select("local_helpdesk_ticket", "userid = :userid", $where);
+        $DB->delete_records_select("local_helpdesk_response", "userid = :userid", $where);
     }
 
     /**
@@ -215,11 +215,11 @@ class provider implements
             return;
         }
 
-        $where = ['userid' => $context->instanceid];
+        $where = ["userid" => $context->instanceid];
 
-        $DB->delete_records_select('local_helpdesk_category_user', 'userid = :userid', $where);
-        $DB->delete_records_select('local_helpdesk_ticket', 'userid = :userid', $where);
-        $DB->delete_records_select('local_helpdesk_response', 'userid = :userid', $where);
+        $DB->delete_records_select("local_helpdesk_category_user", "userid = :userid", $where);
+        $DB->delete_records_select("local_helpdesk_ticket", "userid = :userid", $where);
+        $DB->delete_records_select("local_helpdesk_response", "userid = :userid", $where);
     }
 
     /**
@@ -238,9 +238,9 @@ class provider implements
             return;
         }
 
-        $where = ['userid' => $context->instanceid];
-        $DB->delete_records_select('local_helpdesk_category_user', 'userid = :userid', $where);
-        $DB->delete_records_select('local_helpdesk_ticket', 'userid = :userid', $where);
-        $DB->delete_records_select('local_helpdesk_response', 'userid = :userid', $where);
+        $where = ["userid" => $context->instanceid];
+        $DB->delete_records_select("local_helpdesk_category_user", "userid = :userid", $where);
+        $DB->delete_records_select("local_helpdesk_ticket", "userid = :userid", $where);
+        $DB->delete_records_select("local_helpdesk_response", "userid = :userid", $where);
     }
 }
