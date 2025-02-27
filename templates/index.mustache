@@ -91,7 +91,7 @@
         <div class="area-find">
             <label for="find_category">{{#str}}ticketcategory, local_helpdesk{{/str}}: </label>
             <select name="find_category" id="find_category">
-                <option value=""></option>
+                <option value="{{empty}}"></option>
                 {{#category_options}}
                     <option value="{{key}}" {{selected}}>{{label}}</option>
                 {{/category_options}}
