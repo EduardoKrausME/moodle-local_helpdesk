@@ -94,6 +94,10 @@ class ticket_form extends \moodleform {
             "maxbytes" => 0,
         ]);
 
-        $this->add_action_buttons(true, get_string("createticket", "local_helpdesk"));
+        if ($this->_customdata["ticket"]) {
+            $this->add_action_buttons(true, get_string("editticket", "local_helpdesk"));
+        } else {
+            $this->add_action_buttons(true, get_string("createticket", "local_helpdesk"));
+        }
     }
 }
