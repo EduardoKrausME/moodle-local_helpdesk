@@ -16,6 +16,8 @@
 
 namespace local_helpdesk\util;
 
+use local_kopere_dashboard\util\url_util;
+
 /**
  * Class filter
  *
@@ -65,7 +67,7 @@ class filter {
 
         $context = \context_system::instance();
         if (has_capability("local/helpdesk:ticketmanage", $context)) {
-            $data["url_ajax"] = local_kopere_dashboard_makeurl("courses", "load_all_courses", [], "view-ajax");
+            $data["url_ajax"] = url_util::makeurl("courses", "load_all_courses", [], "view-ajax");
             $PAGE->requires->js_call_amd("local_helpdesk/filter_course", "init");
         }
 
@@ -88,7 +90,7 @@ class filter {
         $data = [
             "user_fullname" => $userfullname,
             "user_id" => $userid,
-            "url_ajax" => local_kopere_dashboard_makeurl("users", "load_all_users", [], "view-ajax"),
+            "url_ajax" => url_util::makeurl("users", "load_all_users", [], "view-ajax"),
         ];
         $PAGE->requires->js_call_amd("local_helpdesk/filter_user", "init");
         return $OUTPUT->render_from_template("local_helpdesk/filter-user", $data);
