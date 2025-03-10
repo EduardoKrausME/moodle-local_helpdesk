@@ -32,7 +32,7 @@ $functions = [
         "description" => "Saves the column of the ticket",
         "type" => "write",
         "ajax" => true,
-        "capabilities" => "local/helpdesk:ticketmanager",
+        "capabilities" => "local/helpdesk:ticketmanage",
     ],
     "local_helpdesk_geniai_completions" => [
         "classpath" => "local/helpdesk/classes/external/geniai.php",
