@@ -117,9 +117,9 @@ class provider implements
                     ON ctx.instanceid = helpdesk.userid
                  WHERE ctx.instanceid = :contextid";
 
-        $userlist->add_from_sql(sprintf($sql, "local_helpdesk_category_user"), ["contextid" => $context->id]);
-        $userlist->add_from_sql(sprintf($sql, "local_helpdesk_ticket"), ["contextid" => $context->id]);
-        $userlist->add_from_sql(sprintf($sql, "local_helpdesk_response"), ["contextid" => $context->id]);
+        $userlist->add_from_sql("id", sprintf($sql, "local_helpdesk_category_user"), ["contextid" => $context->id]);
+        $userlist->add_from_sql("id", sprintf($sql, "local_helpdesk_ticket"), ["contextid" => $context->id]);
+        $userlist->add_from_sql("id", sprintf($sql, "local_helpdesk_response"), ["contextid" => $context->id]);
     }
 
     /**
