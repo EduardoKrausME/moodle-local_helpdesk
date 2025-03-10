@@ -3,12 +3,13 @@
     "description": "lang::report_status_priority_reports_page_description::local_helpdesk",
     "user_id": null,
     "category": {
+        "refkey": "local_helpdesk",
         "title": "lang::pluginname::local_helpdesk",
         "description": ""
     },
     "blocks": [
         {
-            "refkey": null,
+            "refkey": "tickets_by_status",
             "type": "block-1",
             "sequence": 1,
             "elements": [
@@ -29,7 +30,7 @@
             ]
         },
         {
-            "refkey": null,
+            "refkey": "priority_distribution",
             "type": "block-1",
             "sequence": 2,
             "elements": [

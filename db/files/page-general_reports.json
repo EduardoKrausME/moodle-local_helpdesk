@@ -3,12 +3,13 @@
     "description": "lang::report_general_reports_page_description::local_helpdesk",
     "user_id": null,
     "category": {
+        "refkey": "local_helpdesk",
         "title": "lang::pluginname::local_helpdesk",
         "description": ""
     },
     "blocks": [
         {
-            "refkey": null,
+            "refkey": "avg_time_first_response",
             "type": "block-1",
             "sequence": 1,
             "elements": [
@@ -29,7 +30,7 @@
             ]
         },
         {
-            "refkey": null,
+            "refkey": "tickets_created_by_period",
             "type": "block-1",
             "sequence": 2,
             "elements": [
@@ -50,7 +51,7 @@
             ]
         },
         {
-            "refkey": null,
+            "refkey": "tickets_resolved_by_period",
             "type": "block-1",
             "sequence": 3,
             "elements": [
@@ -71,7 +72,7 @@
             ]
         },
         {
-            "refkey": null,
+            "refkey": "avg_resolution_time",
             "type": "block-1",
             "sequence": 4,
             "elements": [

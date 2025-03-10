@@ -3,12 +3,13 @@
     "description": "lang::report_user_reports_page_description::local_helpdesk",
     "user_id": null,
     "category": {
+        "refkey": "local_helpdesk",
         "title": "lang::pluginname::local_helpdesk",
         "description": ""
     },
     "blocks": [
         {
-            "refkey": null,
+            "refkey": "users_with_most_tickets_open",
             "type": "block-1",
             "sequence": 1,
             "elements": [
@@ -29,7 +30,7 @@
             ]
         },
         {
-            "refkey": null,
+            "refkey": "avg_response_time_by_user",
             "type": "block-1",
             "sequence": 2,
             "elements": [
