@@ -49,7 +49,7 @@ if ($courseid) {
     require_login(null, false);
 }
 $PAGE->set_context($context);
-$PAGE->set_url("/local/helpdesk/index.php");
+$PAGE->set_url(new moodle_url("/local/helpdesk/index.php"));
 $PAGE->set_title(get_string("tickets", "local_helpdesk"));
 $PAGE->set_heading(get_string("tickets", "local_helpdesk"));
 
@@ -105,7 +105,7 @@ if ($hasticketmanage) {
 }
 
 if (count($categoryoptions) == 0 && $hascategorymanage) {
-    redirect("/local/helpdesk/categories.php?actionform=add",
+    redirect(new moodle_url("/local/helpdesk/categories.php?actionform=add"),
         get_string("createcategoryfirst", "local_helpdesk"), null, "warning");
 }
 

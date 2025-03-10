@@ -45,7 +45,7 @@ if ($ticket->get_courseid()) {
     require_login();
 }
 $PAGE->set_context($context);
-$PAGE->set_url("/local/helpdesk/ticket.php?id={$ticketid}");
+$PAGE->set_url(new moodle_url("/local/helpdesk/ticket.php?id={$ticketid}"));
 $PAGE->set_title($ticket->get_subject());
 $PAGE->set_heading($ticket->get_subject());
 

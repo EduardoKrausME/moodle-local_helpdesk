@@ -35,7 +35,7 @@ require_admin();
 
 $context = context_system::instance();
 $PAGE->set_context($context);
-$PAGE->set_url("/local/helpdesk/categories.php");
+$PAGE->set_url(new moodle_url("/local/helpdesk/categories.php"));
 
 $PAGE->navbar->add(get_string("tickets", "local_helpdesk"), new moodle_url("/local/helpdesk/"));
 $PAGE->navbar->add(get_string("categories", "local_helpdesk"), new moodle_url("/local/helpdesk/categories.php"));
