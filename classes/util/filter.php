@@ -40,7 +40,7 @@ class filter {
             $loadkopere = true;
 
             require_once("{$CFG->dirroot}/local/kopere_dashboard/autoload.php");
-            get_kopere_lang();
+            local_kopere_dashboard_lang();
         }
     }
 
