@@ -90,7 +90,6 @@ foreach ($categorys as $category) {
     ];
 }
 
-
 $templatecontext = [
     "status_options" => ticket::get_status_options($ticket->get_status()),
     "priority_options" => ticket::get_priority_options($ticket->get_priority()),
