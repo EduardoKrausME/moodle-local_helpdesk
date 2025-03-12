@@ -105,6 +105,7 @@ $string['index_top_completed_tickets'] = 'Completed Tickets';
 $string['index_top_unanswered_tickets'] = 'Unanswered Tickets';
 $string['index_top_urgent_tickets'] = 'Urgent Tickets';
 $string['integracaoroot'] = 'Integration';
+$string['invalidpriority'] = 'Invalid priority selected.';
 $string['lognewcategory'] = 'Category changed to <strong>{$a}</strong>!';
 $string['lognewpriority'] = 'Priority changed to <strong>{$a}</strong>!';
 $string['lognewstatus'] = 'Status changed to <strong>{$a}</strong>!';

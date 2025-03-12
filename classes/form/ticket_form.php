@@ -100,4 +100,45 @@ class ticket_form extends \moodleform {
             $this->add_action_buttons(true, get_string("createticket", "local_helpdesk"));
         }
     }
+
+    /**
+     * Custom validation for the form.
+     *
+     * @param array $data  Form data.
+     * @param array $files Uploaded files.
+     *
+     * @return array List of errors.
+     * @throws \coding_exception
+     */
+    public function validation($data, $files) {
+        $errors = parent::validation($data, $files);
+
+        // Validate subject: must not be empty or only spaces.
+        if (empty(trim($data["subject"]))) {
+            $errors["subject"] = get_string("required");
+        }
+
+        // Validate category: must be selected.
+        if (empty($data["categoryid"])) {
+            $errors["categoryid"] = get_string("required");
+        }
+
+        // Validate description: must have content in the editor field.
+        if (empty(trim($data["description"]["text"]))) {
+            $errors["description"] = get_string("required");
+        }
+
+        // Validate priority: must be a valid option.
+        $validpriorities = [
+            ticket::PRIORITY_LOW,
+            ticket::PRIORITY_MEDIUM,
+            ticket::PRIORITY_HIGH,
+            ticket::PRIORITY_URGENT,
+        ];
+        if (!in_array($data["priority"], $validpriorities, true)) {
+            $errors["priority"] = get_string("invalidpriority", "local_helpdesk");
+        }
+
+        return $errors;
+    }
 }

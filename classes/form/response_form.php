@@ -99,4 +99,24 @@ class response_form extends \moodleform {
         $mform->addGroup($itens, "buttonar", "", [" "], true);
         $mform->closeHeaderBefore("buttonar");
     }
+
+    /**
+     * Custom validation function for the form.
+     *
+     * @param array $data  The form data.
+     * @param array $files The uploaded files.
+     *
+     * @return array An array of validation errors, if any.
+     * @throws \coding_exception
+     */
+    public function validation($data, $files) {
+        $errors = parent::validation($data, $files);
+
+        // Ensure message is not empty.
+        if (empty(trim($data["message"]["text"]))) {
+            $errors["message"] = get_string("required");
+        }
+
+        return $errors;
+    }
 }
