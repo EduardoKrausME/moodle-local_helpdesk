@@ -66,7 +66,7 @@ class response_form extends \moodleform {
                 /** @var ticket $ticket */
                 $ticket = $this->_customdata["ticket"];
                 $button = $OUTPUT->render_from_template("local_helpdesk/response-form-ia", [
-                    "ticketid" => $ticket->get_id(),
+                    "ticketid" => $ticket->get_idkey(),
                 ]);
                 $mform->addElement("static", "create_local_geniai", get_string("geniai_title", "local_helpdesk"), $button);
             } else {
