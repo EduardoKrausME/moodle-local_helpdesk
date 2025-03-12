@@ -57,7 +57,12 @@ require(["jquery", "core/ajax", "core/notification", "core/modal_factory", "edit
                         body: $("#modal-response-form-ia").html(),
                     }).then(function(_modal) {
                         modal = _modal;
+                        if (!modal.root) {
+                            modal.root = modal._root;
+                        }
                         modal.show();
+                        modal.root.find(".modal-dialog")
+                                .addClass("modal-xl").addClass("kopere-dashboard-modal");
 
                         $("#modal-response-form-ia").remove();
 
@@ -89,7 +94,7 @@ require(["jquery", "core/ajax", "core/notification", "core/modal_factory", "edit
                 }, 10000);
 
                 Ajax.call([{
-                    methodname: "geniaiCompletions",
+                    methodname: "local_helpdesk_geniai_completions",
                     args: {
                         ticketid: "{{{ticketid}}}",
                         message: $("#ia-message").val(),
