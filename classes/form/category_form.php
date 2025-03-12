@@ -83,9 +83,9 @@ class category_form extends \moodleform {
         }
 
         if (isset($this->_customdata["id"])) {
-            $this->add_action_buttons(true, get_string("createcategory", "local_helpdesk"));
+            $this->add_action_buttons(true, get_string("savecategory", "local_helpdesk"));
         } else {
-            $this->add_action_buttons(true, get_string("editticket", "local_helpdesk"));
+            $this->add_action_buttons(true, get_string("createcategory", "local_helpdesk"));
         }
     }
 

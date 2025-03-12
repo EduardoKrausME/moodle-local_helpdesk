@@ -191,6 +191,7 @@ $string['report_user_reports_page_description'] = 'Report on users who created t
 $string['report_user_reports_page_title'] = 'User Reports';
 $string['report_user_reports_users_with_most_tickets_open_cat_title'] = 'Users with Most Opened Tickets';
 $string['report_user_reports_users_with_most_tickets_open_userid'] = 'User ID';
+$string['savecategory'] = 'Save Category';
 $string['savechanges'] = 'Save Changes';
 $string['setting_course'] = 'Show only inside the course';
 $string['setting_menu_description'] = 'Select whether to show the HelpDesk menu in the system menu at the top of Moodle.';
