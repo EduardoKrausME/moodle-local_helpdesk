@@ -79,7 +79,7 @@ class geniai extends external_api {
     /**
      * Function completions
      *
-     * @param int $ticketid
+     * @param int $tickeid
      * @param string $message
      *
      * @return array
@@ -99,15 +99,14 @@ class geniai extends external_api {
 
         $ticket = \local_helpdesk\model\ticket::get_by_id($params["ticketid"]);
 
-        $params = [
+        $responses = response::get_all(null, [
             "ticketid" => $ticket->get_id(),
             "type" => "message",
-        ];
-        $responses = response::get_all(null, $params);
+        ]);
         $responses = array_slice($responses, -3);
 
         $userfullname = fullname($ticket->get_user());
-        $ticketmessage = strip_tags($ticket->get_message());
+        $ticketmessage = strip_tags($ticket->get_description());
         $ticketmessage = str_replace('"', "'", $ticketmessage);
         $userlang = isset($SESSION->lang) ? $SESSION->lang : $USER->lang;
         $params["message"] = str_replace('"', "'", $params["message"]);
