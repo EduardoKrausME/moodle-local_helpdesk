@@ -81,7 +81,7 @@ class response_controller {
             $mail = new ticket_mail();
             $mail->send_response($ticket, $response);
 
-            if ($ticket->get_status() == ticket::STATUS_OPEN) {
+            if ($ticket->get_status() == ticket::STATUS_OPEN && $ticket->get_userid() != $USER->id) {
                 $ticket->change_status(ticket::STATUS_PROGRESS);
             }
 
