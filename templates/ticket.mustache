@@ -309,7 +309,7 @@ require(["jquery", "core/ajax", "core/notification"], function($, Ajax, Notifica
         $("#response-message-area").hide(300);
         location.href = "?id={{idkey}}&newstatus=resolved";
     });
-    $("#response-message-resolved").click(function() {
+    $("#response-message-closed").click(function() {
         $("#response-message-area").hide(300);
         location.href = "?id={{idkey}}&newstatus=closed";
     });
