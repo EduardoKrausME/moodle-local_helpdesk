@@ -62,7 +62,7 @@ class response_form extends \moodleform {
 
         if ($this->_customdata["hasticketmanage"]) {
             $apikey = get_config("local_geniai", "apikey");
-            if (isset($apikey[5])) {
+            if (isset($apikey[20])) {
                 /** @var ticket $ticket */
                 $ticket = $this->_customdata["ticket"];
                 $button = $OUTPUT->render_from_template("local_helpdesk/response-form-ia", [
