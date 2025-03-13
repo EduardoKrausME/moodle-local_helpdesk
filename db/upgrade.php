@@ -49,7 +49,7 @@ function xmldb_local_helpdesk_upgrade($oldversion) {
 
     global $DB;
     $dbman = $DB->get_manager();
-    if ($oldversion < 2025031200) {
+    if ($oldversion < 2025031301) {
         // Define table local_helpdesk_knowledgebase.
         $table = new xmldb_table("local_helpdesk_knowledgebase");
 
@@ -71,7 +71,7 @@ function xmldb_local_helpdesk_upgrade($oldversion) {
         }
 
         // Save upgrade step.
-        upgrade_plugin_savepoint(true, 2025031200, "local", "helpdesk");
+        upgrade_plugin_savepoint(true, 2025031301, "local", "helpdesk");
     }
 
     return true;
