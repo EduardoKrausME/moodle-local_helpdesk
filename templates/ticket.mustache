@@ -116,7 +116,7 @@
             {{#has_message}}
                 <div class="shadow-sm border-0 card">
                     <div class="card-header response-header">
-                        <img alt="{{user_fullname}}" class="img-fluid" src="{{user_picture}}">
+                        <img alt="{{user_fullname}}" class="img-fluid" src="{{{user_picture}}}">
                         <h6 class="mb-0">{{user_fullname}}</h6>
                         <div style="margin-left: auto;"><em style="font-size: .8em">{{createdat}}</em></div>
                     </div>
@@ -145,7 +145,7 @@
             {{#has_status}}
                 <div class="shadow-sm border-0 card ml-5 mb-2">
                     <div class="card-body response-header p-1 pl-3 pr-3">
-                        <img alt="{{user_fullname}}" class="img-fluid" src="{{user_picture}}">
+                        <img alt="{{user_fullname}}" class="img-fluid" src="{{{user_picture}}}">
                         <h6 class="mb-0">{{user_fullname}}</h6>
                         <div>{{{message}}}</div>
                         <div style="margin-left:auto;"><em style="font-size: .8em">{{createdat}}</em></div>
