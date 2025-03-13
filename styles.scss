@@ -65,16 +65,16 @@
             }
         }
         .ticket-card-1 {
-            background-color: #2196F3 ;
+            background-color: #2196f3;
         }
         .ticket-card-2 {
-            background-color: #00BCD4 ;
+            background-color: #00bcd4;
         }
         .ticket-card-3 {
-            background-color: #4CAF50 ;
+            background-color: #4caf50;
         }
         .ticket-card-4 {
-            background-color: #C0CA33 ;
+            background-color: #c0ca33;
         }
     }
     .area-finds {
@@ -224,6 +224,9 @@
         -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
         transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
         font-weight: 300;
+    }
+    .select {
+        padding-right: 24px;
     }
     .select:not(.no-arrou) {
         display: inline-block;
