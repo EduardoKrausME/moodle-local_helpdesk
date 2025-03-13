@@ -24,18 +24,18 @@
 
 }}
 
-<div class="btn btn-success"
-     id="geniai_btn_create">{{#str}}geniai_btn_create, local_helpdesk{{/str}}</div>
+<button class="btn btn-success" type="button" disabled
+     id="geniai_btn_response_create">{{#str}}geniai_btn_response_create, local_helpdesk{{/str}}</button>
 
 <div class="d-none" id="modal-response-form-ia">
-    <div>{{#str}}geniai_create_desc, local_helpdesk{{/str}}</div>
+    <div>{{#str}}geniai_create_response_desc, local_helpdesk{{/str}}</div>
     <textarea id="ia-message"
               style="width: 100%;height: 80px;"></textarea>
     <button id="create-message"
-            class="btn btn-info">{{#str}}geniai_create_message, local_helpdesk{{/str}}</button>
+            class="btn btn-info">{{#str}}geniai_create_response_message, local_helpdesk{{/str}}</button>
     <div id="sugestion-ia"
          style="border-left: 3px solid #9E9E9E;margin: 10px;padding-left: 10px; display: none"></div>
-    <button id="save-close"
+    <button id="save-close" disabled
             class="btn btn-success"
             style="display: none">{{#str}}geniai_like_message, local_helpdesk{{/str}}</button>
 </div>
@@ -44,9 +44,16 @@
 require(["jquery", "core/ajax", "core/notification", "core/modal_factory", "editor_tiny/editor"],
         function($, Ajax, Notification, ModalFactory, tiny) {
 
+            $("#geniai_btn_response_create").prop("disabled", false);
+
+            $("#ia-message").on("input", function() {
+                let messageLength = $(this).val().length;
+                $("#sugestion-ia").prop("disabled", messageLength <= 10);
+            });
+
             var modal = false;
 
-            $("#geniai_btn_create").click(function() {
+            $("#geniai_btn_response_create").click(function() {
                 if (modal) {
                     modal.show();
                 } else {
@@ -82,6 +89,7 @@ require(["jquery", "core/ajax", "core/notification", "core/modal_factory", "edit
             });
 
             function geniaiCompletions() {
+                $("#save-close").hide();
 
                 let count = 0;
                 $("#sugestion-ia").show().html("{{#str}}loading{{/str}}.");
@@ -91,10 +99,10 @@ require(["jquery", "core/ajax", "core/notification", "core/modal_factory", "edit
                 }, 500);
                 setTimeout(function() {
                     clearInterval(interval);
-                }, 10000);
+                }, 30000);
 
                 Ajax.call([{
-                    methodname: "local_helpdesk_geniai_completions",
+                    methodname: "local_helpdesk_geniai_tickets",
                     args: {
                         ticketid: "{{{ticketid}}}",
                         message: $("#ia-message").val(),
