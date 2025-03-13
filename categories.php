@@ -84,9 +84,15 @@ if ($actionform == "add") {
 
     $PAGE->navbar->add(get_string("deletecategory", "local_helpdesk"));
 
-    $ticket = $DB->get_records("local_helpdesk_ticket", ["id" => $category->get_id()], "", "subject", 0, 1);
+    $ticket = $DB->get_records("local_helpdesk_ticket", ["categoryid" => $category->get_id()], "", "subject", 0, 1);
     if ($ticket) {
         redirect(new moodle_url("/local/helpdesk/categories.php"),
+            get_string("deletecategoryusedata", "local_helpdesk"), null,
+            \core\output\notification::NOTIFY_ERROR);
+    }
+    $ticket = $DB->get_records("local_helpdesk_knowledgebase", ["categoryid" => $category->get_id()], "", "title", 0, 1);
+    if ($ticket) {
+        redirect(new moodle_url("/local/helpdesk/knowledgebase.php"),
             get_string("deletecategoryusedata", "local_helpdesk"), null,
             \core\output\notification::NOTIFY_ERROR);
     }

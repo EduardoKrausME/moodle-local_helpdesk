@@ -48,7 +48,7 @@ $string['createcategory'] = 'Create Category';
 $string['createcategoryfirst'] = 'First, create a category';
 $string['createticket'] = 'Create Ticket';
 $string['deletecategory'] = 'Delete Category';
-$string['deletecategoryusedata'] = 'This category has tickets';
+$string['deletecategoryusedata'] = 'This category has data';
 $string['deletesuccesscategory'] = 'Category successfully deleted';
 $string['description'] = 'Description';
 $string['editcategory'] = 'Edit Category';
@@ -63,12 +63,23 @@ $string['errorupdatingcategory'] = 'Error updating category';
 $string['errorupdatingticket'] = 'Error updating ticket';
 $string['findcourse'] = 'Select a Course';
 $string['finduser'] = 'Select a User';
-$string['geniai_btn_create'] = 'Create a response with AI';
-$string['geniai_create_desc'] = 'Describe what you want to generate. GeniAI will use all conversations as a basis to create a response, but you need to define which data you want to write.';
-$string['geniai_create_message'] = 'Create a message based on the text above.';
+$string['geniai_btn_knowledgebase_create'] = 'Create a knowledge base with AI';
+$string['geniai_btn_response_create'] = 'Create a response with AI';
+$string['geniai_create_knowledgebase_desc'] = 'Describe in detail the content you want to generate. GeniAI will use this information to create an accurate and relevant text for your knowledge base.';
+$string['geniai_create_knowledgebase_message'] = 'Create a message based on the text above.';
+$string['geniai_create_response_desc'] = 'Describe what you want to generate. GeniAI will use all conversations as a basis to create a response, but you need to define which data you want to write.';
+$string['geniai_create_response_message'] = 'Create a message based on the text above.';
+$string['geniai_knowledgebase_prompt'] = 'You are a chatbot specialized in creating knowledge bases for Moodle. Your goal is to generate clear, well-structured, and engaging content using a professional and persuasive first-person tone. Each response should be detailed and thorough, ensuring that any user can easily understand the provided information.
+
+Now, create a knowledge base article on:
+Moodle Name: "{$a->site_fullname}"
+Moodle URL: "{$a->site_url}"
+"{$a->message}"
+
+Return only in the language "{$a->userlang}", no titles, and only in MARKDOWN format.';
 $string['geniai_like_message'] = 'Liked the message? Click here to close and send it to the Editor.';
 $string['geniai_missing'] = 'Install and configure the <a href="{$a}" target="_blank">GenIA</a> plugin to enable AI-powered responses.';
-$string['geniai_prompt_1'] = 'You are a chatbot that suggests responses to Moodle tickets to solve course or Moodle issues in a cheerful, lively, and first-person manner.
+$string['geniai_ticket_prompt_1'] = 'You are a chatbot that suggests responses to Moodle tickets to solve course or Moodle issues in a cheerful, lively, and first-person manner.
 You love responding with inspiring messages, avoiding lists, and providing detailed explanations while being very attentive to details.
 
 User\'s question from {$a->userfullname}: "{$a->userticket}"
@@ -77,26 +88,29 @@ Now, create a response explaining how to solve the following issue using the ins
 "{$a->message}"
 
 Return only in the "{$a->userlang}" language and only in MARKDOWN format.';
-$string['geniai_prompt_2'] = 'You are a chatbot that suggests responses to Moodle tickets to solve course or Moodle issues in a cheerful, lively, and first-person manner.
+$string['geniai_ticket_prompt_2'] = 'You are a chatbot that suggests responses to Moodle tickets to solve course or Moodle issues in a cheerful, lively, and first-person manner.
 You love responding with inspiring messages, avoiding lists, and providing detailed explanations while being very attentive to details.
 
 Now, create a response explaining how to solve the following issue:
 
 User\'s question from {$a->userfullname}: "{$a->userticket}"';
-$string['geniai_prompt_3'] = 'You are a chatbot that suggests responses to Moodle tickets to solve course or Moodle issues in a cheerful, lively, and first-person manner.
+$string['geniai_ticket_prompt_3'] = 'You are a chatbot that suggests responses to Moodle tickets to solve course or Moodle issues in a cheerful, lively, and first-person manner.
 You love responding with inspiring messages, avoiding lists, and providing detailed explanations while being very attentive to details.
 
 Now, based on this history, create a response using the instructions provided by Support:
 "{$a->message}"
 
 Return only in the "{$a->userlang}" language and only in MARKDOWN format.';
-$string['geniai_prompt_4'] = 'You are a chatbot that suggests responses to Moodle tickets to solve course or Moodle issues in a cheerful, lively, and first-person manner.
+$string['geniai_ticket_prompt_4'] = 'You are a chatbot that suggests responses to Moodle tickets to solve course or Moodle issues in a cheerful, lively, and first-person manner.
 You love responding with inspiring messages, avoiding lists, and providing detailed explanations while being very attentive to details.
 
 Now, based on this history, create a response and return only in the "{$a->userlang}" language and only in MARKDOWN format.';
 $string['geniai_title'] = 'Artificial Intelligence';
 $string['helpdesk:categorydelete'] = 'Allows deleting categories.';
 $string['helpdesk:categorymanage'] = 'Allows managing the Helpdesk categories';
+$string['helpdesk:knowledgebase_delete'] = 'Delete articles in the knowledge base';
+$string['helpdesk:knowledgebase_manage'] = 'Manage articles in the knowledge base';
+$string['helpdesk:knowledgebase_view'] = 'View articles in the knowledge base';
 $string['helpdesk:ticketmanage'] = 'Allows managing the Helpdesk, including responding to and closing tickets.';
 $string['helpdesk:view'] = 'Allows viewing Helpdesk tickets and creating them for oneself.';
 $string['helpdesk_manage_users'] = 'View users with permission to manage this role category';
@@ -106,6 +120,19 @@ $string['index_top_unanswered_tickets'] = 'Unanswered Tickets';
 $string['index_top_urgent_tickets'] = 'Urgent Tickets';
 $string['integracaoroot'] = 'Integration';
 $string['invalidpriority'] = 'Invalid priority selected.';
+$string['knowledgebase_addnew'] = 'Add new knowledge base';
+$string['knowledgebase_articlenotfound'] = 'Knowledge base not found';
+$string['knowledgebase_category'] = 'Category';
+$string['knowledgebase_create'] = 'Create knowledge base';
+$string['knowledgebase_delete'] = 'Delete knowledge base';
+$string['knowledgebase_delete_confirm'] = 'Are you sure you want to delete the knowledge base <strong>{$a}</strong>';
+$string['knowledgebase_delete_success'] = 'Knowledge base deleted successfully';
+$string['knowledgebase_description'] = 'Knowledge content';
+$string['knowledgebase_edit'] = 'Edit knowledge base';
+$string['knowledgebase_name'] = 'Knowledge base';
+$string['knowledgebase_prompt_short'] = 'Prompt too short';
+$string['knowledgebase_title'] = 'Knowledge title';
+$string['knowledgebase_update'] = 'Update';
 $string['lognewcategory'] = 'Category changed to <strong>{$a}</strong>!';
 $string['lognewpriority'] = 'Priority changed to <strong>{$a}</strong>!';
 $string['lognewstatus'] = 'Status changed to <strong>{$a}</strong>!';
@@ -194,6 +221,8 @@ $string['report_user_reports_users_with_most_tickets_open_userid'] = 'User ID';
 $string['savecategory'] = 'Save Category';
 $string['savechanges'] = 'Save Changes';
 $string['setting_course'] = 'Show only inside the course';
+$string['setting_knowledgebase_menu_description'] = 'Enable this option to display the knowledge base link in the navigation menu.';
+$string['setting_knowledgebase_menu_title'] = 'Display Knowledge Base in Menu';
 $string['setting_menu_description'] = 'Select whether to show the HelpDesk menu in the system menu at the top of Moodle.';
 $string['setting_menu_title'] = 'Show in menu';
 $string['setting_none'] = 'Do not show';
@@ -233,3 +262,5 @@ $string['ticketupdated'] = 'Ticket successfully updated';
 $string['updatecategory'] = 'Update Category';
 $string['userid'] = 'User ID';
 $string['viewticket'] = 'View Ticket';
+
+

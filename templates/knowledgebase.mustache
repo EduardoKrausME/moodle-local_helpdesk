@@ -1,0 +1,22 @@
+<h2>{{#str}}knowledgebase_name, local_helpdesk{{/str}}</h2>
+
+{{#categorys}}
+    <h3><a href="knowledgebase.php?cat={{categoryid}}">{{{name}}}</a>
+        {{#has_manage}}
+            - <a href="?action=add&cat={{categoryid}}" class="badge badge-info">{{#str}}knowledgebase_addnew, local_helpdesk{{/str}}</a>
+        {{/has_manage}}</h3>
+    <ul>
+        {{#knowledgebases}}
+            <li>
+                <a href="knowledgebase.php?id={{id}}">{{title}}<a>
+                {{#has_manage}}
+                    - <a href="?action=edit&amp;id={{id}}" class="badge badge-success">{{#str}}edit{{/str}}</a>
+                {{/has_manage}}
+            </li>
+        {{/knowledgebases}}
+    </ul>
+{{/categorys}}
+
+{{#has_manage}}
+    <a href="?action=add" class="btn btn-success">{{#str}}knowledgebase_addnew, local_helpdesk{{/str}}</a>
+{{/has_manage}}

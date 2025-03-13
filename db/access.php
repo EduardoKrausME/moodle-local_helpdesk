@@ -61,4 +61,33 @@ $capabilities = [
             "manager" => CAP_ALLOW,
         ],
     ],
+
+    // Knowledgebase.
+    "local/helpdesk:knowledgebase_view" => [
+        "captype" => "write",
+        "contextlevel" => CONTEXT_SYSTEM,
+        "archetypes" => [
+            "editingteacher" => CAP_ALLOW,
+            "coursecreator" => CAP_ALLOW,
+            "manager" => CAP_ALLOW,
+        ],
+    ],
+    "local/helpdesk:knowledgebase_delete" => [
+        "captype" => "write",
+        "contextlevel" => CONTEXT_SYSTEM,
+        "archetypes" => [
+            "editingteacher" => CAP_ALLOW,
+            "coursecreator" => CAP_ALLOW,
+            "manager" => CAP_ALLOW,
+        ],
+    ],
+    "local/helpdesk:knowledgebase_manage" => [
+        "captype" => "write",
+        "contextlevel" => CONTEXT_SYSTEM,
+        "archetypes" => [
+            "editingteacher" => CAP_ALLOW,
+            "coursecreator" => CAP_ALLOW,
+            "manager" => CAP_ALLOW,
+        ],
+    ],
 ];

@@ -44,11 +44,11 @@ require_once("{$CFG->libdir}/externallib.php");
 class geniai extends external_api {
 
     /**
-     * Function completions_parameters
+     * Function tickets_parameters
      *
      * @return external_function_parameters
      */
-    public static function completions_parameters() {
+    public static function tickets_parameters() {
         return new external_function_parameters([
             "ticketid" => new external_value(PARAM_INT, "Ticket ID"),
             "message" => new external_value(PARAM_TEXT, "The original"),
@@ -56,20 +56,20 @@ class geniai extends external_api {
     }
 
     /**
-     * Function completions_is_allowed_from_ajax
+     * Function tickets_is_allowed_from_ajax
      *
      * @return bool
      */
-    public static function completions_is_allowed_from_ajax() {
+    public static function tickets_is_allowed_from_ajax() {
         return true;
     }
 
     /**
-     * Function completions_returns
+     * Function tickets_returns
      *
      * @return external_single_structure
      */
-    public static function completions_returns() {
+    public static function tickets_returns() {
         return new external_single_structure([
             "success" => new external_value(PARAM_RAW, "Status", VALUE_OPTIONAL),
             "error" => new external_value(PARAM_RAW, "Status", VALUE_OPTIONAL),
@@ -77,7 +77,7 @@ class geniai extends external_api {
     }
 
     /**
-     * Function completions
+     * Function tickets
      *
      * @param int $tickeid
      * @param string $message
@@ -86,10 +86,10 @@ class geniai extends external_api {
      * @throws \coding_exception
      * @throws \dml_exception
      */
-    public static function completions($tickeid, $message) {
+    public static function tickets($tickeid, $message) {
         global $USER, $SESSION;
 
-        $params = self::validate_parameters(self::completions_parameters(), [
+        $params = self::validate_parameters(self::tickets_parameters(), [
             "ticketid" => $tickeid,
             "message" => $message,
         ]);
@@ -116,7 +116,7 @@ class geniai extends external_api {
                 $messages = [
                     [
                         "role" => "system",
-                        "content" => get_string("geniai_prompt_1", "local_helpdesk",
+                        "content" => get_string("geniai_ticket_prompt_1", "local_helpdesk",
                             [
                                 "userfullname" => $userfullname,
                                 "userticket" => "# {$ticket->get_subject()}\n\n{$ticketmessage}",
@@ -129,7 +129,7 @@ class geniai extends external_api {
                 $messages = [
                     [
                         "role" => "system",
-                        "content" => get_string("geniai_prompt_1", "local_helpdesk",
+                        "content" => get_string("geniai_ticket_prompt_1", "local_helpdesk",
                             [
                                 "userfullname" => $userfullname,
                                 "userticket" => "# {$ticket->get_subject()}\n\n{$ticketmessage}",
@@ -156,7 +156,7 @@ class geniai extends external_api {
             if (isset($params["message"][10])) {
                 $messages[] = [
                     "role" => "system",
-                    "content" => get_string("geniai_prompt_3", "local_helpdesk",
+                    "content" => get_string("geniai_ticket_prompt_3", "local_helpdesk",
                         [
                             "message" => $params["message"],
                             "userlang" => $userlang,
@@ -165,7 +165,7 @@ class geniai extends external_api {
             } else {
                 $messages[] = [
                     "role" => "system",
-                    "content" => get_string("geniai_prompt_4", "local_helpdesk",
+                    "content" => get_string("geniai_ticket_prompt_4", "local_helpdesk",
                         [
                             "message" => $params["message"],
                             "userlang" => $userlang,
@@ -174,8 +174,106 @@ class geniai extends external_api {
             }
         }
 
-        $gpt = api::chat_completions($messages);
+        $gpt = api::chat_completions($messages, true);
 
+        if (isset($gpt["choices"][0]["message"])) {
+
+            $parsemarkdown = new parse_markdown();
+
+            $content = $gpt["choices"][0]["message"]["content"];
+            $html = $parsemarkdown->markdown_text($content);
+            $html = preg_replace('/<h\d.*?>(.*?)<\/h\d>/s', '<p><strong>$1</strong></p>', $html);
+
+            return [
+                "success" => $html,
+                "error" => false,
+            ];
+        } else {
+            return [
+                "success" => false,
+                "error" => (string)$gpt["error"]["message"],
+            ];
+        }
+    }
+
+    // Knowledge base.
+
+    /**
+     * Function knowledgebase_parameters
+     *
+     * @return external_function_parameters
+     */
+    public static function knowledgebase_parameters() {
+        return new external_function_parameters([
+            "message" => new external_value(PARAM_TEXT, "The original"),
+        ]);
+    }
+
+    /**
+     * Function knowledgebase_is_allowed_from_ajax
+     *
+     * @return bool
+     */
+    public static function knowledgebase_is_allowed_from_ajax() {
+        return true;
+    }
+
+    /**
+     * Function knowledgebase_returns
+     *
+     * @return external_single_structure
+     */
+    public static function knowledgebase_returns() {
+        return new external_single_structure([
+            "raw" => new external_value(PARAM_RAW, "Status", VALUE_OPTIONAL),
+            "success" => new external_value(PARAM_RAW, "Status", VALUE_OPTIONAL),
+            "error" => new external_value(PARAM_RAW, "Status", VALUE_OPTIONAL),
+        ]);
+    }
+
+    /**
+     * Function knowledgebase
+     *
+     * @param string $message
+     *
+     * @return array
+     * @throws \coding_exception
+     * @throws \dml_exception
+     */
+    public static function knowledgebase($message) {
+        global $USER, $SESSION, $SITE, $CFG;
+
+        $params = self::validate_parameters(self::knowledgebase_parameters(), [
+            "message" => $message,
+        ]);
+        $context = \context_system::instance();
+        require_capability("local/helpdesk:knowledgebase_manage", $context);
+        self::validate_context($context);
+
+        $userlang = isset($SESSION->lang) ? $SESSION->lang : $USER->lang;
+        $params["message"] = str_replace('"', "'", $params["message"]);
+
+        if (isset($params["message"][10])) {
+            $messages = [
+                [
+                    "role" => "system",
+                    "content" => get_string("geniai_knowledgebase_prompt", "local_helpdesk",
+                        [
+                            "site_fullname" => $SITE->fullname,
+                            "site_url" => $CFG->wwwroot,
+                            "message" => $params["message"],
+                            "userlang" => $userlang,
+                        ]),
+                ],
+            ];
+        } else {
+            return [
+                "success" => false,
+                "error" => get_string("knowledgebase_prompt_short", "local_helpdesk"),
+            ];
+        }
+
+        $gpt = api::chat_completions($messages, true);
         if (isset($gpt["choices"][0]["message"])) {
 
             $parsemarkdown = new parse_markdown();
@@ -185,6 +283,7 @@ class geniai extends external_api {
 
             return [
                 "success" => $content,
+                "raw" => $gpt["choices"][0]["message"]["content"],
                 "error" => false,
             ];
         } else {

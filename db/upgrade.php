@@ -47,5 +47,32 @@ function xmldb_local_helpdesk_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2025022500, "local", "helpdesk");
     }
 
+    global $DB;
+    $dbman = $DB->get_manager();
+    if ($oldversion < 2025031200) {
+        // Define table local_helpdesk_knowledgebase.
+        $table = new xmldb_table("local_helpdesk_knowledgebase");
+
+        // Adding fields to table local_helpdesk_knowledgebase.
+        $table->add_field("id", XMLDB_TYPE_INTEGER, 10, null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
+        $table->add_field("title", XMLDB_TYPE_CHAR, 255, null, XMLDB_NOTNULL, null, null);
+        $table->add_field("description", XMLDB_TYPE_TEXT, null, null, XMLDB_NOTNULL, null, null);
+        $table->add_field("categoryid", XMLDB_TYPE_INTEGER, 10, null, null, null, null);
+        $table->add_field("userid", XMLDB_TYPE_INTEGER, 10, null, XMLDB_NOTNULL, null, null);
+        $table->add_field("createdat", XMLDB_TYPE_INTEGER, 20, null, XMLDB_NOTNULL, null, null);
+        $table->add_field("updatedat", XMLDB_TYPE_INTEGER, 20, null, null, null, null);
+
+        // Adding keys to table local_helpdesk_knowledgebase.
+        $table->add_key("primary", XMLDB_KEY_PRIMARY, ["id"]);
+
+        // Conditionally launch create table for local_helpdesk_knowledgebase.
+        if (!$dbman->table_exists($table)) {
+            $dbman->create_table($table);
+        }
+
+        // Save upgrade step.
+        upgrade_plugin_savepoint(true, 2025031200, "local", "helpdesk");
+    }
+
     return true;
 }

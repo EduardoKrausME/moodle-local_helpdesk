@@ -1,0 +1,10 @@
+<h2>{{{category_name}}}</h2>
+<h3>{{{title}}}
+    {{#has_manage}}
+        - <a href="?action=edit&amp;id={{id}}" class="badge badge-success">{{#str}}edit{{/str}}</a>
+    {{/has_manage}}
+    {{#has_delete}}
+        - <a href="?action=delete&amp;id={{id}}" class="badge badge-danger">{{#str}}delete{{/str}}</a>
+    {{/has_delete}}
+</h3>
+{{{content}}}

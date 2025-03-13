@@ -22,6 +22,9 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use local_helpdesk\model\category;
+use local_helpdesk\model\knowledgebase;
+
 /**
  * Function local_helpdesk_extends_navigation
  *
@@ -46,49 +49,83 @@ function local_helpdesk_extends_navigation(global_navigation $nav) {
 function local_helpdesk_extend_navigation(global_navigation $nav) {
     global $PAGE, $COURSE, $SITE, $CFG;
 
+    $CFG->custommenuitems = preg_replace('/\n.*\/local\/helpdesk.*/', '', $CFG->custommenuitems);
+
+    $showmenu = true;
     if (!isloggedin()) {
-        return;
+        $showmenu = false;
     }
 
     $context = context_system::instance();
-
     if (!has_capability("local/helpdesk:view", $context)) {
-        return;
+        $showmenu = false;
     }
 
     if (!has_capability("local/helpdesk:ticketmanage", $context)) {
         if (!isset(get_config("local_helpdesk", "menu")[2])) {
-            return;
+            $showmenu = false;
         } else if (get_config("local_helpdesk", "menu") == "none") {
-            return;
+            $showmenu = false;
         } else if (get_config("local_helpdesk", "menu") == "course") {
             if ($COURSE->id == $SITE->id) {
-                return;
+                $showmenu = false;
             }
         }
     }
 
-    $courseid = "";
-    if ($COURSE->id != $SITE->id) {
-        $courseid = $COURSE->id;
+    if ($showmenu) {
+        $courseid = "";
+        if ($COURSE->id != $SITE->id) {
+            $courseid = $COURSE->id;
+        }
+
+        try {
+            $mynode = $PAGE->navigation->find("myprofile", navigation_node::TYPE_ROOTNODE);
+            $mynode->collapse = true;
+            $mynode->make_inactive();
+
+            $name = get_string("pluginname", "local_helpdesk");
+            if ($courseid) {
+                $url = "{$CFG->wwwroot}/local/helpdesk/?courseid={$courseid}";
+            } else {
+                $url = "{$CFG->wwwroot}/local/helpdesk/";
+            }
+            $nav->add($name, new moodle_url($url));
+            $node = $mynode->add($name, new moodle_url($url), 0, null, "helpdesk_menu");
+            $node->showinflatnavigation = true;
+            $CFG->custommenuitems .= "\n{$name}|{$url}";
+        } catch (Exception $e) { // phpcs:disable
+        }
     }
 
+    // Knowledge base menu.
     try {
-        $mynode = $PAGE->navigation->find("myprofile", navigation_node::TYPE_ROOTNODE);
-        $mynode->collapse = true;
-        $mynode->make_inactive();
+        if (get_config("local_helpdesk", "knowledgebase_menu")) {
+            $needaddmenu = true;
+            $categorys = category::get_all(null, [], "name ASC");
+            /** @var category $category */
+            foreach ($categorys as $category) {
 
-        $name = get_string("pluginname", "local_helpdesk");
-        if ($courseid) {
-            $url = new moodle_url("/local/helpdesk/?courseid={$courseid}");
-        } else {
-            $url = new moodle_url("/local/helpdesk/");
+                $knowledgebases = knowledgebase::get_all(null, ["categoryid" => $category->get_id()], "title ASC");
+                if ($knowledgebases) {
+                    if ($needaddmenu) {
+                        $name = get_string("knowledgebase_name", "local_helpdesk");
+                        $url = "{$CFG->wwwroot}/local/helpdesk/knowledgebase.php";
+                        $CFG->custommenuitems .= "\n{$name}|{$url}";
+                        $needaddmenu = false;
+                    }
+
+                    $url = "{$CFG->wwwroot}/local/helpdesk/knowledgebase.php?cat={$category->get_id()}";
+                    $CFG->custommenuitems .= "\n-{$category->get_name()}|{$url}";
+
+                    /** @var knowledgebase $knowledgebase */
+                    foreach ($knowledgebases as $knowledgebase) {
+                        $url = "{$CFG->wwwroot}/local/helpdesk/knowledgebase.php?id={$knowledgebase->get_id()}";
+                        $CFG->custommenuitems .= "\n--{$knowledgebase->get_title()}|{$url}";
+                    }
+                }
+            }
         }
-        $nav->add($name, $url);
-        $node = $mynode->add($name, $url, 0, null, "helpdesk_admin", new pix_icon("i/pie_chart", "", "local_helpdesk"));
-        $node->showinflatnavigation = true;
-
-        $CFG->custommenuitems .= "\n-{$name}|{$url}";
     } catch (Exception $e) { // phpcs:disable
     }
 }
@@ -173,6 +210,9 @@ function local_helpdesk_get_navigation() {
 
     $surl = new moodle_url("/local/helpdesk/categories.php", []);
     $nav->add_node($nav::create(get_string("categories", "local_helpdesk"), $surl));
+
+    $surl = new moodle_url("/local/helpdesk/knowledgebase.php", []);
+    $nav->add_node($nav::create(get_string("knowledgebase_name", "local_helpdesk"), $surl));
 
     if (has_capability("local/kopere_dashboard:view", context_system::instance())) {
         $surl = new moodle_url("/local/kopere_dashboard/view.php", ["classname" => "bi-dashboard", "method" => "start"]);

@@ -39,4 +39,15 @@ if ($hassiteconfig) {
     $description = get_string("setting_menu_description", "local_helpdesk");
     $setting = new admin_setting_configselect($name, $title, $description, "course", $options);
     $settings->add($setting);
+
+    $options = [
+        "none" => get_string("setting_none", "local_helpdesk"),
+        "course" => get_string("setting_course", "local_helpdesk"),
+        "system" => get_string("setting_system", "local_helpdesk"),
+    ];
+    $name = "local_helpdesk/knowledgebase_menu";
+    $title = get_string("setting_knowledgebase_menu_title", "local_helpdesk");
+    $description = get_string("setting_knowledgebase_menu_description", "local_helpdesk");
+    $setting = new admin_setting_configcheckbox($name, $title, $description, 1);
+    $settings->add($setting);
 }
