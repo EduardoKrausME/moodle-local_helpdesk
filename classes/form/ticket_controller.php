@@ -124,7 +124,9 @@ class ticket_controller {
                 "id" => $ticket->get_id(),
                 "categoryid" => $ticket->get_categoryid(),
                 "subject" => $ticket->get_subject(),
-                "description" => $ticket->get_description(),
+                "description" => [
+                    "text" => $ticket->get_description(),
+                ],
                 "status" => $ticket->get_status(),
                 "priority" => $ticket->get_priority(),
                 "createdat" => $ticket->get_createdat(),
