@@ -113,7 +113,7 @@ class send_message extends send_events {
             $htmlmessage = self::replace_tag_user($this->message, $userto, "to");
 
             $magager = "<a href='{$CFG->wwwroot}/message/notificationpreferences.php'>" .
-                get_string_kopere("notification_manager") . "</a>";
+                string_kopere("notification_manager", "local_kopere_dashboard") . "</a>";
             $htmlmessage = str_replace("{[manager]}", $magager, $htmlmessage);
 
             $eventdata = new \core\message\message();
