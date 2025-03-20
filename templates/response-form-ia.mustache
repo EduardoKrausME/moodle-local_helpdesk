@@ -35,13 +35,12 @@
             class="btn btn-info">{{#str}}geniai_create_response_message, local_helpdesk{{/str}}</button>
     <div id="sugestion-ia"
          style="border-left: 3px solid #9E9E9E;margin: 10px;padding-left: 10px; display: none"></div>
-    <button id="save-close" disabled
+    <button id="save-close"
             class="btn btn-success"
             style="display: none">{{#str}}geniai_like_message, local_helpdesk{{/str}}</button>
 </div>
 
 {{#js}}
-    /*<script>*/
 require(["jquery", "core/ajax", "core/notification", "core/modal_factory", "editor_tiny/editor"],
 function($, Ajax, Notification, ModalFactory, tiny) {
 
