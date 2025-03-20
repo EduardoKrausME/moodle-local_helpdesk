@@ -156,6 +156,24 @@
                 has_info
             {{/has_info}}
         {{/responses}}
+
+        {{^has_closed}}
+            <div id="response-message-area" style="display:flex;gap:12px;">
+                <button id="response-message-open"
+                        class="btn btn-success">{{#str}}replytoticket, local_helpdesk{{/str}}
+                </button>
+
+                <div style="width:40px">&nbsp;</div>
+
+                <button id="response-message-resolved"
+                        class="btn btn-info">{{#str}}markticketasresolved, local_helpdesk{{/str}}
+                </button>
+                <button id="response-message-closed"
+                        class="btn btn-danger">{{#str}}markticketasclosed, local_helpdesk{{/str}}
+                </button>
+            </div>
+        {{/has_closed}}
+
     </div>
 
     <div class="col-md-5 col-lg-4 col-xxl-3">
@@ -288,23 +306,6 @@
         </div>
     </div>
 </div>
-
-{{^has_closed}}
-    <div id="response-message-area" style="display:flex;gap:12px;">
-        <button id="response-message-open"
-                class="btn btn-success">{{#str}}replytoticket, local_helpdesk{{/str}}
-        </button>
-
-        <div style="width:40px">&nbsp;</div>
-
-        <button id="response-message-resolved"
-                class="btn btn-info">{{#str}}markticketasresolved, local_helpdesk{{/str}}
-        </button>
-        <button id="response-message-closed"
-                class="btn btn-danger">{{#str}}markticketasclosed, local_helpdesk{{/str}}
-        </button>
-    </div>
-{{/has_closed}}
 
 {{#js}}
 require(["jquery", "core/ajax", "core/notification", "jqueryui"], function($, Ajax, Notification, ui) {
