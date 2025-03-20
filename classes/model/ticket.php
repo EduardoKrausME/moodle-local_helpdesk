@@ -225,6 +225,16 @@ class ticket {
             return $this->user;
         }
 
+        if ($this->userid == 0) {
+            $this->user = (object)[
+                "id" => 0,
+                "firstname" => get_string("coresystem"),
+                "lastname" => "",
+                "email" => "a@a.com",
+            ];
+            return $this->user;
+        }
+
         global $DB;
 
         $this->user = $DB->get_record("user", ["id" => $this->userid]);
