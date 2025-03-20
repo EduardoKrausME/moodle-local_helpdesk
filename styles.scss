@@ -4,14 +4,10 @@
         .table {
             .profile {
                 img {
-                    width: 60px;
-                    height: 60px;
+                    display: none;
                 }
                 .name {
-                    padding-top: 0;
-                    font-size: 21px;
-                    line-height: 0;
-                    margin-bottom: 0;
+                    display: none;
                 }
             }
             .info {
@@ -36,6 +32,32 @@
             .btn {
                 padding: 3px 8px;
             }
+        }
+    }
+    #profile-tabs {
+        padding: 0;
+        border: 0;
+        background: none;
+        .ui-tabs-nav {
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            li {
+                background: none;
+                &.ui-tabs-active {
+                    border: 1px solid #afb7bc;
+                    border-bottom: none;
+                    padding-bottom: 0;
+                    a {
+                        background: #dae1e5;
+                        border: none;
+                    }
+                }
+            }
+        }
+        .ui-tabs-panel {
+            background: #dae1e5;
         }
     }
     .container {
@@ -143,6 +165,14 @@
         width: 32px;
     }
     .ticket-details {
+        .ticket-profile {
+            display: flex;
+            justify-content: center;
+            .ticket-profile-user {
+                display: flex;
+                align-items: center;
+            }
+        }
         .about-list {
             padding-top: 30px;
             select {

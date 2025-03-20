@@ -49,6 +49,10 @@ $PAGE->set_url(new moodle_url("/local/helpdesk/ticket.php?id={$ticketid}"));
 $PAGE->set_title($ticket->get_subject());
 $PAGE->set_heading($ticket->get_subject());
 
+$PAGE->requires->jquery();
+$PAGE->requires->jquery_plugin("ui");
+$PAGE->requires->jquery_plugin("ui-css");
+
 if ($USER->id != $ticket->get_userid()) {
     require_capability("local/helpdesk:ticketmanage", $context);
 } else {
@@ -95,6 +99,8 @@ $templatecontext = [
     "priority_options" => ticket::get_priority_options($ticket->get_priority()),
     "category_options" => $categoryoptions,
     "user" => $ticket->get_user(),
+    "user_fullname" => fullname($ticket->get_user()),
+    "user_picture" => (new user_picture($ticket->get_user()))->get_url($PAGE),
     "profile_details" => \local_kopere_dashboard\profile::details2($ticket->get_user(), false),
 
     "id" => $ticket->get_id(),
@@ -153,7 +159,6 @@ echo $OUTPUT->render_from_template("local_helpdesk/ticket", $templatecontext);
 
 // Closed ticket not answered.
 if ($ticket->get_status() != ticket::STATUS_CLOSED) {
-
     echo \html_writer::start_tag("div", ["class" => "response-message card"]);
     $responsecontroller = new response_controller();
     $responsecontroller->insert_response($ticket, $hasticketmanage);

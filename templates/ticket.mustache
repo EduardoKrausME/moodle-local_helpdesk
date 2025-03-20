@@ -162,87 +162,110 @@
         <div class="card">
             <div class="card-header">
                 <div class="ticket-profile">
-                    {{{profile_details}}}
+                    <div class="ticket-profile-user">
+                        <img alt="{{{user_fullname}}}" class="img-fluid " src="{{{user_picture}}}">
+                    </div>
+                    <div class="ml-3">
+                        <h6 class="mb-0">{{{user_fullname}}}</h6>
+                        {{#user.phone1}}
+                            <div class="text-secondary">{{{user.phone1}}}</div>
+                        {{/user.phone1}}
+                        {{^user.phone1}}
+                            {{#user.phone2}}
+                                <div class="text-secondary">{{{user.phone2}}}</div>
+                            {{/user.phone2}}
+                        {{/user.phone1}}
+                    </div>
                 </div>
             </div>
             <div class="card-body">
-                <div class="about-list pt-0">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="fw-medium">{{#str}}ticketid, local_helpdesk{{/str}}:</span>
-                        <span class="text-secondary">#{{{idkey}}}</span>
-                    </div>
-                    {{#course_fullname}}
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fw-medium">{{#str}}course{{/str}}:</span>
-                            <span class="text-secondary">{{course_fullname}}</span>
-                        </div>
-                    {{/course_fullname}}
-                    {{#has_closed}}
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fw-medium">{{#str}}ticketstatus, local_helpdesk{{/str}}:</span>
-                            <span class="badge status-{{status}}">{{status_translated}}</span>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fw-medium">{{#str}}ticketpriority, local_helpdesk{{/str}}:</span>
-                            <span class="badge priority-{{priority}}">{{priority_translated}}</span>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fw-medium">{{#str}}ticketcategory, local_helpdesk{{/str}}:</span>
-                                <span class="text-secondary">{{category_translate}}</span>
-                        </div>
-                    {{/has_closed}}
-                    {{^has_closed}}
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fw-medium">{{#str}}ticketstatus, local_helpdesk{{/str}}:</span>
-                            {{#hasticketmanage}}
-                                <select name="changue_status" id="changue_status"
-                                        data-column="status">
-                                    {{#status_options}}
-                                        <option value="{{key}}" {{selected}}>{{label}}</option>
-                                    {{/status_options}}
-                                </select>
-                            {{/hasticketmanage}}
-                            {{^hasticketmanage}}
-                                <span class="badge status-{{status}}">{{status_translated}}</span>
-                            {{/hasticketmanage}}
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fw-medium">{{#str}}ticketpriority, local_helpdesk{{/str}}:</span>
 
-                            {{#hasticketmanage}}
-                                <select name="changue_priority" id="changue_priority"
-                                        data-column="priority">
-                                    {{#priority_options}}
-                                        <option value="{{key}}" {{selected}}>{{label}}</option>
-                                    {{/priority_options}}
-                                </select>
-                            {{/hasticketmanage}}
-                            {{^hasticketmanage}}
-                                <span class="badge priority-{{priority}}">{{priority_translated}}</span>
-                            {{/hasticketmanage}}
-                        </div>
+                <div id="profile-tabs">
+                    <ul>
+                        <li><a href="#tabs-1">{{#str}}ticketid, local_helpdesk{{/str}}</a></li>
+                        <li><a href="#tabs-2">{{#str}}openuserby, local_helpdesk{{/str}}</a></li>
+                    </ul>
+                    <div id="tabs-1" class="about-list pt-0">
                         <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fw-medium">{{#str}}ticketcategory, local_helpdesk{{/str}}:</span>
-                            {{#hasticketmanage}}
-                                <select name="changue_category" id="changue_category"
-                                        data-column="category">
-                                    {{#category_options}}
-                                        <option value="{{key}}" {{selected}}>{{label}}</option>
-                                    {{/category_options}}
-                                </select>
-                            {{/hasticketmanage}}
-                            {{^hasticketmanage}}
-                                <span class="text-secondary">{{category_translate}}</span>
-                            {{/hasticketmanage}}
+                            <span class="fw-medium">{{#str}}ticketid, local_helpdesk{{/str}}:</span>
+                            <span class="text-secondary">#{{{idkey}}}</span>
                         </div>
-                    {{/has_closed}}
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="fw-medium">{{#str}}ticketcreatedat, local_helpdesk{{/str}}:</span>
-                        <span class="text-secondary">{{createdat}}</span>
+                        {{#course_fullname}}
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="fw-medium">{{#str}}course{{/str}}:</span>
+                                <span class="text-secondary">{{course_fullname}}</span>
+                            </div>
+                        {{/course_fullname}}
+                        {{#has_closed}}
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="fw-medium">{{#str}}ticketstatus, local_helpdesk{{/str}}:</span>
+                                <span class="badge status-{{status}}">{{status_translated}}</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="fw-medium">{{#str}}ticketpriority, local_helpdesk{{/str}}:</span>
+                                <span class="badge priority-{{priority}}">{{priority_translated}}</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="fw-medium">{{#str}}ticketcategory, local_helpdesk{{/str}}:</span>
+                                <span class="text-secondary">{{category_translate}}</span>
+                            </div>
+                        {{/has_closed}}
+                        {{^has_closed}}
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="fw-medium">{{#str}}ticketstatus, local_helpdesk{{/str}}:</span>
+                                {{#hasticketmanage}}
+                                    <select name="changue_status" id="changue_status"
+                                            data-column="status">
+                                        {{#status_options}}
+                                            <option value="{{key}}" {{selected}}>{{label}}</option>
+                                        {{/status_options}}
+                                    </select>
+                                {{/hasticketmanage}}
+                                {{^hasticketmanage}}
+                                    <span class="badge status-{{status}}">{{status_translated}}</span>
+                                {{/hasticketmanage}}
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="fw-medium">{{#str}}ticketpriority, local_helpdesk{{/str}}:</span>
+
+                                {{#hasticketmanage}}
+                                    <select name="changue_priority" id="changue_priority"
+                                            data-column="priority">
+                                        {{#priority_options}}
+                                            <option value="{{key}}" {{selected}}>{{label}}</option>
+                                        {{/priority_options}}
+                                    </select>
+                                {{/hasticketmanage}}
+                                {{^hasticketmanage}}
+                                    <span class="badge priority-{{priority}}">{{priority_translated}}</span>
+                                {{/hasticketmanage}}
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="fw-medium">{{#str}}ticketcategory, local_helpdesk{{/str}}:</span>
+                                {{#hasticketmanage}}
+                                    <select name="changue_category" id="changue_category"
+                                            data-column="category">
+                                        {{#category_options}}
+                                            <option value="{{key}}" {{selected}}>{{label}}</option>
+                                        {{/category_options}}
+                                    </select>
+                                {{/hasticketmanage}}
+                                {{^hasticketmanage}}
+                                    <span class="text-secondary">{{category_translate}}</span>
+                                {{/hasticketmanage}}
+                            </div>
+                        {{/has_closed}}
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-medium">{{#str}}ticketcreatedat, local_helpdesk{{/str}}:</span>
+                            <span class="text-secondary">{{createdat}}</span>
+                        </div>
+                        <div class="alert alert-success"
+                             style="display:none"
+                             id="local_helpdesk_ticket_column"></div>
                     </div>
-                    <div class="alert alert-success"
-                         style="display:none"
-                         id="local_helpdesk_ticket_column"></div>
+                    <div id="tabs-2" class="ticket-profile">
+                        {{{profile_details}}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -284,7 +307,9 @@
 {{/has_closed}}
 
 {{#js}}
-require(["jquery", "core/ajax", "core/notification"], function($, Ajax, Notification) {
+require(["jquery", "core/ajax", "core/notification", "jqueryui"], function($, Ajax, Notification, ui) {
+
+    $( "#profile-tabs" ).tabs();
 
     $("#response-message-open").click(function() {
         $("#response-message-area").hide(300);
