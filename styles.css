@@ -1,273 +1,265 @@
 @charset "UTF-8";
 .path-local-helpdesk .profile-content .table {
-    display: table;
-    width: 100%;
+  display: table;
+  width: 100%;
 }
 .path-local-helpdesk .profile-content .table .profile {
-    color: #666;
-    display: table-cell;
-    width: 70%;
-    padding-right: 17px;
+  color: #666;
+  display: table-cell;
+  width: 70%;
+  padding-right: 17px;
 }
 .path-local-helpdesk .profile-content .table .profile img {
-    float: left;
-    margin-right: 15px;
-    width: 110px;
-    height: 110px;
+  float: left;
+  margin-right: 15px;
+  width: 110px;
+  height: 110px;
 }
 .path-local-helpdesk .profile-content .table .profile .name {
-    padding-top: 17px;
-    font-size: 44px;
-    font-weight: bold;
-    line-height: 38px;
+  padding-top: 17px;
+  font-size: 44px;
+  font-weight: bold;
+  line-height: 38px;
 }
 .path-local-helpdesk .profile-content .table .profile .name .last {
-    line-height: 35px;
-    width: 100%;
+  line-height: 35px;
+  width: 100%;
 }
 .path-local-helpdesk .profile-content .table .profile .city {
-    color: #999;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 33px;
+  color: #999;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 33px;
 }
 .path-local-helpdesk .profile-content .table .profile .desc {
-    width: 100%;
-    min-height: 9px;
-    margin: 20px 0;
-    font-size: 13px;
-    color: #999;
-    line-height: 150%;
+  width: 100%;
+  min-height: 9px;
+  margin: 20px 0;
+  font-size: 13px;
+  color: #999;
+  line-height: 150%;
 }
 .path-local-helpdesk .profile-content .table .info {
-    display: table-cell;
-    width: 30%;
-    border-left: 1px solid rgba(0, 0, 0, 0.08);
+  display: table-cell;
+  width: 30%;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
 }
 .path-local-helpdesk .profile-content .table .info h3 {
-    text-align: right;
-    color: #646464;
+  text-align: right;
+  color: #646464;
 }
 .path-local-helpdesk .profile-content .table .info p {
-    text-align: right;
-    font-size: 12px;
-    color: #999;
+  text-align: right;
+  font-size: 12px;
+  color: #999;
 }
 .path-local-helpdesk .profile-content .table .info p a {
-    color: #999;
-    text-decoration: underline;
+  color: #999;
+  text-decoration: underline;
 }
 .path-local-helpdesk .profile-content .personalDev {
-    list-style: none outside;
-    font-size: 14px;
-    color: #999;
-    margin-bottom: 40px;
-    padding-left: 0;
+  list-style: none outside;
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 40px;
+  padding-left: 0;
 }
 .path-local-helpdesk .profile-content .personalDev li {
-    padding-top: 5px;
-    margin-bottom: 15px;
-    border-top: 1px solid #e5e5e5;
-    line-height: 18px;
+  padding-top: 5px;
+  margin-bottom: 15px;
+  border-top: 1px solid #e5e5e5;
+  line-height: 18px;
 }
 .path-local-helpdesk .profile-content .personalDev li .title {
-    font-weight: bold;
-    margin: 0;
+  font-weight: bold;
+  margin: 0;
 }
 .path-local-helpdesk .profile-content .personalDev li .status {
-    float: right;
-    font-size: 14px;
+  float: right;
+  font-size: 14px;
 }
 @media (max-width: 800px) {
-    .path-local-helpdesk .profile-content .table {
-        display: block;
-    }
-    .path-local-helpdesk .profile-content .table .profile {
-        display: block;
-        width: 100%;
-        padding-right: 0;
-    }
-    .path-local-helpdesk .profile-content .table .info {
-        display: block;
-        width: 100%;
-        background: none;
-    }
-    .path-local-helpdesk .profile-content .table .info h3, .path-local-helpdesk .profile-content .table .info p {
-        text-align: left;
-    }
+  .path-local-helpdesk .profile-content .table {
+    display: block;
+  }
+  .path-local-helpdesk .profile-content .table .profile {
+    display: block;
+    width: 100%;
+    padding-right: 0;
+  }
+  .path-local-helpdesk .profile-content .table .info {
+    display: block;
+    width: 100%;
+    background: none;
+  }
+  .path-local-helpdesk .profile-content .table .info h3, .path-local-helpdesk .profile-content .table .info p {
+    text-align: left;
+  }
 }
 .path-local-helpdesk .profile-content .table .profile img {
-    width: 60px;
-    height: 60px;
+  width: 60px;
+  height: 60px;
 }
 .path-local-helpdesk .profile-content .table .profile .name {
-    padding-top: 0;
-    font-size: 21px;
-    line-height: 0;
-    margin-bottom: 0;
+  padding-top: 0;
+  font-size: 21px;
+  line-height: 0;
+  margin-bottom: 0;
 }
 .path-local-helpdesk .profile-content .table .info {
-    border-left: none;
+  border-left: none;
 }
 .path-local-helpdesk .profile-content .table .info p {
-    text-align: left;
+  text-align: left;
 }
 .path-local-helpdesk .profile-content .table h2, .path-local-helpdesk .profile-content .table h3, .path-local-helpdesk .profile-content .table h4 {
-    text-align: left;
-    color: #646464;
+  text-align: left !important;
+  color: #646464;
 }
 .path-local-helpdesk .profile-content .table h2 {
-    font-size: 24px;
+  font-size: 24px;
 }
 .path-local-helpdesk .profile-content .table h3 {
-    font-size: 20px;
+  font-size: 20px;
 }
 .path-local-helpdesk .profile-content .table h3 {
-    font-size: 16px;
+  font-size: 16px;
 }
 .path-local-helpdesk .profile-content .table .btn {
-    padding: 3px 8px;
+  padding: 3px 8px;
 }
 .path-local-helpdesk .container {
-    width: 100% !important;
+  width: 100% !important;
 }
 .path-local-helpdesk .badge {
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 4px;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
 }
 .path-local-helpdesk .badge.priority-low {
-    background-color: #28a745; /* Verde */
+  background-color: #28a745; /* Verde */
 }
 .path-local-helpdesk .badge.priority-medium {
-    background-color: #ffc107; /* Amarelo */
-    color: #212529;
+  background-color: #ffc107; /* Amarelo */
+  color: #212529;
 }
 .path-local-helpdesk .badge.priority-high {
-    background-color: #fd7e14; /* Laranja */
+  background-color: #fd7e14; /* Laranja */
 }
 .path-local-helpdesk .badge.priority-urgent {
-    background-color: #dc3545; /* Vermelho */
+  background-color: #dc3545; /* Vermelho */
 }
 .path-local-helpdesk .badge.status-open {
-    background-color: #007bff; /* Azul */
+  background-color: #007bff; /* Azul */
 }
 .path-local-helpdesk .badge.status-progress {
-    background-color: #17a2b8; /* Ciano */
+  background-color: #17a2b8; /* Ciano */
 }
 .path-local-helpdesk .badge.status-resolved {
-    background-color: #28a745; /* Verde */
+  background-color: #28a745; /* Verde */
 }
 .path-local-helpdesk .badge.status-closed {
-    background-color: #6c757d; /* Cinza */
+  background-color: #6c757d; /* Cinza */
 }
 .path-local-helpdesk .top-tikets-infos .ticket-card {
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 21px 3px rgba(139, 132, 118, 0.05);
-    border: none;
-    margin-bottom: 1.25rem;
-    transition: all 0.3s ease;
-    border-radius: 0.8em;
-    color: #fff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 21px 3px rgba(139, 132, 118, 0.05);
+  border: none;
+  margin-bottom: 1.25rem;
+  transition: all 0.3s ease;
+  border-radius: 0.8em;
+  color: #fff;
 }
 .path-local-helpdesk .top-tikets-infos .ticket-card:before {
-    content: "◦";
-    position: absolute;
-    right: -31px;
-    top: -1px;
-    font-size: 368px;
-    line-height: 30px;
-    color: #fff;
-    opacity: 0.25;
+  content: "◦";
+  position: absolute;
+  right: -31px;
+  top: -1px;
+  font-size: 368px;
+  line-height: 30px;
+  color: #fff;
+  opacity: 0.25;
 }
 .path-local-helpdesk .top-tikets-infos .ticket-card .top-ticket-title {
-    font-size: 19px;
-    line-height: 1.6;
-    margin-bottom: 3px;
-    color: #fff;
+  font-size: 19px;
+  line-height: 1.6;
+  margin-bottom: 3px;
+  color: #fff;
 }
 .path-local-helpdesk .top-tikets-infos .ticket-card h3 {
-    color: #fff;
-    font-size: 30px;
-    margin-left: 7px;
+  color: #fff;
+  font-size: 30px;
+  margin-left: 7px;
 }
 .path-local-helpdesk .top-tikets-infos .ticket-card-1 {
-    background-color: #2196f3;
+  background-color: #2196f3;
 }
 .path-local-helpdesk .top-tikets-infos .ticket-card-2 {
-    background-color: #00bcd4;
+  background-color: #00bcd4;
 }
 .path-local-helpdesk .top-tikets-infos .ticket-card-3 {
-    background-color: #4caf50;
+  background-color: #4caf50;
 }
 .path-local-helpdesk .top-tikets-infos .ticket-card-4 {
-    background-color: #c0ca33;
+  background-color: #c0ca33;
 }
 .path-local-helpdesk .area-finds {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 .path-local-helpdesk .area-finds .area-find {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 .path-local-helpdesk .area-finds .area-find label {
-    font-weight: bold;
-    margin-bottom: 0;
-    white-space: nowrap;
-    margin-right: 2px;
+  font-weight: bold;
+  margin-bottom: 0;
+  white-space: nowrap;
+  margin-right: 2px;
 }
 .path-local-helpdesk .area-finds .area-find select {
-    padding: 5px;
-    width: auto;
+  padding: 5px;
+  width: auto;
 }
 .path-local-helpdesk .user_picture {
-    min-width: 32px;
-    max-width: 32px;
-    width: 32px;
-}
-.path-local-helpdesk .ticket-details .ticket-profile {
-    display: flex;
-    justify-content: center;
-}
-.path-local-helpdesk .ticket-details .ticket-profile .ticket-profile-user {
-    display: flex;
-    align-items: center;
+  min-width: 32px;
+  max-width: 32px;
+  width: 32px;
 }
 .path-local-helpdesk .ticket-details .about-list {
-    padding-top: 30px;
+  padding-top: 30px;
 }
 .path-local-helpdesk .ticket-details .about-list select {
-    width: auto;
-    padding: 5px 2px;
+  width: auto;
+  padding: 5px 2px;
 }
 .path-local-helpdesk .ticket-details .response-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .path-local-helpdesk .ticket-details .ticket-attachments {
-    border: 1px dashed #d6d6d6;
-    background-color: #fff;
-    border-radius: 12px;
-    display: block;
+  border: 1px dashed #d6d6d6;
+  background-color: #fff;
+  border-radius: 12px;
+  display: block;
 }
 .path-local-helpdesk .ticket-details .ticket-attachments:hover {
-    background-color: rgba(255, 255, 255, 0.4666666667);
-    text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.4666666667);
+  text-decoration: none;
 }
 .path-local-helpdesk .response-message {
-    display: none;
+  display: none;
 }
 .path-local-helpdesk .response-message #fitem_id_message,
 .path-local-helpdesk .response-message #fitem_id_attachment,
 .path-local-helpdesk .response-message #fgroup_id_buttonar,
 .path-local-helpdesk .response-message #fitem_id_create_local_geniai {
-    display: block !important;
+  display: block !important;
 }
 .path-local-helpdesk .response-message #fitem_id_message label,
 .path-local-helpdesk .response-message #fitem_id_message .col-form-label,
@@ -277,7 +269,7 @@
 .path-local-helpdesk .response-message #fgroup_id_buttonar .col-form-label,
 .path-local-helpdesk .response-message #fitem_id_create_local_geniai label,
 .path-local-helpdesk .response-message #fitem_id_create_local_geniai .col-form-label {
-    font-weight: bold;
+  font-weight: bold;
 }
 .path-local-helpdesk .response-message #fitem_id_message .col-md-3,
 .path-local-helpdesk .response-message #fitem_id_message .col-md-9,
@@ -287,91 +279,93 @@
 .path-local-helpdesk .response-message #fgroup_id_buttonar .col-md-9,
 .path-local-helpdesk .response-message #fitem_id_create_local_geniai .col-md-3,
 .path-local-helpdesk .response-message #fitem_id_create_local_geniai .col-md-9 {
-    display: block !important;
-    flex: 0 0 100%;
-    max-width: 100%;
+  display: block !important;
+  flex: 0 0 100%;
+  max-width: 100%;
 }
 .path-local-helpdesk .card {
-    background-color: #f1f5f9 !important;
-    margin-bottom: 20px;
+  background-color: #f1f5f9 !important;
+  margin-bottom: 20px;
 }
 .path-local-helpdesk .card .card-header {
-    background-color: transparent !important;
+  background-color: transparent !important;
 }
 .path-local-helpdesk .text-secondary {
-    color: #828c96 !important;
+  color: #828c96 !important;
 }
 .path-local-helpdesk #chart-course-button-open {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 .path-local-helpdesk #chart-course-datatable-select {
-    min-width: 800px;
-    min-height: 450px !important;
+  min-width: 800px;
+  min-height: 450px !important;
 }
 .path-local-helpdesk #chart-user-button-open {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 .path-local-helpdesk #chart-user-datatable-select {
-    min-width: 800px;
-    min-height: 450px !important;
+  min-width: 800px;
+  min-height: 450px !important;
 }
 @media (min-width: 992px) {
-    .path-local-helpdesk .modal-xl {
-        max-width: 800px !important;
-    }
+  .path-local-helpdesk .modal-xl {
+    max-width: 800px !important;
+  }
 }
 @media (min-width: 1200px) {
-    .path-local-helpdesk .modal-xl {
-        max-width: 1140px !important;
-    }
+  .path-local-helpdesk .modal-xl {
+    max-width: 1140px !important;
+  }
 }
 .path-local-helpdesk .control-buttons {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 .path-local-helpdesk .select-users {
-    display: flex;
-    background: rgba(222, 226, 230, 0.3803921569);
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 13px;
+  display: flex;
+  background: rgba(222, 226, 230, 0.3803921569);
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 13px;
 }
 .path-local-helpdesk .select-users #existingcell,
 .path-local-helpdesk .select-users #potentialcell {
-    width: 50%;
+  width: 50%;
 }
 .path-local-helpdesk .select-users #buttonscell {
-    padding: 10px;
+  padding: 10px;
 }
 .path-local-helpdesk .select,
 .path-local-helpdesk select {
-    padding: 8px 11px;
-    font-size: 0.9rem;
-    line-height: 1.25;
-    color: #464a4c;
-    border: 1px solid #cecece;
-    border-radius: 0.25rem;
-    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-    font-weight: 300;
+  padding: 8px 11px;
+  font-size: 0.9rem;
+  line-height: 1.25;
+  color: #464a4c;
+  border: 1px solid #cecece;
+  border-radius: 0.25rem;
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  font-weight: 300;
 }
 .path-local-helpdesk .select {
-    padding-right: 24px;
+  padding-right: 24px;
 }
 .path-local-helpdesk .select:not(.no-arrou) {
-    display: inline-block;
-    background-image: url("data:image/svg+xml;base64,PHN2ZyBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyNCAxNSIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDE1IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTEyIDE1LTEyLTEyLjE2MiAyLjc5OS0yLjgzOCA5LjIwMSA5LjMyNCA5LjE5OS05LjMyNCAyLjgwMSAyLjgzOHoiIGZpbGw9IiM1ZjYzNjgiLz48L3N2Zz4=");
-    background-repeat: no-repeat;
-    background-position: center right 9px;
-    background-size: 17px;
-    padding-right: 32px;
-    cursor: pointer;
+  display: inline-block;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyNCAxNSIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDE1IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTEyIDE1LTEyLTEyLjE2MiAyLjc5OS0yLjgzOCA5LjIwMSA5LjMyNCA5LjE5OS05LjMyNCAyLjgwMSAyLjgzOHoiIGZpbGw9IiM1ZjYzNjgiLz48L3N2Zz4=");
+  background-repeat: no-repeat;
+  background-position: center right 9px;
+  background-size: 17px;
+  padding-right: 32px;
+  cursor: pointer;
 }
 .path-local-helpdesk #id_subject {
-    width: 90%;
+  width: 90%;
 }
+
+/*# sourceMappingURL=styles.css.map */

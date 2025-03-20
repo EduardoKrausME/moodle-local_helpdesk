@@ -21,7 +21,7 @@
                 }
             }
             h2, h3, h4 {
-                text-align: left;
+                text-align: left !important;
                 color: #646464;
             }
             h2 {
@@ -143,14 +143,6 @@
         width: 32px;
     }
     .ticket-details {
-        .ticket-profile {
-            display: flex;
-            justify-content: center;
-            .ticket-profile-user {
-                display: flex;
-                align-items: center;
-            }
-        }
         .about-list {
             padding-top: 30px;
             select {

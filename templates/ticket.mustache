@@ -52,6 +52,8 @@
         },
         "idkey": "12345",
         "course_fullname": "Course Name",
+        "user_fullname": "John Doe",
+        "user_picture": "http://example.com/user.jpg",
         "has_closed": false,
         "status": "open",
         "status_translated": "Open",
@@ -160,12 +162,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="ticket-profile">
-                    <div class="ticket-profile-user">
-                        <img alt="{{{user_fullname}}}" class="img-fluid " src="{{{user_picture}}}">
-                    </div>
-                    <div class="ml-3">
-                        {{{profile_details}}}
-                    </div>
+                    {{{profile_details}}}
                 </div>
             </div>
             <div class="card-body">
