@@ -40,84 +40,82 @@
 </div>
 
 {{#js}}
-    /*
-    <script>*/
-    require(["jquery", "core/ajax", "core/notification", "core/modal_factory", "editor_tiny/editor"],
-            function($, Ajax, Notification, ModalFactory, tiny) {
+require(["jquery", "core/ajax", "core/notification", "core/modal_factory", "editor_tiny/editor"],
+function($, Ajax, Notification, ModalFactory, tiny) {
 
-                $("#geniai_btn_response_create").prop("disabled", false);
+    $("#geniai_btn_response_create").prop("disabled", false);
 
-                $("#ia-message").on("input", function() {
-                    let messageLength = $(this).val().length;
-                    $("#sugestion-ia").prop("disabled", messageLength <= 10);
-                });
+    $("#ia-message").on("input", function() {
+        let messageLength = $(this).val().length;
+        $("#sugestion-ia").prop("disabled", messageLength <= 10);
+    });
 
-                var modal = false;
+    var modal = false;
 
-                $("#geniai_btn_response_create").click(function() {
-                    if (modal) {
-                        modal.show();
-                    } else {
-                        ModalFactory.create({
-                            type: ModalFactory.types.DEFAULT,
-                            title: "{{#str}}geniai_title, local_helpdesk{{/str}}",
-                            body: $("#modal-response-form-ia").html(),
-                        }).then(function(_modal) {
-                            modal = _modal;
-                            if (!modal.root) {
-                                modal.root = modal._root;
-                            }
-                            modal.show();
-                            modal.root.find(".modal-dialog")
-                                    .addClass("modal-xl").addClass("kopere-dashboard-modal");
-
-                            $("#modal-response-form-ia").remove();
-                            $("#create-message").click(geniaiCompletions);
-
-                            $("#save-close").click(function() {
-                                var editor = tiny.getInstanceForElementId("id_description");
-                                editor.execCommand("mceInsertContent", false, $("#sugestion-ia").html());
-
-                                modal.hide();
-                            });
-
-                            return _modal;
-                        }).catch(Notification.exception);
-                    }
-                });
-
-                function geniaiCompletions() {
-                    $("#save-close").hide();
-
-                    let count = 0;
-                    $("#sugestion-ia").show().html("{{#str}}loading{{/str}}.");
-                    var interval = setInterval(function() {
-                        count = (count + 1) % 4; // Toggles between 0, 1, 2, 3
-                        $("#sugestion-ia").html("{{#str}}loading{{/str}}" + ".".repeat(count));
-                    }, 500);
-                    setTimeout(function() {
-                        clearInterval(interval);
-                    }, 30000);
-
-                    Ajax.call([{
-                        methodname: "local_helpdesk_geniai_knowledgebase",
-                        args: {
-                            message: $("#ia-message").val(),
-                        }
-                    }])[0].then(function(data) {
-                        clearInterval(interval);
-
-                        if (data.error) {
-                            $("#sugestion-ia").show().html(data.error);
-                            $("#save-close").hide();
-                        } else {
-                            $("#save-close").show();
-                            $("#sugestion-ia").show().html(data.success);
-                        }
-
-                        return data;
-                    }).catch(Notification.exception);
+    $("#geniai_btn_response_create").click(function() {
+        if (modal) {
+            modal.show();
+        } else {
+            ModalFactory.create({
+                type: ModalFactory.types.DEFAULT,
+                title: "{{#str}}geniai_title, local_helpdesk{{/str}}",
+                body: $("#modal-response-form-ia").html(),
+            }).then(function(_modal) {
+                modal = _modal;
+                if (!modal.root) {
+                    modal.root = modal._root;
                 }
+                modal.show();
+                modal.root.find(".modal-dialog")
+                        .addClass("modal-xl").addClass("kopere-dashboard-modal");
 
-            });
+                $("#modal-response-form-ia").remove();
+                $("#create-message").click(geniaiCompletions);
+
+                $("#save-close").click(function() {
+                    var editor = tiny.getInstanceForElementId("id_description");
+                    editor.execCommand("mceInsertContent", false, $("#sugestion-ia").html());
+
+                    modal.hide();
+                });
+
+                return _modal;
+            }).catch(Notification.exception);
+        }
+    });
+
+    function geniaiCompletions() {
+        $("#save-close").hide();
+
+        let count = 0;
+        $("#sugestion-ia").show().html("{{#str}}loading{{/str}}.");
+        var interval = setInterval(function() {
+            count = (count + 1) % 4; // Toggles between 0, 1, 2, 3
+            $("#sugestion-ia").html("{{#str}}loading{{/str}}" + ".".repeat(count));
+        }, 500);
+        setTimeout(function() {
+            clearInterval(interval);
+        }, 30000);
+
+        Ajax.call([{
+            methodname: "local_helpdesk_geniai_knowledgebase",
+            args: {
+                message: $("#ia-message").val(),
+            }
+        }])[0].then(function(data) {
+            clearInterval(interval);
+
+            if (data.error) {
+                $("#sugestion-ia").show().html(data.error);
+                $("#save-close").hide();
+            } else {
+                $("#save-close").show();
+                $("#sugestion-ia").show().html(data.success);
+            }
+
+            return data;
+        }).catch(Notification.exception);
+    }
+
+});
 {{/js}}
