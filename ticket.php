@@ -95,8 +95,7 @@ $templatecontext = [
     "priority_options" => ticket::get_priority_options($ticket->get_priority()),
     "category_options" => $categoryoptions,
     "user" => $ticket->get_user(),
-    "user_fullname" => fullname($ticket->get_user()),
-    "user_picture" => (new user_picture($ticket->get_user()))->get_url($PAGE),
+    "profile_details" => \local_kopere_dashboard\profile::details2($ticket->get_user(), false),
 
     "id" => $ticket->get_id(),
     "idkey" => $ticket->get_idkey(),
@@ -118,8 +117,8 @@ $templatecontext = [
 
 $files = files::all("ticket", $ticket->get_id());
 $templatecontext["ticketfiles_count"] = count($files);
-$templatecontext["ticketfiles"] = $files;
-$templatecontext["allfiles"] = $files;
+$templatecontext["ticketfiles"] = array_values($files);
+$templatecontext["allfiles"] = array_values($files);
 
 $responses = response::get_all(null, ["ticketid" => $ticket->get_id()], "createdat ASC");
 /** @var response $response */

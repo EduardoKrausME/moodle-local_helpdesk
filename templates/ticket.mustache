@@ -19,69 +19,65 @@
 
     Example context (json):
     {
-      "subject": "Ticket Subject",
-      "description": "This is the description of the ticket.",
-      "ticketfiles_count": 2,
-      "ticketfiles": [
-        {
-          "fullurl": "http://example.com/file1.pdf",
-          "filename": "file1.pdf",
-          "mimetype": "application/pdf"
-        }
-      ],
-      "responses": [
-        {
-          "has_message": true,
-          "user_fullname": "John Doe",
-          "user_picture": "http://example.com/user.jpg",
-          "createdat": "2025-02-25 14:30",
-          "message": "This is the first response message.",
-          "responsefiles_count": 1,
-          "responsefiles": [
+        "subject": "Ticket Subject",
+        "description": "This is the description of the ticket.",
+        "ticketfiles_count": 2,
+        "ticketfiles": [
             {
-              "fullurl": "http://example.com/responsefile.pdf",
-              "filename": "responsefile.pdf",
-              "mimetype": "application/pdf"
+                "fullurl": "http://example.com/file1.pdf",
+                "filename": "file1.pdf",
+                "mimetype": "application/pdf"
             }
-          ]
-        }
-      ],
-      "user_picture": "http://example.com/avatar.jpg",
-      "user_fullname": "Alice Smith",
-      "user": {
-        "phone1": "123-456-7890",
-        "phone2": "098-765-4321"
-      },
-      "idkey": "12345",
-      "course_fullname": "Course Name",
-      "has_closed": false,
-      "status": "open",
-      "status_translated": "Open",
-      "priority": "high",
-      "priority_translated": "High",
-      "category_translate": "General",
-      "createdat": "2025-02-20",
-      "allfiles_count": 1,
-      "allfiles": [
-        {
-          "fullurl": "http://example.com/attachment.pdf",
-          "filename": "attachment.pdf",
-          "mimetype": "application/pdf"
-        }
-      ],
-      "has_info": true,
-      "has_ticketmanage": true,
-      "status_options": [
-        { "key": "closed", "label": "Closed", "selected": "" }
-      ],
-      "priority_options": [
-        { "key": "low", "label": "Low", "selected": "" }
-      ],
-      "category_options": [
-        { "key": "technical", "label": "Technical", "selected": "" }
-      ]
+        ],
+        "responses": [
+            {
+                "has_message": true,
+                "user_fullname": "John Doe",
+                "createdat": "2025-02-25 14:30",
+                "message": "This is the first response message.",
+                "responsefiles_count": 1,
+                "responsefiles": [
+                    {
+                        "fullurl": "http://example.com/responsefile.pdf",
+                        "filename": "responsefile.pdf",
+                        "mimetype": "application/pdf"
+                    }
+                ]
+            }
+        ],
+        "user": {
+            "phone1": "123-456-7890",
+            "phone2": "098-765-4321"
+        },
+        "idkey": "12345",
+        "course_fullname": "Course Name",
+        "has_closed": false,
+        "status": "open",
+        "status_translated": "Open",
+        "priority": "high",
+        "priority_translated": "High",
+        "category_translate": "General",
+        "createdat": "2025-02-20",
+        "allfiles_count": 1,
+        "allfiles": [
+            {
+                "fullurl": "http://example.com/attachment.pdf",
+                "filename": "attachment.pdf",
+                "mimetype": "application/pdf"
+            }
+        ],
+        "has_info": true,
+        "has_ticketmanage": true,
+        "status_options": [
+            { "key": "closed", "label": "Closed", "selected": "" }
+        ],
+        "priority_options": [
+            { "key": "low", "label": "Low", "selected": "" }
+        ],
+        "category_options": [
+            { "key": "technical", "label": "Technical", "selected": "" }
+        ]
     }
-
 }}
 
 <div class="ticket-details row">
@@ -167,15 +163,7 @@
                         <img alt="{{{user_fullname}}}" class="img-fluid " src="{{{user_picture}}}">
                     </div>
                     <div class="ml-3">
-                        <h6 class="mb-0">{{{user_fullname}}}</h6>
-                        {{#user.phone1}}
-                            <div class="text-secondary">{{{user.phone1}}}</div>
-                        {{/user.phone1}}
-                        {{^user.phone1}}
-                            {{#user.phone2}}
-                                <div class="text-secondary">{{{user.phone2}}}</div>
-                            {{/user.phone2}}
-                        {{/user.phone1}}
+                        {{{profile_details}}}
                     </div>
                 </div>
             </div>
