@@ -37,7 +37,6 @@ function local_helpdesk_extends_navigation(global_navigation $nav) {
     local_helpdesk_extend_navigation($nav);
 }
 
-
 /**
  * Function local_helpdesk_extend_navigation
  *
