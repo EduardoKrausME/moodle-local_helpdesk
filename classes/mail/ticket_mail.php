@@ -160,7 +160,7 @@ class ticket_mail {
         $kopereevent->subject = "Re: " . get_string("mailticket_subject", "local_helpdesk");
 
         // To Category Users.
-        $kopereevent->message = get_string("mailticket_create_message", "local_helpdesk");
+        $kopereevent->message = get_string("mailticket_update_message", "local_helpdesk");
         $sendevents->set_local_kopere_dashboard_event($kopereevent);
 
         $categoryusers = category_users::get_all(null, ["categoryid" => $ticket->get_categoryid()]);
