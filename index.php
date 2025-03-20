@@ -212,7 +212,7 @@ if ($hasticketmanage) {
         "all_open_tickets" => $DB->get_field_select("local_helpdesk_ticket",
             "COUNT(*)", "status NOT IN('closed','resolved')"),
         "unanswered_tickets" => $DB->get_field_select("local_helpdesk_ticket",
-            "COUNT(*)", "status NOT IN('open')"),
+            "COUNT(*)", "status IN('open')"),
         "completed_tickets" => $DB->get_field_select("local_helpdesk_ticket",
             "COUNT(*)", "status IN('closed','resolved')"),
         "urgent_tickets" => $DB->get_field_select("local_helpdesk_ticket",
