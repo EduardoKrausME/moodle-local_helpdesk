@@ -219,6 +219,7 @@ class ticket {
      *
      * @return \stdClass
      * @throws \dml_exception
+     * @throws \coding_exception
      */
     public function get_user() {
         if ($this->user) {
@@ -286,9 +287,6 @@ class ticket {
      */
     public function has_closed() {
         if ($this->get_status() == self::STATUS_CLOSED) {
-            return true;
-        }
-        if ($this->get_status() == self::STATUS_RESOLVED) {
             return true;
         }
 
