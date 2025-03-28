@@ -59,6 +59,10 @@ class response_controller {
             redirect(new moodle_url("/local/helpdesk/ticket.php?id={$ticket->get_idkey()}"));
         } else if ($data = $form->get_data()) {
 
+            if ($ticket->get_status() == ticket::STATUS_OPEN && $ticket->get_userid() != $USER->id) {
+                $ticket->change_status(ticket::STATUS_PROGRESS);
+            }
+
             $response = new response([
                 "ticketid" => $ticket->get_id(),
                 "message" => $data->message["text"],
@@ -81,11 +85,7 @@ class response_controller {
             $mail = new ticket_mail();
             $mail->send_response($ticket, $response);
 
-            if ($ticket->get_status() == ticket::STATUS_OPEN && $ticket->get_userid() != $USER->id) {
-                $ticket->change_status(ticket::STATUS_PROGRESS);
-            }
-
-            if (isset($data->buttonar["resolvedbutton"])) {
+                        if (isset($data->buttonar["resolvedbutton"])) {
                 $ticket->change_status(ticket::STATUS_RESOLVED);
             }
             if (isset($data->buttonar["closebutton"])) {
