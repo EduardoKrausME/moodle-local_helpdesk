@@ -85,7 +85,7 @@ class response_controller {
             $mail = new ticket_mail();
             $mail->send_response($ticket, $response);
 
-                        if (isset($data->buttonar["resolvedbutton"])) {
+            if (isset($data->buttonar["resolvedbutton"])) {
                 $ticket->change_status(ticket::STATUS_RESOLVED);
             }
             if (isset($data->buttonar["closebutton"])) {
