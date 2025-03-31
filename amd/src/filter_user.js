@@ -24,8 +24,6 @@
 define(["jquery", "core/modal_factory", "local_kopere_dashboard/dataTables_init"], function($, ModalFactory, dataTables_init) {
     return {
         init: function() {
-            var data_user_block_select = false;
-
             var chartUser = $("#chart-user-button-open");
             chartUser.show();
             chartUser.find(".badge").click(function() {
@@ -36,9 +34,13 @@ define(["jquery", "core/modal_factory", "local_kopere_dashboard/dataTables_init"
                 chartUser.find(".select").html(chartUser.attr("data-defaultfullname"));
             });
             chartUser.find(".select").click(function() {
-                if (data_user_block_select) {
-                    data_user_block_select.show();
+                if (window.data_user_block_select) {
+                    if (window.data_user_block_select != "wait") {
+                        window.data_user_block_select.show();
+                    }
                 } else {
+
+                    window.data_user_block_select = "wait";
 
                     ModalFactory.create({
                         type: ModalFactory.types.DEFAULT,
@@ -49,10 +51,10 @@ define(["jquery", "core/modal_factory", "local_kopere_dashboard/dataTables_init"
                             modal.root = modal._root;
                         }
 
-                        data_user_block_select = modal;
-                        data_user_block_select.show();
-                        data_user_block_select.root.addClass("kopere-bi");
-                        data_user_block_select.root.find(".modal-dialog")
+                        window.data_user_block_select = modal;
+                        window.data_user_block_select.show();
+                        window.data_user_block_select.root.addClass("kopere-bi");
+                        window.data_user_block_select.root.find(".modal-dialog")
                             .addClass("modal-xl").addClass("kopere-dashboard-modal");
 
                         var urlajax = $("#chart-user-datatable-select").attr("data-urlajax");
@@ -90,7 +92,7 @@ define(["jquery", "core/modal_factory", "local_kopere_dashboard/dataTables_init"
                             $("#chart-user-button-open .select").html(data.fullname);
                             $("[name=find_user]").val(data.id);
 
-                            data_user_block_select.hide();
+                            window.data_user_block_select.hide();
                             chartUser.find(".badge").show();
                         });
                     });
