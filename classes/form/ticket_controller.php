@@ -24,6 +24,7 @@
 
 namespace local_helpdesk\form;
 
+use context_system;
 use local_helpdesk\mail\ticket_mail;
 use moodle_url;
 use local_helpdesk\model\ticket;
@@ -44,13 +45,14 @@ class ticket_controller {
     public function insert_ticket() {
         global $PAGE, $OUTPUT, $USER;
 
-        $form = new ticket_form();
+        $hasticketmanage = has_capability("local/helpdesk:ticketmanage", context_system::instance());
+        $form = new ticket_form(null, ["has_ticketmanage" => $hasticketmanage]);
 
         if ($form->is_cancelled()) {
             redirect(new moodle_url("/local/helpdesk/index.php"));
         } else if ($data = $form->get_data()) {
             $ticket = new ticket([
-                "userid" => $USER->id,
+                "userid" => $data->find_user,
                 "courseid" => $data->courseid,
                 "categoryid" => $data->categoryid,
                 "subject" => $data->subject,
@@ -79,6 +81,7 @@ class ticket_controller {
         } else {
             $form->set_data([
                 "action" => "add",
+                "find_user" => $USER->id,
                 "courseid" => optional_param("courseid", 0, PARAM_INT),
             ]);
         }

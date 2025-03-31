@@ -26,6 +26,8 @@ namespace local_helpdesk\form;
 
 use local_helpdesk\model\category;
 use local_helpdesk\model\ticket;
+use local_helpdesk\util\filter;
+use local_kopere_dashboard\util\url_util;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -45,6 +47,8 @@ class ticket_form extends \moodleform {
      * @throws \dml_exception
      */
     protected function definition() {
+        global $PAGE, $OUTPUT, $USER;
+
         $mform = $this->_form;
 
         $mform->addElement("hidden", "id");
@@ -59,6 +63,24 @@ class ticket_form extends \moodleform {
         $mform->addElement("text", "subject", get_string("subject", "local_helpdesk"));
         $mform->setType("subject", PARAM_TEXT);
         $mform->addRule("subject", null, "required");
+
+        if ($this->_customdata["has_ticketmanage"]) {
+            filter::load_kopere();
+            $data = [
+                "user_id" => 0,
+                "user_fullname" => get_string("finduser", "local_helpdesk"),
+                "url_ajax" => url_util::makeurl("users", "load_all_users", [], "view-ajax"),
+                "hide_find_user" => true,
+                "hide_openuserby" => true,
+            ];
+            $PAGE->requires->js_call_amd("local_helpdesk/filter_user", "init");
+            $html = $OUTPUT->render_from_template("local_helpdesk/filter-user", $data);
+
+            $mform->addElement("hidden", "find_user");
+            $mform->setType("find_user", PARAM_INT);
+
+            $mform->addElement("static", "", get_string("finduser", "local_helpdesk"), $html);
+        }
 
         $categories = category::get_all();
         $categoryoptions = ["" => "..:: " . get_string("select") . " ::.."];
@@ -94,7 +116,7 @@ class ticket_form extends \moodleform {
             "maxbytes" => 0,
         ]);
 
-        if ($this->_customdata["ticket"]) {
+        if (isset($this->_customdata["ticket"])) {
             $this->add_action_buttons(true, get_string("editticket", "local_helpdesk"));
         } else {
             $this->add_action_buttons(true, get_string("createticket", "local_helpdesk"));

@@ -30,7 +30,7 @@ define(["jquery", "core/modal_factory", "local_kopere_dashboard/dataTables_init"
             chartCourse.show();
             chartCourse.find(".badge").click(function() {
                 chartCourse.find(".badge").hide();
-                chartCourse.find("input").val(0);
+                $("[name=courseid]").val(0);
 
                 console.log(chartCourse.attr("data-defaultfullname"));
                 chartCourse.find(".select").html(chartCourse.attr("data-defaultfullname"));
@@ -91,7 +91,7 @@ define(["jquery", "core/modal_factory", "local_kopere_dashboard/dataTables_init"
                             var data = window["datatable_course_select"].row(this).data();
 
                             $("#chart-course-button-open .select").html(data.fullname);
-                            $("#chart-course-button-open input").val(data.id);
+                            $("[name=courseid]").val(data.id);
 
                             data_course_block_select.hide();
                             chartCourse.find(".badge").show();

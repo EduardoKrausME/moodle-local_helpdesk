@@ -25,7 +25,9 @@
 }}
 <div id="chart-user-button-open" style="display: none"
      data-defaultfullname="{{#str}}finduser, local_helpdesk{{/str}}">
-    <label>{{#str}}openuserby, local_helpdesk{{/str}}:</label>
+    {{^hide_openuserby}}
+        <label>{{#str}}openuserby, local_helpdesk{{/str}}:</label>
+    {{/hide_openuserby}}
     <span class="select">
         {{{user_fullname}}}
     </span>
@@ -33,7 +35,9 @@
     <span class="badge badge-danger cursor-pointer"
           {{^user_id}}style="display:none"{{/user_id}}>X</span>
 
-    <input type="hidden" name="find_user" value="{{{user_id}}}">
+    {{^hide_find_user}}
+        <input type="hidden" name="find_user" value="{{{user_id}}}">
+    {{/hide_find_user}}
 </div>
 <div id="chart-user-datatable-select" style="display:none;"
      data-urlajax="{{{url_ajax}}}"

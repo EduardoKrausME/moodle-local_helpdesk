@@ -31,7 +31,7 @@ class filter {
      * Function load_kopere
      *
      */
-    private static function load_kopere() {
+    public static function load_kopere() {
         global $CFG;
 
         static $loadkopere = false;

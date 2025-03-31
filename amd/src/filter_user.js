@@ -30,7 +30,7 @@ define(["jquery", "core/modal_factory", "local_kopere_dashboard/dataTables_init"
             chartUser.show();
             chartUser.find(".badge").click(function() {
                 chartUser.find(".badge").hide();
-                chartUser.find("input").val(0);
+                $("[name=find_user]").val(0);
 
                 console.log(chartUser.attr("data-defaultfullname"));
                 chartUser.find(".select").html(chartUser.attr("data-defaultfullname"));
@@ -88,7 +88,7 @@ define(["jquery", "core/modal_factory", "local_kopere_dashboard/dataTables_init"
                             var data = window["datatable_user_select"].row(this).data();
 
                             $("#chart-user-button-open .select").html(data.fullname);
-                            $("#chart-user-button-open input").val(data.id);
+                            $("[name=find_user]").val(data.id);
 
                             data_user_block_select.hide();
                             chartUser.find(".badge").show();
