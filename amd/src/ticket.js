@@ -23,7 +23,7 @@
 
 define(["jquery", "core/ajax", "core/notification", "jqueryui"], function($, Ajax, Notification, ui) {
     return {
-        init: function() {
+        init: function(idkey) {
             $("#profile-tabs").tabs();
 
             $("#response-message-open").click(function() {
@@ -50,7 +50,7 @@ define(["jquery", "core/ajax", "core/notification", "jqueryui"], function($, Aja
                 Ajax.call([{
                     methodname: "local_helpdesk_ticket_column",
                     args: {
-                        idkey: "{{{idkey}}}",
+                        idkey: idkey,
                         column: $(this).attr("data-column"),
                         value: value,
                     }

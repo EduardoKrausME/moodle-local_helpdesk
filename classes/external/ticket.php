@@ -98,6 +98,7 @@ class ticket extends external_api {
             case "status":
                 if ($params["value"] != $ticket->get_status()) {
                     $ticket->change_status($params["value"]);
+                    $savestatus = get_string("lognewstatus", "local_helpdesk", $ticket->get_status_translated());
                 } else {
                     $savestatus = get_string("lognowupdate", "local_helpdesk");
                 }
@@ -105,6 +106,7 @@ class ticket extends external_api {
             case "priority":
                 if ($params["value"] != $ticket->get_priority()) {
                     $ticket->change_priority($params["value"]);
+                    $savestatus = get_string("lognewpriority", "local_helpdesk", $ticket->get_priority_translated());
                 } else {
                     $savestatus = get_string("lognowupdate", "local_helpdesk");
                 }

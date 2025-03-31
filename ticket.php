@@ -155,7 +155,7 @@ $templatecontext["has_closed"] = $ticket->has_closed();
 
 echo $OUTPUT->header();
 echo $OUTPUT->render_from_template("local_helpdesk/ticket", $templatecontext);
-$PAGE->requires->js_call_amd("local_helpdesk/ticket", "init");
+$PAGE->requires->js_call_amd("local_helpdesk/ticket", "init", [$ticket->get_idkey()]);
 
 // Closed ticket not answered.
 if ($ticket->get_status() != ticket::STATUS_CLOSED) {
