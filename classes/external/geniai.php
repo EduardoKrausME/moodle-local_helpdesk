@@ -174,7 +174,7 @@ class geniai extends external_api {
             }
         }
 
-        $gpt = api::chat_completions($messages, true);
+        $gpt = api::chat_completions($messages, true, "gpt-4o-mini");
 
         if (isset($gpt["choices"][0]["message"])) {
 
