@@ -65,7 +65,15 @@
 }}
 
 <form method="get">
-    <div class="area-finds">
+    <div class="area-finds mb-2">
+        <div class="area-find">
+            <label for="search">{{#str}}findticket, local_helpdesk{{/str}}: </label>
+            <input name="search" id="search" type="text"
+                   value="{{{search}}}"
+                   style="min-width: 380px;">
+        </div>
+    </div>
+    <div class="area-finds mb-2">
         <div class="area-find">
             <label for="find_status">{{#str}}ticketstatus, local_helpdesk{{/str}}: </label>
             <select name="find_status" id="find_status">
@@ -98,8 +106,7 @@
             </select>
         </div>
     </div>
-
-    <div class="area-finds" style="margin-top: 10px">
+    <div class="area-finds mb-2">
         <div class="area-find">
             {{{find_course}}}
         </div>
@@ -115,48 +122,48 @@
 
 <table class="generaltable">
     <thead>
-    <tr>
-        <th>&nbsp;</th>
-        <th>{{#str}}fullname{{/str}}</th>
-        <th>{{#str}}course{{/str}}</th>
-        <th>{{#str}}ticketsubject, local_helpdesk{{/str}}</th>
-        <th>{{#str}}ticketstatus, local_helpdesk{{/str}}</th>
-        <th>{{#str}}ticketpriority, local_helpdesk{{/str}}</th>
-        <th>{{#str}}ticketcategory, local_helpdesk{{/str}}</th>
-        <th>{{#str}}ticketcreatedat, local_helpdesk{{/str}}</th>
-        {{#has_manage}}
+        <tr>
             <th>&nbsp;</th>
-        {{/has_manage}}
-    </tr>
-    </thead>
-    <tbody>
-    {{#tickets}}
-        <tr onclick="location.href='ticket.php?id={{idkey}}'">
-            <td><img src="{{{user_picture}}}" alt="{{user_fullname}}" class="user_picture"></td>
-            <td>{{user_fullname}}</td>
-            <td>{{course_fullname}}</td>
-            <td>{{subject}}</td>
-            <td>
-                <span class="badge status-{{status}}">{{status_translated}}</span>
-            </td>
-            <td>
-                <span class="badge priority-{{priority}}">{{priority_translated}}</span>
-            </td>
-            <td>{{category_translate}}</td>
-            <td>{{createdat}}</td>
+            <th>{{#str}}fullname{{/str}}</th>
+            <th>{{#str}}course{{/str}}</th>
+            <th>{{#str}}ticketsubject, local_helpdesk{{/str}}</th>
+            <th>{{#str}}ticketstatus, local_helpdesk{{/str}}</th>
+            <th>{{#str}}ticketpriority, local_helpdesk{{/str}}</th>
+            <th>{{#str}}ticketcategory, local_helpdesk{{/str}}</th>
+            <th>{{#str}}ticketcreatedat, local_helpdesk{{/str}}</th>
             {{#has_manage}}
-                <td onclick="event.stopImmediatePropagation()">
-                    <a href="?action=edit&amp;id={{idkey}}" class="badge badge-success">{{#str}}edit{{/str}}</a>
-                </td>
+                <th>&nbsp;</th>
             {{/has_manage}}
         </tr>
-    {{/tickets}}
+    </thead>
+    <tbody>
+        {{#tickets}}
+            <tr onclick="location.href='ticket.php?id={{idkey}}'">
+                <td><img src="{{{user_picture}}}" alt="{{user_fullname}}" class="user_picture"></td>
+                <td>{{user_fullname}}</td>
+                <td>{{course_fullname}}</td>
+                <td>{{subject}}</td>
+                <td>
+                    <span class="badge status-{{status}}">{{status_translated}}</span>
+                </td>
+                <td>
+                    <span class="badge priority-{{priority}}">{{priority_translated}}</span>
+                </td>
+                <td>{{category_translate}}</td>
+                <td>{{createdat}}</td>
+                {{#has_manage}}
+                    <td onclick="event.stopImmediatePropagation()">
+                        <a href="?action=edit&amp;id={{idkey}}" class="badge badge-success">{{#str}}edit{{/str}}</a>
+                    </td>
+                {{/has_manage}}
+            </tr>
+        {{/tickets}}
     </tbody>
 </table>
 
 <div class="control-buttons">
-    <a href="?action=add&courseid={{courseid}}" class="btn btn-info text-nowrap">{{#str}}
-    addticket, local_helpdesk{{/str}}</a>
+    <a href="?action=add&courseid={{courseid}}"
+       class="btn btn-info text-nowrap">{{#str}}addticket, local_helpdesk{{/str}}</a>
 
     <div style="width: 100%"></div>
     {{#has_categorymanage}}

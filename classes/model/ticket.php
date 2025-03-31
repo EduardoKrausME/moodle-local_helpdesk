@@ -296,13 +296,14 @@ class ticket {
     /**
      * Function get_status_options
      *
-     * @param $selected
+     * @param string $selected
+     * @param bool $addall
      *
      * @return array
      * @throws \coding_exception
      */
-    public static function get_status_options($selected) {
-        return [
+    public static function get_status_options($selected, $addall = false) {
+        $status = [
             [
                 "key" => "open",
                 "label" => get_string("status_open", "local_helpdesk"),
@@ -321,6 +322,16 @@ class ticket {
                 "selected" => $selected == "closed" ? "selected" : "",
             ],
         ];
+
+        if ($addall) {
+            $status[] = [
+                "key" => "all",
+                "label" => get_string("status_all", "local_helpdesk"),
+                "selected" => $selected == "all" ? "selected" : "",
+            ];
+        }
+
+        return $status;
     }
 
     /**

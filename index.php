@@ -40,6 +40,7 @@ $findstatus = optional_param("find_status", false, PARAM_TEXT);
 $findcategory = optional_param("find_category", false, PARAM_INT);
 $courseid = optional_param("courseid", false, PARAM_INT);
 $finduser = optional_param("find_user", false, PARAM_INT);
+$search = optional_param("search", "", PARAM_TEXT);
 
 if ($courseid) {
     $context = context_course::instance($courseid);
@@ -121,7 +122,7 @@ if ($finduser) {
 }
 
 $templatecontext = [
-    "status_options" => ticket::get_status_options($findstatus),
+    "status_options" => ticket::get_status_options($findstatus, true),
     "priority_options" => ticket::get_priority_options($findpriority),
     "category_options" => $categoryoptions,
     "find_course" => \local_helpdesk\util\filter::create_filter_course($coursefullname, $courseid),
@@ -129,6 +130,8 @@ $templatecontext = [
     "tickets" => [],
 
     "courseid" => $courseid,
+
+    "search" => $search,
 
     "has_manage" => $hasticketmanage,
     "has_categorymanage" => $hascategorymanage,
@@ -147,7 +150,9 @@ if ($action == "add") {
         $params["priority"] = $findpriority;
     }
     if ($findstatus) {
-        $params["status"] = $findstatus;
+        if ($findstatus != "all") {
+            $params["status"] = $findstatus;
+        }
     } else {
         $params[] = "status NOT IN('resolved','closed')";
     }
@@ -180,7 +185,29 @@ if ($action == "add") {
             ELSE 5
         END,
         createdat ASC";
-    $tickets = ticket::get_all(null, $params, $order);
+
+    if (isset($search[2])) {
+        $wheres = [];
+        foreach ($params as $key => $value) {
+            if (is_int($key)) {
+                $wheres[] = $value;
+            } else {
+                $wheres[] = "{$key} = :{$key}";
+            }
+        }
+        if (isset($wheres[0])) {
+            $where = "WHERE " . implode(" AND ", $wheres) .
+                " AND (subject LIKE :search1 OR description LIKE :search2)";
+        } else {
+            $where = "WHERE subject LIKE :search1 OR description LIKE :search2";
+        }
+        $params["search1"] = "%{$search}%";
+        $params["search2"] = "%{$search}%";
+
+        $tickets = ticket::get_all($where, $params, $order);
+    } else {
+        $tickets = ticket::get_all(null, $params, $order);
+    }
 
     /** @var ticket $ticket */
     foreach ($tickets as $ticket) {
@@ -221,4 +248,6 @@ if ($hasticketmanage) {
     echo $OUTPUT->render_from_template("local_helpdesk/index-top", $templatecontexttop);
 }
 echo $OUTPUT->render_from_template("local_helpdesk/index", $templatecontext);
+$PAGE->requires->js_call_amd("local_helpdesk/index", "init");
+
 echo $OUTPUT->footer();
