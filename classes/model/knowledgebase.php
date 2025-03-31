@@ -64,7 +64,7 @@ class knowledgebase {
     /**
      * Function get_by_id
      *
-     * @param $knowledgebaseid
+     * @param int $knowledgebaseid
      *
      * @return knowledgebase|null
      * @throws \dml_exception

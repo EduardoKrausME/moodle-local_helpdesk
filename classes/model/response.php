@@ -54,7 +54,7 @@ class response {
     /**
      * response constructor.
      *
-     * @param $obj
+     * @param object|array $obj
      */
     public function __construct($obj) {
         foreach ($obj as $key => $value) {
@@ -67,7 +67,7 @@ class response {
     /**
      * Function get_by_id
      *
-     * @param $responseid
+     * @param int $responseid
      *
      * @return response|null
      * @throws \dml_exception
@@ -117,7 +117,7 @@ class response {
      * Function create_status
      *
      * @param ticket $ticket
-     * @param $message
+     * @param string $message
      *
      * @throws \dml_exception
      */
@@ -138,7 +138,7 @@ class response {
      * Function create_info
      *
      * @param ticket $ticket
-     * @param $message
+     * @param string $message
      *
      * @throws \dml_exception
      */
@@ -248,7 +248,7 @@ class response {
     /**
      * Function set_ticketid
      *
-     * @param $ticketid
+     * @param int $ticketid
      */
     public function set_ticketid($ticketid) {
         $this->ticketid = $ticketid;
@@ -257,7 +257,7 @@ class response {
     /**
      * Function set_userid
      *
-     * @param $userid
+     * @param int $userid
      */
     public function set_userid($userid) {
         $this->userid = $userid;
@@ -267,7 +267,7 @@ class response {
     /**
      * Function set_type
      *
-     * @param $type
+     * @param string $type
      */
     public function set_type($type) {
         $this->type = $type;
@@ -276,7 +276,7 @@ class response {
     /**
      * Function set_message
      *
-     * @param $message
+     * @param string $message
      */
     public function set_message($message) {
         $this->message = $message;

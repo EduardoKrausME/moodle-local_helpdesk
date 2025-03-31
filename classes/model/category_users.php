@@ -55,7 +55,7 @@ class category_users {
     /**
      * Function get_by_id
      *
-     * @param $categoryid
+     * @param int $categoryid
      *
      * @return category_users|null
      * @throws \dml_exception
@@ -135,7 +135,7 @@ class category_users {
     /**
      * Function set_categoryid
      *
-     * @param $categoryid
+     * @param int $categoryid
      */
     public function set_categoryid($categoryid): void {
         $this->categoryid = $categoryid;
@@ -173,7 +173,7 @@ class category_users {
     /**
      * Function set_userid
      *
-     * @param $userid
+     * @param int $userid
      */
     public function set_userid($userid): void {
         $this->userid = $userid;
@@ -192,7 +192,7 @@ class category_users {
     /**
      * Function set_createdat
      *
-     * @param $createdat
+     * @param string $createdat
      */
     public function set_createdat($createdat): void {
         $this->createdat = $createdat;

@@ -75,7 +75,7 @@ class ticket {
     /**
      * ticket constructor.
      *
-     * @param $obj
+     * @param object|array $obj
      */
     public function __construct($obj) {
         foreach ($obj as $key => $value) {
@@ -347,7 +347,7 @@ class ticket {
     /**
      * Function status_translated
      *
-     * @param $status
+     * @param string $status
      *
      * @return string
      * @throws \coding_exception
@@ -379,7 +379,7 @@ class ticket {
     /**
      * Function get_priority_options
      *
-     * @param $selected
+     * @param string $selected
      *
      * @return array
      * @throws \coding_exception
@@ -419,7 +419,7 @@ class ticket {
     /**
      * Function priority_translated
      *
-     * @param $priority
+     * @param string $priority
      *
      * @return string
      * @throws \coding_exception
@@ -462,7 +462,7 @@ class ticket {
     /**
      * Function set_categoryid
      *
-     * @param $categoryid
+     * @param int $categoryid
      */
     public function set_categoryid($categoryid) {
         $this->categoryid = $categoryid;
@@ -472,7 +472,7 @@ class ticket {
     /**
      * Function set_userid
      *
-     * @param $userid
+     * @param int $userid
      */
     public function set_userid($userid) {
         $this->userid = $userid;
@@ -481,7 +481,7 @@ class ticket {
     /**
      * Function set_subject
      *
-     * @param $subject
+     * @param string $subject
      */
     public function set_subject($subject) {
         $this->subject = $subject;
@@ -490,7 +490,7 @@ class ticket {
     /**
      * Function set_description
      *
-     * @param $description
+     * @param string $description
      */
     public function set_description($description) {
         $this->description = $description;
@@ -499,7 +499,7 @@ class ticket {
     /**
      * Function set_status
      *
-     * @param $status
+     * @param string $status
      */
     public function set_status($status) {
         $this->status = $status;
@@ -508,7 +508,7 @@ class ticket {
     /**
      * Function change_status
      *
-     * @param $newstatus
+     * @param string $newstatus
      *
      * @return bool
      *
@@ -533,7 +533,7 @@ class ticket {
     /**
      * Function set_priority
      *
-     * @param $priority
+     * @param string $priority
      */
     public function set_priority($priority) {
         $this->priority = $priority;
@@ -542,7 +542,7 @@ class ticket {
     /**
      * Function change_priority
      *
-     * @param $newpriority
+     * @param string $newpriority
      *
      * @return bool
      *
@@ -567,7 +567,7 @@ class ticket {
     /**
      * Function set_updatedat
      *
-     * @param $updatedat
+     * @param string $updatedat
      */
     public function set_updatedat($updatedat) {
         $this->updatedat = $updatedat;

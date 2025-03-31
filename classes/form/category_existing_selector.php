@@ -42,8 +42,8 @@ class category_existing_selector extends user_selector_base {
     /**
      * category_existing_selector constructor.
      *
-     * @param $name
-     * @param $options
+     * @param string $name
+     * @param array $options
      */
     public function __construct($name, $options) {
         $this->categoryid = $options["categoryid"];

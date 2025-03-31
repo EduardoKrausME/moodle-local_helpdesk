@@ -57,7 +57,7 @@ class category {
     /**
      * Function get_by_id
      *
-     * @param $categoryid
+     * @param int $categoryid
      *
      * @return category|null
      * @throws \dml_exception
@@ -205,7 +205,7 @@ class category {
     /**
      * Function set_name
      *
-     * @param $name
+     * @param string $name
      */
     public function set_name($name) {
         $this->name = $name;
@@ -214,7 +214,7 @@ class category {
     /**
      * Function set_description
      *
-     * @param $description
+     * @param string $description
      */
     public function set_description($description) {
         $this->description = $description;

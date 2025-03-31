@@ -34,7 +34,7 @@ class model_base {
      * Function get_all
      *
      * @param string $table
-     * @param $class
+     * @param string $class
      * @param array|string $wheres
      * @param array $params
      * @param string $order

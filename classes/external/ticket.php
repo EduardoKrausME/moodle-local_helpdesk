@@ -77,10 +77,13 @@ class ticket extends external_api {
     /**
      * Function column
      *
-     * @param $elements
+     * @param string $idkey
+     * @param string $column
+     * @param string $value
      *
      * @return array
-     * @throws \Exception
+     * @throws \coding_exception
+     * @throws \dml_exception
      */
     public static function column($idkey, $column, $value) {
         $params = self::validate_parameters(self::column_parameters(), [

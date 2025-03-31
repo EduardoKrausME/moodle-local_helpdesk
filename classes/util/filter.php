@@ -47,8 +47,8 @@ class filter {
     /**
      * Function create_filter_course
      *
-     * @param $coursefullname
-     * @param $courseid
+     * @param string $coursefullname
+     * @param int $courseid
      *
      * @return mixed
      * @throws \coding_exception
@@ -77,8 +77,8 @@ class filter {
     /**
      * Function create_filter_user
      *
-     * @param $userfullname
-     * @param $userid
+     * @param string $userfullname
+     * @param int $userid
      *
      * @return mixed
      */

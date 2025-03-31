@@ -27,7 +27,7 @@ use local_kopere_bi\local\util\install_for_file;
 /**
  * Function xmldb_local_helpdesk_upgrade
  *
- * @param $oldversion
+ * @param int $oldversion
  *
  * @return bool
  *
