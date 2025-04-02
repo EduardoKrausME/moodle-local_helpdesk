@@ -92,6 +92,7 @@ function local_helpdesk_extend_navigation(global_navigation $nav) {
             $nav->add($name, new moodle_url($url));
             $node = $mynode->add($name, new moodle_url($url), 0, null, "helpdesk_menu");
             $node->showinflatnavigation = true;
+            $name = str_replace(",", "&#44;", $name);
             $CFG->custommenuitems .= "\n{$name}|{$url}";
         } catch (Exception $e) { // phpcs:disable
         }
