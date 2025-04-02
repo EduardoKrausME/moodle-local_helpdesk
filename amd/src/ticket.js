@@ -24,12 +24,12 @@
 define(["jquery", "core/ajax", "core/notification", "jqueryui"], function($, Ajax, Notification, ui) {
     return {
         init: function(idkey) {
-            $("#profile-tabs").tabs();
+            $("#profile-tabs").show(300).tabs();
+            $("#area-resonse").show(300);
 
             $("#response-message-open").click(function() {
                 $("#response-message-area").html("");
                 $(".response-message").show(300);
-                $(".response-message").appendTo("#response-message-area");
             });
 
             $("#response-message-resolved").click(function() {

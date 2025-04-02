@@ -101,7 +101,11 @@ $templatecontext = [
     "user" => $ticket->get_user(),
     "user_fullname" => fullname($ticket->get_user()),
     "user_picture" => (new user_picture($ticket->get_user()))->get_url($PAGE),
-    "profile_details" => \local_kopere_dashboard\profile::details2($ticket->get_user(), false),
+
+    "detail"=>[
+        "list_courses" => \local_kopere_dashboard\profile::list_courses($ticket->get_user()->id),
+        "get_user_info" => \local_kopere_dashboard\profile::get_user_info($ticket->get_user()),
+    ],
 
     "id" => $ticket->get_id(),
     "idkey" => $ticket->get_idkey(),
@@ -153,19 +157,20 @@ foreach ($responses as $response) {
 $templatecontext["allfiles_count"] = count($templatecontext["allfiles"]);
 $templatecontext["has_closed"] = $ticket->has_closed();
 
+// Closed ticket not answered.
+if ($ticket->get_status() != ticket::STATUS_CLOSED) {
+
+    $templatecontext["responseform"] = \html_writer::start_tag("div", ["class" => "response-message card"]);
+    $responsecontroller = new response_controller();
+    $templatecontext["responseform"] .= $responsecontroller->insert_response($ticket, $hasticketmanage);
+    $templatecontext["responseform"] .= \html_writer::end_tag("div");
+} else {
+    $message = get_string("ticketclosed", "local_helpdesk");
+    $templatecontext["responseform"] = $PAGE->get_renderer("core")->render(new \core\output\notification($message, "success"));
+}
+
 echo $OUTPUT->header();
 echo $OUTPUT->render_from_template("local_helpdesk/ticket", $templatecontext);
 $PAGE->requires->js_call_amd("local_helpdesk/ticket", "init", [$ticket->get_idkey()]);
-
-// Closed ticket not answered.
-if ($ticket->get_status() != ticket::STATUS_CLOSED) {
-    echo \html_writer::start_tag("div", ["class" => "response-message card"]);
-    $responsecontroller = new response_controller();
-    $responsecontroller->insert_response($ticket, $hasticketmanage);
-    echo \html_writer::end_tag("div");
-} else {
-    $message = get_string("ticketclosed", "local_helpdesk");
-    $html = $PAGE->get_renderer("core")->render(new \core\output\notification($message, "success"));
-}
 
 echo $OUTPUT->footer();
