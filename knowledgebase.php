@@ -197,10 +197,7 @@ if ($id) {
 
         $templatecontext["sugestion"] = [];
 
-        /**
-         * @var int $createid
-         * @var object $category
-         */
+        /** @var object $category */
         foreach ($categorys as $createid => $category) {
             $cat = $DB->get_record("local_helpdesk_category", ["name" => $category->name]);
             if (!$cat) {
