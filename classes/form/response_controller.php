@@ -45,8 +45,8 @@ class response_controller {
      * @param ticket $ticket
      * @param bool $hasticketmanage
      *
+     * @return string
      * @throws \coding_exception
-     * @throws \core\exception\moodle_exception
      * @throws \dml_exception
      * @throws \moodle_exception
      */
@@ -99,6 +99,6 @@ class response_controller {
                 "idkey" => $ticket->get_idkey(),
             ]);
         }
-        $form->display();
+       return $form->render();
     }
 }
