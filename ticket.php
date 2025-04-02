@@ -22,6 +22,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use core\output\notification;
 use local_helpdesk\form\response_controller;
 use local_helpdesk\model\category;
 use local_helpdesk\model\response;
@@ -36,6 +37,14 @@ global $DB, $OUTPUT, $PAGE, $USER;
 $ticketid = optional_param("id", false, PARAM_INT);
 
 $ticket = ticket::get_by_id($ticketid);
+
+if (!$ticket) {
+    echo $OUTPUT->header();;
+    $message = get_string("ticketnotfound", "local_helpdesk");
+    echo $PAGE->get_renderer("core")->render(new notification($message, "danger"));
+    echo $OUTPUT->footer();
+    die;
+}
 
 if ($ticket->get_courseid()) {
     $context = context_course::instance($ticket->get_courseid());
@@ -166,7 +175,7 @@ if ($ticket->get_status() != ticket::STATUS_CLOSED) {
     $templatecontext["responseform"] .= \html_writer::end_tag("div");
 } else {
     $message = get_string("ticketclosed", "local_helpdesk");
-    $templatecontext["responseform"] = $PAGE->get_renderer("core")->render(new \core\output\notification($message, "success"));
+    $templatecontext["responseform"] = $PAGE->get_renderer("core")->render(new notification($message, "success"));
 }
 
 echo $OUTPUT->header();
