@@ -65,49 +65,80 @@ if ($hasknowledgebasemanage) {
     $PAGE->set_secondary_navigation(false);
 }
 
-if (optional_param("action", false, PARAM_TEXT) == "add") {
-    $controller = new knowledgebase_controller();
-    $controller->insert_knowledgebase();
-}
-if (optional_param("action", false, PARAM_TEXT) == "edit" && $knowledgebase->get_id()) {
-    $controller = new knowledgebase_controller();
-    $controller->update_knowledgebase($knowledgebase);
-}
-if (optional_param("action", false, PARAM_TEXT) == "delete" && $knowledgebase->get_id()) {
-
-    $PAGE->set_title(get_string("knowledgebase_delete", "local_helpdesk"));
-    $PAGE->set_heading(get_string("knowledgebase_delete", "local_helpdesk"));
-
-    $PAGE->navbar->add(get_string("knowledgebase_delete", "local_helpdesk"));
-
-    if (optional_param("confirm", "", PARAM_TEXT) == md5($knowledgebase->get_id() . sesskey())) {
-        require_sesskey();
-
-        $knowledgebase->delete();
-
-        redirect(new moodle_url("/local/helpdesk/knowledgebase.php"),
-            get_string("knowledgebase_delete_success", "local_helpdesk"), null,
-            \core\output\notification::NOTIFY_SUCCESS);
+if ($hasknowledgebasemanage) {
+    if (optional_param("action", false, PARAM_TEXT) == "add") {
+        $controller = new knowledgebase_controller();
+        $controller->insert_knowledgebase();
     }
+    if (optional_param("action", false, PARAM_TEXT) == "edit" && $knowledgebase->get_id()) {
+        $controller = new knowledgebase_controller();
+        $controller->update_knowledgebase($knowledgebase);
+    }
+    if (optional_param("action", false, PARAM_TEXT) == "delete" && $knowledgebase->get_id()) {
 
-    echo $OUTPUT->header();
+        $PAGE->set_title(get_string("knowledgebase_delete", "local_helpdesk"));
+        $PAGE->set_heading(get_string("knowledgebase_delete", "local_helpdesk"));
 
-    $cancelurl = new moodle_url("/local/helpdesk/knowledgebase.php");
-    $continueurl = new moodle_url("/local/helpdesk/knowledgebase.php",
-        [
-            "id" => $knowledgebase->get_id(),
-            "action" => "delete",
-            "confirm" => md5($knowledgebase->get_id() . sesskey()),
-            "sesskey" => sesskey(),
-        ]);
-    $continuebutton = new \single_button($continueurl, get_string("delete"), "post", "danger");
-    echo $OUTPUT->confirm(
-        get_string("knowledgebase_delete_confirm", "local_helpdesk", $knowledgebase->get_title()),
-        $continuebutton,
-        $cancelurl);
+        $PAGE->navbar->add(get_string("knowledgebase_delete", "local_helpdesk"));
 
-    echo $OUTPUT->footer();
-    die;
+        if (optional_param("confirm", "", PARAM_TEXT) == md5($knowledgebase->get_id() . sesskey())) {
+            require_sesskey();
+
+            $knowledgebase->delete();
+
+            redirect(new moodle_url("/local/helpdesk/knowledgebase.php"),
+                get_string("knowledgebase_delete_success", "local_helpdesk"), null,
+                \core\output\notification::NOTIFY_SUCCESS);
+        }
+
+        echo $OUTPUT->header();
+
+        $cancelurl = new moodle_url("/local/helpdesk/knowledgebase.php");
+        $continueurl = new moodle_url("/local/helpdesk/knowledgebase.php",
+            [
+                "id" => $knowledgebase->get_id(),
+                "action" => "delete",
+                "confirm" => md5($knowledgebase->get_id() . sesskey()),
+                "sesskey" => sesskey(),
+            ]);
+        $continuebutton = new \single_button($continueurl, get_string("delete"), "post", "danger");
+        echo $OUTPUT->confirm(
+            get_string("knowledgebase_delete_confirm", "local_helpdesk", $knowledgebase->get_title()),
+            $continuebutton,
+            $cancelurl);
+
+        echo $OUTPUT->footer();
+        die;
+    }
+    if (optional_param("action", false, PARAM_TEXT) == "import") {
+        $path = __DIR__ . "/db/knowledgebases/{$CFG->lang}.json";
+        if (file_exists($path)) {
+            $categorys = json_decode(file_get_contents($path));
+
+            foreach ($categorys as $createid => $category) {
+                if ($createid == required_param("createid", PARAM_INT)) {
+                    $category->createdat = time();
+                    $knowledgebases = $category->knowledgebases;
+                    unset($category->knowledgebases);
+
+                    $category->id = $DB->insert_record("local_helpdesk_category", $category);
+
+                    foreach ($knowledgebases as $knowledgebase) {
+                        $knowledgebase->categoryid = $category->id;
+                        $knowledgebase->userid = $USER->id;
+                        $knowledgebase->createdat = time();
+                        $knowledgebase->updatedat = time();
+                        $knowledgebase->description = str_replace("{moodlename}", $SITE->fullname, $knowledgebase->description);
+                        $knowledgebase->description = str_replace("{moodleurl}", $CFG->wwwroot, $knowledgebase->description);
+
+                        $DB->insert_record("local_helpdesk_knowledgebase", $knowledgebase);
+                    }
+                }
+            }
+        }
+
+        redirect(new moodle_url("/local/helpdesk/knowledgebase.php"), get_string("categoryadded", "local_helpdesk"));
+    }
 }
 
 if ($id) {
@@ -142,7 +173,6 @@ if ($id) {
     }
     /** @var category $category */
     foreach ($categorys as $category) {
-
         $knowledgebases = knowledgebase::get_all(null, ["categoryid" => $category->get_id()], "title ASC");
         if ($knowledgebases || $hasknowledgebasemanage) {
             $cat = [
@@ -160,6 +190,36 @@ if ($id) {
             $templatecontext["categorys"][] = $cat;
         }
     }
+
+    $path = __DIR__ . "/db/knowledgebases/{$CFG->lang}.json";
+    if (file_exists($path)) {
+        $categorys = json_decode(file_get_contents($path));
+
+        $templatecontext["sugestion"] = [];
+
+        /**
+         * @var int $createid
+         * @var object $category
+         */
+        foreach ($categorys as $createid => $category) {
+            $cat = $DB->get_record("local_helpdesk_category", ["name" => $category->name]);
+            if (!$cat) {
+                $category->createid = $createid;
+
+                /** @var object $knowledgebase */
+                foreach ($category->knowledgebases as &$knowledgebase) {
+                    $knowledgebase->description = str_replace("{moodlename}", $SITE->fullname, $knowledgebase->description);
+                    $knowledgebase->description = str_replace("{moodleurl}", $CFG->wwwroot, $knowledgebase->description);
+                }
+
+                $templatecontext["sugestion"][] = $category;
+            }
+        }
+
+        $templatecontext["has_sugestion"] = count($templatecontext["sugestion"]);
+    }
+
     echo $OUTPUT->render_from_template("local_helpdesk/knowledgebase", $templatecontext);
+
     echo $OUTPUT->footer();
 }

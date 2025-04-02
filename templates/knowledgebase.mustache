@@ -43,22 +43,79 @@
 <h2>{{#str}}knowledgebase_name, local_helpdesk{{/str}}</h2>
 
 {{#categorys}}
-    <h3><a href="knowledgebase.php?cat={{categoryid}}">{{{name}}}</a>
-        {{#has_manage}}
-            - <a href="?action=add&cat={{categoryid}}" class="badge badge-info">{{#str}}knowledgebase_addnew, local_helpdesk{{/str}}</a>
-        {{/has_manage}}</h3>
+    <h3><a href="knowledgebase.php?cat={{categoryid}}">{{{name}}}</a></h3>
     <ul>
         {{#knowledgebases}}
             <li>
                 <a href="knowledgebase.php?id={{id}}">{{title}}</a>
                 {{#has_manage}}
                     - <a href="?action=edit&amp;id={{id}}" class="badge badge-success">{{#str}}edit{{/str}}</a>
+                    - <a href="?action=delete&amp;id={{id}}" class="badge badge-danger">{{#str}}delete{{/str}}</a>
                 {{/has_manage}}
             </li>
         {{/knowledgebases}}
     </ul>
+
+    {{#has_manage}}
+        <a href="?action=add&cat={{categoryid}}" class="badge badge-info">{{#str}}knowledgebase_addnew, local_helpdesk{{/str}}</a>
+    {{/has_manage}}
 {{/categorys}}
 
-{{#has_manage}}
-    <a href="?action=add" class="btn btn-success">{{#str}}knowledgebase_addnew, local_helpdesk{{/str}}</a>
-{{/has_manage}}
+{{#has_sugestion}}
+    <fieldset class="sugestion-fieldset">
+        <legend>Sugestão de bases de conhecimentos para você adicionar ao seu Moodle</legend>
+
+        {{#sugestion}}
+            <h3>{{{name}}}</h3>
+            {{#knowledgebases}}
+                <div class="knowledgebase">
+                    <h6>{{{title}}}</h6>
+                    <div class="description-block">
+                        <div class="description">
+                            {{{description}}}
+                        </div>
+                    </div>
+                </div>
+            {{/knowledgebases}}
+            <p><a class="btn btn-primary ml-3"
+                  href="?action=import&createid={{createid}}">Adicionar está categoria na base de dados</a></p>
+        {{/sugestion}}
+    </fieldset>
+    <style>
+        .sugestion-fieldset {
+            border: 1px solid #7f7f7f;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .sugestion-fieldset .knowledgebase {
+            border: 1px solid #939393;
+            margin: 11px;
+        }
+        .sugestion-fieldset .knowledgebase .description-block {
+            position: relative;
+            height: 65px;
+            margin: 11px;
+        }
+        .sugestion-fieldset .knowledgebase .description {
+            position: absolute;
+            border: 1px solid #939393;
+            padding: 5px;
+            overflow: hidden;
+            max-height: 65px;
+            text-overflow: ellipsis;
+            transition: all 0.3s ease-in-out;
+            font-size: 10px;
+            width: 100%;
+        }
+        .sugestion-fieldset .knowledgebase .description:hover {
+            overflow: visible;
+            max-height: 6000px;
+            z-index: 1000;
+            background: #e7e7e7;
+            padding: 10px;
+            border: 1px solid #aaa;
+            box-shadow: 3px 3px 8px #00000075;
+            font-size: 14px;
+        }
+    </style>
+{{/has_sugestion}}
