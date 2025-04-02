@@ -99,6 +99,6 @@ class response_controller {
                 "idkey" => $ticket->get_idkey(),
             ]);
         }
-       return $form->render();
+        return $form->render();
     }
 }
