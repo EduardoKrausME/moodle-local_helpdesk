@@ -48,7 +48,7 @@ function local_helpdesk_extends_navigation(global_navigation $nav) {
 function local_helpdesk_extend_navigation(global_navigation $nav) {
     global $PAGE, $COURSE, $SITE, $CFG;
 
-    $CFG->custommenuitems = preg_replace('/\n.*\/local\/helpdesk.*/', '', $CFG->custommenuitems);
+    $CFG->custommenuitems = preg_replace('/.*\/local\/helpdesk.*/', '', $CFG->custommenuitems);
 
     $showmenu = true;
     if (!isloggedin()) {
