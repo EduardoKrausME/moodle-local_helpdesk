@@ -130,7 +130,11 @@ class ticket {
      * @throws \dml_exception
      */
     public function save() {
-        global $DB;
+        global $DB, $USER;
+
+        if (!$this->userid) {
+            $this->userid = $USER->id;
+        }
 
         if ($this->id) {
             return $DB->update_record("local_helpdesk_ticket", get_object_vars($this));
