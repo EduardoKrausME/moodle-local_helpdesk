@@ -34,11 +34,11 @@ define(["jquery", "core/ajax", "core/notification", "jqueryui"], function($, Aja
 
             $("#response-message-resolved").click(function() {
                 $("#response-message-area").hide(300);
-                location.href = "?id={{idkey}}&newstatus=resolved";
+                location.href = `?id=${idkey}&newstatus=resolved`;
             });
             $("#response-message-closed").click(function() {
                 $("#response-message-area").hide(300);
-                location.href = "?id={{idkey}}&newstatus=closed";
+                location.href = `?id=${idkey}&newstatus=closed`;
             });
 
             $("#id_buttonar_resolvedbutton").removeClass("btn-primary").addClass("btn-info");
