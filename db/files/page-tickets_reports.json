@@ -1,0 +1,54 @@
+{
+    "title": "lang::report_tickets_reports_page_title::local_helpdesk",
+    "description": "lang::report_tickets_reports_page_description::local_helpdesk",
+    "refkey": "tickets_reports",
+    "category": {
+        "title": "lang::pluginname::local_helpdesk",
+        "refkey": "local_helpdesk",
+        "description": ""
+    },
+    "blocks": [
+        {
+            "refkey": "tickets_created_by_period",
+            "type": "block-1",
+            "sequence": 2,
+            "elements": [
+                {
+                    "refkey": "tickets_created_by_period",
+                    "title": "lang::report_general_reports_tickets_created_by_period_cat_title::local_helpdesk",
+                    "block_num": 1,
+                    "type": "table",
+                    "theme": "light",
+                    "css": "",
+                    "html_before": "",
+                    "html_after": "",
+                    "commandsql": "SELECT \r\n    c.name AS categoria,\r\n    FROM_UNIXTIME(t.createdat, '%Y-%m-%d') AS data_criacao,\r\n    COUNT(t.id) AS total_tickets\r\n  FROM mdl_local_helpdesk_ticket   t\r\n  JOIN mdl_local_helpdesk_category c ON t.categoryid = c.id\r\nGROUP BY c.name, data_criacao\r\nORDER BY data_criacao DESC, total_tickets DESC",
+                    "cache": "6h",
+                    "reload": "none",
+                    "info": "{\n    \"column\": {\n        \"categoria\": {\n            \"key\": \"categoria\",\n            \"title\": \"lang::category::local_helpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{categoria}}}\"\n        },\n        \"data_criacao\": {\n            \"key\": \"data_criacao\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_data_criacao::local_helpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{data_criacao}}}\"\n        },\n        \"total_tickets\": {\n            \"key\": \"total_tickets\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_total_tickets::local_helpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"\"\n        },\n        \"avg_first_response_time\": {\n            \"key\": \"avg_first_response_time\",\n            \"title\": \"lang::avg_first_response_time::local_helpdesk\",\n            \"type\": \"timeRenderer\",\n            \"mustache\": \"\"\n        },\n        \"avg_closing_time\": {\n            \"key\": \"avg_closing_time\",\n            \"title\": \"lang::avg_closing_time::local_helpdesk\",\n            \"type\": \"timeRenderer\",\n            \"mustache\": \"\"\n        }\n    }\n}"
+                }
+            ]
+        },
+        {
+            "refkey": "tickets_resolved_by_period",
+            "type": "block-1",
+            "sequence": 3,
+            "elements": [
+                {
+                    "refkey": "tickets_resolved_by_period",
+                    "title": "lang::report_general_reports_tickets_resolved_by_period_cat_title::local_helpdesk",
+                    "block_num": 1,
+                    "type": "table",
+                    "theme": "light",
+                    "css": "",
+                    "html_before": "",
+                    "html_after": "",
+                    "commandsql": "SELECT c.name AS category_name,\r\n       FROM_UNIXTIME(t.closedat, '%Y-%m') AS period,\r\n       COUNT(t.id) AS total_resolved\r\n  FROM mdl_local_helpdesk_ticket   t\r\n  JOIN mdl_local_helpdesk_category c ON t.categoryid = c.id\r\n WHERE t.closedat > 1000\r\nGROUP BY c.name, period\r\nORDER BY period DESC, total_resolved DESC",
+                    "cache": "1d",
+                    "reload": "none",
+                    "info": "{\n    \"column\": {\n        \"category_name\": {\n            \"key\": \"category_name\",\n            \"title\": \"lang::category::local_helpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{category_name}}}\"\n        },\n        \"period\": {\n            \"key\": \"period\",\n            \"title\": \"lang::report_general_reports_tickets_resolved_by_period_period::local_helpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{period}}}\"\n        },\n        \"total_resolved\": {\n            \"key\": \"total_resolved\",\n            \"title\": \"lang::report_general_reports_tickets_resolved_by_period_total_resolved::local_helpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"{{{total_resolved}}}\"\n        }\n    }\n}"
+                }
+            ]
+        }
+    ]
+}

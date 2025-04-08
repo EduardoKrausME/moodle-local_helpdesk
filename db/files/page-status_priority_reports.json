@@ -1,10 +1,10 @@
 {
     "title": "lang::report_status_priority_reports_page_title::local_helpdesk",
     "description": "lang::report_status_priority_reports_page_description::local_helpdesk",
-    "user_id": null,
+    "refkey": "status_priority_reports",
     "category": {
-        "refkey": "local_helpdesk",
         "title": "lang::pluginname::local_helpdesk",
+        "refkey": "local_helpdesk",
         "description": ""
     },
     "blocks": [
@@ -22,10 +22,10 @@
                     "css": "",
                     "html_before": "",
                     "html_after": "",
-                    "commandsql": "SELECT c.name AS category_name,\r\n       t.status,\r\n       COUNT(t.id) AS total_tickets\r\n  FROM mdl_local_helpdesk_ticket t\r\n  JOIN mdl_local_helpdesk_category c ON t.categoryid = c.id\r\nGROUP BY c.name, t.status\r\nORDER BY total_tickets DESC",
+                    "commandsql": "SELECT \r\n    c.name AS category_name,\r\n   CONCAT('lang::status_', t.status, '::local_helpdesk') AS status,\r\n   COUNT(t.id) AS total_tickets,\r\n\r\n    -- Average first response time (in seconds)\r\n    AVG(CASE \r\n        WHEN t.answeredat IS NOT NULL AND t.answeredat > 0 \r\n        THEN t.answeredat - t.createdat \r\n        ELSE NULL \r\n    END) AS avg_first_response_time,\r\n\r\n    -- Average closing time (in seconds)\r\n    AVG(CASE \r\n        WHEN t.closedat IS NOT NULL AND t.closedat > 0 \r\n        THEN t.closedat - t.createdat \r\n        ELSE NULL \r\n    END) AS avg_closing_time\r\n\r\n  FROM mdl_local_helpdesk_ticket t\r\n  JOIN mdl_local_helpdesk_category c ON t.categoryid = c.id\r\nGROUP BY c.name, t.status\r\nORDER BY total_tickets DESC",
                     "cache": "1d",
                     "reload": "none",
-                    "info": "{\n    \"column\": {\n        \"category_name\": {\n            \"key\": \"category_name\",\n            \"title\": \"lang::category::local_helpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{category_name}}}\"\n        },\n        \"status\": {\n            \"key\": \"status\",\n            \"title\": \"lang::status::moodle\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{status}}}\"\n        },\n        \"total_tickets\": {\n            \"key\": \"total_tickets\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_total_tickets::local_helpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"{{{total_tickets}}}\"\n        }\n    }\n}"
+                    "info": "{\n    \"column\": {\n        \"category_name\": {\n            \"key\": \"category_name\",\n            \"title\": \"lang::category::local_helpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{category_name}}}\"\n        },\n        \"status\": {\n            \"key\": \"status\",\n            \"title\": \"lang::status::moodle\",\n            \"type\": \"translate\",\n            \"mustache\": \"{{{status}}}\"\n        },\n        \"total_tickets\": {\n            \"key\": \"total_tickets\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_total_tickets::local_helpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"\"\n        },\n        \"avg_first_response_time\": {\n            \"key\": \"avg_first_response_time\",\n            \"title\": \"lang::avg_first_response_time::local_helpdesk\",\n            \"type\": \"timeRenderer\",\n            \"mustache\": \"\"\n        },\n        \"avg_closing_time\": {\n            \"key\": \"avg_closing_time\",\n            \"title\": \"lang::avg_closing_time::local_helpdesk\",\n            \"type\": \"timeRenderer\",\n            \"mustache\": \"\"\n        }\n    }\n}"
                 }
             ]
         },
@@ -43,10 +43,10 @@
                     "css": "",
                     "html_before": "",
                     "html_after": "",
-                    "commandsql": "SELECT t.priority,\r\n       COUNT(t.id) AS total_tickets\r\n  FROM mdl_local_helpdesk_ticket t\r\nGROUP BY t.priority\r\nORDER BY CASE\r\n            WHEN priority = 'urgent' THEN 1\r\n            WHEN priority = 'high'   THEN 2\r\n            WHEN priority = 'medium' THEN 3\r\n            WHEN priority = 'low'    THEN 4\r\n            ELSE 5\r\n        END",
+                    "commandsql": "SELECT CONCAT('lang::priority_', t.priority, '::local_helpdesk') AS priority,\r\n       COUNT(t.id) AS total_tickets,\r\n\r\n    -- Average first response time (in seconds)\r\n    AVG(CASE \r\n        WHEN t.answeredat IS NOT NULL AND t.answeredat > 0 \r\n        THEN t.answeredat - t.createdat \r\n        ELSE NULL \r\n    END) AS avg_first_response_time,\r\n\r\n    -- Average closing time (in seconds)\r\n    AVG(CASE \r\n        WHEN t.closedat IS NOT NULL AND t.closedat > 0 \r\n        THEN t.closedat - t.createdat \r\n        ELSE NULL \r\n    END) AS avg_closing_time\r\n\r\n  FROM mdl_local_helpdesk_ticket t\r\nGROUP BY t.priority",
                     "cache": "1d",
                     "reload": "none",
-                    "info": "{\n    \"column\": {\n        \"priority\": {\n            \"key\": \"priority\",\n            \"title\": \"lang::priority::local_helpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{priority}}}\"\n        },\n        \"total_tickets\": {\n            \"key\": \"total_tickets\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_total_tickets::local_helpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"{{{total_tickets}}}\"\n        }\n    }\n}"
+                    "info": "{\n    \"column\": {\n        \"priority\": {\n            \"key\": \"priority\",\n            \"title\": \"lang::priority::local_helpdesk\",\n            \"type\": \"translate\",\n            \"mustache\": \"{{{priority}}}\"\n        },\n        \"total_tickets\": {\n            \"key\": \"total_tickets\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_total_tickets::local_helpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"\"\n        },\n        \"avg_first_response_time\": {\n            \"key\": \"avg_first_response_time\",\n            \"title\": \"lang::avg_first_response_time::local_helpdesk\",\n            \"type\": \"timeRenderer\",\n            \"mustache\": \"\"\n        },\n        \"avg_closing_time\": {\n            \"key\": \"avg_closing_time\",\n            \"title\": \"lang::avg_closing_time::local_helpdesk\",\n            \"type\": \"timeRenderer\",\n            \"mustache\": \"\"\n        }\n    }\n}"
                 }
             ]
         }

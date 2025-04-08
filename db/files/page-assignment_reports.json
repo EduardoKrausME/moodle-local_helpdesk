@@ -1,9 +1,10 @@
 {
     "title": "lang::report_assignment_reports_page_title::local_helpdesk",
     "description": "lang::report_assignment_reports_page_description::local_helpdesk",
+    "refkey": "assignment_reports",
     "category": {
-        "refkey": "local_helpdesk",
         "title": "lang::pluginname::local_helpdesk",
+        "refkey": "local_helpdesk",
         "description": ""
     },
     "blocks": [

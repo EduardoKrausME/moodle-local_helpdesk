@@ -1,10 +1,10 @@
 {
     "title": "lang::report_category_reports_page_title::local_helpdesk",
     "description": "lang::report_category_reports_page_description::local_helpdesk",
-    "user_id": null,
+    "refkey": "category_reports",
     "category": {
-        "refkey": "local_helpdesk",
         "title": "lang::pluginname::local_helpdesk",
+        "refkey": "local_helpdesk",
         "description": ""
     },
     "blocks": [
@@ -22,31 +22,10 @@
                     "css": "",
                     "html_before": "",
                     "html_after": "",
-                    "commandsql": "SELECT \r\n    c.id AS category_id,\r\n    c.name AS category_name,\r\n    COUNT(t.id) AS total_tickets\r\nFROM mdl_local_helpdesk_ticket t\r\nJOIN mdl_local_helpdesk_category c ON t.categoryid = c.id\r\nGROUP BY c.id, c.name\r\nORDER BY total_tickets DESC",
+                    "commandsql": "SELECT \r\n    c.id AS category_id,\r\n    c.name AS category_name,\r\n    COUNT(t.id) AS total_tickets,\r\n\r\n    -- Average first response time (in seconds)\r\n    AVG(CASE \r\n            WHEN t.answeredat IS NOT NULL AND t.answeredat > 0 \r\n            THEN t.answeredat - t.createdat \r\n            ELSE NULL \r\n        END) AS avg_first_response_time,\r\n\r\n    -- Average closing time (in seconds)\r\n    AVG(CASE \r\n            WHEN t.closedat IS NOT NULL AND t.closedat > 0 \r\n            THEN t.closedat - t.createdat \r\n            ELSE NULL \r\n        END) AS avg_closing_time\r\n\r\nFROM mdl_local_helpdesk_ticket t\r\nJOIN mdl_local_helpdesk_category c ON t.categoryid = c.id\r\nGROUP BY c.id, c.name\r\nORDER BY total_tickets DESC",
                     "cache": "1d",
                     "reload": "none",
-                    "info": "{\n    \"column\": {\n        \"category_id\": {\n            \"key\": \"category_id\",\n            \"title\": \"category_id\",\n            \"type\": \"none\",\n            \"mustache\": \"\"\n        },\n        \"category_name\": {\n            \"key\": \"category_name\",\n            \"title\": \"lang::category::local_helpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{category_name}}}\"\n        },\n        \"total_tickets\": {\n            \"key\": \"total_tickets\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_total_tickets::local_helpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"{{{total_tickets}}}\"\n        }\n    }\n}"
-                }
-            ]
-        },
-        {
-            "refkey": "avg_resolution_time_by_category",
-            "type": "block-1",
-            "sequence": 2,
-            "elements": [
-                {
-                    "refkey": "avg_resolution_time_by_category",
-                    "title": "lang::report_category_reports_avg_resolution_time_by_category_cat_title::local_helpdesk",
-                    "block_num": 1,
-                    "type": "table",
-                    "theme": "light",
-                    "css": "",
-                    "html_before": "",
-                    "html_after": "",
-                    "commandsql": "SELECT c.name AS categoria,\r\n       AVG( t.updatedat - t.createdat ) AS avg_response_time_seconds \r\n  FROM mdl_local_helpdesk_ticket t\r\n  JOIN mdl_local_helpdesk_category c ON t.categoryid = c.id\r\n WHERE t.status IN('resolved','closed')\r\nGROUP BY c.name\r\nORDER BY avg_response_time_seconds DESC\r\n",
-                    "cache": "1d",
-                    "reload": "none",
-                    "info": "{\n    \"column\": {\n        \"categoria\": {\n            \"key\": \"categoria\",\n            \"title\": \"lang::category::local_helpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{categoria}}}\"\n        },\n        \"avg_response_time_seconds\": {\n            \"key\": \"avg_response_time_seconds\",\n            \"title\": \"lang::report_general_reports_avg_resolution_time_avg_resolution_time_hours::local_helpdesk\",\n            \"type\": \"datetimeRenderer\",\n            \"mustache\": \"\"\n        }\n    }\n}"
+                    "info": "{\n    \"column\": {\n        \"category_id\": {\n            \"key\": \"category_id\",\n            \"title\": \"category_id\",\n            \"type\": \"none\",\n            \"mustache\": \"\"\n        },\n        \"category_name\": {\n            \"key\": \"category_name\",\n            \"title\": \"lang::category::local_helpdesk\",\n            \"type\": \"string\",\n            \"mustache\": \"{{{category_name}}}\"\n        },\n        \"total_tickets\": {\n            \"key\": \"total_tickets\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_total_tickets::local_helpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"\"\n        },\n        \"avg_first_response_time\": {\n            \"key\": \"avg_first_response_time\",\n            \"title\": \"lang::avg_first_response_time::local_helpdesk\",\n            \"type\": \"timeRenderer\",\n            \"mustache\": \"\"\n        },\n        \"avg_closing_time\": {\n            \"key\": \"avg_closing_time\",\n            \"title\": \"lang::avg_closing_time::local_helpdesk\",\n            \"type\": \"timeRenderer\",\n            \"mustache\": \"\"\n        }\n    }\n}"
                 }
             ]
         }

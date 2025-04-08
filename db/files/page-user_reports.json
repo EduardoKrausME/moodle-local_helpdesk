@@ -1,10 +1,10 @@
 {
     "title": "lang::report_user_reports_page_title::local_helpdesk",
     "description": "lang::report_user_reports_page_description::local_helpdesk",
-    "user_id": null,
+    "refkey": "user_reports",
     "category": {
-        "refkey": "local_helpdesk",
         "title": "lang::pluginname::local_helpdesk",
+        "refkey": "local_helpdesk",
         "description": ""
     },
     "blocks": [
@@ -22,31 +22,10 @@
                     "css": "",
                     "html_before": "",
                     "html_after": "",
-                    "commandsql": "SELECT u.id AS userid,\r\n       u.firstname,\r\n       u.lastname,\r\n       u.email,\r\n       COUNT(t.id) AS total_tickets\r\n  FROM mdl_local_helpdesk_ticket t\r\n  JOIN mdl_user u ON t.userid = u.id\r\nGROUP BY u.id, u.firstname, u.lastname, u.email\r\nORDER BY total_tickets DESC\r\n   LIMIT 10",
+                    "commandsql": "SELECT \r\n    u.id AS userid,\r\n   u.firstname,\r\n   u.lastname,\r\n   u.email,\r\n   COUNT(t.id) AS total_tickets,\r\n\r\n    -- Average first response time (in seconds)\r\n    AVG(CASE \r\n        WHEN t.answeredat IS NOT NULL AND t.answeredat > 0 \r\n        THEN t.answeredat - t.createdat \r\n        ELSE NULL \r\n    END) AS avg_first_response_time,\r\n\r\n    -- Average closing time (in seconds)\r\n    AVG(CASE \r\n        WHEN t.closedat IS NOT NULL AND t.closedat > 0 \r\n        THEN t.closedat - t.createdat \r\n        ELSE NULL \r\n    END) AS avg_closing_time\r\n\r\n  FROM mdl_local_helpdesk_ticket t\r\n  JOIN mdl_user u ON t.userid = u.id\r\nGROUP BY u.id, u.firstname, u.lastname, u.email\r\nORDER BY total_tickets DESC\r\n   LIMIT 10",
                     "cache": "1d",
                     "reload": "none",
-                    "info": "{\n    \"column\": {\n        \"userid\": {\n            \"key\": \"userid\",\n            \"title\": \"lang::report_user_reports_users_with_most_tickets_open_userid::local_helpdesk\",\n            \"type\": \"userphotoRenderer\",\n            \"mustache\": \"{{{userid}}}\"\n        },\n        \"firstname\": {\n            \"key\": \"firstname\",\n            \"title\": \"lang::u_fullname::local_kopere_bi\",\n            \"type\": \"userfullname\",\n            \"mustache\": \"<a href=\\\"{{{config.wwwroot}}}\\\/user\\\/view.php?id={{{u_id}}}\\\"\\r\\n   target=\\\"profile\\\">{{{u_fullname}}}<\\\/a>\"\n        },\n        \"lastname\": {\n            \"key\": \"lastname\",\n            \"title\": \"lastname\",\n            \"type\": \"none\",\n            \"mustache\": \"\"\n        },\n        \"email\": {\n            \"key\": \"email\",\n            \"title\": \"lang::email::moodle\",\n            \"type\": \"string\",\n            \"mustache\": \"<a href=\\\"mailto:{{{email}}}\\\" target=\\\"_blank\\\">{{{email}}}<\\\/a>\"\n        },\n        \"total_tickets\": {\n            \"key\": \"total_tickets\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_total_tickets::local_helpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"{{{total_tickets}}}\"\n        }\n    }\n}"
-                }
-            ]
-        },
-        {
-            "refkey": "avg_response_time_by_user",
-            "type": "block-1",
-            "sequence": 2,
-            "elements": [
-                {
-                    "refkey": "avg_response_time_by_user",
-                    "title": "lang::report_user_reports_avg_response_time_by_user_cat_title::local_helpdesk",
-                    "block_num": 1,
-                    "type": "table",
-                    "theme": "light",
-                    "css": "",
-                    "html_before": "",
-                    "html_after": "",
-                    "commandsql": "SELECT \r\n    u.id AS userid, \r\n    u.firstname, \r\n    u.lastname, \r\n    AVG(r.createdat - t.createdat) AS avg_response_time_seconds\r\nFROM mdl_local_helpdesk_ticket t\r\nJOIN mdl_local_helpdesk_response r ON t.id = r.ticketid\r\nJOIN mdl_user u ON r.userid = u.id\r\nWHERE r.createdat = (\r\n    SELECT MIN(r2.createdat) \r\n    FROM mdl_local_helpdesk_response r2 \r\n    WHERE r2.ticketid = t.id\r\n)\r\nGROUP BY u.id, u.firstname, u.lastname\r\nORDER BY avg_response_time_seconds ASC",
-                    "cache": "1d",
-                    "reload": "none",
-                    "info": "{\n    \"column\": {\n        \"userid\": {\n            \"key\": \"userid\",\n            \"title\": \"lang::report_user_reports_users_with_most_tickets_open_userid::local_helpdesk\",\n            \"type\": \"userphotoRenderer\",\n            \"mustache\": \"{{{userid}}}\"\n        },\n        \"firstname\": {\n            \"key\": \"firstname\",\n            \"title\": \"lang::u_fullname::local_kopere_bi\",\n            \"type\": \"userfullname\",\n            \"mustache\": \"<a href=\\\"{{{config.wwwroot}}}\\\/user\\\/view.php?id={{{u_id}}}\\\"\\r\\n   target=\\\"profile\\\">{{{u_fullname}}}<\\\/a>\"\n        },\n        \"lastname\": {\n            \"key\": \"lastname\",\n            \"title\": \"lastname\",\n            \"type\": \"none\",\n            \"mustache\": \"\"\n        },\n        \"avg_response_time_seconds\": {\n            \"key\": \"avg_response_time_seconds\",\n            \"title\": \"lang::report_general_reports_avg_resolution_time_avg_resolution_time_hours::local_helpdesk\",\n            \"type\": \"datetimeRenderer\",\n            \"mustache\": \"\"\n        }\n    }\n}"
+                    "info": "{\n    \"column\": {\n        \"userid\": {\n            \"key\": \"userid\",\n            \"title\": \"#\",\n            \"type\": \"userphotoRenderer\",\n            \"mustache\": \"\"\n        },\n        \"firstname\": {\n            \"key\": \"firstname\",\n            \"title\": \"lang::u_fullname::local_kopere_bi\",\n            \"type\": \"userfullname\",\n            \"mustache\": \"<a href=\\\"{{{config.wwwroot}}}\\\/user\\\/view.php?id={{{u_id}}}\\\"\\r\\n   target=\\\"profile\\\">{{{u_fullname}}}<\\\/a>\"\n        },\n        \"lastname\": {\n            \"key\": \"lastname\",\n            \"title\": \"lastname\",\n            \"type\": \"none\",\n            \"mustache\": \"\"\n        },\n        \"email\": {\n            \"key\": \"email\",\n            \"title\": \"lang::email::moodle\",\n            \"type\": \"string\",\n            \"mustache\": \"<a href=\\\"mailto:{{{email}}}\\\" target=\\\"_blank\\\">{{{email}}}<\\\/a>\"\n        },\n        \"total_tickets\": {\n            \"key\": \"total_tickets\",\n            \"title\": \"lang::report_general_reports_tickets_created_by_period_total_tickets::local_helpdesk\",\n            \"type\": \"number\",\n            \"mustache\": \"\"\n        },\n        \"avg_first_response_time\": {\n            \"key\": \"avg_first_response_time\",\n            \"title\": \"lang::avg_first_response_time::local_helpdesk\",\n            \"type\": \"timeRenderer\",\n            \"mustache\": \"\"\n        },\n        \"avg_closing_time\": {\n            \"key\": \"avg_closing_time\",\n            \"title\": \"lang::avg_closing_time::local_helpdesk\",\n            \"type\": \"timeRenderer\",\n            \"mustache\": \"\"\n        }\n    }\n}"
                 }
             ]
         }
