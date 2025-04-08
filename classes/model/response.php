@@ -100,15 +100,30 @@ class response {
     /**
      * Function save
      *
+     * @param ticket $ticket
+     *
      * @return bool|int
      * @throws \dml_exception
+     * @throws \coding_exception
      */
-    public function save() {
+    public function save($ticket) {
         global $DB;
 
         if ($this->id) {
             return $DB->update_record("local_helpdesk_response", get_object_vars($this));
         } else {
+            if (!$ticket->get_answeredat()) {
+                $DB->set_field("local_helpdesk_ticket", "answeredat", time(), ["id" => $ticket->get_id()]);
+            }
+
+            if ($this->type == self::TYPE_STATUS && !$ticket->get_closedat()) {
+                if (strpos($this->message, get_string("status_resolved", "local_helpdesk"))) {
+                    $DB->set_field("local_helpdesk_ticket", "closedat", time(), ["id" => $ticket->get_id()]);
+                } else if (strpos($this->message, get_string("status_closed", "local_helpdesk"))) {
+                    $DB->set_field("local_helpdesk_ticket", "closedat", time(), ["id" => $ticket->get_id()]);
+                }
+            }
+
             return $this->id = $DB->insert_record("local_helpdesk_response", get_object_vars($this));
         }
     }
@@ -120,6 +135,7 @@ class response {
      * @param string $message
      *
      * @throws \dml_exception
+     * @throws \coding_exception
      */
     public static function create_status(ticket $ticket, $message) {
         global $USER;
@@ -131,7 +147,7 @@ class response {
             "userid" => $USER->id,
             "createdat" => time(),
         ]);
-        $response->save();
+        $response->save($ticket);
     }
 
     /**
@@ -141,6 +157,7 @@ class response {
      * @param string $message
      *
      * @throws \dml_exception
+     * @throws \coding_exception
      */
     public static function create_info(ticket $ticket, $message) {
         global $USER;
@@ -152,7 +169,7 @@ class response {
             "userid" => $USER->id,
             "createdat" => time(),
         ]);
-        $response->save();
+        $response->save($ticket);
     }
 
 

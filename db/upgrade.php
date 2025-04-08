@@ -74,5 +74,61 @@ function xmldb_local_helpdesk_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2025031301, "local", "helpdesk");
     }
 
+    if ($oldversion < 2025040800) {
+        // Add 'answeredat' to 'local_helpdesk_ticket'.
+        $table = new xmldb_table("local_helpdesk_ticket");
+        $field = new xmldb_field("answeredat", XMLDB_TYPE_INTEGER, "20", null, null, null, null);
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Add 'closedat' to 'local_helpdesk_ticket'.
+        $field = new xmldb_field("closedat", XMLDB_TYPE_INTEGER, "20", null, null, null, null);
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        $tickets = $DB->get_records("local_helpdesk_ticket", null, "", "id");
+
+        foreach ($tickets as $ticket) {
+            // Get the first response from the local_helpdesk_response table.
+            $response = $DB->get_record_sql("
+                    SELECT *
+                      FROM {local_helpdesk_response}
+                     WHERE ticketid = {$ticket->id}
+                       AND type     = 'message'
+                  ORDER BY id ASC
+                     LIMIT 1");
+
+            if ($response) {
+                // Updates the 'answeredat' field in the corresponding ticket.
+                $DB->set_field("local_helpdesk_ticket", "answeredat", $response->createdat, ["id" => $ticket->id]);
+            }
+
+            // Pega o primeiro status na tabela local_helpdesk_response.
+            $statusresolved = get_string("status_resolved", "local_helpdesk");
+            $statusclosed = get_string("status_closed", "local_helpdesk");
+            $response = $DB->get_record_sql("
+                    SELECT *
+                      FROM {local_helpdesk_response}
+                     WHERE ticketid   = {$ticket->id}
+                       AND type       = 'status'
+                       AND (
+                                message LIKE '%{$statusresolved}%'
+                             OR message LIKE '%{$statusclosed}%'
+                           )
+                  ORDER BY id ASC
+                     LIMIT 1");
+            if ($response) {
+                // Updates the 'answeredat' field in the corresponding ticket.
+                $DB->set_field("local_helpdesk_ticket", "closedat", $response->createdat, ["id" => $ticket->id]);
+            }
+
+        }
+
+        // Save upgrade step.
+        upgrade_plugin_savepoint(true, 2025040800, "local", "helpdesk");
+    }
+
     return true;
 }

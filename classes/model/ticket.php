@@ -71,6 +71,10 @@ class ticket {
     protected $createdat;
     /** @var int */
     protected $updatedat;
+    /** @var int */
+    protected $answeredat;
+    /** @var int */
+    protected $closedat;
 
     /**
      * ticket constructor.
@@ -140,6 +144,8 @@ class ticket {
             return $DB->update_record("local_helpdesk_ticket", get_object_vars($this));
         } else {
             $this->idkey = substr("0" . time(), -8);
+            $this->answeredat = 0;
+            $this->closedat = 0;
             return $this->id = $DB->insert_record("local_helpdesk_ticket", get_object_vars($this));
         }
     }
@@ -461,6 +467,24 @@ class ticket {
         return $this->updatedat;
     }
 
+    /**
+     * Function get_answeredat
+     *
+     * @return int
+     */
+    public function get_answeredat() {
+        return $this->answeredat;
+    }
+
+    /**
+     * Function get_closedat
+     *
+     * @return int
+     */
+    public function get_closedat() {
+        return $this->closedat;
+    }
+
     // Setters.
 
     /**
@@ -575,5 +599,23 @@ class ticket {
      */
     public function set_updatedat($updatedat) {
         $this->updatedat = $updatedat;
+    }
+
+    /**
+     * Function set_answeredat
+     *
+     * @param $answeredat
+     */
+    public function set_answeredat($answeredat) {
+        $this->answeredat = $answeredat;
+    }
+
+    /**
+     * Function set_closedat
+     *
+     * @param $closedat
+     */
+    public function set_closedat($closedat) {
+        $this->closedat = $closedat;
     }
 }

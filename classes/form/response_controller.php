@@ -70,7 +70,7 @@ class response_controller {
                 "userid" => $USER->id,
                 "createdat" => time(),
             ]);
-            $response->save();
+            $response->save($ticket);
 
             $context = \context_system::instance();
             if ($data->attachment) {

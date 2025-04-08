@@ -44,6 +44,8 @@
                 <FIELD NAME="priority" TYPE="char" LENGTH="20" NOTNULL="true" DEFAULT="medium" SEQUENCE="false" COMMENT="Priority (low, medium, high, urgent)"/>
                 <FIELD NAME="createdat" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="Timestamp of ticket creation"/>
                 <FIELD NAME="updatedat" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="Timestamp of last update"/>
+                <FIELD NAME="answeredat" TYPE="int" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Timestamp when it was answered"/>
+                <FIELD NAME="closedat" TYPE="int" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Timestamp when it was closed"/>
             </FIELDS>
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
