@@ -37,18 +37,9 @@ use local_kopere_bi\local\util\install_for_file;
  * @throws upgrade_exception
  */
 function xmldb_local_helpdesk_upgrade($oldversion) {
-    if ($oldversion < 2025022500) {
-        // Load report pages.
-        $pagefiles = glob(__DIR__ . "/files/page-*.json");
-        foreach ($pagefiles as $pagefile) {
-            install_for_file::page_file($pagefile);
-        }
-
-        upgrade_plugin_savepoint(true, 2025022500, "local", "helpdesk");
-    }
-
     global $DB;
     $dbman = $DB->get_manager();
+
     if ($oldversion < 2025031301) {
         // Define table local_helpdesk_knowledgebase.
         $table = new xmldb_table("local_helpdesk_knowledgebase");
@@ -128,6 +119,30 @@ function xmldb_local_helpdesk_upgrade($oldversion) {
 
         // Save upgrade step.
         upgrade_plugin_savepoint(true, 2025040800, "local", "helpdesk");
+    }
+
+    if ($oldversion < 2025040803) {
+
+        // Delete olds reports 'local_helpdesk'.
+        $pages = $DB->get_records("local_kopere_bi_page", ["refkey" => "local_helpdesk"]);
+        foreach ($pages as $page) {
+            $blocks = $DB->get_records("local_kopere_bi_block", ["page_id" => $page->id]);
+            foreach ($blocks as $block) {
+                $DB->delete_records("local_kopere_bi_block", ["id" => $block->id]);
+                $DB->delete_records("local_kopere_bi_element", ["block_id" => $block->id]);
+            }
+
+            $DB->delete_records("local_kopere_bi_page", ["id" => $page->id]);
+        }
+        $DB->delete_records("local_kopere_bi_cat", ["refkey" => "local_helpdesk"]);
+
+        // Load report pages.
+        $pagefiles = glob(__DIR__ . "/files/page-*.json");
+        foreach ($pagefiles as $pagefile) {
+            install_for_file::page_file($pagefile);
+        }
+
+        upgrade_plugin_savepoint(true, 2025040803, "local", "helpdesk");
     }
 
     return true;
