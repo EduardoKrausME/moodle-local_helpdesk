@@ -22,8 +22,6 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use local_kopere_bi\local\util\install_for_file;
-
 /**
  * Function xmldb_local_helpdesk_upgrade
  *
@@ -136,11 +134,7 @@ function xmldb_local_helpdesk_upgrade($oldversion) {
         }
         $DB->delete_records("local_kopere_bi_cat", ["refkey" => "local_helpdesk"]);
 
-        // Load report pages.
-        $pagefiles = glob(__DIR__ . "/files/page-*.json");
-        foreach ($pagefiles as $pagefile) {
-            install_for_file::page_file($pagefile);
-        }
+        \local_helpdesk\util\reports::install();
 
         upgrade_plugin_savepoint(true, 2025040803, "local", "helpdesk");
     }

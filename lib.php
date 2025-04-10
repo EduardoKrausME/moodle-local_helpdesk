@@ -215,7 +215,7 @@ function local_helpdesk_get_navigation() {
     $nav->add_node($nav::create(get_string("knowledgebase_name", "local_helpdesk"), $surl));
 
     if (has_capability("local/kopere_dashboard:view", context_system::instance())) {
-        $surl = new moodle_url("/local/kopere_dashboard/view.php", ["classname" => "bi-dashboard", "method" => "start"]);
+        $surl = new moodle_url("/local/helpdesk/report.php");
         $nav->add_node($nav::create(get_string("report_general_reports_page_title", "local_helpdesk"), $surl));
     }
 

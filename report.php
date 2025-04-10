@@ -15,21 +15,18 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * install file
+ * Report file
  *
  * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-/**
- * Function xmldb_local_helpdesk_install
- *
- * @return bool
- */
-function xmldb_local_helpdesk_install() {
+require_once("../../config.php");
 
-    \local_helpdesk\util\reports::install();
+require_login();
 
-    return true;
-}
+\local_helpdesk\util\reports::check_instaled();
+
+$surl = new moodle_url("/local/kopere_dashboard/view.php", ["classname" => "bi-dashboard", "method" => "start"]);
+redirect($surl);
