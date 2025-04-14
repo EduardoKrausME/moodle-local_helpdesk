@@ -1,3 +1,87 @@
+{{!
+    This file is part of Moodle - https://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_helpdesk/ticket-user
+
+    Example context (json):
+    {
+        "subject": "Ticket Subject",
+        "description": "This is the description of the ticket.",
+        "ticketfiles_count": 2,
+        "ticketfiles": [
+            {
+                "fullurl": "http://example.com/file1.pdf",
+                "filename": "file1.pdf",
+                "mimetype": "application/pdf"
+            }
+        ],
+        "responses": [
+            {
+                "has_message": true,
+                "user_fullname": "John Doe",
+                "user_picture": "http://example.com/user.jpg",
+                "createdat": "2025-02-25 14:30",
+                "message": "This is the first response message.",
+                "responsefiles_count": 1,
+                "responsefiles": [
+                    {
+                        "fullurl": "http://example.com/responsefile.pdf",
+                        "filename": "responsefile.pdf",
+                        "mimetype": "application/pdf"
+                    }
+                ]
+            }
+        ],
+        "user": {
+            "phone1": "123-456-7890",
+            "phone2": "098-765-4321"
+        },
+        "idkey": "12345",
+        "course_fullname": "Course Name",
+        "user_fullname": "John Doe",
+        "user_picture": "http://example.com/user.jpg",
+        "has_closed": false,
+        "status": "open",
+        "status_translated": "Open",
+        "priority": "high",
+        "priority_translated": "High",
+        "category_translate": "General",
+        "createdat": "2025-02-20",
+        "allfiles_count": 1,
+        "allfiles": [
+            {
+                "fullurl": "http://example.com/attachment.pdf",
+                "filename": "attachment.pdf",
+                "mimetype": "application/pdf"
+            }
+        ],
+        "has_info": true,
+        "has_ticketmanage": true,
+        "status_options": [
+            { "key": "closed", "label": "Closed", "selected": "" }
+        ],
+        "priority_options": [
+            { "key": "low", "label": "Low", "selected": "" }
+        ],
+        "category_options": [
+            { "key": "technical", "label": "Technical", "selected": "" }
+        ]
+    }
+}}
 <div class="col-md-5 col-lg-4 col-xxl-3">
     <div class="card">
         <div class="card-header">
