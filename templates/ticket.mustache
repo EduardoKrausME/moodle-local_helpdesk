@@ -126,8 +126,14 @@
                             <a class="ticket-attachments p-3 w-100"
                                target="_blank"
                                href="{{fullurl}}">
-                                <h6 class="mb-0">{{{filename}}}</h6>
-                                <p class="mb-0 text-secondary">{{{mimetype}}}</p>
+                                {{#has_image}}
+                                    <img src="{{fullurl}}"
+                                         style="width: 100%">
+                                {{/has_image}}
+                                {{^has_image}}
+                                    <h6 class="mb-0">{{{filename}}}</h6>
+                                    <p class="mb-0 text-secondary">{{{mimetype}}}</p>
+                                {{/has_image}}
                             </a>
                         </div>
                     {{/responsefiles}}

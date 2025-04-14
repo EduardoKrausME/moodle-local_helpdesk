@@ -68,6 +68,7 @@ class files {
                 "fullurl" => moodle_url::make_file_url("/pluginfile.php", "/{$path}", false)->out(),
                 "filename" => $file->filename,
                 "mimetype" => $file->mimetype,
+                "has_image" => strpos($file->mimetype, "image") === 0,
             ];
             $returnfiles[] = $filemustache;
         }
