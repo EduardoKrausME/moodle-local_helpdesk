@@ -166,20 +166,28 @@ foreach ($responses as $response) {
 $templatecontext["allfiles_count"] = count($templatecontext["allfiles"]);
 $templatecontext["has_closed"] = $ticket->has_closed();
 
+echo $OUTPUT->header();
+
+echo \html_writer::start_tag("div", ["class" => "ticket-details row"]);
+echo \html_writer::start_tag("div", ["class" => "col-md-7 col-lg-8 col-xxl-9"]);
+
+echo $OUTPUT->render_from_template("local_helpdesk/ticket", $templatecontext);
+
 // Closed ticket not answered.
 if ($ticket->get_status() != ticket::STATUS_CLOSED) {
-
-    $templatecontext["responseform"] = \html_writer::start_tag("div", ["class" => "response-message card"]);
+    echo \html_writer::start_tag("div", ["class" => "response-message card"]);
     $responsecontroller = new response_controller();
-    $templatecontext["responseform"] .= $responsecontroller->insert_response($ticket, $hasticketmanage);
-    $templatecontext["responseform"] .= \html_writer::end_tag("div");
+    $responsecontroller->insert_response($ticket, $hasticketmanage);
+    echo \html_writer::end_tag("div");
 } else {
     $message = get_string("ticketclosed", "local_helpdesk");
-    $templatecontext["responseform"] = $PAGE->get_renderer("core")->render(new notification($message, "success"));
+    echo $PAGE->get_renderer("core")->render(new notification($message, "success"));
 }
 
-echo $OUTPUT->header();
-echo $OUTPUT->render_from_template("local_helpdesk/ticket", $templatecontext);
+echo \html_writer::end_tag("div");
+echo $OUTPUT->render_from_template("local_helpdesk/ticket-user", $templatecontext);
+echo \html_writer::end_tag("div");
+
 $PAGE->requires->js_call_amd("local_helpdesk/ticket", "init", [$ticket->get_idkey()]);
 
 echo $OUTPUT->footer();

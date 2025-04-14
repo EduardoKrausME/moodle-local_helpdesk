@@ -83,239 +83,86 @@
     }
 }}
 
-<div class="ticket-details row">
+<div class="card">
+    <div class="card-header">
+        <h5>{{{subject}}}</h5>
+    </div>
+    <div class="card-body">
+        <div class="ml-5">
+            {{{description}}}
+        </div>
+        {{#ticketfiles_count}}
+            <div class="d-flex flex-wrap row">
+                {{#ticketfiles}}
+                    <div class="mb-3 col-6 col-sm-4">
+                        <a class="ticket-attachments p-3 w-100"
+                           target="_blank"
+                           href="{{fullurl}}">
+                            <h6 class="mb-0">{{{filename}}}</h6>
+                            <p class="mb-0 text-secondary">{{{mimetype}}}</p>
+                        </a>
+                    </div>
+                {{/ticketfiles}}
+            </div>
+        {{/ticketfiles_count}}
+    </div>
+</div>
 
-    <div class="col-md-7 col-lg-8 col-xxl-9">
-        <div class="card">
-            <div class="card-header">
-                <h5>{{{subject}}}</h5>
+{{#responses}}
+    {{#has_message}}
+        <div class="shadow-sm border-0 card">
+            <div class="card-header response-header">
+                <img alt="{{user_fullname}}" class="img-fluid" src="{{{user_picture}}}">
+                <h6 class="mb-0">{{user_fullname}}</h6>
+                <div style="margin-left: auto;"><em style="font-size: .8em">{{createdat}}</em></div>
             </div>
             <div class="card-body">
                 <div class="ml-5">
-                    {{{description}}}
+                    {{{message}}}
                 </div>
-                {{#ticketfiles_count}}
-                    <div class="d-flex flex-wrap row">
-                        {{#ticketfiles}}
-                            <div class="mb-3 col-6 col-sm-4">
-                                <a class="ticket-attachments p-3 w-100"
-                                   target="_blank"
-                                   href="{{fullurl}}">
-                                    <h6 class="mb-0">{{{filename}}}</h6>
-                                    <p class="mb-0 text-secondary">{{{mimetype}}}</p>
-                                </a>
-                            </div>
-                        {{/ticketfiles}}
-                    </div>
-                {{/ticketfiles_count}}
-            </div>
-        </div>
-
-        {{#responses}}
-            {{#has_message}}
-                <div class="shadow-sm border-0 card">
-                    <div class="card-header response-header">
-                        <img alt="{{user_fullname}}" class="img-fluid" src="{{{user_picture}}}">
-                        <h6 class="mb-0">{{user_fullname}}</h6>
-                        <div style="margin-left: auto;"><em style="font-size: .8em">{{createdat}}</em></div>
-                    </div>
-                    <div class="card-body">
-                        <div class="ml-5">
-                            {{{message}}}
+                {{#responsefiles_count}}
+                    {{#responsefiles}}
+                        <div class="mt-2">
+                            <a class="ticket-attachments p-3 w-100"
+                               target="_blank"
+                               href="{{fullurl}}">
+                                <h6 class="mb-0">{{{filename}}}</h6>
+                                <p class="mb-0 text-secondary">{{{mimetype}}}</p>
+                            </a>
                         </div>
-                        {{#responsefiles_count}}
-                            <div class="d-flex flex-wrap row">
-                                {{#responsefiles}}
-                                    <div class="mb-3 col-6 col-sm-4">
-                                        <a class="ticket-attachments p-3 w-100"
-                                           target="_blank"
-                                           href="{{fullurl}}">
-                                            <h6 class="mb-0">{{{filename}}}</h6>
-                                            <p class="mb-0 text-secondary">{{{mimetype}}}</p>
-                                        </a>
-                                    </div>
-                                {{/responsefiles}}
-                            </div>
-                        {{/responsefiles_count}}
-                    </div>
-                </div>
-            {{/has_message}}
-
-            {{#has_status}}
-                <div class="shadow-sm border-0 card ml-5 mb-2">
-                    <div class="card-body response-header p-1 pl-3 pr-3">
-                        <img alt="{{user_fullname}}" class="img-fluid" src="{{{user_picture}}}">
-                        <h6 class="mb-0">{{user_fullname}}</h6>
-                        <div>{{{message}}}</div>
-                        <div style="margin-left:auto;"><em style="font-size: .8em">{{createdat}}</em></div>
-                    </div>
-                </div>
-            {{/has_status}}
-
-            {{#has_info}}
-                has_info
-            {{/has_info}}
-        {{/responses}}
-
-        <div id="area-resonse" class="mt-3 mt-5" style="display:none">
-            {{^has_closed}}
-                <div id="response-message-area" style="display:flex;gap:12px;">
-                    <button id="response-message-open"
-                            class="btn btn-success">{{#str}}replytoticket, local_helpdesk{{/str}}
-                    </button>
-
-                    <div style="width:40px">&nbsp;</div>
-
-                    <button id="response-message-resolved"
-                            class="btn btn-info">{{#str}}markticketasresolved, local_helpdesk{{/str}}
-                    </button>
-                    <button id="response-message-closed"
-                            class="btn btn-danger">{{#str}}markticketasclosed, local_helpdesk{{/str}}
-                    </button>
-                </div>
-            {{/has_closed}}
-
-            {{{responseform}}}
-        </div>
-    </div>
-
-    <div class="col-md-5 col-lg-4 col-xxl-3">
-        <div class="card">
-            <div class="card-header">
-                <div class="ticket-profile">
-                    <div class="ticket-profile-user">
-                        <img alt="{{{user_fullname}}}" class="img-fluid " src="{{{user_picture}}}">
-                    </div>
-                    <div class="ml-3">
-                        <h6 class="mb-0">{{{user_fullname}}}</h6>
-                        {{#user.phone1}}
-                            <div class="text-secondary">{{{user.phone1}}}</div>
-                        {{/user.phone1}}
-                        {{^user.phone1}}
-                            {{#user.phone2}}
-                                <div class="text-secondary">{{{user.phone2}}}</div>
-                            {{/user.phone2}}
-                        {{/user.phone1}}
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <div id="profile-tabs" style="display: none">
-                    <ul>
-                        <li><a href="#tabs-1">{{#str}}ticketid, local_helpdesk{{/str}}</a></li>
-                        <li><a href="#tabs-2">{{#str}}user{{/str}}</a></li>
-                        <li><a href="#tabs-4">{{#str}}courses{{/str}}</a></li>
-                    </ul>
-                    <div id="tabs-1" class="about-list pt-3">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <strong>{{#str}}ticketid, local_helpdesk{{/str}}:</strong>
-                            <span class="text-secondary">#{{{idkey}}}</span>
-                        </div>
-                        {{#course_fullname}}
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <strong>{{#str}}course{{/str}}:</strong>
-                                <span class="text-secondary">{{course_fullname}}</span>
-                            </div>
-                        {{/course_fullname}}
-                        {{#has_closed}}
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <strong>{{#str}}ticketstatus, local_helpdesk{{/str}}:</strong>
-                                <span class="badge status-{{status}}">{{status_translated}}</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <strong>{{#str}}ticketpriority, local_helpdesk{{/str}}:</strong>
-                                <span class="badge priority-{{priority}}">{{priority_translated}}</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <strong>{{#str}}ticketcategory, local_helpdesk{{/str}}:</strong>
-                                <span class="text-secondary">{{category_translate}}</span>
-                            </div>
-                        {{/has_closed}}
-                        {{^has_closed}}
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <strong>{{#str}}ticketstatusshort, local_helpdesk{{/str}}:</strong>
-                                {{#hasticketmanage}}
-                                    <select name="changue_status"
-                                            id="changue_status"
-                                            data-column="status"
-                                            style="max-width: 138px;">
-                                        {{#status_options}}
-                                            <option value="{{key}}" {{selected}}>{{label}}</option>
-                                        {{/status_options}}
-                                    </select>
-                                {{/hasticketmanage}}
-                                {{^hasticketmanage}}
-                                    <span class="badge status-{{status}}">{{status_translated}}</span>
-                                {{/hasticketmanage}}
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <strong>{{#str}}ticketpriorityshort, local_helpdesk{{/str}}:</strong>
-
-                                {{#hasticketmanage}}
-                                    <select name="changue_priority" id="changue_priority"
-                                            data-column="priority"
-                                            style="max-width: 138px;">
-                                        {{#priority_options}}
-                                            <option value="{{key}}" {{selected}}>{{label}}</option>
-                                        {{/priority_options}}
-                                    </select>
-                                {{/hasticketmanage}}
-                                {{^hasticketmanage}}
-                                    <span class="badge priority-{{priority}}">{{priority_translated}}</span>
-                                {{/hasticketmanage}}
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <strong>{{#str}}ticketcategoryshort, local_helpdesk{{/str}}:</strong>
-                                {{#hasticketmanage}}
-                                    <select name="changue_category"
-                                            id="changue_category"
-                                            data-column="category"
-                                            style="max-width: 138px;">
-                                        {{#category_options}}
-                                            <option value="{{key}}" {{selected}}>{{label}}</option>
-                                        {{/category_options}}
-                                    </select>
-                                {{/hasticketmanage}}
-                                {{^hasticketmanage}}
-                                    <span class="text-secondary">{{category_translate}}</span>
-                                {{/hasticketmanage}}
-                            </div>
-                        {{/has_closed}}
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <strong>{{#str}}ticketcreatedat, local_helpdesk{{/str}}:</strong>
-                            <span class="text-secondary">{{createdat}}</span>
-                        </div>
-                        <div class="alert alert-success"
-                             style="display:none"
-                             id="local_helpdesk_ticket_column"></div>
-                    </div>
-                    <div id="tabs-2" class="info">
-                        {{{detail.get_user_info}}}
-                    </div>
-                    <div class="personalDev" id="tabs-4">
-                        {{{detail.list_courses}}}
-                    </div>
-
-
-                </div>
+                    {{/responsefiles}}
+                {{/responsefiles_count}}
             </div>
         </div>
-        <div class="card">
-            <div class="card-header">
-                <h5>{{#str}}attachment, local_helpdesk{{/str}}</h5>
+    {{/has_message}}
+
+    {{#has_status}}
+        <div class="shadow-sm border-0 card ml-5 mb-2">
+            <div class="card-body response-header p-1 pl-3 pr-3">
+                <img alt="{{user_fullname}}" class="img-fluid" src="{{{user_picture}}}">
+                <h6 class="mb-0">{{user_fullname}}</h6>
+                <div>{{{message}}}</div>
+                <div style="margin-left:auto;"><em style="font-size: .8em">{{createdat}}</em></div>
             </div>
-            {{#allfiles_count}}
-                <div class="card-body">
-                    {{#allfiles}}
-                        <a class="ticket-attachments p-2 mb-2 w-100"
-                           target="_blank"
-                           href="{{fullurl}}">
-                            <p class="mb-0">{{{filename}}}</p>
-                            <p class="mb-0 text-secondary">{{{mimetype}}}</p>
-                        </a>
-                    {{/allfiles}}
-                </div>
-            {{/allfiles_count}}
         </div>
-    </div>
+    {{/has_status}}
+{{/responses}}
+
+<div id="area-resonse" class="mt-3 mt-5" style="display:none">
+    {{^has_closed}}
+        <div id="response-message-area" style="display:flex;gap:12px;">
+            <button id="response-message-open"
+                    class="btn btn-success">{{#str}}replytoticket, local_helpdesk{{/str}}
+            </button>
+
+            <div style="width:40px">&nbsp;</div>
+
+            <button id="response-message-resolved"
+                    class="btn btn-info">{{#str}}markticketasresolved, local_helpdesk{{/str}}
+            </button>
+            <button id="response-message-closed"
+                    class="btn btn-danger">{{#str}}markticketasclosed, local_helpdesk{{/str}}
+            </button>
+        </div>
+    {{/has_closed}}
 </div>

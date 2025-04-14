@@ -28,7 +28,7 @@ define(["jquery", "core/ajax", "core/notification", "jqueryui"], function($, Aja
             $("#area-resonse").show(300);
 
             $("#response-message-open").click(function() {
-                $("#response-message-area").html("");
+                $("#response-message-area").hide(300);
                 $(".response-message").show(300);
             });
 

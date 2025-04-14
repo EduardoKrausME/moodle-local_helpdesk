@@ -46,9 +46,7 @@ class response_controller {
      * @param bool $hasticketmanage
      *
      * @return string
-     * @throws \coding_exception
-     * @throws \dml_exception
-     * @throws \moodle_exception
+     * @throws \Exception
      */
     public function insert_response($ticket, $hasticketmanage) {
         global $USER;
@@ -99,6 +97,6 @@ class response_controller {
                 "idkey" => $ticket->get_idkey(),
             ]);
         }
-        return $form->render();
+        $form->display();
     }
 }
