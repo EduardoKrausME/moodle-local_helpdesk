@@ -143,7 +143,7 @@ class ticket {
         if ($this->id) {
             return $DB->update_record("local_helpdesk_ticket", get_object_vars($this));
         } else {
-            $this->idkey = substr("0" . time(), -8);
+            $this->idkey = date("Ym") . substr("" . time(), -6);
             $this->answeredat = 0;
             $this->closedat = 0;
             return $this->id = $DB->insert_record("local_helpdesk_ticket", get_object_vars($this));
