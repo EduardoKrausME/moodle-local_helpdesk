@@ -29,7 +29,7 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 use local_geniai\external\api;
-use local_geniai\local\markdown\parse_markdown;
+use local_geniai\markdown\parse_markdown;
 use local_helpdesk\model\response;
 
 defined('MOODLE_INTERNAL') || die;
