@@ -64,7 +64,7 @@ class ticket_form extends \moodleform {
         $mform->setType("subject", PARAM_TEXT);
         $mform->addRule("subject", null, "required");
 
-        if ($this->_customdata["has_ticketmanage"]) {
+        if (isset($this->_customdata["has_ticketmanage"]) && $this->_customdata["has_ticketmanage"]) {
             filter::load_kopere();
             $data = [
                 "user_id" => 0,
