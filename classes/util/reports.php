@@ -25,7 +25,7 @@
 namespace local_helpdesk\util;
 
 use dml_exception;
-use local_kopere_bi\local\util\install_for_file;
+use local_kopere_bi\local\util\install_reports;
 
 /**
  * Class reports
@@ -56,7 +56,7 @@ class reports {
         $pagefiles = glob("{$CFG->dirroot}/local/helpdesk/db/files/page-*.json");
         foreach ($pagefiles as $pagefile) {
             try {
-                install_for_file::page_file($pagefile);
+                install_reports::from_file($pagefile);
             } catch (dml_exception $e) { // phpcs:disable
             }
         }

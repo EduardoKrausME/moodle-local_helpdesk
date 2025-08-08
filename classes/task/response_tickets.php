@@ -15,33 +15,35 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * task file
+ * Privacy Subsystem implementation for local_helpdesk.
  *
  * @package   local_helpdesk
- * @copyright 2017 Eduardo Kraus {@link http://eduardokraus.com}
+ * @copyright 2025 Eduardo Kraus {@link http://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+namespace local_helpdesk\task;
 
-$tasks = [
-    [
-        "classname" => "\\local_helpdesk\\task\\close_tickets",
-        "blocking" => 1,
-        "minute" => "0",
-        "hour" => "0",
-        "day" => "*",
-        "dayofweek" => "*",
-        "month" => "*",
-    ],
-    [
-        "classname" => "\\local_helpdesk\\task\\response_tickets",
-        "blocking" => 1,
-        "minute" => "0",
-        "hour" => "0",
-        "day" => "*",
-        "dayofweek" => "*",
-        "month" => "*",
-    ],
-];
+/**
+ * Class response_tickets
+ *
+ * @package local_helpdesk\task
+ */
+class response_tickets extends \core\task\scheduled_task {
 
+    /**
+     * Get a descriptive name for the task (shown to admins)
+     *
+     * @return string
+     */
+    public function get_name() {
+        return "Send email when a Ticket has been unanswered for more than 3 days";
+    }
+
+    /**
+     * Do the job.
+     * Throw exceptions on errors (the job will be retried).
+     */
+    public function execute() {
+    }
+}
