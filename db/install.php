@@ -22,6 +22,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use local_helpdesk\util\reports;
+
 /**
  * Function xmldb_local_helpdesk_install
  *
@@ -29,7 +31,7 @@
  */
 function xmldb_local_helpdesk_install() {
 
-    \local_helpdesk\util\reports::install();
+    reports::install();
 
     return true;
 }
