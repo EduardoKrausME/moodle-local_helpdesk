@@ -22,6 +22,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use core\navigation\views\secondary;
 use local_helpdesk\model\category;
 use local_helpdesk\model\knowledgebase;
 
@@ -29,7 +30,6 @@ use local_helpdesk\model\knowledgebase;
  * Function local_helpdesk_extends_navigation
  *
  * @param global_navigation $nav
- *
  * @throws coding_exception
  * @throws dml_exception
  */
@@ -41,7 +41,6 @@ function local_helpdesk_extends_navigation(global_navigation $nav) {
  * Function local_helpdesk_extend_navigation
  *
  * @param global_navigation $nav
- *
  * @throws coding_exception
  * @throws dml_exception
  */
@@ -140,7 +139,6 @@ function local_helpdesk_extend_navigation(global_navigation $nav) {
  * @param array $args         extra arguments (itemid, path)
  * @param bool $forcedownload whether or not force download
  * @param array $options      additional options affecting the file serving
- *
  * @return bool false if the file not found, just send the file otherwise and do not return anything
  * @throws coding_exception
  * @throws moodle_exception
@@ -194,8 +192,7 @@ function local_helpdesk_set_secondarynav() {
 /**
  * Builds a secondary navigation for all admin screens
  *
- * @return \core\navigation\views\secondary
- *
+ * @return secondary
  * @throws \core\exception\moodle_exception
  * @throws coding_exception
  * @throws dml_exception
@@ -203,7 +200,7 @@ function local_helpdesk_set_secondarynav() {
 function local_helpdesk_get_navigation() {
     global $PAGE;
 
-    $nav = new \core\navigation\views\secondary($PAGE);
+    $nav = new secondary($PAGE);
 
     $surl = new moodle_url("/local/helpdesk/", []);
     $nav->add_node($nav::create(get_string("tickets", "local_helpdesk"), $surl));
