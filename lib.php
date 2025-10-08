@@ -27,17 +27,6 @@ use local_helpdesk\model\category;
 use local_helpdesk\model\knowledgebase;
 
 /**
- * Function local_helpdesk_extends_navigation
- *
- * @param global_navigation $nav
- * @throws coding_exception
- * @throws dml_exception
- */
-function local_helpdesk_extends_navigation(global_navigation $nav) {
-    local_helpdesk_extend_navigation($nav);
-}
-
-/**
  * Function local_helpdesk_extend_navigation
  *
  * @param global_navigation $nav
