@@ -15,6 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * phpcs:disable moodle.Commenting.InlineComment.TypeHintingForeach
  * knowledgebase file
  *
  * @package   local_helpdesk

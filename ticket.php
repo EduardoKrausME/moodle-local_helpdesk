@@ -39,7 +39,7 @@ $ticketid = optional_param("id", false, PARAM_INT);
 $ticket = ticket::get_by_id($ticketid);
 
 if (!$ticket) {
-    echo $OUTPUT->header();;
+    echo $OUTPUT->header();
     $message = get_string("ticketnotfound", "local_helpdesk");
     echo $PAGE->get_renderer("core")->render(new notification($message, "danger"));
     echo $OUTPUT->footer();
