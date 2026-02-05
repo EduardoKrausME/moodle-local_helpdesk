@@ -39,6 +39,8 @@ use tool_dataprivacy\api;
 use tool_dataprivacy\local\helper as tool_helper;
 
 /**
+ * phpcs:disable Universal.OOStructures.AlphabeticExtendsImplements.ImplementsWrongOrder
+ *
  * The local_helpdesk store data.
  */
 class provider implements
