@@ -31,6 +31,6 @@ $plugin->maturity = MATURITY_STABLE;
 $plugin->component = "local_helpdesk";
 
 $plugin->dependencies = [
-    "local_kopere_dashboard" => 2025032001,
-    "local_kopere_bi" => 2025082700,
+    "local_kopere_dashboard" => 2026011400,
+    "local_kopere_bi" => 2026011400,
 ];
