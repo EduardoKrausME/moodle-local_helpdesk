@@ -166,6 +166,42 @@
        class="btn btn-info text-nowrap">{{#str}}addticket, local_helpdesk{{/str}}</a>
 
     <div style="width: 100%"></div>
+    {{#has_manage}}
+        <form method="get" action="export.php" class="d-flex align-items-center flex-wrap" style="gap: 8px;">
+            <input type="hidden" name="courseid" value="{{courseid}}">
+            <span class="font-weight-bold mr-1">{{#str}}exportstatusfilter, local_helpdesk{{/str}}:</span>
+            <label class="mb-0 mr-2"><input type="checkbox" name="export_status[]" value="open" checked id="export_cb_open"> {{#str}}status_open, local_helpdesk{{/str}}</label>
+            <label class="mb-0 mr-2"><input type="checkbox" name="export_status[]" value="closed" id="export_cb_closed"> {{#str}}status_closed, local_helpdesk{{/str}}</label>
+            <label class="mb-0 mr-2"><input type="checkbox" name="export_status[]" value="resolved" id="export_cb_resolved"> {{#str}}status_resolved, local_helpdesk{{/str}}</label>
+            <label class="mb-0 mr-2"><input type="checkbox" name="export_status[]" value="progress" id="export_cb_progress"> {{#str}}status_progress, local_helpdesk{{/str}}</label>
+            <label class="mb-0 mr-2"><input type="checkbox" name="export_status[]" value="all" id="export_cb_all"> {{#str}}status_all, local_helpdesk{{/str}}</label>
+            <button type="submit" class="btn btn-warning text-nowrap">{{#str}}exporttickets, local_helpdesk{{/str}}</button>
+        </form>
+        <script>
+            (function() {
+                var allCb = document.getElementById('export_cb_all');
+                var statusCbs = ['export_cb_open','export_cb_closed','export_cb_resolved','export_cb_progress'];
+                allCb.addEventListener('change', function() {
+                    var checked = allCb.checked;
+                    statusCbs.forEach(function(id) {
+                        document.getElementById(id).checked = checked;
+                    });
+                });
+                statusCbs.forEach(function(id) {
+                    document.getElementById(id).addEventListener('change', function() {
+                        if (!this.checked) {
+                            allCb.checked = false;
+                        } else {
+                            var allChecked = statusCbs.every(function(cbId) {
+                                return document.getElementById(cbId).checked;
+                            });
+                            allCb.checked = allChecked;
+                        }
+                    });
+                });
+            })();
+        </script>
+    {{/has_manage}}
     {{#has_categorymanage}}
         <a href="categories.php"
            class="btn btn-success text-nowrap">{{#str}}categories, local_helpdesk{{/str}}</a>
