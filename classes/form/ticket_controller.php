@@ -121,8 +121,26 @@ class ticket_controller {
 
             $ticket->save();
 
+            $context = context_system::instance();
+            if ($data->attachment) {
+                $options = [
+                    "subdirs" => true,
+                    "embed" => true,
+                ];
+                file_save_draft_area_files($data->attachment, $context->id,
+                    "local_helpdesk", "ticket", $ticket->get_id(), $options);
+            }
+
             redirect(new moodle_url("/local/helpdesk/index.php"));
         } else {
+            $context = context_system::instance();
+            $draftitemid = file_get_submitted_draft_itemid("attachment");
+            file_prepare_draft_area($draftitemid, $context->id,
+                "local_helpdesk", "ticket", $ticket->get_id(), [
+                    "subdirs" => true,
+                    "embed" => true,
+                ]);
+
             $form->set_data([
                 "id" => $ticket->get_id(),
                 "categoryid" => $ticket->get_categoryid(),
@@ -134,6 +152,7 @@ class ticket_controller {
                 "priority" => $ticket->get_priority(),
                 "createdat" => $ticket->get_createdat(),
                 "updatedat" => $ticket->get_updatedat(),
+                "attachment" => $draftitemid,
                 "action" => "edit",
             ]);
         }
