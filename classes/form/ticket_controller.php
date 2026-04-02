@@ -115,6 +115,7 @@ class ticket_controller {
             redirect(new moodle_url("/local/helpdesk/index.php"));
         } else if ($data = $form->get_data()) {
             $ticket->set_subject($data->subject);
+            $ticket->set_categoryid($data->categoryid);
             $ticket->set_description($data->description["text"]);
             $ticket->set_priority($data->priority);
             $ticket->set_updatedat(time());
