@@ -112,7 +112,7 @@ foreach ($tickets as $ticket) {
     }
     $coursefullname = $course ? $course->fullname : "";
 
-    // Get responses
+    // Get responses.
     try {
         $responsestext = [];
         $responses = response::get_all(["ticketid = :ticketid"], ["ticketid" => $ticket->get_id()], "createdat ASC");
@@ -126,7 +126,7 @@ foreach ($tickets as $ticket) {
                     $rfullname = "Unknown";
                 }
 
-                // Clean up message: decode HTML, strip tags, and flatten all spacing/newlines into a single line
+                // Clean up message: decode HTML, strip tags, and flatten all spacing/newlines into a single line.
                 $messagetext = html_entity_decode(strip_tags($resp->get_message()), ENT_QUOTES, "UTF-8");
                 $messagetext = trim(preg_replace('/\s+/', " ", $messagetext));
 
@@ -137,7 +137,7 @@ foreach ($tickets as $ticket) {
         $responsestext = [];
     }
 
-    // Get ticket description
+    // Get ticket description.
     $description = trim(
         preg_replace(
             '/\s+/', " ",
@@ -156,25 +156,25 @@ foreach ($tickets as $ticket) {
         $useremail,
     ];
 
-    // Append each response to its own horizontal column
+    // Append each response to its own horizontal column.
     foreach ($responsestext as $text) {
         $row[] = $text;
     }
 
     $data[] = $row;
 
-    // Track highest number of responses to generate headers later
+    // Track highest number of responses to generate headers later.
     if (count($responsestext) > $maxresponses) {
         $maxresponses = count($responsestext);
     }
 }
 
-// Dynamically generate column headers for the responses
+// Dynamically generate column headers for the responses.
 for ($i = 1; $i <= $maxresponses; $i++) {
     $columns[] = "Response {$i}";
 }
 
-// Pad rows so they all match the column count exactly (Moodle dataformat requires symmetric arrays)
+// Pad rows so they all match the column count exactly (Moodle dataformat requires symmetric arrays).
 foreach ($data as &$row) {
     while (count($row) < count($columns)) {
         $row[] = "";
