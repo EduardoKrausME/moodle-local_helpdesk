@@ -24,10 +24,10 @@
 
 namespace local_helpdesk\mail;
 
+use core\message\message;
 use local_helpdesk\model\category_users;
 use local_helpdesk\model\ticket;
 use local_kopere_dashboard\output\events\send_events;
-use local_kopere_dashboard\util\release;
 
 /**
  * Class send_message
@@ -48,8 +48,6 @@ class send_message extends send_events {
         global $COURSE, $CFG, $DB, $USER;
 
         require_once("{$CFG->dirroot}/login/lib.php");
-
-        $this->load_template();
 
         $this->subject = $this->replace_date($this->subject);
         $this->message = $this->replace_date($this->message);
@@ -116,7 +114,7 @@ class send_message extends send_events {
                 get_string("notification_manager", "local_kopere_dashboard") . "</a>";
             $htmlmessage = str_replace("{[manager]}", $magager, $htmlmessage);
 
-            $eventdata = new \core\message\message();
+            $eventdata = new message();
             if ($ticket->get_courseid()) {
                 $eventdata->courseid = $ticket->get_courseid();
             } else {

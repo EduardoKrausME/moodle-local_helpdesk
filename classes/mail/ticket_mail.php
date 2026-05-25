@@ -28,11 +28,9 @@ use local_helpdesk\model\category_users;
 use local_helpdesk\model\response;
 use local_helpdesk\model\ticket;
 use local_helpdesk\util\files;
-use local_kopere_dashboard\vo\local_kopere_dashboard_event;
+use local_kopere_dashboard\output\events\event_info;
 
 defined('MOODLE_INTERNAL') || die();
-
-require_once("{$CFG->dirroot}/local/kopere_dashboard/autoload.php");
 
 /**
  * Class ticket_mail
@@ -88,20 +86,20 @@ class ticket_mail {
         ];
         $sendevents->set_event($event);
 
-        $kopereevent = new local_kopere_dashboard_event();
+        $kopereevent = new event_info();
         $kopereevent->userfrom = "admin";
         $kopereevent->subject = get_string("mailticket_subject", "local_helpdesk");
 
         // To Category Users.
         $kopereevent->message = get_string("mailticket_create_message", "local_helpdesk");
-        $sendevents->set_local_kopere_dashboard_event($kopereevent);
+        $sendevents->set_event_info($kopereevent);
 
         $categoryusers = category_users::get_all(null, ["categoryid" => $ticket->get_categoryid()]);
         $sendevents->send_mail($ticket, $categoryusers);
 
         // To Creator User.
         $kopereevent->message = get_string("mailticket_user_message", "local_helpdesk");
-        $sendevents->set_local_kopere_dashboard_event($kopereevent);
+        $sendevents->set_event_info($kopereevent);
 
         $categoryusers = [new category_users(["userid" => $ticket->get_userid()])];
         $sendevents->send_mail($ticket, $categoryusers);
@@ -155,20 +153,20 @@ class ticket_mail {
         ];
         $sendevents->set_event($event);
 
-        $kopereevent = new local_kopere_dashboard_event();
+        $kopereevent = new event_info();
         $kopereevent->userfrom = "admin";
         $kopereevent->subject = "Re: " . get_string("mailticket_subject", "local_helpdesk");
 
         // To Category Users.
         $kopereevent->message = get_string("mailticket_update_message", "local_helpdesk");
-        $sendevents->set_local_kopere_dashboard_event($kopereevent);
+        $sendevents->set_event_info($kopereevent);
 
         $categoryusers = category_users::get_all(null, ["categoryid" => $ticket->get_categoryid()]);
         $sendevents->send_mail($ticket, $categoryusers);
 
         // To Creator User.
         $kopereevent->message = get_string("mailticket_user_message", "local_helpdesk");
-        $sendevents->set_local_kopere_dashboard_event($kopereevent);
+        $sendevents->set_event_info($kopereevent);
 
         $categoryusers = [new category_users(["userid" => $ticket->get_userid()])];
         $sendevents->send_mail($ticket, $categoryusers);

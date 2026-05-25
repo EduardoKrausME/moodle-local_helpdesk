@@ -38,9 +38,6 @@ class filter {
 
         if (!$loadkopere) {
             $loadkopere = true;
-
-            require_once("{$CFG->dirroot}/local/kopere_dashboard/autoload.php");
-            local_kopere_dashboard_lang();
         }
     }
 

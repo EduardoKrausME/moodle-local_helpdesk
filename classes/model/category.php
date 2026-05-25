@@ -163,7 +163,7 @@ class category {
         $capabilities = [
             "contextid" => context_system::instance()->id,
             "roleid" => $roleid,
-            "capability" => "local/kopere_dashboard:ajax",
+            "capability" => "local/kopere_dashboard:view",
             "permission" => 1,
             "timemodified" => time(),
             "modifierid" => $USER->id,

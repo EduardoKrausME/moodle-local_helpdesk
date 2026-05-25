@@ -22,11 +22,13 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use local_helpdesk\util\reports;
+
 require_once("../../config.php");
 
 require_login();
 
-\local_helpdesk\util\reports::check_instaled();
+reports::check_instaled();
 
-$surl = new moodle_url("/local/kopere_dashboard/view.php", ["classname" => "bi-dashboard", "method" => "start"]);
+$surl = new moodle_url("/local/kopere_bi/index.php", ["classname" => "dashboard", "method" => "start"]);
 redirect($surl);
