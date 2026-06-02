@@ -28,6 +28,7 @@ use local_helpdesk\model\category;
 use local_helpdesk\model\response;
 use local_helpdesk\model\ticket;
 use local_helpdesk\util\files;
+use local_kopere_dashboard\profile;
 
 require_once(__DIR__ . "/../../config.php");
 require_once(__DIR__ . "/lib.php");
@@ -112,8 +113,8 @@ $templatecontext = [
     "user_picture" => (new user_picture($ticket->get_user()))->get_url($PAGE),
 
     "detail" => [
-        "list_courses" => \local_kopere_dashboard\profile::list_courses($ticket->get_user()->id),
-        "get_user_info" => \local_kopere_dashboard\profile::get_user_info($ticket->get_user()),
+        "list_courses" => profile::list_courses($ticket->get_user()->id),
+        "get_user_info" => profile::get_user_info($ticket->get_user()),
     ],
 
     "id" => $ticket->get_id(),
