@@ -139,16 +139,15 @@ class category {
         global $DB, $USER;
 
         $rolename = get_string("pluginname", "local_helpdesk");
-        $roleshortname = get_string("pluginname", "local_helpdesk");
         $roledescription = get_string("category_role_description", "local_helpdesk");
         $rolearchetype = "";
 
-        $role = $DB->get_record("role", ["shortname" => $roleshortname]);
+        $role = $DB->get_record("role", ["shortname" => "helpdesk"]);
         if ($role) {
             return $role->id;
         }
 
-        $roleid = create_role($rolename, $roleshortname, $roledescription, $rolearchetype);
+        $roleid = create_role($rolename, "helpdesk", $roledescription, $rolearchetype);
         set_role_contextlevels($roleid, [CONTEXT_SYSTEM]);
 
         $capabilities = [
