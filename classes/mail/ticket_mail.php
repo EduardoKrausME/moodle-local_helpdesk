@@ -30,8 +30,6 @@ use local_helpdesk\model\ticket;
 use local_helpdesk\util\files;
 use local_kopere_dashboard\output\events\event_info;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Class ticket_mail
  *
