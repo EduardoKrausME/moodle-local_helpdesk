@@ -143,7 +143,7 @@
                                         data-column="status"
                                         style="max-width: 138px;">
                                     {{#status_options}}
-                                        <option value="{{key}}" {{selected}}>{{label}}</option>
+                                        <option value="{{{key}}}" {{selected}}>{{label}}</option>
                                     {{/status_options}}
                                 </select>
                             {{/hasticketmanage}}
@@ -159,7 +159,7 @@
                                         data-column="priority"
                                         style="max-width: 138px;">
                                     {{#priority_options}}
-                                        <option value="{{key}}" {{selected}}>{{label}}</option>
+                                        <option value="{{{key}}}" {{selected}}>{{label}}</option>
                                     {{/priority_options}}
                                 </select>
                             {{/hasticketmanage}}
@@ -175,7 +175,7 @@
                                         data-column="category"
                                         style="max-width: 138px;">
                                     {{#category_options}}
-                                        <option value="{{key}}" {{selected}}>{{label}}</option>
+                                        <option value="{{{key}}}" {{selected}}>{{label}}</option>
                                     {{/category_options}}
                                 </select>
                             {{/hasticketmanage}}
@@ -212,7 +212,7 @@
                 {{#allfiles}}
                     <a class="ticket-attachments p-2 mb-2 w-100"
                        target="_blank"
-                       href="{{fullurl}}">
+                       href="{{{fullurl}}}">
                         <p class="mb-0">{{{filename}}}</p>
                         <p class="mb-0 text-secondary">{{{mimetype}}}</p>
                     </a>

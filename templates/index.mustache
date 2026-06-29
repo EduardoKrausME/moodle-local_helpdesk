@@ -77,9 +77,9 @@
         <div class="area-find">
             <label for="find_status">{{#str}}ticketstatus, local_helpdesk{{/str}}: </label>
             <select name="find_status" id="find_status">
-                <option value="{{empty}}">{{#str}}ticketstatusnotclosed, local_helpdesk{{/str}}</option>
+                <option value="{{{empty}}}">{{#str}}ticketstatusnotclosed, local_helpdesk{{/str}}</option>
                 {{#status_options}}
-                    <option value="{{key}}" {{selected}}>{{label}}</option>
+                    <option value="{{{key}}}" {{selected}}>{{label}}</option>
                 {{/status_options}}
             </select>
         </div>
@@ -88,9 +88,9 @@
             <div class="area-find">
                 <label for="find_priority">{{#str}}ticketpriority, local_helpdesk{{/str}}: </label>
                 <select name="find_priority" id="find_priority">
-                    <option value="{{empty}}">..:: {{#str}}selectanoptions{{/str}} ::..</option>
+                    <option value="{{{empty}}}">..:: {{#str}}selectanoptions{{/str}} ::..</option>
                     {{#priority_options}}
-                        <option value="{{key}}" {{selected}}>{{label}}</option>
+                        <option value="{{{key}}}" {{selected}}>{{label}}</option>
                     {{/priority_options}}
                 </select>
             </div>
@@ -99,9 +99,9 @@
         <div class="area-find">
             <label for="find_category">{{#str}}ticketcategory, local_helpdesk{{/str}}: </label>
             <select name="find_category" id="find_category">
-                <option value="{{empty}}">..:: {{#str}}selectanoptions{{/str}} ::..</option>
+                <option value="{{{empty}}}">..:: {{#str}}selectanoptions{{/str}} ::..</option>
                 {{#category_options}}
-                    <option value="{{key}}" {{selected}}>{{label}}</option>
+                    <option value="{{{key}}}" {{selected}}>{{label}}</option>
                 {{/category_options}}
             </select>
         </div>
@@ -139,7 +139,7 @@
     <tbody>
         {{#tickets}}
             <tr onclick="location.href='ticket.php?id={{idkey}}'">
-                <td><img src="{{{user_picture}}}" alt="{{user_fullname}}" class="user_picture"></td>
+                <td><img src="{{{user_picture}}}" alt="{{{user_fullname}}}" class="user_picture"></td>
                 <td>{{user_fullname}}</td>
                 <td>{{course_fullname}}</td>
                 <td>{{subject}}</td>
@@ -168,7 +168,7 @@
     <div style="width: 100%"></div>
     {{#has_manage}}
         <form method="get" action="export.php" class="d-flex align-items-center flex-wrap" style="gap: 8px;">
-            <input type="hidden" name="courseid" value="{{courseid}}">
+            <input type="hidden" name="courseid" value="{{{courseid}}}">
             <span class="font-weight-bold mr-1">{{#str}}exportstatusfilter, local_helpdesk{{/str}}:</span>
             <label class="mb-0 mr-2"><input type="checkbox" name="export_status[]" value="open" checked id="export_cb_open"> {{#str}}status_open, local_helpdesk{{/str}}</label>
             <label class="mb-0 mr-2"><input type="checkbox" name="export_status[]" value="closed" id="export_cb_closed"> {{#str}}status_closed, local_helpdesk{{/str}}</label>
