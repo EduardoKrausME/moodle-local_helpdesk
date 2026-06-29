@@ -188,6 +188,12 @@
                         <strong>{{#str}}ticketcreatedat, local_helpdesk{{/str}}:</strong>
                         <span class="text-secondary">{{createdat}}</span>
                     </div>
+                    {{#has_ticketdelete}}
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <strong>{{#str}}actions{{/str}}:</strong>
+                            <a href="{{{delete_url}}}" class="btn btn-danger btn-sm">{{#str}}deleteticket, local_helpdesk{{/str}}</a>
+                        </div>
+                    {{/has_ticketdelete}}
                     <div class="alert alert-success"
                          style="display:none"
                          id="local_helpdesk_ticket_column"></div>

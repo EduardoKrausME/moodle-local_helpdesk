@@ -36,6 +36,7 @@ require_once(__DIR__ . "/lib.php");
 global $DB, $OUTPUT, $PAGE, $USER;
 
 $ticketid = optional_param("id", false, PARAM_INT);
+$action = optional_param("action", "", PARAM_ALPHA);
 
 $ticket = ticket::get_by_id($ticketid);
 
@@ -70,6 +71,7 @@ if ($USER->id != $ticket->get_userid()) {
 }
 
 $hasview = $hasticketmanage = has_capability("local/helpdesk:ticketmanage", $context);
+$hasticketdelete = is_siteadmin();
 if (!$hasview) {
     $hasview = has_capability("local/helpdesk:view", $context);
 }
@@ -79,6 +81,51 @@ if ($hasticketmanage) {
     local_helpdesk_set_secondarynav();
 } else {
     $PAGE->set_secondary_navigation(false);
+}
+
+
+if ($action == "delete") {
+    if (!$hasticketdelete) {
+        throw new required_capability_exception($context, "moodle/site:config", "nopermissions", "");
+    }
+
+    $PAGE->set_title(get_string("deleteticket", "local_helpdesk"));
+    $PAGE->set_heading(get_string("deleteticket", "local_helpdesk"));
+
+    $PAGE->navbar->add(get_string("tickets", "local_helpdesk"),
+        new moodle_url("/local/helpdesk/"));
+    $PAGE->navbar->add($ticket->get_subject(),
+        new moodle_url("/local/helpdesk/ticket.php?id={$ticketid}"));
+    $PAGE->navbar->add(get_string("deleteticket", "local_helpdesk"));
+
+    if (optional_param("confirm", "", PARAM_TEXT) == md5($ticket->get_id() . sesskey())) {
+        require_sesskey();
+
+        $ticket->delete();
+
+        redirect(new moodle_url("/local/helpdesk/index.php"),
+            get_string("deletesuccessticket", "local_helpdesk"), null,
+            \core\output\notification::NOTIFY_SUCCESS);
+    }
+
+    echo $OUTPUT->header();
+
+    $cancelurl = new moodle_url("/local/helpdesk/ticket.php", ["id" => $ticket->get_idkey()]);
+    $continueurl = new moodle_url("/local/helpdesk/ticket.php",
+        [
+            "id" => $ticket->get_idkey(),
+            "action" => "delete",
+            "confirm" => md5($ticket->get_id() . sesskey()),
+            "sesskey" => sesskey(),
+        ]);
+    $continuebutton = new \single_button($continueurl, get_string("delete"), "post", "danger");
+    echo $OUTPUT->confirm(
+        get_string("confirmdeleteticket", "local_helpdesk", $ticket->get_subject()),
+        $continuebutton,
+        $cancelurl);
+
+    echo $OUTPUT->footer();
+    die;
 }
 
 $newstatus = optional_param("newstatus", false, PARAM_TEXT);
@@ -130,6 +177,11 @@ $templatecontext = [
     "description" => $ticket->get_description(),
 
     "hasticketmanage" => $hasticketmanage,
+    "has_ticketdelete" => $hasticketdelete,
+    "delete_url" => new moodle_url("/local/helpdesk/ticket.php", [
+        "id" => $ticket->get_idkey(),
+        "action" => "delete",
+    ]),
 
     "responses" => [],
     "allfiles" => [],

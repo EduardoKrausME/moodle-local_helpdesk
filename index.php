@@ -136,6 +136,7 @@ $templatecontext = [
     "has_manage" => $hasticketmanage,
     "has_categorymanage" => $hascategorymanage,
     "has_siteconfig" => has_capability("moodle/site:config", $context),
+    "has_ticketdelete" => is_siteadmin(),
 ];
 
 if ($action == "add") {
@@ -229,6 +230,11 @@ if ($action == "add") {
             "category" => $ticket->get_categoryid(),
             "category_translate" => $ticket->get_category()->get_name(),
             "createdat" => userdate($ticket->get_createdat(), get_string("strftimedatetimeshort", "langconfig")),
+            "has_ticketdelete" => is_siteadmin(),
+            "delete_url" => new moodle_url("/local/helpdesk/ticket.php", [
+                "id" => $ticket->get_idkey(),
+                "action" => "delete",
+            ]),
         ];
     }
 }

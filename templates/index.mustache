@@ -154,6 +154,9 @@
                 {{#has_manage}}
                     <td onclick="event.stopImmediatePropagation()">
                         <a href="?action=edit&amp;id={{idkey}}" class="badge badge-success">{{#str}}edit{{/str}}</a>
+                        {{#has_ticketdelete}}
+                            <a href="{{{delete_url}}}" class="badge badge-danger ml-1">{{#str}}delete{{/str}}</a>
+                        {{/has_ticketdelete}}
                     </td>
                 {{/has_manage}}
             </tr>

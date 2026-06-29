@@ -153,11 +153,26 @@ class ticket {
     /**
      * Function delete
      *
+     * Delete the ticket, its responses and all files stored by the plugin for
+     * these records.
+     *
      * @return bool
      * @throws \dml_exception
      */
     public function delete() {
         global $DB;
+
+        $context = \context_system::instance();
+        $fs = get_file_storage();
+
+        $responses = $DB->get_records("local_helpdesk_response", ["ticketid" => $this->id], "", "id");
+        foreach ($responses as $response) {
+            $fs->delete_area_files($context->id, "local_helpdesk", "response", $response->id);
+        }
+
+        $fs->delete_area_files($context->id, "local_helpdesk", "ticket", $this->id);
+        $DB->delete_records("local_helpdesk_response", ["ticketid" => $this->id]);
+
         return $DB->delete_records("local_helpdesk_ticket", ["id" => $this->id]);
     }
 
