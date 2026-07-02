@@ -102,6 +102,9 @@
             transition: all .3s ease;
             border-radius: 0.8em;
             color: #fff;
+            .card-body {
+                padding: 1.25rem 1.5rem;
+            }
             &:before {
                 content: "◦";
                 position: absolute;
@@ -115,13 +118,13 @@
             .top-ticket-title {
                 font-size: 19px;
                 line-height: 1.6;
-                margin-bottom: 3px;
+                margin: 0 0 3px;
                 color: #fff;
             }
             h3 {
                 color: #fff;
                 font-size: 30px;
-                margin-left: 7px;
+                margin: 0;
             }
         }
         .ticket-card-1 {
