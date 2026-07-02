@@ -96,6 +96,9 @@
   border-radius: 0.8em;
   color: #fff;
 }
+.path-local-helpdesk .top-tikets-infos .ticket-card .card-body {
+  padding: 1.25rem 1.5rem;
+}
 .path-local-helpdesk .top-tikets-infos .ticket-card:before {
   content: "◦";
   position: absolute;
@@ -109,13 +112,13 @@
 .path-local-helpdesk .top-tikets-infos .ticket-card .top-ticket-title {
   font-size: 19px;
   line-height: 1.6;
-  margin-bottom: 3px;
+  margin: 0 0 3px;
   color: #fff;
 }
 .path-local-helpdesk .top-tikets-infos .ticket-card h3 {
   color: #fff;
   font-size: 30px;
-  margin-left: 7px;
+  margin: 0;
 }
 .path-local-helpdesk .top-tikets-infos .ticket-card-1 {
   background-color: #2196f3;
