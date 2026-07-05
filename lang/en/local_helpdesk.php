@@ -178,6 +178,7 @@ $string['mailticket_user_message'] = '<p><strong>{[moodle.fullname]}</strong> >>
 Support Team</p>';
 $string['markticketasclosed'] = 'Mark Ticket as Closed';
 $string['markticketasresolved'] = 'Mark Ticket as Resolved';
+$string['notification_manager'] = 'Manage Messages';
 $string['pluginname'] = 'Helpdesk';
 $string['priority'] = 'Priority';
 $string['priority_high'] = 'High';

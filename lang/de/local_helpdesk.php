@@ -122,6 +122,7 @@ $string['mailticket_update_message'] = '<p><strong>{[moodle.fullname]}</strong> 
 $string['mailticket_user_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.tiketidlink]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - Ticket <strong>#{[event.tiketidlink]}</strong></p>\\n<p>Guten Tag {[to.fullname]},</p>\\n<p>Support-Team: Nachricht</p>\\n<blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">\\n{[event.text]}\\n{[event.attachment]}\\n</blockquote>\\n<p>Anzeigen Ticket #{[event.tiketidlink]}.</p>\\n<p>Mit freundlichen Grüßen,<br>\\nSupport-Team</p>';
 $string['markticketasclosed'] = 'Ticket Geschlossen';
 $string['markticketasresolved'] = 'Ticket Gelöst';
+$string['notification_manager'] = 'Nachrichten verwalten';
 $string['pluginname'] = 'Helpdesk';
 $string['priority'] = 'Priorität';
 $string['priority_high'] = 'Hoch';

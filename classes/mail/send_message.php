@@ -111,7 +111,7 @@ class send_message extends send_events {
             $htmlmessage = self::replace_tag_user($this->message, $userto, "to");
 
             $magager = "<a href='{$CFG->wwwroot}/message/notificationpreferences.php'>" .
-                get_string("notification_manager", "local_kopere_dashboard") . "</a>";
+                get_string("notification_manager", "local_helpdesk") . "</a>";
             $htmlmessage = str_replace("{[manager]}", $magager, $htmlmessage);
 
             $eventdata = new message();
