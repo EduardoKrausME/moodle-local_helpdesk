@@ -1,0 +1,23 @@
+# (RFC §4.1). Authors update their listing with an ordinary commit; camp
+# ingests and hash-pins it at each tagged release. Listing for local_helpdesk.
+
+name: "Helpdesk and Knowledge Base"
+summary: "Integrated help desk and knowledge base for the platform."
+description: |
+  Integrated help desk and knowledge base for the platform.
+
+  This plugin provides a ticketing system for managing support requests. It allows users to create and track tickets while enabling administrators and support teams to manage and respond efficiently.
+
+  Key capabilities:
+  - Creation and management of support tickets by users.
+  - Categorization of tickets for better organization.
+  - Assignment of users to specific categories to respond to tickets.
+
+  Supported Moodle versions in the supplied plugin list: 4.1 - 5.0.
+
+labels:
+  - fully-free
+category: "administration"
+links:
+  docs: https://github.com/EduardoKrausME/moodle-local_helpdesk#readme
+  issues: https://github.com/EduardoKrausME/moodle-local_helpdesk/issues
