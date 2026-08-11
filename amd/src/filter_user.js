@@ -1,102 +1,115 @@
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+define(["jquery", "core/modal_factory"], function($, ModalFactory) {
+    /**
+     * Renders the rows returned by the Dashboard 3.x users endpoint.
+     *
+     * @param {jQuery} tbody Table body.
+     * @param {Array} users Users returned by the endpoint.
+     */
+    function renderUsers(tbody, users) {
+        tbody.empty();
 
-/**
- * filter_user file
- *
- * @package   local_helpdesk
- * @copyright 2025 Eduardo Kraus {@link https://eduardokraus.com}
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+        users.forEach(function(user) {
+            $("<tr>")
+                .data("user", user)
+                .append($("<td>").text(user.id))
+                .append($("<td>").text(user.name))
+                .append($("<td>").text(user.username))
+                .append($("<td>").text(user.email))
+                .appendTo(tbody);
+        });
+    }
 
-define(["jquery", "core/modal_factory", "local_kopere_dashboard/dataTables_init"], function($, ModalFactory, dataTables_init) {
+    /**
+     * Loads matching users from the Dashboard 3.x search endpoint.
+     *
+     * @param {String} url Endpoint URL.
+     * @param {String} sesskey Moodle session key.
+     * @param {String} query Search text.
+     * @param {jQuery} tbody Table body.
+     */
+    function searchUsers(url, sesskey, query, tbody) {
+        if (query.trim().length < 2) {
+            tbody.empty();
+            return;
+        }
+
+        $.post(url, {
+            q: query,
+            sesskey: sesskey
+        }).done(function(response) {
+            renderUsers(tbody, response.users || []);
+        }).fail(function() {
+            tbody.empty();
+        });
+    }
+
     return {
+        /**
+         * Initializes the Helpdesk user picker.
+         */
         init: function() {
             var chartUser = $("#chart-user-button-open");
             chartUser.show();
-            chartUser.find(".badge").click(function() {
+
+            chartUser.find(".badge").on("click", function() {
                 chartUser.find(".badge").hide();
                 $("[name=find_user]").val(0);
-
-                console.log(chartUser.attr("data-defaultfullname"));
-                chartUser.find(".select").html(chartUser.attr("data-defaultfullname"));
+                chartUser.find(".select").text(chartUser.attr("data-defaultfullname"));
             });
-            chartUser.find(".select").click(function() {
-                if (window.data_user_block_select) {
-                    if (window.data_user_block_select != "wait") {
-                        window.data_user_block_select.show();
+
+            chartUser.find(".select").on("click", function() {
+                if (window.data_user_block_select && window.data_user_block_select !== "wait") {
+                    window.data_user_block_select.show();
+                    return;
+                }
+
+                window.data_user_block_select = "wait";
+
+                var source = $("#chart-user-datatable-select");
+                var url = source.attr("data-urlajax");
+                var sesskey = source.attr("data-sesskey");
+
+                ModalFactory.create({
+                    type: ModalFactory.types.DEFAULT,
+                    title: source.attr("title"),
+                    body: source.html()
+                }).then(function(modal) {
+                    if (!modal.root) {
+                        modal.root = modal._root;
                     }
-                } else {
 
-                    window.data_user_block_select = "wait";
+                    window.data_user_block_select = modal;
+                    modal.show();
+                    modal.root.find(".modal-dialog").addClass("modal-xl kopere-dashboard-modal");
 
-                    ModalFactory.create({
-                        type: ModalFactory.types.DEFAULT,
-                        title: $("#chart-user-datatable-select").attr("title"),
-                        body: $("#chart-user-datatable-select").html(),
-                    }).then(function(modal) {
-                        if (!modal.root) {
-                            modal.root = modal._root;
+                    var input = modal.root.find(".user-search");
+                    var tbody = modal.root.find("#datatable_user_select tbody");
+                    var timer = null;
+
+                    input.on("input", function() {
+                        clearTimeout(timer);
+                        var query = $(this).val();
+                        timer = setTimeout(function() {
+                            searchUsers(url, sesskey, query, tbody);
+                        }, 250);
+                    });
+
+                    tbody.on("click", "tr", function() {
+                        var user = $(this).data("user");
+                        if (!user) {
+                            return;
                         }
 
-                        window.data_user_block_select = modal;
-                        window.data_user_block_select.show();
-                        window.data_user_block_select.root.addClass("kopere-bi");
-                        window.data_user_block_select.root.find(".modal-dialog")
-                            .addClass("modal-xl").addClass("kopere-dashboard-modal");
-
-                        var urlajax = $("#chart-user-datatable-select").attr("data-urlajax");
-
-                        $("#chart-user-datatable-select").remove();
-
-                        dataTables_init.init("datatable_user_select", {
-                            autoWidth: false,
-                            columns: [
-                                {data: "id"},
-                                {data: "fullname"},
-                                {data: "username"},
-                                {data: "email"},
-                            ],
-                            columnDefs: [
-                                {
-                                    render: "numberRenderer",
-                                    targets: 0,
-                                }
-                            ],
-                            export_title: false,
-                            order: [[1, "asc"]],
-                            processing: true,
-                            serverSide: true,
-                            ajax: {
-                                url: urlajax,
-                                type: "POST",
-                                dataType: "json",
-                            }
-                        });
-
-                        $("#datatable_user_select tbody").on("click", "tr", function() {
-                            var data = window["datatable_user_select"].row(this).data();
-
-                            $("#chart-user-button-open .select").html(data.fullname);
-                            $("[name=find_user]").val(data.id);
-
-                            window.data_user_block_select.hide();
-                            chartUser.find(".badge").show();
-                        });
+                        chartUser.find(".select").text(user.name);
+                        $("[name=find_user]").val(user.id);
+                        chartUser.find(".badge").show();
+                        modal.hide();
                     });
-                }
+
+                    setTimeout(function() {
+                        input.trigger("focus");
+                    }, 100);
+                });
             });
         }
     };

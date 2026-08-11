@@ -1,104 +1,115 @@
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+define(["jquery", "core/modal_factory"], function($, ModalFactory) {
+    /**
+     * Renders courses returned by the Dashboard 3.x endpoint.
+     *
+     * @param {jQuery} tbody Table body.
+     * @param {Array} courses Courses returned by the endpoint.
+     */
+    function renderCourses(tbody, courses) {
+        tbody.empty();
 
-/**
- * filter_course file
- *
- * @package   local_helpdesk
- * @copyright 2025 Eduardo Kraus {@link https://eduardokraus.com}
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+        courses.forEach(function(course) {
+            $("<tr>")
+                .data("course", course)
+                .append($("<td>").text(course.id))
+                .append($("<td>").text(course.fullname))
+                .append($("<td>").text(course.shortname))
+                .append($("<td>").text(course.category))
+                .appendTo(tbody);
+        });
+    }
 
-define(["jquery", "core/modal_factory", "local_kopere_dashboard/dataTables_init"], function($, ModalFactory, dataTables_init) {
+    /**
+     * Loads matching courses from the Dashboard 3.x search endpoint.
+     *
+     * @param {String} url Endpoint URL.
+     * @param {String} sesskey Moodle session key.
+     * @param {String} query Search text.
+     * @param {jQuery} tbody Table body.
+     */
+    function searchCourses(url, sesskey, query, tbody) {
+        if (query.trim().length < 2) {
+            tbody.empty();
+            return;
+        }
+
+        $.post(url, {
+            q: query,
+            sesskey: sesskey
+        }).done(function(response) {
+            renderCourses(tbody, response.courses || []);
+        }).fail(function() {
+            tbody.empty();
+        });
+    }
+
     return {
+        /**
+         * Initializes the Helpdesk course picker.
+         */
         init: function() {
-            var data_course_block_select = false;
-
+            var modalInstance = null;
             var chartCourse = $("#chart-course-button-open");
             chartCourse.show();
-            chartCourse.find(".badge").click(function() {
+
+            chartCourse.find(".badge").on("click", function() {
                 chartCourse.find(".badge").hide();
                 $("[name=courseid]").val(0);
-
-                console.log(chartCourse.attr("data-defaultfullname"));
-                chartCourse.find(".select").html(chartCourse.attr("data-defaultfullname"));
+                chartCourse.find(".select").text(chartCourse.attr("data-defaultfullname"));
             });
-            chartCourse.find(".select").click(function() {
-                if (data_course_block_select) {
-                    data_course_block_select.show();
-                } else {
-                    ModalFactory.create({
-                        type: ModalFactory.types.DEFAULT,
-                        title: $("#chart-course-datatable-select").attr("title"),
-                        body: $("#chart-course-datatable-select").html(),
-                    }).then(function(modal) {
-                        if (!modal.root) {
-                            modal.root = modal._root;
+
+            chartCourse.find(".select").on("click", function() {
+                if (modalInstance) {
+                    modalInstance.show();
+                    return;
+                }
+
+                var source = $("#chart-course-datatable-select");
+                var url = source.attr("data-urlajax");
+                var sesskey = source.attr("data-sesskey");
+
+                ModalFactory.create({
+                    type: ModalFactory.types.DEFAULT,
+                    title: source.attr("title"),
+                    body: source.html()
+                }).then(function(modal) {
+                    if (!modal.root) {
+                        modal.root = modal._root;
+                    }
+
+                    modalInstance = modal;
+                    modal.show();
+                    modal.root.find(".modal-dialog").addClass("modal-xl kopere-dashboard-modal");
+
+                    var input = modal.root.find(".course-search");
+                    var tbody = modal.root.find("#datatable_course_select tbody");
+                    var timer = null;
+
+                    input.on("input", function() {
+                        clearTimeout(timer);
+                        var query = $(this).val();
+                        timer = setTimeout(function() {
+                            searchCourses(url, sesskey, query, tbody);
+                        }, 250);
+                    });
+
+                    tbody.on("click", "tr", function() {
+                        var course = $(this).data("course");
+                        if (!course) {
+                            return;
                         }
 
-                        data_course_block_select = modal;
-                        data_course_block_select.show();
-                        data_course_block_select.root.addClass("kopere-bi");
-                        data_course_block_select.root.find(".modal-dialog")
-                            .addClass("modal-xl").addClass("kopere-dashboard-modal");
-
-                        var urlajax = $("#chart-course-datatable-select").attr("data-urlajax");
-
-                        $("#chart-course-datatable-select").remove();
-
-                        dataTables_init.init("datatable_course_select", {
-                            autoWidth: true,
-                            columns: [
-                                {data: "id"},
-                                {data: "fullname"},
-                                {data: "shortname"},
-                                {data: "visible"},
-                                {data: "enrolments"},
-                            ],
-                            columnDefs: [
-                                {
-                                    render: "numberRenderer",
-                                    targets: 0,
-                                }, {
-                                    render: "visibleRenderer",
-                                    targets: 3,
-                                }, {
-                                    render: "numberRenderer",
-                                    targets: 4,
-                                }
-                            ],
-                            export_title: false,
-                            ajax: {
-                                url: urlajax,
-                                type: "POST",
-                                dataType: "json",
-                            }
-                        });
-
-                        $("#datatable_course_select tbody").on("click", "tr", function() {
-                            var data = window["datatable_course_select"].row(this).data();
-
-                            $("#chart-course-button-open .select").html(data.fullname);
-                            $("[name=courseid]").val(data.id);
-
-                            data_course_block_select.hide();
-                            chartCourse.find(".badge").show();
-                        });
+                        chartCourse.find(".select").text(course.fullname);
+                        $("[name=courseid]").val(course.id);
+                        chartCourse.find(".badge").show();
+                        modal.hide();
                     });
-                }
+
+                    setTimeout(function() {
+                        input.trigger("focus");
+                    }, 100);
+                });
             });
         }
-    }
+    };
 });

@@ -1,62 +1,33 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
-/**
- * file
- *
- * @package   local_helpdesk
- * @copyright 2025 Eduardo Kraus {@link https://eduardokraus.com}
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
 namespace local_helpdesk\form;
 
 use local_helpdesk\model\category;
 use local_helpdesk\model\ticket;
 use local_helpdesk\util\filter;
-use local_kopere_dashboard\util\url_util;
 
 defined('MOODLE_INTERNAL') || die();
 
 require_once("{$CFG->libdir}/formslib.php");
 
 /**
- * Class ticket_form
- *
- * @package local_helpdesk\form
+ * Ticket form used to create and edit Helpdesk tickets.
  */
 class ticket_form extends \moodleform {
 
     /**
-     * Function definition
+     * Builds the ticket form.
      *
-     * @throws \coding_exception
-     * @throws \dml_exception
+     * @return void
      */
     protected function definition() {
-        global $PAGE, $OUTPUT, $USER;
+        global $CFG, $PAGE, $OUTPUT;
 
         $mform = $this->_form;
 
         $mform->addElement("hidden", "id");
         $mform->setType("id", PARAM_INT);
-
         $mform->addElement("hidden", "courseid");
         $mform->setType("courseid", PARAM_INT);
-
         $mform->addElement("hidden", "action");
         $mform->setType("action", PARAM_TEXT);
 
@@ -64,30 +35,32 @@ class ticket_form extends \moodleform {
         $mform->setType("subject", PARAM_TEXT);
         $mform->addRule("subject", null, "required");
 
-        if (isset($this->_customdata["has_ticketmanage"]) && $this->_customdata["has_ticketmanage"]) {
+        if (!empty($this->_customdata["has_ticketmanage"])) {
             filter::load_kopere();
+
             $data = [
                 "user_id" => 0,
                 "user_fullname" => get_string("finduser", "local_helpdesk"),
-                "url_ajax" => url_util::makeurl("users", "load_all_users", [], "view-ajax"),
+                "url_ajax" => "{$CFG->wwwroot}/local/kopere_dashboard/plugins/users/ajax.php",
+                "sesskey" => sesskey(),
                 "hide_find_user" => true,
                 "hide_openuserby" => true,
             ];
+
             $PAGE->requires->js_call_amd("local_helpdesk/filter_user", "init");
             $html = $OUTPUT->render_from_template("local_helpdesk/filter-user", $data);
 
             $mform->addElement("hidden", "find_user");
             $mform->setType("find_user", PARAM_INT);
-
             $mform->addElement("static", "", get_string("finduser", "local_helpdesk"), $html);
         }
 
         $categories = category::get_all();
         $categoryoptions = ["" => "..:: " . get_string("select") . " ::.."];
-        /** @var category $category */
         foreach ($categories as $category) {
             $categoryoptions[$category->get_id()] = $category->get_name();
         }
+
         $mform->addElement("select", "categoryid", get_string("category", "local_helpdesk"), $categoryoptions);
         $mform->setType("categoryid", PARAM_INT);
         $mform->addRule("categoryid", null, "required");
@@ -124,33 +97,25 @@ class ticket_form extends \moodleform {
     }
 
     /**
-     * Custom validation for the form.
+     * Validates ticket data.
      *
-     * @param array $data  Form data.
+     * @param array $data Form data.
      * @param array $files Uploaded files.
-     *
-     * @return array List of errors.
-     * @throws \coding_exception
+     * @return array Validation errors.
      */
     public function validation($data, $files) {
         $errors = parent::validation($data, $files);
 
-        // Validate subject: must not be empty or only spaces.
         if (empty(trim($data["subject"]))) {
             $errors["subject"] = get_string("required");
         }
-
-        // Validate category: must be selected.
         if (empty($data["categoryid"])) {
             $errors["categoryid"] = get_string("required");
         }
-
-        // Validate description: must have content in the editor field.
         if (empty(trim($data["description"]["text"]))) {
             $errors["description"] = get_string("required");
         }
 
-        // Validate priority: must be a valid option.
         $validpriorities = [
             ticket::PRIORITY_LOW,
             ticket::PRIORITY_MEDIUM,

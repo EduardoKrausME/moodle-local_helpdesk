@@ -1,60 +1,34 @@
-{{!
-    This file is part of Moodle - https://moodle.org/
-
-    Moodle is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    Moodle is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-}}
-{{!
-    @template local_helpdesk/filter-course
-
-    Example context (json):
-    {
-      "course_fullname": "Curso de Desenvolvimento Web",
-      "course_id": 123,
-      "url_ajax": "https://example.com/user_ajax_endpoint"
-    }
-}}
-
 <div id="chart-course-button-open" style="{{#url_ajax}}display:none{{/url_ajax}}"
      data-defaultfullname="{{#str}}findcourse, local_helpdesk{{/str}}">
     <label>{{#str}}course{{/str}}:</label>
-    <span class="select {{^url_ajax}}no-arrou{{/url_ajax}}">
-        {{{course_fullname}}}
-    </span>
+    <span class="select {{^url_ajax}}no-arrou{{/url_ajax}}">{{{course_fullname}}}</span>
 
     {{#url_ajax}}
-        <span class="badge badge-danger cursor-pointer"
-              {{^course_id}}style="display:none"{{/course_id}}>X</span>
+        <span class="badge badge-danger cursor-pointer" {{^course_id}}style="display:none"{{/course_id}}>X</span>
     {{/url_ajax}}
 
     <input type="hidden" name="courseid" value="{{{course_id}}}">
 </div>
+
 {{#url_ajax}}
-    <div id="chart-course-datatable-select" style="display:none;"
-         data-urlajax="{{{url_ajax}}}"
-         title="{{#str}}reports_selectcourse,local_kopere_bi{{/str}}">
-        <table id="datatable_course_select" class="table table-hover">
-            <thead>
-            <tr>
-                <th class="text-center th_id" style="width: 20px">#</th>
-                <th class="text-center th_fullname">{{#str}}course{{/str}}</th>
-                <th class="text-center th_shortname">{{#str}}shortname{{/str}}</th>
-                <th class="text-center th_visible">{{#str}}visible{{/str}}</th>
-                <th class="text-center th_enrolments"
-                    style="width:50px;white-space:nowrap;">{{#str}}courses_enrol,local_kopere_bi{{/str}}</th>
-            </tr>
-            </thead>
-            <tbody class="hover-pointer"></tbody>
-        </table>
+<div id="chart-course-datatable-select" style="display:none"
+     data-urlajax="{{{url_ajax}}}"
+     data-sesskey="{{sesskey}}"
+     title="{{#str}}reports_selectcourse, local_kopere_bi{{/str}}">
+    <div class="mb-3">
+        <input type="search" class="form-control course-search"
+               placeholder="{{#str}}search{{/str}}" autocomplete="off">
     </div>
+    <table id="datatable_course_select" class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>{{#str}}course{{/str}}</th>
+            <th>{{#str}}shortname{{/str}}</th>
+            <th>{{#str}}category{{/str}}</th>
+        </tr>
+        </thead>
+        <tbody class="hover-pointer"></tbody>
+    </table>
+</div>
 {{/url_ajax}}
