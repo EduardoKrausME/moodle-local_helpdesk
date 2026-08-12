@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Privacy Subsystem implementation for local_helpdesk.
+ * Close resolved tickets after 48 hours.
  *
  * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link https://eduardokraus.com}
@@ -27,38 +27,32 @@ namespace local_helpdesk\task;
 use local_helpdesk\model\ticket;
 
 /**
- * Class close_tickets
- *
- * @package local_helpdesk\task
+ * Automatically closes tickets that have remained resolved for 48 hours.
  */
 class close_tickets extends \core\task\scheduled_task {
 
-    /**
-     * Get a descriptive name for the task (shown to admins)
-     *
-     * @return string
-     */
     public function get_name() {
-        return "Close tickets that are complete and unanswered for 48 hours";
+        return "Close tickets that have been resolved for 48 hours";
     }
 
-    /**
-     * Do the job.
-     * Throw exceptions on errors (the job will be retried).
-     */
     public function execute() {
         global $DB;
 
-        $sql = "
-            SELECT DISTINCT t.id
-              FROM {local_helpdesk_ticket}   t
-              JOIN {local_helpdesk_response} r ON t.id = r.ticketid
-             WHERE t.status = 'closed'
-               AND (:time - r.ticketid) >= 172800";
-        $tickets = $DB->get_records_sql($sql, ["time" => time()]);
-        foreach ($tickets as $ticket) {
-            $ticket = ticket::get_by_id($ticket->id);
-            $ticket->change_status(ticket::STATUS_RESOLVED);
+        $cutoff = time() - (2 * DAYSECS);
+        $records = $DB->get_records_select(
+            "local_helpdesk_ticket",
+            "status = :status AND resolvedat IS NOT NULL AND resolvedat > 0 AND resolvedat <= :cutoff",
+            ["status" => ticket::STATUS_RESOLVED, "cutoff" => $cutoff],
+            "resolvedat ASC",
+            "id"
+        );
+
+        foreach ($records as $record) {
+            $ticket = ticket::get_by_id($record->id);
+            if (!$ticket || $ticket->get_status() !== ticket::STATUS_RESOLVED) {
+                continue;
+            }
+            $ticket->change_status(ticket::STATUS_CLOSED);
         }
     }
 }
