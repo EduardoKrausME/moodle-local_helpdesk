@@ -5,17 +5,9 @@
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * file
+ * Helpdesk response model.
  *
  * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link https://eduardokraus.com}
@@ -25,17 +17,12 @@
 namespace local_helpdesk\model;
 
 /**
- * Class response
- *
- * @package local_helpdesk\model
+ * Response model.
  */
 class response {
 
-    /** @var string */
     const TYPE_MESSAGE = "message";
-    /** @var string */
     const TYPE_STATUS = "status";
-    /** @var string */
     const TYPE_INFO = "info";
 
     /** @var int */
@@ -50,9 +37,11 @@ class response {
     protected $message;
     /** @var int */
     protected $createdat;
+    /** @var \stdClass|null */
+    private $user;
 
     /**
-     * response constructor.
+     * Constructor.
      *
      * @param object|array $obj
      */
@@ -64,237 +53,136 @@ class response {
         }
     }
 
-    /**
-     * Function get_by_id
-     *
-     * @param int $responseid
-     *
-     * @return response|null
-     * @throws \dml_exception
-     */
     public static function get_by_id($responseid) {
         global $DB;
         $record = $DB->get_record("local_helpdesk_response", ["id" => $responseid]);
-
-        if ($record) {
-            return new self($record);
-        }
-
-        return null;
+        return $record ? new self($record) : null;
     }
 
-    /**
-     * Function get_all
-     *
-     * @param array|string $wheres
-     * @param array $params
-     * @param string $order
-     *
-     * @return array
-     * @throws \dml_exception
-     */
     public static function get_all($wheres = null, $params = [], $order = null) {
         return model_base::get_all("local_helpdesk_response", self::class, $wheres, $params, $order);
     }
 
     /**
-     * Function save
+     * Save response.
+     *
+     * Ticket lifecycle timestamps are intentionally not changed here. A response may be a
+     * user message, an informational record or a status audit entry. The ticket controller
+     * records the first real support answer and ticket::change_status() owns status dates.
      *
      * @param ticket $ticket
-     *
      * @return bool|int
-     * @throws \dml_exception
-     * @throws \coding_exception
      */
     public function save($ticket) {
         global $DB;
 
+        $record = (object)[
+            "id" => $this->id,
+            "ticketid" => $this->ticketid,
+            "userid" => $this->userid,
+            "type" => $this->type,
+            "message" => $this->message,
+            "createdat" => $this->createdat,
+        ];
+
         if ($this->id) {
-            return $DB->update_record("local_helpdesk_response", get_object_vars($this));
-        } else {
-            if (!$ticket->get_answeredat()) {
-                $DB->set_field("local_helpdesk_ticket", "answeredat", time(), ["id" => $ticket->get_id()]);
-            }
-
-            if ($this->type == self::TYPE_STATUS && !$ticket->get_closedat()) {
-                if (strpos($this->message, get_string("status_resolved", "local_helpdesk"))) {
-                    $DB->set_field("local_helpdesk_ticket", "closedat", time(), ["id" => $ticket->get_id()]);
-                } else if (strpos($this->message, get_string("status_closed", "local_helpdesk"))) {
-                    $DB->set_field("local_helpdesk_ticket", "closedat", time(), ["id" => $ticket->get_id()]);
-                }
-            }
-
-            return $this->id = $DB->insert_record("local_helpdesk_response", get_object_vars($this));
+            return $DB->update_record("local_helpdesk_response", $record);
         }
+
+        unset($record->id);
+        $this->id = $DB->insert_record("local_helpdesk_response", $record);
+        return $this->id;
     }
 
-    /**
-     * Function create_status
-     *
-     * @param ticket $ticket
-     * @param string $message
-     *
-     * @throws \dml_exception
-     * @throws \coding_exception
-     */
     public static function create_status(ticket $ticket, $message) {
         global $USER;
 
-        $response = new response([
+        $response = new self([
             "ticketid" => $ticket->get_id(),
             "message" => $message,
             "type" => self::TYPE_STATUS,
-            "userid" => $USER->id,
+            "userid" => (int)($USER->id ?? 0),
             "createdat" => time(),
         ]);
         $response->save($ticket);
     }
 
-    /**
-     * Function create_info
-     *
-     * @param ticket $ticket
-     * @param string $message
-     *
-     * @throws \dml_exception
-     * @throws \coding_exception
-     */
     public static function create_info(ticket $ticket, $message) {
         global $USER;
 
-        $response = new response([
+        $response = new self([
             "ticketid" => $ticket->get_id(),
             "message" => $message,
             "type" => self::TYPE_INFO,
-            "userid" => $USER->id,
+            "userid" => (int)($USER->id ?? 0),
             "createdat" => time(),
         ]);
         $response->save($ticket);
     }
 
-
-    /**
-     * Function delete
-     *
-     * @return bool
-     * @throws \dml_exception
-     */
     public function delete() {
         global $DB;
         return $DB->delete_records("local_helpdesk_response", ["id" => $this->id]);
     }
 
-    // Getters.
-
-    /**
-     * Function get_id
-     *
-     * @return mixed
-     */
     public function get_id() {
         return $this->id;
     }
 
-    /**
-     * Function get_ticketid
-     *
-     * @return mixed
-     */
     public function get_ticketid() {
         return $this->ticketid;
     }
 
-    /**
-     * Function get_userid
-     *
-     * @return mixed
-     */
     public function get_userid() {
         return $this->userid;
     }
 
-    /** @var \stdClass */
-    private $user;
-
-    /**
-     * Function get_user
-     *
-     * @return mixed
-     * @throws \dml_exception
-     */
     public function get_user() {
+        global $DB;
+
         if ($this->user) {
             return $this->user;
         }
 
-        global $DB;
+        if ((int)$this->userid === 0) {
+            $this->user = (object)[
+                "id" => 0,
+                "firstname" => get_string("coresystem"),
+                "lastname" => "",
+                "email" => "",
+            ];
+            return $this->user;
+        }
 
-        $this->user = $DB->get_record("user", ["id" => $this->userid]);
+        $this->user = $DB->get_record("user", ["id" => $this->userid], "*", MUST_EXIST);
         return $this->user;
     }
 
-    /**
-     * Function get_type
-     *
-     * @return string
-     */
     public function get_type() {
         return $this->type;
     }
 
-    /**
-     * Function get_message
-     *
-     * @return mixed
-     */
     public function get_message() {
         return $this->message;
     }
 
-    /**
-     * Function get_createdat
-     *
-     * @return mixed
-     */
     public function get_createdat() {
         return $this->createdat;
     }
 
-    // Setters.
-
-    /**
-     * Function set_ticketid
-     *
-     * @param int $ticketid
-     */
     public function set_ticketid($ticketid) {
         $this->ticketid = $ticketid;
     }
 
-    /**
-     * Function set_userid
-     *
-     * @param int $userid
-     */
     public function set_userid($userid) {
         $this->userid = $userid;
         $this->user = null;
     }
 
-    /**
-     * Function set_type
-     *
-     * @param string $type
-     */
     public function set_type($type) {
         $this->type = $type;
     }
 
-    /**
-     * Function set_message
-     *
-     * @param string $message
-     */
     public function set_message($message) {
         $this->message = $message;
     }

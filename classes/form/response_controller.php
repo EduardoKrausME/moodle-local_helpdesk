@@ -5,17 +5,9 @@
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * file
+ * Helpdesk response controller.
  *
  * @package   local_helpdesk
  * @copyright 2025 Eduardo Kraus {@link https://eduardokraus.com}
@@ -34,19 +26,16 @@ defined('MOODLE_INTERNAL') || die();
 require_once("{$CFG->libdir}/formslib.php");
 
 /**
- * Class response_controller
- *
- * @package local_helpdesk\form
+ * Response controller.
  */
 class response_controller {
+
     /**
-     * Function insert_response
+     * Insert a ticket response.
      *
      * @param ticket $ticket
      * @param bool $hasticketmanage
-     *
      * @return string
-     * @throws \Exception
      */
     public function insert_response($ticket, $hasticketmanage) {
         global $USER;
@@ -56,8 +45,17 @@ class response_controller {
         if ($form->is_cancelled()) {
             redirect(new moodle_url("/local/helpdesk/ticket.php?id={$ticket->get_idkey()}"));
         } else if ($data = $form->get_data()) {
+            $now = time();
+            $issupportreply = $hasticketmanage && (int)$ticket->get_userid() !== (int)$USER->id;
 
-            if ($ticket->get_status() == ticket::STATUS_OPEN && $ticket->get_userid() != $USER->id) {
+            // answeredat means the first real message from support, not a user reply or a status log.
+            if ($issupportreply && !$ticket->get_answeredat()) {
+                $ticket->set_answeredat($now);
+                $ticket->set_updatedat($now);
+                $ticket->save();
+            }
+
+            if ($ticket->get_status() === ticket::STATUS_OPEN && $issupportreply) {
                 $ticket->change_status(ticket::STATUS_PROGRESS);
             }
 
@@ -66,9 +64,13 @@ class response_controller {
                 "message" => $data->message["text"],
                 "type" => response::TYPE_MESSAGE,
                 "userid" => $USER->id,
-                "createdat" => time(),
+                "createdat" => $now,
             ]);
             $response->save($ticket);
+
+            // A normal response is also activity on the ticket.
+            $ticket->set_updatedat($now);
+            $ticket->save();
 
             $context = \context_system::instance();
             if ($data->attachment) {
@@ -76,8 +78,14 @@ class response_controller {
                     "subdirs" => true,
                     "embed" => true,
                 ];
-                file_save_draft_area_files($data->attachment, $context->id,
-                    "local_helpdesk", "response", $response->get_id(), $options);
+                file_save_draft_area_files(
+                    $data->attachment,
+                    $context->id,
+                    "local_helpdesk",
+                    "response",
+                    $response->get_id(),
+                    $options
+                );
             }
 
             $mail = new ticket_mail();
@@ -97,6 +105,7 @@ class response_controller {
                 "idkey" => $ticket->get_idkey(),
             ]);
         }
+
         $form->display();
     }
 }
