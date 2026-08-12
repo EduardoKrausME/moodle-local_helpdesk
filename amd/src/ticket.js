@@ -4,14 +4,6 @@
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
  * ticket file
@@ -30,15 +22,6 @@ define(["jquery", "core/ajax", "core/notification", "jqueryui"], function($, Aja
             $("#response-message-open").click(function() {
                 $("#response-message-area").hide(300);
                 $(".response-message").show(300);
-            });
-
-            $("#response-message-resolved").click(function() {
-                $("#response-message-area").hide(300);
-                location.href = `?id=${idkey}&newstatus=resolved`;
-            });
-            $("#response-message-closed").click(function() {
-                $("#response-message-area").hide(300);
-                location.href = `?id=${idkey}&newstatus=closed`;
             });
 
             $("#id_buttonar_resolvedbutton").removeClass("btn-primary").addClass("btn-info");
@@ -64,5 +47,5 @@ define(["jquery", "core/ajax", "core/notification", "jqueryui"], function($, Aja
                 }).catch(Notification.exception);
             });
         }
-    }
+    };
 });
