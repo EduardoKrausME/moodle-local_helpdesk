@@ -5,14 +5,6 @@
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
  * service file
@@ -42,14 +34,5 @@ $functions = [
         "type" => "read",
         "ajax" => true,
         "capabilities" => "local/helpdesk:ticketmanage",
-    ],
-    "local_helpdesk_geniai_knowledgebase" => [
-        "classpath" => "local/helpdesk/classes/external/geniai.php",
-        "classname" => "\\local_helpdesk\\external\\geniai",
-        "methodname" => "knowledgebase",
-        "description" => "get the completions knowledgebase of the geniai",
-        "type" => "read",
-        "ajax" => true,
-        "capabilities" => "local/helpdesk:knowledgebase_manage",
     ],
 ];
