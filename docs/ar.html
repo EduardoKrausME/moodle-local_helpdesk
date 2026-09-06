@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-language="ar">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Kopere Helpdesk | الدعم داخل Moodle الخاص بك</title>
+    <meta name="description"
+          content="تعرّف على Kopere Helpdesk: التذاكر، والفرق حسب الفئة، وقاعدة المعرفة، وGeniAI، والإشعارات، والتقارير، والتصدير إلى Excel، وكلها مدمجة مع برنامج Moodle.">
+    <link rel="icon" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="i18n.css">
+    <script src="script.js" defer></script>
+    <script src="language.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#conteudo">الانتقال إلى المحتوى</a>
+<header class="site-header">
+    <div class="shell header-inner"><a class="brand" href="#"><img src="favicon.svg"
+                                                                   alt=""><span>Kopere<strong>Helpdesk</strong></span></a>
+        <nav aria-label="التنقل الرئيسي"><a href="#recursos">Helpdesk</a><a href="#atendimento">الدعم</a><a
+                href="#relatorios">التقارير</a><a href="#integracoes">التكاملات</a></nav>
+        <div class="language-picker"><label class="sr-only" for="language-select">اللغة</label><select
+                id="language-select" class="language-select" aria-label="اللغة">
+            <option value="ar">العربية</option>
+            <option value="de">Deutsch</option>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="es_mx">Español (México)</option>
+            <option value="fr">Français</option>
+            <option value="id">Bahasa Indonesia</option>
+            <option value="it">Italiano</option>
+            <option value="ja">日本語</option>
+            <option value="pt">Português</option>
+            <option value="pt_br">Português (Brasil)</option>
+            <option value="ru">Русский</option>
+            <option value="sk">Slovenčina</option>
+            <option value="uk">Українська</option>
+        </select></div>
+        <a class="button small primary" href="https://eduardokraus.com/contato">تواصل مع Eduardo ↗</a>
+        <button class="menu-button" aria-label="فتح القائمة" aria-expanded="false">☰</button>
+    </div>
+</header>
+<main id="conteudo">
+    <section class="hero shell">
+        <div><span class="eyebrow">دعمٌ يشكّل جزءًا من تجربة التعلّم</span>
+            <h1>كل سؤال يستحق<br>إجابة.<br><em>نظّمها جميعًا.</em></h1>
+            <p>اجمع خدمة الدعم في مؤسستك داخل برنامج Moodle™ نفسه. باستخدام Kopere Helpdesk يجد المتعلمون المساعدة،
+                وتتابع الفرق كل تذكرة، ويرى المسؤولون ما يحتاج إلى الاهتمام.</p>
+            <div class="actions"><a class="button primary" href="#recursos">استكشف الميزات →</a><a
+                    class="button secondary" href="https://github.com/EduardoKrausME/moodle-local_helpdesk"
+                    target="_blank" rel="noopener">عرض الكود على GitHub ↗</a></div>
+            <div class="proof">
+                <span>✓ مفتوح المصدر</span><span>✓ مدمج مع البيئة</span><span>✓ مساعدة بالذكاء الاصطناعي</span></div>
+        </div>
+        <div class="hero-visual">
+            <div class="preview">
+                <div class="windowbar"><span>● ● ●</span><span>مركز الدعم</span><span>⋯</span></div>
+                <div class="preview-inner">
+                    <div class="preview-heading">
+                        <div><small>KOPERE HELPDESK</small>
+                            <h3>مرحبًا بفريق الدعم!</h3></div>
+                        <span class="avatar">EK</span></div>
+                    <div class="kpis">
+                        <div><small>مفتوحة</small><strong>24</strong></div>
+                        <div><small>دون رد</small><strong>08</strong></div>
+                        <div><small>مكتملة</small><strong>156</strong></div>
+                    </div>
+                    <div class="queue-title"><b>تذاكر تحتاج إلى اهتمامك</b><span>الأولوية</span></div>
+                    <div class="ticket-row"><span class="avatar pale">MC</span>
+                        <div><b>لا أستطيع الوصول إلى التقييم</b><small>Mariana Costa · الدعم الفني</small></div>
+                        <span class="badge red">عاجلة</span></div>
+                    <div class="ticket-row"><span class="avatar mint">RL</span>
+                        <div><b>سؤال حول الشهادة</b><small>Rafael Lima · الشؤون الأكاديمية</small></div>
+                        <span class="badge amber">عالية</span></div>
+                    <div class="ticket-row"><span class="avatar pale">AS</span>
+                        <div><b>إرسال النشاط النهائي</b><small>Ana Souza · الدعم الأكاديمي</small></div>
+                        <span class="badge blue">متوسطة</span></div>
+                    <div class="preview-bottom"><span>محادثة واحدة. كل السياق.</span><a href="#atendimento">استكشف سير
+                        العمل →</a></div>
+                </div>
+            </div>
+            <p class="caption">تصوير توضيحي لخدمة الدعم. بيانات تجريبية.</p></div>
+    </section>
+    <div class="trust">
+        <div class="shell trust-grid">
+            <div><strong>4</strong><span>مستويات للأولوية</span></div>
+            <div><strong>4</strong><span>حالات للتذكرة</span></div>
+            <div><strong>5</strong><span>مجموعات للتقارير</span></div>
+            <div><strong>1</strong><span>مركز داخل بيئتك</span></div>
+        </div>
+        <section class="shell intro section" id="recursos"><span class="eyebrow">وضوح أكبر لمن يحتاج إلى المساعدة</span>
+            <div class="split-heading"><h2>الدعم يستمر.<br>والسياق أيضًا.</h2>
+                <p>عندما يصل السؤال عبر قنوات مختلفة، فإن تتبّع ما تمت مناقشته سابقًا يستهلك وقتًا. يجمع Helpdesk
+                    الموضوع والوصف والملفات والردود والتغييرات في تذكرة واحدة يمكن الرجوع إليها طوال عملية الدعم.</p>
+            </div>
+            <div class="benefits">
+                <article><span class="line-icon">↔</span>
+                    <h3>محادثة واحدة منظّمة</h3>
+                    <p>يفتح المتعلم الطلب ويتابع احتياجاته بنفسه. ويرد الفريق ضمن السجل نفسه مع الملفات والمعلومات
+                        اللازمة لمواصلة المعالجة.</p></article>
+                <article><span class="line-icon">◎</span>
+                    <h3>الفريق المناسب لكل موضوع</h3>
+                    <p>تنظّم الفئات أنواع الطلبات وتتيح تحديد من يمكنه الرد ومن يستقبل إشعارات التذاكر الجديدة في تلك
+                        المجموعة.</p></article>
+                <article><span class="line-icon">▤</span>
+                    <h3>رؤية أوضح للإدارة</h3>
+                    <p>تساعد المؤشرات والفلاتر والتقارير في العثور على العناصر المعلّقة، وفهم حجم الطلب، ومتابعة زمن أول
+                        رد وزمن الإغلاق.</p></article>
+            </div>
+        </section>
+        <div class="section-nav">
+            <div class="shell"><a href="#atendimento">التذاكر</a><a href="#categorias">الفئات والفرق</a><a href="#ia">الذكاء
+                الاصطناعي</a><a href="#automacoes">الأتمتة</a><a href="#relatorios">التقارير</a></div>
+        </div>
+        <section class="shell section feature" id="atendimento">
+            <div class="feature-copy"><span class="eyebrow">التذاكر والمحادثات</span>
+                <h2>من السؤال الأول<br>حتى اكتمال الدعم.</h2>
+                <p>تبدأ التذكرة بموضوع وفئة ووصف وأولوية. يتيح المحرر شرح الحالة بوضوح، بينما تساعد المرفقات على مشاركة
+                    لقطات الشاشة والمستندات. تقبل نماذج الفتح والرد ما يصل إلى خمسة ملفات في كل إرسال ضمن حدود
+                    البيئة.</p>
+                <p>يمكن لفريق الدعم اختيار مستخدم عند إنشاء الطلب، ما يسمح بتسجيل تذكرة بالنيابة عن الشخص الذي يحتاج إلى
+                    المساعدة. وعندما ترتبط التذكرة بمقرر، يبقى هذا السياق مصاحبًا لها.</p>
+                <h3>أجب وحدد الخطوة التالية</h3>
+                <p>يمكن الرد فقط، أو الرد ووضع علامة «محلولة»، أو الرد ثم الإغلاق. وتُسجّل تغييرات الفئة والأولوية
+                    والحالة في السجل للمساعدة على فهم تطور عملية الدعم.</p><a class="text-link" href="#fluxo">عرض حالات
+                    الدعم →</a></div>
+            <div class="surface conversation">
+                <div class="surface-top"><span>التذكرة #1042</span><span class="badge blue">قيد المعالجة</span></div>
+                <h3>لا أستطيع الوصول إلى التقييم</h3>
+                <div class="ticket-meta">الدعم الفني <span>·</span> مقرر الإدارة <span class="badge red">عاجلة</span>
+                </div>
+                <div class="message">
+                    <div class="message-name"><span class="avatar pale">MC</span><strong>Mariana Costa</strong><small>متعلّمة</small>
+                    </div>
+                    <p>أنهيت أنشطة الوحدة، لكن التقييم ما زال يظهر على أنه غير متاح. هل يمكنكم مساعدتي؟</p><span
+                        class="file">⌁ assessment-screenshot.png</span></div>
+                <div class="message support">
+                    <div class="message-name"><span class="avatar">ES</span><strong>فريق الدعم</strong></div>
+                    <p>مرحبًا Mariana! سنراجع شروط الوصول إلى النشاط ونرشدك إلى الخطوة التالية.</p></div>
+                <div class="history">تم تغيير الأولوية إلى «عاجلة»</div>
+                <p class="caption">مثال لمحادثة يوضح طريقة تنظيم التذكرة.</p></div>
+        </section>
+        <section class="soft" id="fluxo">
+            <div class="shell section compact"><span class="eyebrow">حالة لكل مرحلة</span>
+                <h2>اعرف دائمًا أين وصلت عملية الدعم.</h2>
+                <div class="states">
+                    <article><span class="badge blue">مفتوحة</span>
+                        <h3>وصل الطلب</h3>
+                        <p>حدّد التذاكر التي تنتظر الاهتمام ونظّم بداية عملية الدعم.</p></article>
+                    <article><span class="badge amber">قيد المعالجة</span>
+                        <h3>الفريق يعمل عليها</h3>
+                        <p>واصل المحادثة بينما يتم تحليل الطلب والرد عليه.</p></article>
+                    <article><span class="badge green">محلولة</span>
+                        <h3>تم تقديم الحل</h3>
+                        <p>ميّز بين ما تم حله بالفعل وما يزال يتطلب عملاً من الفريق.</p></article>
+                    <article><span class="badge gray">مغلقة</span>
+                        <h3>انتهت الدورة</h3>
+                        <p>احتفظ بسجل الدعم المكتمل للرجوع إليه مستقبلًا.</p></article>
+                </div>
+                <div class="priority-note"><b>عاجلة · عالية · متوسطة · منخفضة</b>
+                    <p>تُرتّب القائمة التذاكر حسب الأولوية والحالة وتاريخ الإنشاء، فتظهر الطلبات العاجلة أولًا، وتظهر
+                        الأقدم أولًا ضمن المجموعة نفسها.</p></div>
+            </div>
+        </section>
+        <section class="shell section feature reverse" id="categorias">
+            <div class="feature-copy"><span class="eyebrow">الفئات والفرق</span>
+                <h2>نظّم الدعم<br>وفق طريقة عمل مؤسستك.</h2>
+                <p>أنشئ فئات باسم ووصف لفصل الموضوعات وتحديد المسؤولين. الشؤون الأكاديمية والدعم الفني والدعم الأكاديمي
+                    أمثلة على بنية يمكن تكييفها مع واقع المؤسسة.</p>
+                <p>في كل فئة، اختر المستخدمين الذين يمكنهم الرد والذين يجب أن يتلقوا رسائل البريد الخاصة بالتذاكر
+                    الجديدة. لإدارة الفئات ومعالجة التذاكر صلاحيات منفصلة، ما يتيح إنشاء أدوار بمسؤوليات مختلفة.</p>
+                <h3>من يطلب المساعدة يرى تذاكره الخاصة</h3>
+                <p>يشاهد المستخدمون الذين لا يملكون صلاحية الإدارة طلباتهم الخاصة. ويساعد فريق الدعم استخدام فلاتر
+                    المستخدم والمقرر والفئة والحالة والأولوية للوصول إلى التذكرة المطلوبة. ويشمل البحث النصي الموضوع
+                    والوصف ابتداءً من ثلاثة أحرف.</p></div>
+            <div class="surface category-surface">
+                <div class="surface-top"><b>فئات الدعم</b><span>مثال على التنظيم</span></div>
+                <div class="category-item"><span class="category-icon">▣</span>
+                    <div><h3>الدعم الفني</h3>
+                        <p>الوصول والأنشطة والتنقل</p><span class="team">فريق التقنية</span></div>
+                </div>
+                <div class="category-item"><span class="category-icon">▤</span>
+                    <div><h3>الشؤون الأكاديمية</h3>
+                        <p>المستندات والإرشاد الأكاديمي</p><span class="team">فريق الشؤون الأكاديمية</span></div>
+                </div>
+                <div class="category-item"><span class="category-icon">◫</span>
+                    <div><h3>دعم المتعلمين</h3>
+                        <p>الإرشاد داخل بيئة التعلّم</p><span class="team">فريق الدعم</span></div>
+                </div>
+            </div>
+        </section>
+        <section class="dark" id="ia">
+            <div class="shell section feature">
+                <div><span class="eyebrow">تكامل اختياري مع GENIAI</span>
+                    <h2>مساعدة أكبر في الكتابة.<br><em>والفريق يظل مسؤولًا عن الرد.</em></h2>
+                    <p>يساعد GeniAI في إنشاء الردود مباشرة داخل سير عمل الدعم. يوضح الموظف ما يريد إيصاله ويحصل على
+                        اقتراح نص يمكن نقله إلى المحرر ومراجعته وتعديله قبل الرد على المستخدم.</p>
+                    <p>تأخذ عملية التوليد في الاعتبار الموضوع ووصف التذكرة، وعند توفرها، ما يصل إلى أحدث ثلاث رسائل في
+                        المحادثة. وهكذا يمكن للاقتراح أن يستفيد من السياق القريب للدعم.</p>
+                    <p>يساعد التكامل نفسه أيضًا في إعداد مقالات لقاعدة المعرفة انطلاقًا من وصف يقدمه الفريق. وتتطلب هذه
+                        الميزة تثبيت GeniAI وإعداده وتوفير مفتاح API.</p></div>
+                <div class="ai-panel">
+                    <div class="surface-top"><b>مساعدة في صياغة الرد</b><span class="badge">GeniAI</span></div>
+                    <label>توجيه فريق الدعم</label>
+                    <div class="ai-instruction">اشرح أننا سنراجع شروط الوصول واطلب اسم النشاط ولقطة شاشة للرسالة
+                        الظاهرة.
+                    </div>
+                    <div class="ai-answer"><small>اقتراح نص · مثال</small>
+                        <p>مرحبًا Mariana! للتحقق من الوصول إلى التقييم، هل يمكنك إخبارنا باسم النشاط وإرسال لقطة شاشة
+                            للرسالة التي تظهر على الشاشة؟ بهذه المعلومات يمكننا تحليل ما يحدث وإرشادك.</p></div>
+                    <div class="ai-foot">إنشاء اقتراح <span>→</span> مراجعته في المحرر <span>→</span> الرد</div>
+                </div>
+            </div>
+        </section>
+        <section class="shell section" id="automacoes"><span class="eyebrow">الإشعارات والعمليات الآلية</span>
+            <div class="split-heading"><h2>لا ينبغي أن تبقى<br>أي تذكرة منسية.</h2>
+                <p>ترافق رسائل البريد الإلكتروني فتح التذكرة والردود. وتكمل مهمتان مجدولتان عمل الفريق بالاعتماد على
+                    المعلومات المسجلة في كل تذكرة.</p></div>
+            <div class="automation-grid">
+                <article><span class="big-number">3 <small>أيام</small></span>
+                    <h3>تذكير للفريق</h3>
+                    <p>يمكن للتذاكر المفتوحة أو قيد المعالجة التي مر على إنشائها ثلاثة أيام على الأقل وما زالت دون رد
+                        أول أن تولّد تذكيرًا للمسؤولين عن الفئة. ويسجل البرنامج الإرسال حتى لا يكرر التذكير نفسه
+                        للتذكرة.</p></article>
+                <article><span class="big-number">48 <small>ساعة</small></span>
+                    <h3>الإغلاق بعد الحل</h3>
+                    <p>تُغلق التذاكر التي تبقى في حالة «محلولة» مدة 48 ساعة على الأقل بواسطة المهمة الآلية. وتُحسب المدة
+                        من وقت الحل المسجل.</p></article>
+                <article><span class="big-number mail-symbol">✉</span>
+                    <h3>إشعارات تحمل السياق</h3>
+                    <p>تتضمن الرسائل مرجع التذكرة والموضوع والفئة والرسالة، إضافة إلى المرفقات عند الحاجة. وتنقل الروابط
+                        المستخدم مباشرة إلى التذكرة لتسهيل متابعة المحادثة.</p></article>
+            </div>
+            <p class="note">تم إعداد المهمتين للعمل يوميًا عند منتصف الليل وتعتمدان على cron في البيئة. تُفحص المدد عند
+                تنفيذ المهمة، لذلك لا يعني ذلك الإرسال أو الإغلاق في الدقيقة نفسها تمامًا.</p></section>
+        <section class="soft" id="relatorios">
+            <div class="shell section"><span class="eyebrow">تقارير باستخدام KOPERE BI</span>
+                <div class="split-heading"><h2>افهم حجم الطلب.<br>وتابع أداء الدعم.</h2>
+                    <p>تنظم ملفات تقارير البرنامج الاستعلامات ضمن خمس مجموعات. تعرّف على ما تكشفه كل قراءة وكيف يمكن
+                        لهذه المعلومات دعم إدارة الخدمة.</p></div>
+                <div class="report-list">
+                    <details open>
+                        <summary><span><small>التذاكر</small><b>الفتح والحل عبر الزمن</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p><strong>التذاكر المنشأة حسب الفترة.</strong> تجمع عمليات الفتح حسب الفئة ويوم الإنشاء
+                            وتعرض العدد المسجل. ويساعد ذلك على اكتشاف ارتفاع الطلب في تواريخ محددة.</p>
+                            <p><strong>التذاكر المحلولة حسب الفترة.</strong> يستخدم الاستعلام تاريخ الإغلاق مجمّعًا حسب
+                                الشهر والفئة لعد التذاكر المغلقة. وهذا الفرق مهم لفهم المؤشر المعروض بصورة صحيحة.</p>
+                        </div>
+                    </details>
+                    <details>
+                        <summary><span><small>الفئات</small><b>أين يتركز الطلب</b></span><span class="plus">+</span>
+                        </summary>
+                        <div><p>يعرض إجمالي التذاكر في كل فئة مرتبة من الأعلى حجمًا. ويشمل متوسط زمن أول رد ومتوسط الزمن
+                            بين الفتح والإغلاق للسجلات التي تحتوي على تلك التواريخ.</p>
+                            <p>تساعد هذه الرؤية على اكتشاف الموضوعات المتكررة ومجموعات الدعم التي تستحق تحليلًا أدق.</p>
+                        </div>
+                    </details>
+                    <details>
+                        <summary><span><small>الحالة والأولوية</small><b>التوزيع وأزمنة الدعم</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p><strong>التذاكر حسب الحالة.</strong> تجمع الفئة والحالة لعرض الحجم ومتوسط أول رد ومتوسط
+                            زمن الإغلاق.</p>
+                            <p><strong>التوزيع حسب الأولوية.</strong> تجمع التذاكر حسب الأولوية وتعرض مقاييس الزمن
+                                نفسها. ويساعد ذلك على معرفة ما إذا كانت الطلبات العاجلة تحصل على الاهتمام المتوقع.</p>
+                        </div>
+                    </details>
+                    <details>
+                        <summary><span><small>المستخدمون</small><b>من يطلب الدعم أكثر</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p>يعرض أكثر عشرة مستخدمين من حيث عدد التذاكر مع بيانات التعريف والبريد الإلكتروني وإجمالي
+                            الطلبات ومتوسط زمن أول رد والإغلاق.</p>
+                            <p>يأخذ الاستعلام في الاعتبار التذاكر المسجلة بواسطة المستخدم دون حصر العدد في التذاكر
+                                المفتوحة فقط. وقد تساعد النتيجة في اكتشاف احتياجات إرشادية متكررة.</p></div>
+                    </details>
+                    <details>
+                        <summary><span><small>نشاط الفريق</small><b>المشاركة في الردود</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p>يعد تقرير «Tickets by agent» في البرنامج السجلات الموجودة في جدول الردود ويجمعها حسب
+                            المستخدم الذي أنشأها. لذلك فهو يمثّل عدد سجلات الردود، وليس عدد التذاكر الفريدة المسندة.</p>
+                            <p>استخدم هذه المعلومات كعامل مساعد عند تحليل المشاركة في المحادثات مع مراعاة سياق كل حالة
+                                دعم.</p></div>
+                    </details>
+                </div>
+                <p class="note">الوصف مبني على ملفات التقارير في النسخة التي تمت مراجعتها. تستخدم الاستعلامات ذاكرة
+                    مؤقتة مدتها ست ساعات أو يوم واحد حسب التقرير، ولا ينبغي تفسيرها كمؤشرات لحظية.</p></div>
+        </section>
+        <section class="shell section feature" id="exportacao">
+            <div class="feature-copy"><span class="eyebrow">التصدير إلى EXCEL</span>
+                <h2>انقل السجل<br>إلى تحليلك الخاص.</h2>
+                <p>صدّر التذاكر إلى ملف Excel يتضمن اسم المستخدم والمقرر والموضوع والوصف والحالة والأولوية والفئة
+                    والبريد الإلكتروني. وتُضاف الردود في أعمدة منفصلة مع تحديد الشخص الذي كتب كل رسالة.</p>
+                <p>يتيح التصدير اختيار حالات التذاكر ويحافظ على سياق المقرر عند توفيره. ويُحوّل المحتوى النصي إلى نص
+                    عادي لتسهيل القراءة والمعالجة خارج البيئة.</p>
+                <p>تتطلب الميزة صلاحية إدارة التذاكر. وللتصدير اختيار مستقل للحالات يبدأ افتراضيًا بالتذاكر
+                    المفتوحة.</p></div>
+            <div class="surface export-preview">
+                <div class="surface-top"><b>tickets_export.xlsx</b><span class="badge green">Excel</span></div>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>المستخدم</th>
+                            <th>الموضوع</th>
+                            <th>الحالة</th>
+                            <th>الأولوية</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Mariana Costa</td>
+                            <td>الوصول إلى التقييم</td>
+                            <td>قيد المعالجة</td>
+                            <td>عاجلة</td>
+                        </tr>
+                        <tr>
+                            <td>Rafael Lima</td>
+                            <td>الشهادة</td>
+                            <td>مفتوحة</td>
+                            <td>عالية</td>
+                        </tr>
+                        <tr>
+                            <td>Ana Souza</td>
+                            <td>إرسال النشاط</td>
+                            <td>محلولة</td>
+                            <td>متوسطة</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="export-fields">
+                    <span>المقرر</span><span>الفئة</span><span>البريد</span><span>الوصف</span><span>الرد 1</span><span>الرد 2…</span>
+                </div>
+                <p class="caption">مقتطف توضيحي من المعلومات المصدّرة.</p></div>
+        </section>
+        <section class="soft" id="integracoes">
+            <div class="shell section"><span class="eyebrow">جزء من منظومة KOPERE</span>
+                <div class="split-heading"><h2>متصل بالأدوات<br>التي تعتمد عليها عملياتك.</h2>
+                    <p>يستخدم Helpdesk المستخدمين والمقررات والصلاحيات الموجودة في البيئة نفسها. وتكمل التكاملات تجربة
+                        الإدارة وإعداد الردود.</p></div>
+                <div class="integration-grid">
+                    <article><span class="badge blue">اعتماد إلزامي</span>
+                        <h3>Kopere Dashboard</h3>
+                        <p>يوفر المكونات التي يستخدمها Helpdesk، ومنها اختيار المستخدمين والعناصر المساعدة في واجهة
+                            الإدارة.</p><small>الحد الأدنى المعلن للإصدار: 2026070500</small><a
+                                href="https://kopere-dashboard.eduardokraus.chatgpt.site/">التعرّف على Dashboard ↗</a>
+                    </article>
+                    <article><span class="badge blue">اعتماد إلزامي</span>
+                        <h3>Kopere BI</h3>
+                        <p>يوفر البنية التي تعرض تقارير الدعم انطلاقًا من التعريفات المضمّنة في البرنامج.</p><small>الحد
+                            الأدنى المعلن للإصدار: 2026052400</small><a
+                                href="https://moodle.org/plugins/local_kopere_bi">التعرّف على Kopere BI ↗</a></article>
+                    <article><span class="badge gray">تكامل اختياري</span>
+                        <h3>GeniAI</h3>
+                        <p>يفعّل المساعدة في كتابة الردود والمقالات. ويتطلب التثبيت وإعداد مفتاح API.</p><small>تعمل
+                            خدمة الدعم من دون مساعدة الذكاء الاصطناعي.</small><a
+                                href="https://moodle.org/plugins/local_geniai">التعرّف على GeniAI ↗</a></article>
+                </div>
+            </div>
+        </section>
+        <section class="shell section faq" id="duvidas"><span class="eyebrow">قبل البدء</span>
+            <h2>بعض الأسئلة الشائعة.</h2>
+            <details>
+                <summary>هل يعمل Helpdesk خارج برنامج Moodle™؟<span>+</span></summary>
+                <p>هو برنامج إضافي محلي يتم تثبيته في البيئة ويستخدم حساباتها ومقرراتها وصلاحياتها. تعرض هذه الصفحة
+                    المنتج فقط، وليست مركز دعم متصلًا بمؤسستك.</p></details>
+            <details>
+                <summary>هل استخدام الذكاء الاصطناعي إلزامي؟<span>+</span></summary>
+                <p>لا. استخدام GeniAI اختياري. إنشاء التذاكر وردود الفريق وبقية وظائف الدعم لا تعتمد على توليد النص
+                    بالذكاء الاصطناعي.</p></details>
+            <details>
+                <summary>هل يرسل الذكاء الاصطناعي الرد تلقائيًا؟<span>+</span></summary>
+                <p>ينتج سير العمل الذي تمت مراجعته اقتراحًا يمكن للفريق نقله إلى المحرر. ويمكن للشخص المسؤول مراجعة النص
+                    واختيار إجراء الرد في النموذج.</p></details>
+            <details>
+                <summary>ما الفرق بين «محلولة» و«مغلقة»؟<span>+</span></summary>
+                <p>هما حالتان منفصلتان. «محلولة» تعني أن الحل تم تقديمه، و«مغلقة» تنهي دورة الدعم. وتغلق المهمة اليومية
+                    التذاكر التي تبقى محلولة لمدة 48 ساعة على الأقل.</p></details>
+            <details>
+                <summary>هل يمكن فصل الدعم حسب المقرر؟<span>+</span></summary>
+                <p>يقبل البرنامج سياق المقرر، ويوفر فلترًا للمقرر عند عرض التذاكر، ويأخذ هذا السياق في الاعتبار عند
+                    التصدير. كما يمكن إعداد القائمة لتظهر داخل المقررات فقط.</p></details>
+            <details>
+                <summary>كيف أحصل على مساعدة في التنفيذ أو التخصيص؟<span>+</span></summary>
+                <p>تواصل مع Eduardo Kraus لمناقشة تنظيم الدعم والتثبيت والإعداد والاحتياجات الخاصة بمؤسستك.</p><a
+                    class="text-link" href="https://eduardokraus.com/contato">مناقشة المشروع →</a></details>
+        </section>
+        <section class="cta shell">
+            <div><span class="eyebrow">دعم أقرب إلى المتعلم</span>
+                <h2>مركز مساعدة واحد.<br>داخل بيئتك.</h2>
+                <p>تحدث معنا حول كيفية تنظيم دعم مؤسستك باستخدام Kopere Helpdesk.</p></div>
+            <a class="button primary" href="https://eduardokraus.com/contato">تواصل مع Eduardo Kraus ↗</a></section>
+</main>
+<footer>
+    <div class="shell footer-main"><a class="brand" href="#"><img src="favicon.svg"
+                                                                  alt=""><span>Kopere<strong>Helpdesk</strong></span></a>
+        <p>دعم متصل بالتعلّم.</p>
+        <div><a href="https://github.com/EduardoKrausME/moodle-local_helpdesk">مفتوح المصدر ↗</a><a
+                href="https://eduardokraus.com/contato">تواصل ↗</a></div>
+    </div>
+    <div class="shell footer-bottom"><span>© 2026 Eduardo Kraus · Kopere Helpdesk</span><span>Moodle™ علامة تجارية مسجلة. برنامج إضافي مستقل ومفتوح المصدر.</span>
+    </div>
+    <div class="shell source-note">المحتوى مبني على <a href="https://github.com/EduardoKrausME/moodle-local_helpdesk">مستودع
+        البرنامج الإضافي</a>، الإصدار 2.4.6 الذي تمت مراجعته في سبتمبر 2026. الواجهات والبيانات في هذه الصفحة توضيحية.
+    </div>
+</footer>
+</body>
+</html>
