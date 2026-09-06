@@ -1,5 +1,7 @@
 # Kopere Helpdesk
 
+https://eduardokrausme.github.io/moodle-local_helpdesk/
+
 ## Overview
 This plugin provides a ticketing system for managing support requests. It allows users to create and track tickets while enabling administrators and support teams to manage and respond efficiently.
 
