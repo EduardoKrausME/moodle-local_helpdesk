@@ -118,6 +118,17 @@ $string['lognewstatus'] = 'Stav changed to <strong>{$a}</strong>!';
 $string['lognowupdate'] = 'Neboli vykonané žiadne zmeny!';
 $string['mailticket_create_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.helpdesk]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - Požiadavka <strong>#{[event.tiketidlink]}</strong></p>\\n<p>Dobrý deň {[to.fullname]},</p>\\n<p>{[from.fullname]} Vytvoriť Požiadavka #{[event.tiketidlink]}:</p>\\n<blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">\\n{[event.text]}\\n{[event.attachment]}\\n</blockquote>\\n<p>S pozdravom,<br>\\nTím podpory</p>';
 $string['mailticket_subject'] = '{[event.subjectname]} - Požiadavka: #{[event.tiketidname]}';
+$string['mailticket_reminder_subject'] = 'Pripomienka: {[event.subjectname]} - Požiadavka: #{[event.tiketidname]}';
+$string['mailticket_reminder_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.helpdesk]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - Požiadavka <strong>#{[event.tiketidlink]}</strong></p>
+<p>Dobrý deň {[to.fullname]},</p>
+<p>Táto požiadavka je otvorená viac ako tri dni bez odpovede tímu podpory a vyžaduje pozornosť.</p>
+<blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">
+{[event.text]}
+{[event.attachment]}
+</blockquote>
+<p>Skontrolujte požiadavku #{[event.tiketidlink]} a odpovedzte čo najskôr.</p>
+<p>S pozdravom,<br>
+Tím podpory</p>';
 $string['mailticket_update_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.helpdesk]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - Požiadavka <strong>#{[event.tiketidlink]}</strong></p>\\n<p>Dobrý deň {[to.fullname]},</p>\\n<p>Tím podpory: Aktualizovať.</p>\\n<blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">\\n{[event.text]}\\n{[event.attachment]}\\n</blockquote>\\n<p>Zobraziť Požiadavka #{[event.tiketidlink]}.</p>\\n<p>S pozdravom,<br>\\nTím podpory</p>';
 $string['mailticket_user_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.tiketidlink]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - Požiadavka <strong>#{[event.tiketidlink]}</strong></p>\\n<p>Dobrý deň {[to.fullname]},</p>\\n<p>Tím podpory: Správa</p>\\n<blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">\\n{[event.text]}\\n{[event.attachment]}\\n</blockquote>\\n<p>Zobraziť Požiadavka #{[event.tiketidlink]}.</p>\\n<p>S pozdravom,<br>\\nTím podpory</p>';
 $string['markticketasclosed'] = 'Požiadavka Zatvorená';

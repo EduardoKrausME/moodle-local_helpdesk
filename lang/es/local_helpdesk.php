@@ -118,6 +118,17 @@ $string['lognewstatus'] = 'Estado changed a <strong>{$a}</strong>!';
 $string['lognowupdate'] = '¡No se realizaron cambios!';
 $string['mailticket_create_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.helpdesk]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - Ticket <strong>#{[event.tiketidlink]}</strong></p>\\n<p>Estimado/a {[to.fullname]},</p>\\n<p>{[from.fullname]} Crear Ticket #{[event.tiketidlink]}:</p>\\n<blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">\\n{[event.text]}\\n{[event.attachment]}\\n</blockquote>\\n<p>Saludos cordiales,<br>\\nEquipo de soporte</p>';
 $string['mailticket_subject'] = '{[event.subjectname]} - Ticket: #{[event.tiketidname]}';
+$string['mailticket_reminder_subject'] = 'Recordatorio: {[event.subjectname]} - Ticket: #{[event.tiketidname]}';
+$string['mailticket_reminder_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.helpdesk]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - Ticket <strong>#{[event.tiketidlink]}</strong></p>
+<p>Estimado/a {[to.fullname]},</p>
+<p>Este ticket lleva más de tres días abierto sin una respuesta del equipo de soporte y requiere atención.</p>
+<blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">
+{[event.text]}
+{[event.attachment]}
+</blockquote>
+<p>Revise el ticket #{[event.tiketidlink]} y responda lo antes posible.</p>
+<p>Saludos cordiales,<br>
+Equipo de soporte</p>';
 $string['mailticket_update_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.helpdesk]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - Ticket <strong>#{[event.tiketidlink]}</strong></p>\\n<p>Estimado/a {[to.fullname]},</p>\\n<p>Equipo de soporte: Actualizar.</p>\\n<blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">\\n{[event.text]}\\n{[event.attachment]}\\n</blockquote>\\n<p>Ver Ticket #{[event.tiketidlink]}.</p>\\n<p>Saludos cordiales,<br>\\nEquipo de soporte</p>';
 $string['mailticket_user_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.tiketidlink]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - Ticket <strong>#{[event.tiketidlink]}</strong></p>\\n<p>Estimado/a {[to.fullname]},</p>\\n<p>Equipo de soporte: Mensaje</p>\\n<blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">\\n{[event.text]}\\n{[event.attachment]}\\n</blockquote>\\n<p>Ver Ticket #{[event.tiketidlink]}.</p>\\n<p>Saludos cordiales,<br>\\nEquipo de soporte</p>';
 $string['markticketasclosed'] = 'Ticket Cerrado';

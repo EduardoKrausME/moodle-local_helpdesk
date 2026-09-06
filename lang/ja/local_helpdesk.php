@@ -118,6 +118,17 @@ $string['lognewstatus'] = 'ステータス changed to <strong>{$a}</strong>!';
 $string['lognowupdate'] = '変更はありません！';
 $string['mailticket_create_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.helpdesk]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - チケット <strong>#{[event.tiketidlink]}</strong></p>\\n<p>こんにちは {[to.fullname]},</p>\\n<p>{[from.fullname]} 作成 チケット #{[event.tiketidlink]}:</p>\\n<blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">\\n{[event.text]}\\n{[event.attachment]}\\n</blockquote>\\n<p>よろしくお願いいたします,<br>\\nサポートチーム</p>';
 $string['mailticket_subject'] = '{[event.subjectname]} - チケット: #{[event.tiketidname]}';
+$string['mailticket_reminder_subject'] = 'リマインダー: {[event.subjectname]} - チケット: #{[event.tiketidname]}';
+$string['mailticket_reminder_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.helpdesk]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - チケット <strong>#{[event.tiketidlink]}</strong></p>
+<p>{[to.fullname]} 様</p>
+<p>このチケットはサポートからの回答がないまま3日以上経過しており、対応が必要です。</p>
+<blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">
+{[event.text]}
+{[event.attachment]}
+</blockquote>
+<p>チケット #{[event.tiketidlink]} を確認し、できるだけ早く回答してください。</p>
+<p>よろしくお願いいたします。<br>
+サポートチーム</p>';
 $string['mailticket_update_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.helpdesk]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - チケット <strong>#{[event.tiketidlink]}</strong></p>\\n<p>こんにちは {[to.fullname]},</p>\\n<p>サポートチーム: 更新.</p>\\n<blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">\\n{[event.text]}\\n{[event.attachment]}\\n</blockquote>\\n<p>表示 チケット #{[event.tiketidlink]}.</p>\\n<p>よろしくお願いいたします,<br>\\nサポートチーム</p>';
 $string['mailticket_user_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.tiketidlink]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - チケット <strong>#{[event.tiketidlink]}</strong></p>\\n<p>こんにちは {[to.fullname]},</p>\\n<p>サポートチーム: メッセージ</p>\\n<blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">\\n{[event.text]}\\n{[event.attachment]}\\n</blockquote>\\n<p>表示 チケット #{[event.tiketidlink]}.</p>\\n<p>よろしくお願いいたします,<br>\\nサポートチーム</p>';
 $string['markticketasclosed'] = 'チケット 終了';

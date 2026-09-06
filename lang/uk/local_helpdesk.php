@@ -118,6 +118,17 @@ $string['lognewstatus'] = 'Статус changed to <strong>{$a}</strong>!';
 $string['lognowupdate'] = 'Змін не внесено!';
 $string['mailticket_create_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.helpdesk]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - Звернення <strong>#{[event.tiketidlink]}</strong></p>\\n<p>Вітаємо {[to.fullname]},</p>\\n<p>{[from.fullname]} Створити Звернення #{[event.tiketidlink]}:</p>\\n<blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">\\n{[event.text]}\\n{[event.attachment]}\\n</blockquote>\\n<p>З повагою,<br>\\nКоманда підтримки</p>';
 $string['mailticket_subject'] = '{[event.subjectname]} - Звернення: #{[event.tiketidname]}';
+$string['mailticket_reminder_subject'] = 'Нагадування: {[event.subjectname]} - Звернення: #{[event.tiketidname]}';
+$string['mailticket_reminder_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.helpdesk]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - Звернення <strong>#{[event.tiketidlink]}</strong></p>
+<p>Вітаємо, {[to.fullname]}!</p>
+<p>Це звернення залишається відкритим понад три дні без відповіді команди підтримки та потребує уваги.</p>
+<blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">
+{[event.text]}
+{[event.attachment]}
+</blockquote>
+<p>Будь ласка, перегляньте звернення #{[event.tiketidlink]} і дайте відповідь якнайшвидше.</p>
+<p>З повагою,<br>
+Команда підтримки</p>';
 $string['mailticket_update_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.helpdesk]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - Звернення <strong>#{[event.tiketidlink]}</strong></p>\\n<p>Вітаємо {[to.fullname]},</p>\\n<p>Команда підтримки: Оновити.</p>\\n<blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">\\n{[event.text]}\\n{[event.attachment]}\\n</blockquote>\\n<p>Переглянути Звернення #{[event.tiketidlink]}.</p>\\n<p>З повагою,<br>\\nКоманда підтримки</p>';
 $string['mailticket_user_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.tiketidlink]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - Звернення <strong>#{[event.tiketidlink]}</strong></p>\\n<p>Вітаємо {[to.fullname]},</p>\\n<p>Команда підтримки: Повідомлення</p>\\n<blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">\\n{[event.text]}\\n{[event.attachment]}\\n</blockquote>\\n<p>Переглянути Звернення #{[event.tiketidlink]}.</p>\\n<p>З повагою,<br>\\nКоманда підтримки</p>';
 $string['markticketasclosed'] = 'Звернення Закрито';

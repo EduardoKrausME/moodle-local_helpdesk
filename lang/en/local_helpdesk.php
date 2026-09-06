@@ -155,6 +155,17 @@ $string['mailticket_create_message'] = '<p><strong>{[moodle.fullname]}</strong> 
 <p>Best regards,<br>
 Support Team</p>';
 $string['mailticket_subject'] = '{[event.subjectname]} - Ticket: #{[event.tiketidname]}';
+$string['mailticket_reminder_subject'] = 'Reminder: {[event.subjectname]} - Ticket: #{[event.tiketidname]}';
+$string['mailticket_reminder_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.helpdesk]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - Ticket <strong>#{[event.tiketidlink]}</strong></p>
+<p>Dear {[to.fullname]},</p>
+<p>This ticket has been open for more than three days without a support response and requires attention.</p>
+<blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">
+{[event.text]}
+{[event.attachment]}
+</blockquote>
+<p>Please review ticket #{[event.tiketidlink]} and reply as soon as possible.</p>
+<p>Best regards,<br>
+Support Team</p>';
 $string['mailticket_update_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.helpdesk]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - Ticket <strong>#{[event.tiketidlink]}</strong></p>
 <p>Dear {[to.fullname]},</p>
 <p>Our team has reviewed your case and added new information:</p>
