@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="pt-BR" data-language="pt_br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Primeiros passos | Kopere Helpdesk</title>
+    <meta name="description"
+          content="Guia de primeiros passos do Kopere Helpdesk para Moodle: categorias, atendentes, permissões, abertura e resposta de tickets.">
+    <link rel="icon" href="../favicon.png">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../i18n.css">
+    <script src="../script.js" defer></script>
+    <script src="../language.js" defer></script>
+</head>
+
+<body>
+<header class="site-header">
+    <div class="shell header-inner"><a class="brand" href="#">
+        <img src="../favicon.png"
+             alt=""><span>Kopere<strong>Helpdesk</strong></span></a>
+        <nav aria-label="Navegação principal">
+            <a href="../#recursos">O Helpdesk</a>
+            <a href="../#atendimento">Atendimento</a>
+            <a href="../#relatorios">Relatórios</a>
+            <a href="../#integracoes">Integrações</a>
+        </nav>
+        <div class="language-picker"><label class="sr-only" for="language-select">Idioma</label><select
+                id="language-select" class="language-select" aria-label="Idioma">
+            <option value="ar">العربية</option>
+            <option value="de">Deutsch</option>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="es_mx">Español (México)</option>
+            <option value="fr">Français</option>
+            <option value="id">Bahasa Indonesia</option>
+            <option value="it">Italiano</option>
+            <option value="ja">日本語</option>
+            <option value="pt">Português</option>
+            <option value="pt_br">Português (Brasil)</option>
+            <option value="ru">Русский</option>
+            <option value="sk">Slovenčina</option>
+            <option value="uk">Українська</option>
+        </select></div>
+        <a class="button small primary" href="https://eduardokraus.com/contato">Fale com Eduardo ↗</a>
+        <button class="menu-button" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    </div>
+</header>
+
+<div class="layout">
+    <aside class="sidebar" aria-label="Documentação">
+        <p class="sidebar-title">Documentação</p>
+        <nav>
+            <a class="active" href="#inicio">Primeiros passos</a>
+            <a href="#acesso">Acessar o Helpdesk</a>
+            <a href="#categorias">Categorias e atendentes</a>
+            <a href="#permissoes">Permissões</a>
+            <a href="#responder">Responder tickets</a>
+            <a href="#diagnostico">Problemas de acesso</a>
+        </nav>
+        <div class="sidebar-separator"></div>
+        <a class="back" href="../pt_br.html">← Voltar para a página do Helpdesk</a>
+    </aside>
+
+    <main class="content" id="inicio">
+        <div class="breadcrumbs">
+            Kopere Helpdesk <span>/</span> Documentação <span>/</span> Primeiros passos
+        </div>
+
+        <span class="eyebrow">Guia de uso</span>
+        <h1>Comece a atender tickets dentro do Moodle.</h1>
+        <p class="lead">
+            Este guia mostra o caminho mínimo de como colocar uma equipe para atender,
+            criar as categorias, definir quem responde, entender as permissões e testar o fluxo completo de um ticket.
+        </p>
+
+        <section class="section" id="acesso">
+            <h2>1. Onde acessar o Helpdesk</h2>
+            <p>
+                Depois da instalação, a central de tickets fica em <code>/local/helpdesk/</code> dentro do seu Moodle.
+                O que aparece nessa tela depende das permissões do usuário.
+            </p>
+
+            <div class="path">
+                <b>Seu Moodle</b> <span>→</span> <b>Helpdesk</b> <span>→</span> <b>Tickets</b>
+            </div>
+
+            <p>
+                Um usuário comum utiliza o Helpdesk para abrir e acompanhar os próprios tickets. Já uma pessoa da equipe
+                de suporte precisa da permissão de gerenciamento para visualizar e responder solicitações de outros
+                usuários.
+            </p>
+
+            <div class="callout">
+                <strong>Visualizar o Helpdesk e atender o Helpdesk são coisas diferentes.</strong>
+                <p>
+                    A permissão <code>local/helpdesk:view</code> permite usar a central e criar tickets para si mesmo.
+                    Para trabalhar como atendente é necessária a permissão <code>local/helpdesk:ticketmanage</code>.
+                </p>
+            </div>
+        </section>
+
+        <section class="section" id="categorias">
+            <h2>2. Crie as categorias e defina os atendentes</h2>
+            <p>
+                As categorias são a base da distribuição do atendimento. Você pode separar, por exemplo, Suporte
+                técnico, Secretaria, Financeiro ou Apoio acadêmico. Cada categoria possui sua própria lista de pessoas
+                responsáveis.
+            </p>
+
+            <div class="step">
+                <span class="step-number">1</span>
+                <h3>Crie a categoria</h3>
+                <p>
+                    Acesse a área de categorias do Helpdesk, informe um nome e uma descrição e salve. A lista de
+                    atendentes é configurada depois que a categoria já existe.
+                </p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">2</span>
+                <h3>Adicione os usuários que atendem essa categoria</h3>
+                <p>
+                    Na edição da categoria, localize <strong>“Usuários que respondem a esta categoria”</strong> e mova
+                    para a lista os usuários que devem receber e atender os tickets daquele assunto.
+                </p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">3</span>
+                <h3>Salve e faça um teste com duas contas</h3>
+                <p>
+                    Use uma conta de aluno ou usuário comum para abrir um ticket e uma conta de atendente para
+                    responder.
+                    Esse teste simples confirma categoria, permissões, visualização do painel e envio de notificações.
+                </p>
+            </div>
+
+            <div class="callout success">
+                <strong>O comportamento esperado ao adicionar um atendente</strong>
+                <p>
+                    O plugin registra o usuário na categoria e também utiliza o papel de sistema
+                    <strong>Helpdesk</strong>
+                    para conceder a permissão de gerenciamento de tickets. Portanto, o mesmo usuário deve conseguir
+                    receber a notificação e abrir o ticket pelo painel para responder.
+                </p>
+            </div>
+        </section>
+
+        <section class="section" id="permissoes">
+            <h2>3. Entenda as permissões</h2>
+            <p>
+                O Helpdesk não usa uma única permissão para tudo. Isso permite separar quem apenas abre solicitações,
+                quem atende e quem administra a estrutura da central.
+            </p>
+
+            <table class="permission-table">
+                <thead>
+                <tr>
+                    <th>Permissão</th>
+                    <th>O que permite</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>local/helpdesk:view</code></td>
+                    <td>Visualizar o Helpdesk e criar tickets para o próprio usuário.</td>
+                </tr>
+                <tr>
+                    <td><code>local/helpdesk:ticketmanage</code></td>
+                    <td>Gerenciar o atendimento, visualizar tickets de outros usuários, responder, resolver e fechar.
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>local/helpdesk:categorymanage</code></td>
+                    <td>Criar e editar categorias de atendimento.</td>
+                </tr>
+                <tr>
+                    <td><code>local/helpdesk:categorydelete</code></td>
+                    <td>Excluir categorias quando essa operação for permitida.</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <p>
+                Para uma equipe de suporte comum, a permissão fundamental é
+                <code>local/helpdesk:ticketmanage</code>. A administração das categorias pode continuar restrita a
+                gestores.
+            </p>
+        </section>
+
+        <section class="section" id="responder">
+            <h2>4. Como responder um ticket</h2>
+            <p>
+                Quando o atendente possui a permissão de gerenciamento, a lista de tickets passa a funcionar como uma
+                fila de atendimento. É possível filtrar por usuário, curso, categoria, estado e prioridade.
+            </p>
+
+            <div class="mini-flow" aria-label="Fluxo do ticket">
+                <div><b>Aberto</b><span>Solicitação recebida</span></div>
+                <div><b>Em progresso</b><span>Equipe está tratando</span></div>
+                <div><b>Resolvido</b><span>Solução foi encaminhada</span></div>
+                <div><b>Fechado</b><span>Atendimento encerrado</span></div>
+            </div>
+
+            <ol>
+                <li>Abra <code>/local/helpdesk/</code> com a conta do atendente.</li>
+                <li>Localize o ticket e clique para abrir a conversa.</li>
+                <li>Leia a descrição, os anexos e as respostas anteriores.</li>
+                <li>Escreva a resposta no editor.</li>
+                <li>Envie a mensagem e, quando for o caso, marque o ticket como resolvido ou fechado.</li>
+            </ol>
+
+            <p>
+                O histórico mantém as mensagens e também as mudanças de estado, prioridade e categoria, deixando o
+                atendimento registrado no próprio Moodle.
+            </p>
+        </section>
+
+        <section class="section" id="diagnostico">
+            <h2>5. Recebo o e-mail, mas não consigo responder</h2>
+            <p>
+                Esse é o cenário relatado na issue #32. A lista de usuários da categoria e a permissão de gerenciamento
+                trabalham juntas. Receber uma notificação confirma que o usuário está associado à categoria, mas a tela
+                de resposta depende de <code>local/helpdesk:ticketmanage</code>.
+            </p>
+
+            <div class="diagnostic">
+                <h3>Verificação recomendada</h3>
+                <p>Faça os testes abaixo com a conta que deveria atuar como atendente.</p>
+
+                <div class="check">
+                    <b>1. Confirme se o usuário está na categoria correta</b>
+                    <p>
+                        Edite a categoria e verifique se ele aparece em “Usuários que respondem a esta categoria”.
+                        Essa associação determina quais categorias fazem parte da equipe dele e quem recebe as
+                        notificações daquela fila.
+                    </p>
+                </div>
+
+                <div class="check">
+                    <b>2. Confira o papel de sistema “Helpdesk”</b>
+                    <p>
+                        Em Administração do site → Usuários → Permissões → Definir papéis, abra o papel Helpdesk e
+                        confirme que <code>local/helpdesk:ticketmanage</code> está permitido.
+                    </p>
+                </div>
+
+                <div class="check">
+                    <b>3. Confira a atribuição do papel no contexto do sistema</b>
+                    <p>
+                        O usuário atendente deve possuir o papel Helpdesk no contexto do sistema. O plugin faz essa
+                        atribuição quando o usuário é adicionado à categoria. Se o papel ou a atribuição tiver sido
+                        alterado manualmente, a capacidade de responder pode desaparecer.
+                    </p>
+                </div>
+
+                <div class="check">
+                    <b>4. Se o papel Helpdesk já existia, revise suas permissões</b>
+                    <p>
+                        O plugin reutiliza um papel existente com o shortname <code>helpdesk</code>. Por isso, em
+                        instalações antigas, migrações ou ambientes em que esse papel foi criado anteriormente, vale
+                        conferir se ele realmente contém a permissão de gerenciamento de tickets.
+                    </p>
+                </div>
+
+                <div class="check">
+                    <b>5. Limpe os caches depois de ajustar papéis</b>
+                    <p>
+                        Depois de corrigir permissões ou atribuições, limpe os caches do Moodle e entre novamente com a
+                        conta do atendente antes de repetir o teste.
+                    </p>
+                </div>
+            </div>
+
+            <div class="callout warning">
+                <strong>Teste objetivo</strong>
+                <p>
+                    Se a conta consegue abrir apenas os próprios tickets, mas não consegue abrir e responder tickets de
+                    outros usuários, o primeiro ponto a conferir é
+                    <code>local/helpdesk:ticketmanage</code>. É essa capacidade que o código usa para liberar o modo de
+                    atendimento.
+                </p>
+            </div>
+        </section>
+
+        <section class="section" id="teste-final">
+            <h2>6. Faça um teste completo antes de liberar para a equipe</h2>
+            <p>
+                Para validar a configuração, abra um ticket com uma conta comum, escolha uma categoria que possua um
+                atendente configurado e depois entre com a conta desse atendente. Ele deve visualizar o chamado,
+                conseguir abrir a conversa e responder. Em seguida, volte à conta que criou o ticket e confirme que a
+                resposta aparece no histórico.
+            </p>
+
+            <p>
+                Se esse fluxo funcionar, a estrutura principal do Helpdesk está pronta. A partir daí você pode ampliar a
+                documentação com administração de categorias, base de conhecimento, relatórios, automações, integração
+                com GeniAI e outros recursos do plugin.
+            </p>
+        </section>
+
+        <div class="footer-note">
+            Esta documentação acompanha o projeto
+            <a href="https://github.com/EduardoKrausME/moodle-local_helpdesk" target="_blank" rel="noopener">moodle-local_helpdesk</a>.
+            A dúvida que motivou este guia está na
+            <a href="https://github.com/EduardoKrausME/moodle-local_helpdesk/issues/32" target="_blank" rel="noopener">issue
+                #32</a>.
+        </div>
+    </main>
+</div>
+
+<script>
+    const button = document.querySelector(".mobile-menu");
+    const sidebar = document.querySelector(".sidebar");
+
+    if (button && sidebar) {
+        button.addEventListener("click", () => {
+            const open = sidebar.classList.toggle("open");
+            button.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+
+        sidebar.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+                sidebar.classList.remove("open");
+                button.setAttribute("aria-expanded", "false");
+            });
+        });
+    }
+</script>
+</body>
+</html>

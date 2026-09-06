@@ -1,0 +1,307 @@
+/*
+ * Kopere Helpdesk documentation - dark mode.
+ * The active theme is controlled by html[data-theme="dark"].
+ */
+
+.theme-toggle {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 5px 13px 5px 6px;
+    border: 1px solid #dbe5ef;
+    border-radius: 999px;
+    background: #fff;
+    color: #10233d;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 650;
+    line-height: 1;
+    cursor: pointer;
+    transition: background .2s, border-color .2s, color .2s, transform .2s
+}
+
+.theme-toggle:hover {
+    transform: translateY(-1px);
+    border-color: #bed1e4
+}
+
+.theme-toggle-icon {
+    width: 32px;
+    height: 32px;
+    display: inline-grid;
+    place-items: center;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: #edf5ff;
+    color: #086fd9
+}
+
+.theme-toggle-icon svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark
+}
+
+html[data-theme="dark"] body {
+    background: #081523;
+    color: #e9f1f8
+}
+
+html[data-theme="dark"] p {
+    color: #aebdcd
+}
+
+html[data-theme="dark"] em,
+html[data-theme="dark"] .eyebrow,
+html[data-theme="dark"] .text-link,
+html[data-theme="dark"] .preview-bottom a,
+html[data-theme="dark"] .integration-grid a,
+html[data-theme="dark"] .faq summary span,
+html[data-theme="dark"] .priority-note b,
+html[data-theme="dark"] .plus {
+    color: #62b5ff
+}
+
+html[data-theme="dark"] .site-header {
+    background: #081523f2;
+    border-bottom-color: #24384d
+}
+
+html[data-theme="dark"] .brand img {
+    background: #03101d
+}
+
+html[data-theme="dark"] .header-inner nav {
+    color: #b5c4d3
+}
+
+html[data-theme="dark"] .secondary,
+html[data-theme="dark"] .menu-button,
+html[data-theme="dark"] .language-select {
+    border-color: #2c435a;
+    background: #0d1d2d;
+    color: #e9f1f8
+}
+
+html[data-theme="dark"] .theme-toggle {
+    border-color: #2c435a;
+    background: #0d1d2d;
+    color: #e9f1f8
+}
+
+html[data-theme="dark"] .theme-toggle:hover {
+    border-color: #46617c
+}
+
+html[data-theme="dark"] .theme-toggle-icon {
+    background: #172b40;
+    color: #8fc9ff
+}
+
+html[data-theme="dark"] .hero-visual {
+    background: radial-gradient(ellipse at 75% 20%, #143b58 0, transparent 70%)
+}
+
+html[data-theme="dark"] .preview,
+html[data-theme="dark"] .surface,
+html[data-theme="dark"] .report-list details,
+html[data-theme="dark"] .integration-grid article {
+    background: #0d1d2d;
+    border-color: #2a4056;
+    box-shadow: 0 22px 55px #00000038
+}
+
+html[data-theme="dark"] .windowbar,
+html[data-theme="dark"] .surface-top,
+html[data-theme="dark"] .category-surface .surface-top {
+    background: #112337;
+    border-color: #2a4056;
+    color: #8fa4b8
+}
+
+html[data-theme="dark"] .preview-inner,
+html[data-theme="dark"] .category-surface,
+html[data-theme="dark"] .kb-preview {
+    background: #0a1928
+}
+
+html[data-theme="dark"] .kpis > div,
+html[data-theme="dark"] .team {
+    background: #102235;
+    border-color: #2a4056
+}
+
+html[data-theme="dark"] .kpis small,
+html[data-theme="dark"] .ticket-row small,
+html[data-theme="dark"] .preview-heading small,
+html[data-theme="dark"] .surface-top > span:not(.badge),
+html[data-theme="dark"] .ticket-meta,
+html[data-theme="dark"] .message-name > small,
+html[data-theme="dark"] .history,
+html[data-theme="dark"] .caption,
+html[data-theme="dark"] .technical dt,
+html[data-theme="dark"] .integration-grid small {
+    color: #8fa4b8
+}
+
+html[data-theme="dark"] .ticket-row,
+html[data-theme="dark"] .category-item,
+html[data-theme="dark"] .knowledge,
+html[data-theme="dark"] .article-example,
+html[data-theme="dark"] .message,
+html[data-theme="dark"] .faq,
+html[data-theme="dark"] .faq details,
+html[data-theme="dark"] .setup-guide article,
+html[data-theme="dark"] .benefits article,
+html[data-theme="dark"] .automation-grid article,
+html[data-theme="dark"] .states article,
+html[data-theme="dark"] .priority-note,
+html[data-theme="dark"] th,
+html[data-theme="dark"] td {
+    border-color: #2a4056
+}
+
+html[data-theme="dark"] .trust,
+html[data-theme="dark"] .soft {
+    background: #0b1928;
+    border-color: #24384d
+}
+
+html[data-theme="dark"] .trust-grid > div {
+    border-color: #24384d;
+    color: #aebdcd
+}
+
+html[data-theme="dark"] .section-nav {
+    background: #0a1827f5;
+    border-color: #24384d
+}
+
+html[data-theme="dark"] .line-icon,
+html[data-theme="dark"] .category-icon {
+    background: #122b42;
+    color: #72bfff
+}
+
+html[data-theme="dark"] .file,
+html[data-theme="dark"] .technical,
+html[data-theme="dark"] code {
+    background: #102235;
+    border-color: #2a4056;
+    color: #b8c9d9
+}
+
+html[data-theme="dark"] .message.support {
+    background: #102b43
+}
+
+html[data-theme="dark"] .note {
+    color: #9fb0c1;
+    border-color: #456b8d
+}
+
+html[data-theme="dark"] th {
+    background: #11263a;
+    color: #a9bed1
+}
+
+html[data-theme="dark"] td {
+    color: #b7c6d5
+}
+
+html[data-theme="dark"] .export-fields span {
+    background: #11263a;
+    color: #a9bed1
+}
+
+html[data-theme="dark"] .report-list details > div {
+    border-color: #2a4056
+}
+
+html[data-theme="dark"] .ai-answer {
+    background: #102235
+}
+
+html[data-theme="dark"] .ai-answer p {
+    color: #b7c6d5
+}
+
+html[data-theme="dark"] .language-alert {
+    background: #473d12;
+    border-color: #76671e;
+    color: #fff1a9
+}
+
+html[data-theme="dark"] .red {
+    background: #4a2028;
+    color: #ff9aa9
+}
+
+html[data-theme="dark"] .amber {
+    background: #493817;
+    color: #ffd27d
+}
+
+html[data-theme="dark"] .blue {
+    background: #153a61;
+    color: #92c8ff
+}
+
+html[data-theme="dark"] .green {
+    background: #173d31;
+    color: #8bd9b9
+}
+
+html[data-theme="dark"] .gray {
+    background: #263749;
+    color: #b8c7d7
+}
+
+html[data-theme="dark"] .pale {
+    background: #233d62;
+    color: #a9c9ff
+}
+
+html[data-theme="dark"] .mint {
+    background: #193f35;
+    color: #8bd8bf
+}
+
+html[data-theme="dark"] footer {
+    background: #030b14
+}
+
+@media (max-width: 560px) {
+    .theme-toggle {
+        width: 42px;
+        min-height: 42px;
+        padding: 4px;
+        justify-content: center
+    }
+
+    .theme-toggle-label {
+        display: none
+    }
+
+    .theme-toggle-icon {
+        width: 32px;
+        height: 32px
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .theme-toggle {
+        transition: none
+    }
+}

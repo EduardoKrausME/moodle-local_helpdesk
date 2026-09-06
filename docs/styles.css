@@ -1,3 +1,5 @@
+@import url("styles-darkmode.css");
+@import url("styles-i18n.css");
 @font-face {
     font-family: Geist;
     src: url(geist.woff2) format('woff2');
