@@ -31,10 +31,22 @@ use local_helpdesk\model\ticket;
  */
 class close_tickets extends \core\task\scheduled_task {
 
+    /**
+     * get_name
+     *
+     * @return string
+     */
     public function get_name() {
         return "Close tickets that have been resolved for 48 hours";
     }
 
+    /**
+     * execute
+     *
+     * @return void
+     * @throws \dml_exception
+     * @throws \invalid_parameter_exception
+     */
     public function execute() {
         global $DB;
 

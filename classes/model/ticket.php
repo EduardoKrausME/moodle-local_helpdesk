@@ -5,6 +5,14 @@
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
  * Helpdesk ticket model.
@@ -21,14 +29,38 @@ namespace local_helpdesk\model;
  */
 class ticket {
 
+    /**
+     * low
+     */
     const PRIORITY_LOW = "low";
+    /**
+     * medium
+     */
     const PRIORITY_MEDIUM = "medium";
+    /**
+     * high
+     */
     const PRIORITY_HIGH = "high";
+    /**
+     * urgent
+     */
     const PRIORITY_URGENT = "urgent";
 
+    /**
+     * open
+     */
     const STATUS_OPEN = "open";
+    /**
+     * progress
+     */
     const STATUS_PROGRESS = "progress";
+    /**
+     * resolved
+     */
     const STATUS_RESOLVED = "resolved";
+    /**
+     * closed
+     */
     const STATUS_CLOSED = "closed";
 
     /** @var int */
@@ -184,18 +216,39 @@ class ticket {
         return $DB->delete_records("local_helpdesk_ticket", ["id" => $this->id]);
     }
 
+    /**
+     * get_id
+     *
+     * @return int
+     */
     public function get_id() {
         return $this->id;
     }
 
+    /**
+     * get_idkey
+     *
+     * @return string
+     */
     public function get_idkey() {
         return $this->idkey;
     }
 
+    /**
+     * get_categoryid
+     *
+     * @return int
+     */
     public function get_categoryid() {
         return $this->categoryid;
     }
 
+    /**
+     * get_category
+     *
+     * @return category|null
+     * @throws \dml_exception
+     */
     public function get_category() {
         global $DB;
 
@@ -208,10 +261,22 @@ class ticket {
         return $this->category;
     }
 
+    /**
+     * get_userid
+     *
+     * @return int
+     */
     public function get_userid() {
         return $this->userid;
     }
 
+    /**
+     * get_user
+     *
+     * @return false|mixed|object|\stdClass|null
+     * @throws \coding_exception
+     * @throws \dml_exception
+     */
     public function get_user() {
         global $DB;
 
@@ -233,26 +298,59 @@ class ticket {
         return $this->user;
     }
 
+    /**
+     * get_courseid
+     *
+     * @return int
+     */
     public function get_courseid() {
         return $this->courseid;
     }
 
+    /**
+     * get_subject
+     *
+     * @return string
+     */
     public function get_subject() {
         return $this->subject;
     }
 
+    /**
+     * get_description
+     *
+     * @return string
+     */
     public function get_description() {
         return $this->description;
     }
 
+    /**
+     * get_status
+     *
+     * @return string
+     */
     public function get_status() {
         return $this->status;
     }
 
+    /**
+     * has_closed
+     *
+     * @return bool
+     */
     public function has_closed() {
         return $this->get_status() === self::STATUS_CLOSED;
     }
 
+    /**
+     * get_status_options
+     *
+     * @param $selected
+     * @param $addall
+     * @return array[]
+     * @throws \coding_exception
+     */
     public static function get_status_options($selected, $addall = false) {
         $status = [
             ["key" => self::STATUS_OPEN, "label" => get_string("status_open", "local_helpdesk"),
@@ -276,10 +374,22 @@ class ticket {
         return $status;
     }
 
+    /**
+     * get_status_translated
+     *
+     * @return \lang_string|mixed|string
+     */
     public function get_status_translated() {
         return self::status_translated($this->status);
     }
 
+    /**
+     * status_translated
+     *
+     * @param $status
+     * @return \lang_string|mixed|string
+     * @throws \coding_exception
+     */
     public static function status_translated($status) {
         switch ($status) {
             case self::STATUS_OPEN:
@@ -295,10 +405,22 @@ class ticket {
         }
     }
 
+    /**
+     * get_priority
+     *
+     * @return string
+     */
     public function get_priority() {
         return $this->priority;
     }
 
+    /**
+     * get_priority_options
+     *
+     * @param $selected
+     * @return array[]
+     * @throws \coding_exception
+     */
     public static function get_priority_options($selected) {
         return [
             ["key" => self::PRIORITY_LOW, "label" => get_string("priority_low", "local_helpdesk"),
@@ -312,10 +434,22 @@ class ticket {
         ];
     }
 
+    /**
+     * get_priority_translated
+     *
+     * @return \lang_string|mixed|string
+     */
     public function get_priority_translated() {
         return self::priority_translated($this->priority);
     }
 
+    /**
+     * priority_translated
+     *
+     * @param $priority
+     * @return \lang_string|mixed|string
+     * @throws \coding_exception
+     */
     public static function priority_translated($priority) {
         switch ($priority) {
             case self::PRIORITY_LOW:
@@ -331,48 +465,108 @@ class ticket {
         }
     }
 
+    /**
+     * get_createdat
+     *
+     * @return int
+     */
     public function get_createdat() {
         return $this->createdat;
     }
 
+    /**
+     * get_updatedat
+     *
+     * @return int
+     */
     public function get_updatedat() {
         return $this->updatedat;
     }
 
+    /**
+     * get_answeredat
+     *
+     * @return int
+     */
     public function get_answeredat() {
         return (int)$this->answeredat;
     }
 
+    /**
+     * get_resolvedat
+     *
+     * @return int
+     */
     public function get_resolvedat() {
         return (int)$this->resolvedat;
     }
 
+    /**
+     * get_closedat
+     *
+     * @return int
+     */
     public function get_closedat() {
         return (int)$this->closedat;
     }
 
+    /**
+     * get_remindedat
+     *
+     * @return int
+     */
     public function get_remindedat() {
         return (int)$this->remindedat;
     }
 
+    /**
+     * set_categoryid
+     *
+     * @param $categoryid
+     * @return void
+     */
     public function set_categoryid($categoryid) {
         $this->categoryid = $categoryid;
         $this->category = null;
     }
 
+    /**
+     * set_userid
+     *
+     * @param $userid
+     * @return void
+     */
     public function set_userid($userid) {
         $this->userid = $userid;
         $this->user = null;
     }
 
+    /**
+     * set_subject
+     *
+     * @param $subject
+     * @return void
+     */
     public function set_subject($subject) {
         $this->subject = $subject;
     }
 
+    /**
+     * set_description
+     *
+     * @param $description
+     * @return void
+     */
     public function set_description($description) {
         $this->description = $description;
     }
 
+    /**
+     * set_status
+     *
+     * @param $status
+     * @return void
+     */
     public function set_status($status) {
         $this->status = $status;
     }
@@ -422,10 +616,24 @@ class ticket {
         return true;
     }
 
+    /**
+     * set_priority
+     *
+     * @param $priority
+     * @return void
+     */
     public function set_priority($priority) {
         $this->priority = $priority;
     }
 
+    /**
+     * change_priority
+     *
+     * @param $newpriority
+     * @return bool
+     * @throws \coding_exception
+     * @throws \invalid_parameter_exception
+     */
     public function change_priority($newpriority) {
         $validpriorities = [self::PRIORITY_LOW, self::PRIORITY_MEDIUM, self::PRIORITY_HIGH, self::PRIORITY_URGENT];
         if (!in_array($newpriority, $validpriorities, true)) {
@@ -446,22 +654,52 @@ class ticket {
         return true;
     }
 
+    /**
+     * set_updatedat
+     *
+     * @param $updatedat
+     * @return void
+     */
     public function set_updatedat($updatedat) {
         $this->updatedat = $updatedat;
     }
 
+    /**
+     * set_answeredat
+     *
+     * @param $answeredat
+     * @return void
+     */
     public function set_answeredat($answeredat) {
         $this->answeredat = $answeredat;
     }
 
+    /**
+     * set_resolvedat
+     *
+     * @param $resolvedat
+     * @return void
+     */
     public function set_resolvedat($resolvedat) {
         $this->resolvedat = $resolvedat;
     }
 
+    /**
+     * set_closedat
+     *
+     * @param $closedat
+     * @return void
+     */
     public function set_closedat($closedat) {
         $this->closedat = $closedat;
     }
 
+    /**
+     * set_remindedat
+     *
+     * @param $remindedat
+     * @return void
+     */
     public function set_remindedat($remindedat) {
         $this->remindedat = $remindedat;
     }

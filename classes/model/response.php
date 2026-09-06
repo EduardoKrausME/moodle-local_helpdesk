@@ -5,6 +5,14 @@
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
  * Helpdesk response model.
@@ -21,8 +29,17 @@ namespace local_helpdesk\model;
  */
 class response {
 
+    /**
+     * message
+     */
     const TYPE_MESSAGE = "message";
+    /**
+     * status
+     */
     const TYPE_STATUS = "status";
+    /**
+     * info
+     */
     const TYPE_INFO = "info";
 
     /** @var int */
@@ -53,12 +70,28 @@ class response {
         }
     }
 
+    /**
+     * get_by_id
+     *
+     * @param $responseid
+     * @return self|null
+     * @throws \dml_exception
+     */
     public static function get_by_id($responseid) {
         global $DB;
         $record = $DB->get_record("local_helpdesk_response", ["id" => $responseid]);
         return $record ? new self($record) : null;
     }
 
+    /**
+     * get_all
+     *
+     * @param $wheres
+     * @param $params
+     * @param $order
+     * @return array
+     * @throws \dml_exception
+     */
     public static function get_all($wheres = null, $params = [], $order = null) {
         return model_base::get_all("local_helpdesk_response", self::class, $wheres, $params, $order);
     }
@@ -94,6 +127,13 @@ class response {
         return $this->id;
     }
 
+    /**
+     * create_status
+     *
+     * @param ticket $ticket
+     * @param $message
+     * @return void
+     */
     public static function create_status(ticket $ticket, $message) {
         global $USER;
 
@@ -107,6 +147,13 @@ class response {
         $response->save($ticket);
     }
 
+    /**
+     * create_info
+     *
+     * @param ticket $ticket
+     * @param $message
+     * @return void
+     */
     public static function create_info(ticket $ticket, $message) {
         global $USER;
 
@@ -120,23 +167,51 @@ class response {
         $response->save($ticket);
     }
 
+    /**
+     * delete
+     *
+     * @return bool
+     * @throws \dml_exception
+     */
     public function delete() {
         global $DB;
         return $DB->delete_records("local_helpdesk_response", ["id" => $this->id]);
     }
 
+    /**
+     * get_id
+     *
+     * @return int
+     */
     public function get_id() {
         return $this->id;
     }
 
+    /**
+     * get_ticketid
+     *
+     * @return int
+     */
     public function get_ticketid() {
         return $this->ticketid;
     }
 
+    /**
+     * get_userid
+     *
+     * @return int
+     */
     public function get_userid() {
         return $this->userid;
     }
 
+    /**
+     * get_user
+     *
+     * @return false|mixed|object|\stdClass|null
+     * @throws \coding_exception
+     * @throws \dml_exception
+     */
     public function get_user() {
         global $DB;
 
@@ -158,31 +233,70 @@ class response {
         return $this->user;
     }
 
+    /**
+     * get_type
+     *
+     * @return string
+     */
     public function get_type() {
         return $this->type;
     }
 
+    /**
+     * get_message
+     *
+     * @return string
+     */
     public function get_message() {
         return $this->message;
     }
 
+    /**
+     * get_createdat
+     *
+     * @return int
+     */
     public function get_createdat() {
         return $this->createdat;
     }
 
+    /**
+     * set_ticketid
+     *
+     * @param $ticketid
+     * @return void
+     */
     public function set_ticketid($ticketid) {
         $this->ticketid = $ticketid;
     }
 
+    /**
+     * set_userid
+     *
+     * @param $userid
+     * @return void
+     */
     public function set_userid($userid) {
         $this->userid = $userid;
         $this->user = null;
     }
 
+    /**
+     * set_type
+     *
+     * @param $type
+     * @return void
+     */
     public function set_type($type) {
         $this->type = $type;
     }
 
+    /**
+     * set_message
+     *
+     * @param $message
+     * @return void
+     */
     public function set_message($message) {
         $this->message = $message;
     }
