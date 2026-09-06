@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Kopere Helpdesk | Support inside your Moodle</title>
-    <meta name="description" content="Discover Kopere Helpdesk: tickets, category-based teams, knowledge base, GeniAI, notifications, reports and Excel export integrated with Moodle software.">
-    <link rel="icon" href="favicon.svg">
+    <meta name="description"
+          content="Discover Kopere Helpdesk: tickets, category-based teams, knowledge base, GeniAI, notifications, reports and Excel export integrated with Moodle software.">
+    <link rel="icon" href="favicon.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="i18n.css">
     <script src="script.js" defer></script>
@@ -14,9 +15,27 @@
 <body>
 <a class="skip" href="#conteudo">Skip to content</a>
 <header class="site-header">
-    <div class="shell header-inner"><a class="brand" href="#"><img src="favicon.svg" alt=""><span>Kopere<strong>Helpdesk</strong></span></a>
-        <nav aria-label="Main navigation"><a href="#recursos">Helpdesk</a><a href="#atendimento">Support</a><a href="#relatorios">Reports</a><a href="#integracoes">Integrations</a></nav>
-        <div class="language-picker"><label class="sr-only" for="language-select">Language</label><select id="language-select" class="language-select" aria-label="Language"><option value="ar">العربية</option><option value="de">Deutsch</option><option value="en">English</option><option value="es">Español</option><option value="es_mx">Español (México)</option><option value="fr">Français</option><option value="id">Bahasa Indonesia</option><option value="it">Italiano</option><option value="ja">日本語</option><option value="pt">Português</option><option value="pt_br">Português (Brasil)</option><option value="ru">Русский</option><option value="sk">Slovenčina</option><option value="uk">Українська</option></select></div>
+    <div class="shell header-inner"><a class="brand" href="#"><img src="favicon.png"
+                                                                   alt=""><span>Kopere<strong>Helpdesk</strong></span></a>
+        <nav aria-label="Main navigation"><a href="#recursos">Helpdesk</a><a href="#atendimento">Support</a><a
+                href="#relatorios">Reports</a><a href="#integracoes">Integrations</a></nav>
+        <div class="language-picker"><label class="sr-only" for="language-select">Language</label><select
+                id="language-select" class="language-select" aria-label="Language">
+            <option value="ar">العربية</option>
+            <option value="de">Deutsch</option>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="es_mx">Español (México)</option>
+            <option value="fr">Français</option>
+            <option value="id">Bahasa Indonesia</option>
+            <option value="it">Italiano</option>
+            <option value="ja">日本語</option>
+            <option value="pt">Português</option>
+            <option value="pt_br">Português (Brasil)</option>
+            <option value="ru">Русский</option>
+            <option value="sk">Slovenčina</option>
+            <option value="uk">Українська</option>
+        </select></div>
         <a class="button small primary" href="https://eduardokraus.com/contato">Talk to Eduardo ↗</a>
         <button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button>
     </div>
@@ -25,128 +44,392 @@
     <section class="hero shell">
         <div><span class="eyebrow">SUPPORT THAT IS PART OF THE LEARNING EXPERIENCE</span>
             <h1>Every question deserves<br>an answer.<br><em>Organize all of them.</em></h1>
-            <p>Bring your institution's support service inside Moodle™ software. With Kopere Helpdesk, students find help, teams follow every ticket and managers can see what needs attention.</p>
-            <div class="actions"><a class="button primary" href="#recursos">Explore the features →</a><a class="button secondary" href="https://github.com/EduardoKrausME/moodle-local_helpdesk" target="_blank" rel="noopener">View code on GitHub ↗</a></div>
-            <div class="proof"><span>✓ Open source</span><span>✓ Integrated with the environment</span><span>✓ AI assistance</span></div>
+            <p>Bring your institution's support service inside Moodle™ software. With Kopere Helpdesk, students find
+                help, teams follow every ticket and managers can see what needs attention.</p>
+            <div class="actions"><a class="button primary" href="#recursos">Explore the features →</a><a
+                    class="button secondary" href="https://github.com/EduardoKrausME/moodle-local_helpdesk"
+                    target="_blank" rel="noopener">View code on GitHub ↗</a></div>
+            <div class="proof"><span>✓ Open source</span><span>✓ Integrated with the environment</span><span>✓ AI assistance</span>
+            </div>
         </div>
         <div class="hero-visual">
             <div class="preview">
                 <div class="windowbar"><span>● ● ●</span><span>Support center</span><span>⋯</span></div>
                 <div class="preview-inner">
-                    <div class="preview-heading"><div><small>KOPERE HELPDESK</small><h3>Hello, support team!</h3></div><span class="avatar">EK</span></div>
-                    <div class="kpis"><div><small>Open</small><strong>24</strong></div><div><small>Unanswered</small><strong>08</strong></div><div><small>Completed</small><strong>156</strong></div></div>
+                    <div class="preview-heading">
+                        <div><small>KOPERE HELPDESK</small>
+                            <h3>Hello, support team!</h3></div>
+                        <span class="avatar">EK</span></div>
+                    <div class="kpis">
+                        <div><small>Open</small><strong>24</strong></div>
+                        <div><small>Unanswered</small><strong>08</strong></div>
+                        <div><small>Completed</small><strong>156</strong></div>
+                    </div>
                     <div class="queue-title"><b>Tickets that need you</b><span>Priority</span></div>
-                    <div class="ticket-row"><span class="avatar pale">MC</span><div><b>I cannot access the assessment</b><small>Mariana Costa · Technical support</small></div><span class="badge red">Urgent</span></div>
-                    <div class="ticket-row"><span class="avatar mint">RL</span><div><b>Question about the certificate</b><small>Rafael Lima · Registrar</small></div><span class="badge amber">High</span></div>
-                    <div class="ticket-row"><span class="avatar pale">AS</span><div><b>Submitting the final activity</b><small>Ana Souza · Academic support</small></div><span class="badge blue">Medium</span></div>
-                    <div class="preview-bottom"><span>One conversation. All the context.</span><a href="#atendimento">Explore the workflow →</a></div>
+                    <div class="ticket-row"><span class="avatar pale">MC</span>
+                        <div><b>I cannot access the assessment</b><small>Mariana Costa · Technical support</small></div>
+                        <span class="badge red">Urgent</span></div>
+                    <div class="ticket-row"><span class="avatar mint">RL</span>
+                        <div><b>Question about the certificate</b><small>Rafael Lima · Registrar</small></div>
+                        <span class="badge amber">High</span></div>
+                    <div class="ticket-row"><span class="avatar pale">AS</span>
+                        <div><b>Submitting the final activity</b><small>Ana Souza · Academic support</small></div>
+                        <span class="badge blue">Medium</span></div>
+                    <div class="preview-bottom"><span>One conversation. All the context.</span><a href="#atendimento">Explore
+                        the workflow →</a></div>
                 </div>
             </div>
             <p class="caption">Illustrative representation of support. Demo data.</p>
         </div>
     </section>
     <div class="trust">
-        <div class="shell trust-grid"><div><strong>4</strong><span>priority levels</span></div><div><strong>4</strong><span>ticket statuses</span></div><div><strong>5</strong><span>report groups</span></div><div><strong>1</strong><span>center inside your environment</span></div></div>
-        <section class="shell intro section" id="recursos"><span class="eyebrow">MORE CLARITY FOR PEOPLE WHO NEED HELP</span>
-            <div class="split-heading"><h2>Support continues.<br>So does the context.</h2><p>When a question arrives through different channels, following what has already been discussed takes time. Helpdesk brings the subject, description, files, replies and changes together in one ticket that can be reviewed throughout the entire support process.</p></div>
+        <div class="shell trust-grid">
+            <div><strong>4</strong><span>priority levels</span></div>
+            <div><strong>4</strong><span>ticket statuses</span></div>
+            <div><strong>5</strong><span>report groups</span></div>
+            <div><strong>1</strong><span>center inside your environment</span></div>
+        </div>
+        <section class="shell intro section" id="recursos"><span
+                class="eyebrow">MORE CLARITY FOR PEOPLE WHO NEED HELP</span>
+            <div class="split-heading"><h2>Support continues.<br>So does the context.</h2>
+                <p>When a question arrives through different channels, following what has already been discussed takes
+                    time. Helpdesk brings the subject, description, files, replies and changes together in one ticket
+                    that can be reviewed throughout the entire support process.</p></div>
             <div class="benefits">
-                <article><span class="line-icon">↔</span><h3>One organized conversation</h3><p>The student opens the request and tracks their own needs. The team replies in the same history, with the files and information required to keep the support process moving.</p></article>
-                <article><span class="line-icon">◎</span><h3>The right team for each subject</h3><p>Categories organize request types and let you define who may reply and receive notifications about new tickets in that group.</p></article>
-                <article><span class="line-icon">▤</span><h3>Visibility for management</h3><p>Indicators, filters and reports help find pending items, understand demand and monitor first-response and closure times.</p></article>
+                <article><span class="line-icon">↔</span>
+                    <h3>One organized conversation</h3>
+                    <p>The student opens the request and tracks their own needs. The team replies in the same history,
+                        with the files and information required to keep the support process moving.</p></article>
+                <article><span class="line-icon">◎</span>
+                    <h3>The right team for each subject</h3>
+                    <p>Categories organize request types and let you define who may reply and receive notifications
+                        about new tickets in that group.</p></article>
+                <article><span class="line-icon">▤</span>
+                    <h3>Visibility for management</h3>
+                    <p>Indicators, filters and reports help find pending items, understand demand and monitor
+                        first-response and closure times.</p></article>
             </div>
         </section>
-        <div class="section-nav"><div class="shell"><a href="#atendimento">Tickets</a><a href="#categorias">Categories and teams</a><a href="#ia">Artificial intelligence</a><a href="#automacoes">Automations</a><a href="#relatorios">Reports</a></div></div>
+        <div class="section-nav">
+            <div class="shell"><a href="#atendimento">Tickets</a><a href="#categorias">Categories and teams</a><a
+                    href="#ia">Artificial intelligence</a><a href="#automacoes">Automations</a><a href="#relatorios">Reports</a>
+            </div>
+        </div>
         <section class="shell section feature" id="atendimento">
-            <div class="feature-copy"><span class="eyebrow">TICKETS AND CONVERSATIONS</span><h2>From the first question<br>to completed support.</h2>
-                <p>A ticket starts with a subject, category, description and priority. The editor lets the user explain the situation clearly, while attachments help share screenshots and documents. The opening and reply forms accept up to five files per submission, subject to the environment limits.</p>
-                <p>Support staff can select a user when creating the request, allowing them to register support on behalf of the person who needs help. When the ticket is associated with a course, that context follows the request.</p>
-                <h3>Reply and define the next step</h3><p>You can reply, reply and mark as resolved, or reply and close. Changes to category, priority and status are recorded in the history, helping everyone understand how the support process evolved.</p><a class="text-link" href="#fluxo">See the support statuses →</a>
+            <div class="feature-copy"><span class="eyebrow">TICKETS AND CONVERSATIONS</span>
+                <h2>From the first question<br>to completed support.</h2>
+                <p>A ticket starts with a subject, category, description and priority. The editor lets the user explain
+                    the situation clearly, while attachments help share screenshots and documents. The opening and reply
+                    forms accept up to five files per submission, subject to the environment limits.</p>
+                <p>Support staff can select a user when creating the request, allowing them to register support on
+                    behalf of the person who needs help. When the ticket is associated with a course, that context
+                    follows the request.</p>
+                <h3>Reply and define the next step</h3>
+                <p>You can reply, reply and mark as resolved, or reply and close. Changes to category, priority and
+                    status are recorded in the history, helping everyone understand how the support process evolved.</p>
+                <a class="text-link" href="#fluxo">See the support statuses →</a>
             </div>
-            <div class="surface conversation"><div class="surface-top"><span>TICKET #1042</span><span class="badge blue">In progress</span></div><h3>I cannot access the assessment</h3>
-                <div class="ticket-meta">Technical support <span>·</span> Administration Course <span class="badge red">Urgent</span></div>
-                <div class="message"><div class="message-name"><span class="avatar pale">MC</span><strong>Mariana Costa</strong><small>Student</small></div><p>I completed the unit activities, but the assessment still appears unavailable. Can you help me?</p><span class="file">⌁ assessment-screenshot.png</span></div>
-                <div class="message support"><div class="message-name"><span class="avatar">ES</span><strong>Support team</strong></div><p>Hello, Mariana! We will check the activity access conditions and guide you through the next step.</p></div>
-                <div class="history">Priority changed to Urgent</div><p class="caption">Conversation example showing how a ticket is organized.</p>
+            <div class="surface conversation">
+                <div class="surface-top"><span>TICKET #1042</span><span class="badge blue">In progress</span></div>
+                <h3>I cannot access the assessment</h3>
+                <div class="ticket-meta">Technical support <span>·</span> Administration Course <span class="badge red">Urgent</span>
+                </div>
+                <div class="message">
+                    <div class="message-name"><span class="avatar pale">MC</span><strong>Mariana Costa</strong><small>Student</small>
+                    </div>
+                    <p>I completed the unit activities, but the assessment still appears unavailable. Can you help
+                        me?</p><span class="file">⌁ assessment-screenshot.png</span></div>
+                <div class="message support">
+                    <div class="message-name"><span class="avatar">ES</span><strong>Support team</strong></div>
+                    <p>Hello, Mariana! We will check the activity access conditions and guide you through the next
+                        step.</p></div>
+                <div class="history">Priority changed to Urgent</div>
+                <p class="caption">Conversation example showing how a ticket is organized.</p>
             </div>
         </section>
-        <section class="soft" id="fluxo"><div class="shell section compact"><span class="eyebrow">A STATUS FOR EVERY MOMENT</span><h2>Know exactly where support stands.</h2>
-            <div class="states">
-                <article><span class="badge blue">Open</span><h3>The request has arrived</h3><p>Identify tickets waiting for attention and organize the beginning of the support process.</p></article>
-                <article><span class="badge amber">In progress</span><h3>The team is working on it</h3><p>Keep the conversation moving while the request is reviewed and answered.</p></article>
-                <article><span class="badge green">Resolved</span><h3>The solution has been provided</h3><p>Separate what has already been resolved from what still requires team action.</p></article>
-                <article><span class="badge gray">Closed</span><h3>The cycle has ended</h3><p>Preserve the completed support record for future reference.</p></article>
+        <section class="soft" id="fluxo">
+            <div class="shell section compact"><span class="eyebrow">A STATUS FOR EVERY MOMENT</span>
+                <h2>Know exactly where support stands.</h2>
+                <div class="states">
+                    <article><span class="badge blue">Open</span>
+                        <h3>The request has arrived</h3>
+                        <p>Identify tickets waiting for attention and organize the beginning of the support process.</p>
+                    </article>
+                    <article><span class="badge amber">In progress</span>
+                        <h3>The team is working on it</h3>
+                        <p>Keep the conversation moving while the request is reviewed and answered.</p></article>
+                    <article><span class="badge green">Resolved</span>
+                        <h3>The solution has been provided</h3>
+                        <p>Separate what has already been resolved from what still requires team action.</p></article>
+                    <article><span class="badge gray">Closed</span>
+                        <h3>The cycle has ended</h3>
+                        <p>Preserve the completed support record for future reference.</p></article>
+                </div>
+                <div class="priority-note"><b>Urgent · High · Medium · Low</b>
+                    <p>The list sorts tickets by priority, status and creation date, placing urgent requests before the
+                        others and the oldest first within the same combination.</p></div>
             </div>
-            <div class="priority-note"><b>Urgent · High · Medium · Low</b><p>The list sorts tickets by priority, status and creation date, placing urgent requests before the others and the oldest first within the same combination.</p></div>
-        </div></section>
+        </section>
         <section class="shell section feature reverse" id="categorias">
-            <div class="feature-copy"><span class="eyebrow">CATEGORIES AND TEAMS</span><h2>Organize support<br>the way your institution works.</h2>
-                <p>Create categories with a name and description to separate subjects and define who is responsible for support. Registrar, technical support and academic support are examples of how this structure can reflect your institution's reality.</p>
-                <p>For each category, select the users who may reply and who should receive emails about new tickets. Category management and ticket handling have separate permissions, allowing roles to be designed with different responsibilities.</p>
-                <h3>People asking for help see their own tickets</h3><p>Users without management permission can view their own requests. For support staff, user, course, category, status and priority filters help find the desired ticket. Text search considers the subject and description starting at three characters.</p>
+            <div class="feature-copy"><span class="eyebrow">CATEGORIES AND TEAMS</span>
+                <h2>Organize support<br>the way your institution works.</h2>
+                <p>Create categories with a name and description to separate subjects and define who is responsible for
+                    support. Registrar, technical support and academic support are examples of how this structure can
+                    reflect your institution's reality.</p>
+                <p>For each category, select the users who may reply and who should receive emails about new tickets.
+                    Category management and ticket handling have separate permissions, allowing roles to be designed
+                    with different responsibilities.</p>
+                <h3>People asking for help see their own tickets</h3>
+                <p>Users without management permission can view their own requests. For support staff, user, course,
+                    category, status and priority filters help find the desired ticket. Text search considers the
+                    subject and description starting at three characters.</p>
             </div>
-            <div class="surface category-surface"><div class="surface-top"><b>Support categories</b><span>Organization example</span></div>
-                <div class="category-item"><span class="category-icon">▣</span><div><h3>Technical support</h3><p>Access, activities and navigation</p><span class="team">Technology team</span></div></div>
-                <div class="category-item"><span class="category-icon">▤</span><div><h3>Academic registrar</h3><p>Documents and academic guidance</p><span class="team">Registrar team</span></div></div>
-                <div class="category-item"><span class="category-icon">◫</span><div><h3>Student support</h3><p>Guidance in the learning environment</p><span class="team">Support team</span></div></div>
+            <div class="surface category-surface">
+                <div class="surface-top"><b>Support categories</b><span>Organization example</span></div>
+                <div class="category-item"><span class="category-icon">▣</span>
+                    <div><h3>Technical support</h3>
+                        <p>Access, activities and navigation</p><span class="team">Technology team</span></div>
+                </div>
+                <div class="category-item"><span class="category-icon">▤</span>
+                    <div><h3>Academic registrar</h3>
+                        <p>Documents and academic guidance</p><span class="team">Registrar team</span></div>
+                </div>
+                <div class="category-item"><span class="category-icon">◫</span>
+                    <div><h3>Student support</h3>
+                        <p>Guidance in the learning environment</p><span class="team">Support team</span></div>
+                </div>
             </div>
         </section>
-        <section class="dark" id="ia"><div class="shell section feature">
-            <div><span class="eyebrow">OPTIONAL GENIAI INTEGRATION</span><h2>More help with writing.<br><em>The team stays in control of the reply.</em></h2>
-                <p>GeniAI helps create replies directly inside the support workflow. Support staff describe what they want to communicate and receive a text suggestion that can be sent to the editor, reviewed and adjusted before replying to the user.</p>
-                <p>Generation considers the subject, ticket description and, when available, up to the three most recent messages in the conversation. This lets the suggestion take the immediate support context into account.</p>
-                <p>The same integration also helps draft knowledge-base articles from a description supplied by the team. The feature depends on GeniAI being installed and configured with its API key.</p>
+        <section class="dark" id="ia">
+            <div class="shell section feature">
+                <div><span class="eyebrow">OPTIONAL GENIAI INTEGRATION</span>
+                    <h2>More help with writing.<br><em>The team stays in control of the reply.</em></h2>
+                    <p>GeniAI helps create replies directly inside the support workflow. Support staff describe what
+                        they want to communicate and receive a text suggestion that can be sent to the editor, reviewed
+                        and adjusted before replying to the user.</p>
+                    <p>Generation considers the subject, ticket description and, when available, up to the three most
+                        recent messages in the conversation. This lets the suggestion take the immediate support context
+                        into account.</p>
+                    <p>The same integration also helps draft knowledge-base articles from a description supplied by the
+                        team. The feature depends on GeniAI being installed and configured with its API key.</p>
+                </div>
+                <div class="ai-panel">
+                    <div class="surface-top"><b>Reply assistance</b><span class="badge">GeniAI</span></div>
+                    <label>Support guidance</label>
+                    <div class="ai-instruction">Explain that we will check the access conditions and ask for the
+                        activity name and a screenshot of the message displayed.
+                    </div>
+                    <div class="ai-answer"><small>TEXT SUGGESTION · EXAMPLE</small>
+                        <p>Hello, Mariana! To check access to your assessment, could you tell us the name of the
+                            activity and send a screenshot of the message shown on screen? With that information, we can
+                            analyze what is happening and guide you.</p></div>
+                    <div class="ai-foot">Generate suggestion <span>→</span> Review in editor <span>→</span> Reply</div>
+                </div>
             </div>
-            <div class="ai-panel"><div class="surface-top"><b>Reply assistance</b><span class="badge">GeniAI</span></div><label>Support guidance</label>
-                <div class="ai-instruction">Explain that we will check the access conditions and ask for the activity name and a screenshot of the message displayed.</div>
-                <div class="ai-answer"><small>TEXT SUGGESTION · EXAMPLE</small><p>Hello, Mariana! To check access to your assessment, could you tell us the name of the activity and send a screenshot of the message shown on screen? With that information, we can analyze what is happening and guide you.</p></div>
-                <div class="ai-foot">Generate suggestion <span>→</span> Review in editor <span>→</span> Reply</div>
-            </div>
-        </div></section>
-        <section class="shell section" id="automacoes"><span class="eyebrow">NOTIFICATIONS AND AUTOMATED ROUTINES</span><div class="split-heading"><h2>A ticket does not have to<br>be forgotten.</h2><p>Email communication follows ticket opening and replies. Two scheduled tasks complement the team's routine using the information recorded in each ticket.</p></div>
+        </section>
+        <section class="shell section" id="automacoes"><span class="eyebrow">NOTIFICATIONS AND AUTOMATED ROUTINES</span>
+            <div class="split-heading"><h2>A ticket does not have to<br>be forgotten.</h2>
+                <p>Email communication follows ticket opening and replies. Two scheduled tasks complement the team's
+                    routine using the information recorded in each ticket.</p></div>
             <div class="automation-grid">
-                <article><span class="big-number">3 <small>days</small></span><h3>A reminder for the team</h3><p>Open or in-progress tickets created at least three days ago and still without a first response can generate a reminder for the people responsible for the category. The plugin records the notification so the same reminder is not repeated for that ticket.</p></article>
-                <article><span class="big-number">48 <small>hours</small></span><h3>Closure after resolution</h3><p>Tickets that remain in resolved status for at least 48 hours are closed by the automated task. The period is counted from the recorded resolution time.</p></article>
-                <article><span class="big-number mail-symbol">✉</span><h3>Notifications with context</h3><p>Emails include ticket references, subject, category and message, plus attachments when applicable. Links take the user directly to the ticket to make the conversation easier to continue.</p></article>
+                <article><span class="big-number">3 <small>days</small></span>
+                    <h3>A reminder for the team</h3>
+                    <p>Open or in-progress tickets created at least three days ago and still without a first response
+                        can generate a reminder for the people responsible for the category. The plugin records the
+                        notification so the same reminder is not repeated for that ticket.</p></article>
+                <article><span class="big-number">48 <small>hours</small></span>
+                    <h3>Closure after resolution</h3>
+                    <p>Tickets that remain in resolved status for at least 48 hours are closed by the automated task.
+                        The period is counted from the recorded resolution time.</p></article>
+                <article><span class="big-number mail-symbol">✉</span>
+                    <h3>Notifications with context</h3>
+                    <p>Emails include ticket references, subject, category and message, plus attachments when
+                        applicable. Links take the user directly to the ticket to make the conversation easier to
+                        continue.</p></article>
             </div>
-            <p class="note">Both tasks are configured to run daily at midnight and depend on the environment cron. Deadlines are checked when the task runs; they do not mean an email will be sent or a ticket closed at the exact minute.</p>
+            <p class="note">Both tasks are configured to run daily at midnight and depend on the environment cron.
+                Deadlines are checked when the task runs; they do not mean an email will be sent or a ticket closed at
+                the exact minute.</p>
         </section>
-        <section class="soft" id="relatorios"><div class="shell section"><span class="eyebrow">REPORTS WITH KOPERE BI</span><div class="split-heading"><h2>Understand demand.<br>Monitor support.</h2><p>The plugin report files organize queries into five groups. See what each analysis can reveal and how this information can support service management.</p></div>
-            <div class="report-list">
-                <details open><summary><span><small>TICKETS</small><b>Opening and resolution over time</b></span><span class="plus">+</span></summary><div><p><strong>Tickets created by period.</strong> Groups openings by category and creation day, showing the recorded quantity. It helps identify peaks in demand on specific dates.</p><p><strong>Tickets resolved by period.</strong> The query uses the closure date, grouped by month and category, to count closed tickets. This distinction is important for interpreting the displayed indicator correctly.</p></div></details>
-                <details><summary><span><small>CATEGORIES</small><b>Where demand is concentrated</b></span><span class="plus">+</span></summary><div><p>Shows the total number of tickets in each category, ordered from the highest volume. It includes average first-response time and the average time between opening and closure for records that contain those dates.</p><p>This view helps identify recurring subjects and support groups that deserve closer analysis.</p></div></details>
-                <details><summary><span><small>STATUS AND PRIORITY</small><b>Distribution and support times</b></span><span class="plus">+</span></summary><div><p><strong>Tickets by status.</strong> Combines category and status to show volume, average first response and average closure time.</p><p><strong>Distribution by priority.</strong> Groups tickets by priority and shows the same time measurements. This helps reveal whether urgent requests are receiving the expected attention.</p></div></details>
-                <details><summary><span><small>USERS</small><b>Who requests support most often</b></span><span class="plus">+</span></summary><div><p>Lists the ten users with the highest number of tickets, including identification, email, total requests, and average first-response and closure times.</p><p>The query considers tickets registered by the user without limiting the count to tickets that are still open. The result can help identify recurring guidance needs.</p></div></details>
-                <details><summary><span><small>TEAM ACTIVITY</small><b>Participation in replies</b></span><span class="plus">+</span></summary><div><p>The report called “Tickets by agent” in the plugin counts records in the replies table, grouped by the user who created them. Its meaning is therefore the number of reply records, not the number of unique tickets assigned.</p><p>Use this information as support when analyzing participation in conversations, always considering the context of each support interaction.</p></div></details>
+        <section class="soft" id="relatorios">
+            <div class="shell section"><span class="eyebrow">REPORTS WITH KOPERE BI</span>
+                <div class="split-heading"><h2>Understand demand.<br>Monitor support.</h2>
+                    <p>The plugin report files organize queries into five groups. See what each analysis can reveal and
+                        how this information can support service management.</p></div>
+                <div class="report-list">
+                    <details open>
+                        <summary><span><small>TICKETS</small><b>Opening and resolution over time</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p><strong>Tickets created by period.</strong> Groups openings by category and creation
+                            day, showing the recorded quantity. It helps identify peaks in demand on specific dates.</p>
+                            <p><strong>Tickets resolved by period.</strong> The query uses the closure date, grouped by
+                                month and category, to count closed tickets. This distinction is important for
+                                interpreting the displayed indicator correctly.</p></div>
+                    </details>
+                    <details>
+                        <summary><span><small>CATEGORIES</small><b>Where demand is concentrated</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p>Shows the total number of tickets in each category, ordered from the highest volume. It
+                            includes average first-response time and the average time between opening and closure for
+                            records that contain those dates.</p>
+                            <p>This view helps identify recurring subjects and support groups that deserve closer
+                                analysis.</p></div>
+                    </details>
+                    <details>
+                        <summary>
+                            <span><small>STATUS AND PRIORITY</small><b>Distribution and support times</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p><strong>Tickets by status.</strong> Combines category and status to show volume, average
+                            first response and average closure time.</p>
+                            <p><strong>Distribution by priority.</strong> Groups tickets by priority and shows the same
+                                time measurements. This helps reveal whether urgent requests are receiving the expected
+                                attention.</p></div>
+                    </details>
+                    <details>
+                        <summary><span><small>USERS</small><b>Who requests support most often</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p>Lists the ten users with the highest number of tickets, including identification, email,
+                            total requests, and average first-response and closure times.</p>
+                            <p>The query considers tickets registered by the user without limiting the count to tickets
+                                that are still open. The result can help identify recurring guidance needs.</p></div>
+                    </details>
+                    <details>
+                        <summary><span><small>TEAM ACTIVITY</small><b>Participation in replies</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p>The report called “Tickets by agent” in the plugin counts records in the replies table,
+                            grouped by the user who created them. Its meaning is therefore the number of reply records,
+                            not the number of unique tickets assigned.</p>
+                            <p>Use this information as support when analyzing participation in conversations, always
+                                considering the context of each support interaction.</p></div>
+                    </details>
+                </div>
+                <p class="note">Description based on the report files in the reviewed version. Queries use six-hour or
+                    one-day cache depending on the report and should not be interpreted as real-time indicators.</p>
             </div>
-            <p class="note">Description based on the report files in the reviewed version. Queries use six-hour or one-day cache depending on the report and should not be interpreted as real-time indicators.</p>
-        </div></section>
-        <section class="shell section feature" id="exportacao"><div class="feature-copy"><span class="eyebrow">EXPORT TO EXCEL</span><h2>Take the history<br>into your own analysis.</h2>
-            <p>Export tickets to an Excel spreadsheet with the user's name, course, subject, description, status, priority, category and email. Replies are added in separate columns with identification of the person who wrote each message.</p>
-            <p>The export lets you choose ticket statuses and respects the course when that context is provided. Textual content is converted to plain text, making it easier to read and process outside the environment.</p>
-            <p>The feature requires ticket-management permission. The export has its own status selection and starts with open tickets by default.</p></div>
-            <div class="surface export-preview"><div class="surface-top"><b>tickets_export.xlsx</b><span class="badge green">Excel</span></div><div class="table-scroll"><table><thead><tr><th>User</th><th>Subject</th><th>Status</th><th>Priority</th></tr></thead><tbody><tr><td>Mariana Costa</td><td>Assessment access</td><td>In progress</td><td>Urgent</td></tr><tr><td>Rafael Lima</td><td>Certificate</td><td>Open</td><td>High</td></tr><tr><td>Ana Souza</td><td>Activity submission</td><td>Resolved</td><td>Medium</td></tr></tbody></table></div>
-                <div class="export-fields"><span>Course</span><span>Category</span><span>Email</span><span>Description</span><span>Reply 1</span><span>Reply 2…</span></div><p class="caption">Illustrative excerpt of the exported information.</p></div>
         </section>
-        <section class="soft" id="integracoes"><div class="shell section"><span class="eyebrow">PART OF THE KOPERE ECOSYSTEM</span><div class="split-heading"><h2>Connected to the tools<br>your operation relies on.</h2><p>Helpdesk uses the users, courses and permissions from the environment itself. Integrations complement the management experience and the production of replies.</p></div>
-            <div class="integration-grid">
-                <article><span class="badge blue">Required dependency</span><h3>Kopere Dashboard</h3><p>Provides components used by Helpdesk, including user selection and resources that support the management interface.</p><small>Declared minimum version: 2026070500</small><a href="https://kopere-dashboard.eduardokraus.chatgpt.site/">Explore Dashboard ↗</a></article>
-                <article><span class="badge blue">Required dependency</span><h3>Kopere BI</h3><p>Provides the structure that presents support reports from the definitions included in the plugin.</p><small>Declared minimum version: 2026052400</small><a href="https://moodle.org/plugins/local_kopere_bi">Explore Kopere BI ↗</a></article>
-                <article><span class="badge gray">Optional integration</span><h3>GeniAI</h3><p>Enables assistance for writing replies and articles. Installation and API-key configuration are required.</p><small>Support works without AI assistance.</small><a href="https://moodle.org/plugins/local_geniai">Explore GeniAI ↗</a></article>
+        <section class="shell section feature" id="exportacao">
+            <div class="feature-copy"><span class="eyebrow">EXPORT TO EXCEL</span>
+                <h2>Take the history<br>into your own analysis.</h2>
+                <p>Export tickets to an Excel spreadsheet with the user's name, course, subject, description, status,
+                    priority, category and email. Replies are added in separate columns with identification of the
+                    person who wrote each message.</p>
+                <p>The export lets you choose ticket statuses and respects the course when that context is provided.
+                    Textual content is converted to plain text, making it easier to read and process outside the
+                    environment.</p>
+                <p>The feature requires ticket-management permission. The export has its own status selection and starts
+                    with open tickets by default.</p></div>
+            <div class="surface export-preview">
+                <div class="surface-top"><b>tickets_export.xlsx</b><span class="badge green">Excel</span></div>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Subject</th>
+                            <th>Status</th>
+                            <th>Priority</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Mariana Costa</td>
+                            <td>Assessment access</td>
+                            <td>In progress</td>
+                            <td>Urgent</td>
+                        </tr>
+                        <tr>
+                            <td>Rafael Lima</td>
+                            <td>Certificate</td>
+                            <td>Open</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td>Ana Souza</td>
+                            <td>Activity submission</td>
+                            <td>Resolved</td>
+                            <td>Medium</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="export-fields">
+                    <span>Course</span><span>Category</span><span>Email</span><span>Description</span><span>Reply 1</span><span>Reply 2…</span>
+                </div>
+                <p class="caption">Illustrative excerpt of the exported information.</p></div>
+        </section>
+        <section class="soft" id="integracoes">
+            <div class="shell section"><span class="eyebrow">PART OF THE KOPERE ECOSYSTEM</span>
+                <div class="split-heading"><h2>Connected to the tools<br>your operation relies on.</h2>
+                    <p>Helpdesk uses the users, courses and permissions from the environment itself. Integrations
+                        complement the management experience and the production of replies.</p></div>
+                <div class="integration-grid">
+                    <article><span class="badge blue">Required dependency</span>
+                        <h3>Kopere Dashboard</h3>
+                        <p>Provides components used by Helpdesk, including user selection and resources that support the
+                            management interface.</p><small>Declared minimum version: 2026070500</small><a
+                                href="https://kopere-dashboard.eduardokraus.chatgpt.site/">Explore Dashboard ↗</a>
+                    </article>
+                    <article><span class="badge blue">Required dependency</span>
+                        <h3>Kopere BI</h3>
+                        <p>Provides the structure that presents support reports from the definitions included in the
+                            plugin.</p><small>Declared minimum version: 2026052400</small><a
+                                href="https://moodle.org/plugins/local_kopere_bi">Explore Kopere BI ↗</a></article>
+                    <article><span class="badge gray">Optional integration</span>
+                        <h3>GeniAI</h3>
+                        <p>Enables assistance for writing replies and articles. Installation and API-key configuration
+                            are required.</p><small>Support works without AI assistance.</small><a
+                                href="https://moodle.org/plugins/local_geniai">Explore GeniAI ↗</a></article>
+                </div>
             </div>
-        </div></section>
-        <section class="shell section faq" id="duvidas"><span class="eyebrow">BEFORE YOU START</span><h2>Some frequently asked questions.</h2>
-            <details><summary>Does Helpdesk work outside Moodle™ software?<span>+</span></summary><p>It is a local plugin installed in the environment and uses its accounts, courses and permissions. This page presents the product; it is not a support center connected to your institution.</p></details>
-            <details><summary>Is artificial intelligence required?<span>+</span></summary><p>No. GeniAI is optional. Ticket creation, team replies and the other support features do not depend on AI text generation.</p></details>
-            <details><summary>Does AI send the reply automatically?<span>+</span></summary><p>The reviewed workflow generates a suggestion that the team can transfer to the editor. The person responsible can review the text and choose the reply action in the form.</p></details>
-            <details><summary>What is the difference between resolved and closed?<span>+</span></summary><p>They are separate statuses. Resolved means the solution has been provided; closed ends the cycle. The daily task closes tickets that have remained resolved for at least 48 hours.</p></details>
-            <details><summary>Can I separate support by course?<span>+</span></summary><p>The plugin accepts course context, provides a course filter in the ticket view and considers that context in export. It also lets you configure the menu to appear only inside courses.</p></details>
-            <details><summary>How can I get help with implementation or customization?<span>+</span></summary><p>Contact Eduardo Kraus to discuss support organization, installation, configuration and your institution's specific needs.</p><a class="text-link" href="https://eduardokraus.com/contato">Talk about the project →</a></details>
         </section>
-        <section class="cta shell"><div><span class="eyebrow">SUPPORT CLOSER TO THE STUDENT</span><h2>A help center.<br>Inside your environment.</h2><p>Let's discuss how to organize your institution's support with Kopere Helpdesk.</p></div><a class="button primary" href="https://eduardokraus.com/contato">Talk to Eduardo Kraus ↗</a></section>
+        <section class="shell section faq" id="duvidas"><span class="eyebrow">BEFORE YOU START</span>
+            <h2>Some frequently asked questions.</h2>
+            <details>
+                <summary>Does Helpdesk work outside Moodle™ software?<span>+</span></summary>
+                <p>It is a local plugin installed in the environment and uses its accounts, courses and permissions.
+                    This page presents the product; it is not a support center connected to your institution.</p>
+            </details>
+            <details>
+                <summary>Is artificial intelligence required?<span>+</span></summary>
+                <p>No. GeniAI is optional. Ticket creation, team replies and the other support features do not depend on
+                    AI text generation.</p></details>
+            <details>
+                <summary>Does AI send the reply automatically?<span>+</span></summary>
+                <p>The reviewed workflow generates a suggestion that the team can transfer to the editor. The person
+                    responsible can review the text and choose the reply action in the form.</p></details>
+            <details>
+                <summary>What is the difference between resolved and closed?<span>+</span></summary>
+                <p>They are separate statuses. Resolved means the solution has been provided; closed ends the cycle. The
+                    daily task closes tickets that have remained resolved for at least 48 hours.</p></details>
+            <details>
+                <summary>Can I separate support by course?<span>+</span></summary>
+                <p>The plugin accepts course context, provides a course filter in the ticket view and considers that
+                    context in export. It also lets you configure the menu to appear only inside courses.</p></details>
+            <details>
+                <summary>How can I get help with implementation or customization?<span>+</span></summary>
+                <p>Contact Eduardo Kraus to discuss support organization, installation, configuration and your
+                    institution's specific needs.</p><a class="text-link" href="https://eduardokraus.com/contato">Talk
+                about the project →</a></details>
+        </section>
+        <section class="cta shell">
+            <div><span class="eyebrow">SUPPORT CLOSER TO THE STUDENT</span>
+                <h2>A help center.<br>Inside your environment.</h2>
+                <p>Let's discuss how to organize your institution's support with Kopere Helpdesk.</p></div>
+            <a class="button primary" href="https://eduardokraus.com/contato">Talk to Eduardo Kraus ↗</a></section>
 </main>
-<footer><div class="shell footer-main"><a class="brand" href="#"><img src="favicon.svg" alt=""><span>Kopere<strong>Helpdesk</strong></span></a><p>Support connected to learning.</p><div><a href="https://github.com/EduardoKrausME/moodle-local_helpdesk">Open source ↗</a><a href="https://eduardokraus.com/contato">Contact ↗</a></div></div>
-    <div class="shell footer-bottom"><span>© 2026 Eduardo Kraus · Kopere Helpdesk</span><span>Moodle™ is a registered trademark. Independent open-source plugin.</span></div>
-    <div class="shell source-note">Content based on the <a href="https://github.com/EduardoKrausME/moodle-local_helpdesk">plugin repository</a>, version 2.4.6 reviewed in September 2026. Interfaces and data on this page are illustrative.</div>
+<footer>
+    <div class="shell footer-main"><a class="brand" href="#"><img src="favicon.png"
+                                                                  alt=""><span>Kopere<strong>Helpdesk</strong></span></a>
+        <p>Support connected to learning.</p>
+        <div><a href="https://github.com/EduardoKrausME/moodle-local_helpdesk">Open source ↗</a><a
+                href="https://eduardokraus.com/contato">Contact ↗</a></div>
+    </div>
+    <div class="shell footer-bottom"><span>© 2026 Eduardo Kraus · Kopere Helpdesk</span><span>Moodle™ is a registered trademark. Independent open-source plugin.</span>
+    </div>
+    <div class="shell source-note">Content based on the <a
+            href="https://github.com/EduardoKrausME/moodle-local_helpdesk">plugin repository</a>, version 2.4.6 reviewed
+        in September 2026. Interfaces and data on this page are illustrative.
+    </div>
 </footer>
 </body>
 </html>

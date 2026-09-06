@@ -1,14 +1,428 @@
-<!doctype html><html lang="ja" data-language="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kopere Helpdesk | Moodle 内で完結するサポート</title><meta name="description" content="Kopere Helpdesk：チケット、カテゴリ別チーム、ナレッジベース、GeniAI、通知、レポート、Excel エクスポートを Moodle ソフトウェアに統合します。"><link rel="icon" href="favicon.svg"><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="i18n.css"><script src="script.js" defer></script><script src="language.js" defer></script></head><body>
-<a class="skip" href="#conteudo">本文へ移動</a><header class="site-header"><div class="shell header-inner"><a class="brand" href="#"><img src="favicon.svg" alt=""><span>Kopere<strong>Helpdesk</strong></span></a><nav aria-label="メインナビゲーション"><a href="#recursos">Helpdesk</a><a href="#atendimento">サポート</a><a href="#relatorios">レポート</a><a href="#integracoes">連携</a></nav><div class="language-picker"><label class="sr-only" for="language-select">言語</label><select id="language-select" class="language-select" aria-label="言語"><option value="ar">العربية</option><option value="de">Deutsch</option><option value="en">English</option><option value="es">Español</option><option value="es_mx">Español (México)</option><option value="fr">Français</option><option value="id">Bahasa Indonesia</option><option value="it">Italiano</option><option value="ja">日本語</option><option value="pt">Português</option><option value="pt_br">Português (Brasil)</option><option value="ru">Русский</option><option value="sk">Slovenčina</option><option value="uk">Українська</option></select></div><a class="button small primary" href="https://eduardokraus.com/contato">Eduardo に相談 ↗</a><button class="menu-button" aria-label="メニューを開く" aria-expanded="false">☰</button></div></header>
-<main id="conteudo"><section class="hero shell"><div><span class="eyebrow">学びの一部になるサポート</span><h1>すべての疑問に<br>答えを。<br><em>一か所で整理できます。</em></h1><p>教育機関のサポート窓口を Moodle™ ソフトウェアの中に集約します。Kopere Helpdesk なら、受講者は必要な支援を見つけ、担当チームは各チケットを追跡し、管理者は対応が必要な項目を把握できます。</p><div class="actions"><a class="button primary" href="#recursos">機能を見る →</a><a class="button secondary" href="https://github.com/EduardoKrausME/moodle-local_helpdesk" target="_blank" rel="noopener">GitHub でコードを見る ↗</a></div><div class="proof"><span>✓ オープンソース</span><span>✓ Moodle 環境に統合</span><span>✓ AI 支援</span></div></div><div class="hero-visual"><div class="preview"><div class="windowbar"><span>● ● ●</span><span>サポートセンター</span><span>⋯</span></div><div class="preview-inner"><div class="preview-heading"><div><small>KOPERE HELPDESK</small><h3>サポートチームのみなさん、こんにちは！</h3></div><span class="avatar">EK</span></div><div class="kpis"><div><small>未対応</small><strong>24</strong></div><div><small>未返信</small><strong>08</strong></div><div><small>完了</small><strong>156</strong></div></div><div class="queue-title"><b>対応が必要なチケット</b><span>優先度</span></div><div class="ticket-row"><span class="avatar pale">MC</span><div><b>評価にアクセスできません</b><small>Mariana Costa · テクニカルサポート</small></div><span class="badge red">緊急</span></div><div class="ticket-row"><span class="avatar mint">RL</span><div><b>修了証について質問があります</b><small>Rafael Lima · 教務</small></div><span class="badge amber">高</span></div><div class="ticket-row"><span class="avatar pale">AS</span><div><b>最終課題の提出</b><small>Ana Souza · 学習支援</small></div><span class="badge blue">中</span></div><div class="preview-bottom"><span>一つの会話に、すべての文脈。</span><a href="#atendimento">対応フローを見る →</a></div></div></div><p class="caption">サポート画面のイメージです。データはデモ用です。</p></div></section>
-<div class="trust"><div class="shell trust-grid"><div><strong>4</strong><span>段階の優先度</span></div><div><strong>4</strong><span>種類のチケット状態</span></div><div><strong>5</strong><span>グループのレポート</span></div><div><strong>1</strong><span>Moodle 内のサポート窓口</span></div></div><section class="shell intro section" id="recursos"><span class="eyebrow">支援を必要とする人に、もっと分かりやすく</span><div class="split-heading"><h2>サポートが続けば、<br>文脈もつながります。</h2><p>質問が複数のチャネルから届くと、過去のやり取りを確認するだけでも時間がかかります。Helpdesk は件名、説明、ファイル、返信、変更履歴を一つのチケットにまとめ、対応中いつでも確認できるようにします。</p></div><div class="benefits"><article><span class="line-icon">↔</span><h3>整理された一つの会話</h3><p>受講者は問い合わせを作成し、自分の依頼を追跡できます。担当チームは同じ履歴の中で、必要なファイルや情報を共有しながら対応を継続できます。</p></article><article><span class="line-icon">◎</span><h3>内容ごとに適切なチームへ</h3><p>カテゴリで問い合わせの種類を整理し、そのグループの新規チケットに対して誰が返信できるか、誰が通知を受け取るかを設定できます。</p></article><article><span class="line-icon">▤</span><h3>管理者にも見える化</h3><p>指標、フィルタ、レポートによって未処理の項目を見つけ、問い合わせ量を理解し、初回返信やクローズまでの時間を確認できます。</p></article></div></section>
-<div class="section-nav"><div class="shell"><a href="#atendimento">チケット</a><a href="#categorias">カテゴリとチーム</a><a href="#ia">人工知能</a><a href="#automacoes">自動化</a><a href="#relatorios">レポート</a></div></div><section class="shell section feature" id="atendimento"><div class="feature-copy"><span class="eyebrow">チケットと会話</span><h2>最初の質問から<br>対応完了まで。</h2><p>チケットは件名、カテゴリ、説明、優先度から始まります。エディタで状況を分かりやすく説明でき、添付ファイルでスクリーンショットや文書を共有できます。新規作成と返信のフォームでは、環境の制限内で一回につき最大5ファイルを添付できます。</p><p>サポート担当者は問い合わせ作成時にユーザーを選択でき、支援が必要な本人に代わってチケットを登録できます。チケットがコースに関連付けられている場合、そのコース情報も問い合わせの文脈として保持されます。</p><h3>返信し、次のステップを決める</h3><p>返信のみ、返信して「解決済み」にする、返信して「クローズ」にする、といった操作が可能です。カテゴリ、優先度、状態の変更は履歴に記録されるため、対応がどのように進んだかを把握できます。</p><a class="text-link" href="#fluxo">対応ステータスを見る →</a></div><div class="surface conversation"><div class="surface-top"><span>チケット #1042</span><span class="badge blue">対応中</span></div><h3>評価にアクセスできません</h3><div class="ticket-meta">テクニカルサポート <span>·</span> 管理コース <span class="badge red">緊急</span></div><div class="message"><div class="message-name"><span class="avatar pale">MC</span><strong>Mariana Costa</strong><small>受講者</small></div><p>ユニットの活動は完了しましたが、評価がまだ利用できない状態です。確認していただけますか？</p><span class="file">⌁ assessment-screenshot.png</span></div><div class="message support"><div class="message-name"><span class="avatar">ES</span><strong>サポートチーム</strong></div><p>Mariana さん、こんにちは。活動へのアクセス条件を確認し、次の手順をご案内します。</p></div><div class="history">優先度を「緊急」に変更</div><p class="caption">チケットの整理方法を示す会話例です。</p></div></section>
-<section class="soft" id="fluxo"><div class="shell section compact"><span class="eyebrow">状況に合わせた4つのステータス</span><h2>対応が今どこまで進んでいるか分かります。</h2><div class="states"><article><span class="badge blue">オープン</span><h3>問い合わせが届いた</h3><p>対応を待っているチケットを見つけ、サポート開始を整理します。</p></article><article><span class="badge amber">対応中</span><h3>チームが対応している</h3><p>問い合わせを確認し回答する間も、同じ会話の中でやり取りを続けます。</p></article><article><span class="badge green">解決済み</span><h3>解決策を案内した</h3><p>すでに解決した内容と、まだチームの対応が必要な内容を区別できます。</p></article><article><span class="badge gray">クローズ</span><h3>対応サイクルが完了した</h3><p>完了したサポート履歴を、将来の参照用に保存できます。</p></article></div><div class="priority-note"><b>緊急 · 高 · 中 · 低</b><p>チケット一覧は優先度、状態、作成日時で並び替えられます。緊急の依頼を先に表示し、条件が同じ場合は古いチケットを上位に表示します。</p></div></div></section>
-<section class="shell section feature reverse" id="categorias"><div class="feature-copy"><span class="eyebrow">カテゴリとチーム</span><h2>教育機関の運用に合わせて<br>サポートを整理。</h2><p>カテゴリに名前と説明を設定し、内容を分けて担当者を定義できます。教務、テクニカルサポート、学習支援など、組織の実態に合わせた構成が可能です。</p><p>カテゴリごとに、返信できるユーザーと新規チケットのメール通知を受け取るユーザーを選択できます。カテゴリ管理とチケット対応には別々の権限があり、責任範囲の異なるロールを構成できます。</p><h3>問い合わせた人は自分のチケットを確認</h3><p>管理権限のないユーザーは自分自身の問い合わせを確認できます。サポート担当者は、ユーザー、コース、カテゴリ、状態、優先度のフィルタで目的のチケットを探せます。テキスト検索は3文字以上で件名と説明を対象にします。</p></div><div class="surface category-surface"><div class="surface-top"><b>サポートカテゴリ</b><span>構成例</span></div><div class="category-item"><span class="category-icon">▣</span><div><h3>テクニカルサポート</h3><p>アクセス、活動、ナビゲーション</p><span class="team">テクノロジーチーム</span></div></div><div class="category-item"><span class="category-icon">▤</span><div><h3>教務</h3><p>文書と学務案内</p><span class="team">教務チーム</span></div></div><div class="category-item"><span class="category-icon">◫</span><div><h3>学習者サポート</h3><p>学習環境での案内</p><span class="team">サポートチーム</span></div></div></div></section>
-<section class="dark" id="ia"><div class="shell section feature"><div><span class="eyebrow">GENIAI との任意連携</span><h2>文章作成をもっと支援。<br><em>返信の最終判断はチームが行います。</em></h2><p>GeniAI はサポート画面内で返信文の作成を支援します。担当者が伝えたい内容を入力すると文章案が生成され、エディタに送って確認・修正してからユーザーに返信できます。</p><p>生成時には件名、チケットの説明、および存在する場合は会話内の最新3件までのメッセージを参照します。そのため、直近のサポート文脈を考慮した提案が可能です。</p><p>同じ連携を使って、チームが入力した説明からナレッジベース記事の下書きを作ることもできます。この機能には GeniAI のインストール、設定、API キーが必要です。</p></div><div class="ai-panel"><div class="surface-top"><b>返信作成支援</b><span class="badge">GeniAI</span></div><label>サポート担当者の指示</label><div class="ai-instruction">アクセス条件を確認することを説明し、活動名と表示されたメッセージのスクリーンショットを依頼してください。</div><div class="ai-answer"><small>文章案 · 例</small><p>Mariana さん、こんにちは。評価へのアクセスを確認するため、活動名と画面に表示されるメッセージのスクリーンショットを送っていただけますか？ その情報をもとに状況を確認し、ご案内します。</p></div><div class="ai-foot">文章案を生成 <span>→</span> エディタで確認 <span>→</span> 返信</div></div></div></section>
-<section class="shell section" id="automacoes"><span class="eyebrow">通知と自動処理</span><div class="split-heading"><h2>チケットを<br>置き去りにしません。</h2><p>チケットの作成や返信に合わせてメール通知が行われます。さらに、各チケットに記録された情報を使う2つのスケジュールタスクがチームの運用を補助します。</p></div><div class="automation-grid"><article><span class="big-number">3 <small>日</small></span><h3>チームへのリマインダー</h3><p>作成から3日以上経過し、最初の返信がまだないオープンまたは対応中のチケットは、カテゴリ担当者へのリマインダー対象になります。プラグインは送信を記録し、同じチケットに同じ通知を繰り返しません。</p></article><article><span class="big-number">48 <small>時間</small></span><h3>解決後の自動クローズ</h3><p>「解決済み」のまま48時間以上経過したチケットは、自動タスクによってクローズされます。時間は記録された解決時刻から計算されます。</p></article><article><span class="big-number mail-symbol">✉</span><h3>文脈を含む通知</h3><p>メールにはチケット参照、件名、カテゴリ、メッセージ、必要に応じて添付ファイルが含まれます。リンクから直接チケットを開けるため、会話を継続しやすくなります。</p></article></div><p class="note">2つのタスクはいずれも毎日午前0時に実行する設定で、Moodle 環境の cron に依存します。時間条件はタスク実行時に判定されるため、指定時間ぴったりに送信・クローズされるわけではありません。</p></section>
-<section class="soft" id="relatorios"><div class="shell section"><span class="eyebrow">KOPERE BI のレポート</span><div class="split-heading"><h2>問い合わせの傾向を理解し、<br>サポートを把握。</h2><p>プラグインのレポートファイルでは、クエリを5つのグループに整理しています。それぞれの分析で何が分かるか、サポート管理にどう活用できるかを確認できます。</p></div><div class="report-list"><details open><summary><span><small>チケット</small><b>時系列で見る作成と解決</b></span><span class="plus">+</span></summary><div><p><strong>期間別に作成されたチケット。</strong> カテゴリと作成日で新規チケットを集計し、件数を表示します。特定の日に問い合わせが集中していないか確認できます。</p><p><strong>期間別に解決したチケット。</strong> クローズ日を月とカテゴリでまとめ、完了したチケットを集計します。この違いを理解して指標を読むことが重要です。</p></div></details><details><summary><span><small>カテゴリ</small><b>問い合わせが集中する場所</b></span><span class="plus">+</span></summary><div><p>カテゴリごとのチケット総数を件数の多い順に表示します。日付情報があるレコードについて、初回返信までの平均時間と、作成からクローズまでの平均時間も表示します。</p><p>繰り返し発生するテーマや、より詳しい分析が必要なサポート領域を見つけるのに役立ちます。</p></div></details><details><summary><span><small>状態と優先度</small><b>分布と対応時間</b></span><span class="plus">+</span></summary><div><p><strong>状態別チケット。</strong> カテゴリと状態を組み合わせ、件数、初回返信の平均、クローズまでの平均を表示します。</p><p><strong>優先度別分布。</strong> チケットを優先度でグループ化し、同じ時間指標を示します。緊急の問い合わせに期待どおりの対応ができているか確認できます。</p></div></details><details><summary><span><small>ユーザー</small><b>サポート依頼が多いユーザー</b></span><span class="plus">+</span></summary><div><p>チケット数が多い上位10ユーザーを、識別情報、メール、依頼総数、初回返信とクローズの平均時間とともに表示します。</p><p>クエリはユーザーが登録したチケットを対象とし、オープン中のものだけに限定しません。繰り返し必要となる案内を見つける参考になります。</p></div></details><details><summary><span><small>チームの対応</small><b>返信への参加状況</b></span><span class="plus">+</span></summary><div><p>プラグイン内の「Tickets by agent」レポートは、返信テーブルのレコードを作成ユーザーごとに集計します。したがって、担当されたユニークなチケット数ではなく、返信レコード数を示す指標です。</p><p>各サポートの文脈を踏まえながら、会話への参加状況を分析する補助情報として利用してください。</p></div></details></div><p class="note">確認したバージョンのレポートファイルに基づく説明です。クエリはレポートに応じて6時間または1日のキャッシュを使用するため、リアルタイム指標として解釈しないでください。</p></div></section>
-<section class="shell section feature" id="exportacao"><div class="feature-copy"><span class="eyebrow">EXCEL へのエクスポート</span><h2>対応履歴を<br>独自の分析へ。</h2><p>ユーザー名、コース、件名、説明、状態、優先度、カテゴリ、メールアドレスを含むチケットを Excel ファイルに出力できます。各返信は別の列に追加され、誰がメッセージを書いたかも記録されます。</p><p>エクスポートするチケット状態を選択でき、コース文脈が指定されている場合はそれも反映されます。テキスト内容はプレーンテキストに変換されるため、環境外でも読み取りや加工がしやすくなります。</p><p>この機能にはチケット管理権限が必要です。エクスポート用の状態選択は独立しており、初期値ではオープンのチケットが選ばれます。</p></div><div class="surface export-preview"><div class="surface-top"><b>tickets_export.xlsx</b><span class="badge green">Excel</span></div><div class="table-scroll"><table><thead><tr><th>ユーザー</th><th>件名</th><th>状態</th><th>優先度</th></tr></thead><tbody><tr><td>Mariana Costa</td><td>評価へのアクセス</td><td>対応中</td><td>緊急</td></tr><tr><td>Rafael Lima</td><td>修了証</td><td>オープン</td><td>高</td></tr><tr><td>Ana Souza</td><td>活動の提出</td><td>解決済み</td><td>中</td></tr></tbody></table></div><div class="export-fields"><span>コース</span><span>カテゴリ</span><span>メール</span><span>説明</span><span>返信 1</span><span>返信 2…</span></div><p class="caption">エクスポートされる情報のイメージです。</p></div></section>
-<section class="soft" id="integracoes"><div class="shell section"><span class="eyebrow">KOPERE エコシステムの一部</span><div class="split-heading"><h2>運用に必要なツールと<br>連携。</h2><p>Helpdesk は既存の Moodle 環境のユーザー、コース、権限を利用します。各種連携により、管理機能や返信作成をさらに補完できます。</p></div><div class="integration-grid"><article><span class="badge blue">必須依存関係</span><h3>Kopere Dashboard</h3><p>ユーザー選択や管理画面を支える機能など、Helpdesk が利用するコンポーネントを提供します。</p><small>宣言されている最小バージョン: 2026070500</small><a href="https://kopere-dashboard.eduardokraus.chatgpt.site/">Dashboard を見る ↗</a></article><article><span class="badge blue">必須依存関係</span><h3>Kopere BI</h3><p>プラグインに含まれる定義を使って、サポートレポートを表示するための基盤を提供します。</p><small>宣言されている最小バージョン: 2026052400</small><a href="https://moodle.org/plugins/local_kopere_bi">Kopere BI を見る ↗</a></article><article><span class="badge gray">任意連携</span><h3>GeniAI</h3><p>返信や記事の文章作成支援を有効にします。インストールと API キーの設定が必要です。</p><small>AI 支援なしでもサポート機能は動作します。</small><a href="https://moodle.org/plugins/local_geniai">GeniAI を見る ↗</a></article></div></div></section>
-<section class="shell section faq" id="duvidas"><span class="eyebrow">利用を始める前に</span><h2>よくある質問。</h2><details><summary>Helpdesk は Moodle™ の外でも動作しますか？<span>+</span></summary><p>これは Moodle 環境にインストールするローカルプラグインで、既存のアカウント、コース、権限を利用します。このページは製品紹介であり、あなたの教育機関に接続された実際のサポート窓口ではありません。</p></details><details><summary>人工知能の利用は必須ですか？<span>+</span></summary><p>いいえ。GeniAI は任意です。チケット作成、チームによる返信、その他のサポート機能は AI による文章生成に依存しません。</p></details><details><summary>AI が自動で返信を送信しますか？<span>+</span></summary><p>確認したフローでは AI は文章案を生成し、チームがエディタへ移します。担当者が内容を確認してから、フォームで返信操作を選択します。</p></details><details><summary>「解決済み」と「クローズ」の違いは？<span>+</span></summary><p>別々の状態です。「解決済み」は解決策を案内した状態、「クローズ」は対応サイクルを終了した状態です。日次タスクは48時間以上「解決済み」のチケットをクローズします。</p></details><details><summary>コースごとにサポートを分けられますか？<span>+</span></summary><p>プラグインはコースの文脈を保持し、チケット一覧でコースフィルタを提供し、エクスポートにもその情報を反映します。メニューをコース内だけに表示する設定も可能です。</p></details><details><summary>導入やカスタマイズの相談はできますか？<span>+</span></summary><p>サポート体制、インストール、設定、教育機関固有の要件について、Eduardo Kraus までお問い合わせください。</p><a class="text-link" href="https://eduardokraus.com/contato">プロジェクトについて相談 →</a></details></section>
-<section class="cta shell"><div><span class="eyebrow">受講者にもっと近いサポート</span><h2>一つのヘルプセンターを、<br>あなたの Moodle 環境に。</h2><p>Kopere Helpdesk で教育機関のサポートをどう整理できるか、ご相談ください。</p></div><a class="button primary" href="https://eduardokraus.com/contato">Eduardo Kraus に相談 ↗</a></section></main><footer><div class="shell footer-main"><a class="brand" href="#"><img src="favicon.svg" alt=""><span>Kopere<strong>Helpdesk</strong></span></a><p>学びにつながるサポート。</p><div><a href="https://github.com/EduardoKrausME/moodle-local_helpdesk">オープンソース ↗</a><a href="https://eduardokraus.com/contato">お問い合わせ ↗</a></div></div><div class="shell footer-bottom"><span>© 2026 Eduardo Kraus · Kopere Helpdesk</span><span>Moodle™ は登録商標です。独立したオープンソースプラグインです。</span></div><div class="shell source-note">この内容は <a href="https://github.com/EduardoKrausME/moodle-local_helpdesk">プラグインリポジトリ</a> のバージョン 2.4.6（2026年9月確認）に基づいています。画面とデータは説明用の例です。</div></footer></body></html>
+<!doctype html>
+<html lang="ja" data-language="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Kopere Helpdesk | Moodle 内で完結するサポート</title>
+    <meta name="description"
+          content="Kopere Helpdesk：チケット、カテゴリ別チーム、ナレッジベース、GeniAI、通知、レポート、Excel エクスポートを Moodle ソフトウェアに統合します。">
+    <link rel="icon" href="favicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="i18n.css">
+    <script src="script.js" defer></script>
+    <script src="language.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#conteudo">本文へ移動</a>
+<header class="site-header">
+    <div class="shell header-inner"><a class="brand" href="#"><img src="favicon.png"
+                                                                   alt=""><span>Kopere<strong>Helpdesk</strong></span></a>
+        <nav aria-label="メインナビゲーション"><a href="#recursos">Helpdesk</a><a href="#atendimento">サポート</a><a
+                href="#relatorios">レポート</a><a href="#integracoes">連携</a></nav>
+        <div class="language-picker"><label class="sr-only" for="language-select">言語</label><select
+                id="language-select" class="language-select" aria-label="言語">
+            <option value="ar">العربية</option>
+            <option value="de">Deutsch</option>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="es_mx">Español (México)</option>
+            <option value="fr">Français</option>
+            <option value="id">Bahasa Indonesia</option>
+            <option value="it">Italiano</option>
+            <option value="ja">日本語</option>
+            <option value="pt">Português</option>
+            <option value="pt_br">Português (Brasil)</option>
+            <option value="ru">Русский</option>
+            <option value="sk">Slovenčina</option>
+            <option value="uk">Українська</option>
+        </select></div>
+        <a class="button small primary" href="https://eduardokraus.com/contato">Eduardo に相談 ↗</a>
+        <button class="menu-button" aria-label="メニューを開く" aria-expanded="false">☰</button>
+    </div>
+</header>
+<main id="conteudo">
+    <section class="hero shell">
+        <div><span class="eyebrow">学びの一部になるサポート</span>
+            <h1>すべての疑問に<br>答えを。<br><em>一か所で整理できます。</em></h1>
+            <p>教育機関のサポート窓口を Moodle™ ソフトウェアの中に集約します。Kopere Helpdesk
+                なら、受講者は必要な支援を見つけ、担当チームは各チケットを追跡し、管理者は対応が必要な項目を把握できます。</p>
+            <div class="actions"><a class="button primary" href="#recursos">機能を見る →</a><a class="button secondary"
+                                                                                               href="https://github.com/EduardoKrausME/moodle-local_helpdesk"
+                                                                                               target="_blank"
+                                                                                               rel="noopener">GitHub
+                でコードを見る ↗</a></div>
+            <div class="proof"><span>✓ オープンソース</span><span>✓ Moodle 環境に統合</span><span>✓ AI 支援</span></div>
+        </div>
+        <div class="hero-visual">
+            <div class="preview">
+                <div class="windowbar"><span>● ● ●</span><span>サポートセンター</span><span>⋯</span></div>
+                <div class="preview-inner">
+                    <div class="preview-heading">
+                        <div><small>KOPERE HELPDESK</small>
+                            <h3>サポートチームのみなさん、こんにちは！</h3></div>
+                        <span class="avatar">EK</span></div>
+                    <div class="kpis">
+                        <div><small>未対応</small><strong>24</strong></div>
+                        <div><small>未返信</small><strong>08</strong></div>
+                        <div><small>完了</small><strong>156</strong></div>
+                    </div>
+                    <div class="queue-title"><b>対応が必要なチケット</b><span>優先度</span></div>
+                    <div class="ticket-row"><span class="avatar pale">MC</span>
+                        <div><b>評価にアクセスできません</b><small>Mariana Costa · テクニカルサポート</small></div>
+                        <span class="badge red">緊急</span></div>
+                    <div class="ticket-row"><span class="avatar mint">RL</span>
+                        <div><b>修了証について質問があります</b><small>Rafael Lima · 教務</small></div>
+                        <span class="badge amber">高</span></div>
+                    <div class="ticket-row"><span class="avatar pale">AS</span>
+                        <div><b>最終課題の提出</b><small>Ana Souza · 学習支援</small></div>
+                        <span class="badge blue">中</span></div>
+                    <div class="preview-bottom"><span>一つの会話に、すべての文脈。</span><a href="#atendimento">対応フローを見る
+                        →</a></div>
+                </div>
+            </div>
+            <p class="caption">サポート画面のイメージです。データはデモ用です。</p></div>
+    </section>
+    <div class="trust">
+        <div class="shell trust-grid">
+            <div><strong>4</strong><span>段階の優先度</span></div>
+            <div><strong>4</strong><span>種類のチケット状態</span></div>
+            <div><strong>5</strong><span>グループのレポート</span></div>
+            <div><strong>1</strong><span>Moodle 内のサポート窓口</span></div>
+        </div>
+        <section class="shell intro section" id="recursos"><span
+                class="eyebrow">支援を必要とする人に、もっと分かりやすく</span>
+            <div class="split-heading"><h2>サポートが続けば、<br>文脈もつながります。</h2>
+                <p>質問が複数のチャネルから届くと、過去のやり取りを確認するだけでも時間がかかります。Helpdesk
+                    は件名、説明、ファイル、返信、変更履歴を一つのチケットにまとめ、対応中いつでも確認できるようにします。</p>
+            </div>
+            <div class="benefits">
+                <article><span class="line-icon">↔</span>
+                    <h3>整理された一つの会話</h3>
+                    <p>
+                        受講者は問い合わせを作成し、自分の依頼を追跡できます。担当チームは同じ履歴の中で、必要なファイルや情報を共有しながら対応を継続できます。</p>
+                </article>
+                <article><span class="line-icon">◎</span>
+                    <h3>内容ごとに適切なチームへ</h3>
+                    <p>
+                        カテゴリで問い合わせの種類を整理し、そのグループの新規チケットに対して誰が返信できるか、誰が通知を受け取るかを設定できます。</p>
+                </article>
+                <article><span class="line-icon">▤</span>
+                    <h3>管理者にも見える化</h3>
+                    <p>
+                        指標、フィルタ、レポートによって未処理の項目を見つけ、問い合わせ量を理解し、初回返信やクローズまでの時間を確認できます。</p>
+                </article>
+            </div>
+        </section>
+        <div class="section-nav">
+            <div class="shell"><a href="#atendimento">チケット</a><a href="#categorias">カテゴリとチーム</a><a
+                    href="#ia">人工知能</a><a href="#automacoes">自動化</a><a href="#relatorios">レポート</a></div>
+        </div>
+        <section class="shell section feature" id="atendimento">
+            <div class="feature-copy"><span class="eyebrow">チケットと会話</span>
+                <h2>最初の質問から<br>対応完了まで。</h2>
+                <p>
+                    チケットは件名、カテゴリ、説明、優先度から始まります。エディタで状況を分かりやすく説明でき、添付ファイルでスクリーンショットや文書を共有できます。新規作成と返信のフォームでは、環境の制限内で一回につき最大5ファイルを添付できます。</p>
+                <p>
+                    サポート担当者は問い合わせ作成時にユーザーを選択でき、支援が必要な本人に代わってチケットを登録できます。チケットがコースに関連付けられている場合、そのコース情報も問い合わせの文脈として保持されます。</p>
+                <h3>返信し、次のステップを決める</h3>
+                <p>
+                    返信のみ、返信して「解決済み」にする、返信して「クローズ」にする、といった操作が可能です。カテゴリ、優先度、状態の変更は履歴に記録されるため、対応がどのように進んだかを把握できます。</p>
+                <a class="text-link" href="#fluxo">対応ステータスを見る →</a></div>
+            <div class="surface conversation">
+                <div class="surface-top"><span>チケット #1042</span><span class="badge blue">対応中</span></div>
+                <h3>評価にアクセスできません</h3>
+                <div class="ticket-meta">テクニカルサポート <span>·</span> 管理コース <span
+                        class="badge red">緊急</span></div>
+                <div class="message">
+                    <div class="message-name"><span class="avatar pale">MC</span><strong>Mariana Costa</strong><small>受講者</small>
+                    </div>
+                    <p>ユニットの活動は完了しましたが、評価がまだ利用できない状態です。確認していただけますか？</p><span
+                        class="file">⌁ assessment-screenshot.png</span></div>
+                <div class="message support">
+                    <div class="message-name"><span class="avatar">ES</span><strong>サポートチーム</strong></div>
+                    <p>Mariana さん、こんにちは。活動へのアクセス条件を確認し、次の手順をご案内します。</p></div>
+                <div class="history">優先度を「緊急」に変更</div>
+                <p class="caption">チケットの整理方法を示す会話例です。</p></div>
+        </section>
+        <section class="soft" id="fluxo">
+            <div class="shell section compact"><span class="eyebrow">状況に合わせた4つのステータス</span>
+                <h2>対応が今どこまで進んでいるか分かります。</h2>
+                <div class="states">
+                    <article><span class="badge blue">オープン</span>
+                        <h3>問い合わせが届いた</h3>
+                        <p>対応を待っているチケットを見つけ、サポート開始を整理します。</p></article>
+                    <article><span class="badge amber">対応中</span>
+                        <h3>チームが対応している</h3>
+                        <p>問い合わせを確認し回答する間も、同じ会話の中でやり取りを続けます。</p></article>
+                    <article><span class="badge green">解決済み</span>
+                        <h3>解決策を案内した</h3>
+                        <p>すでに解決した内容と、まだチームの対応が必要な内容を区別できます。</p></article>
+                    <article><span class="badge gray">クローズ</span>
+                        <h3>対応サイクルが完了した</h3>
+                        <p>完了したサポート履歴を、将来の参照用に保存できます。</p></article>
+                </div>
+                <div class="priority-note"><b>緊急 · 高 · 中 · 低</b>
+                    <p>
+                        チケット一覧は優先度、状態、作成日時で並び替えられます。緊急の依頼を先に表示し、条件が同じ場合は古いチケットを上位に表示します。</p>
+                </div>
+            </div>
+        </section>
+        <section class="shell section feature reverse" id="categorias">
+            <div class="feature-copy"><span class="eyebrow">カテゴリとチーム</span>
+                <h2>教育機関の運用に合わせて<br>サポートを整理。</h2>
+                <p>
+                    カテゴリに名前と説明を設定し、内容を分けて担当者を定義できます。教務、テクニカルサポート、学習支援など、組織の実態に合わせた構成が可能です。</p>
+                <p>
+                    カテゴリごとに、返信できるユーザーと新規チケットのメール通知を受け取るユーザーを選択できます。カテゴリ管理とチケット対応には別々の権限があり、責任範囲の異なるロールを構成できます。</p>
+                <h3>問い合わせた人は自分のチケットを確認</h3>
+                <p>
+                    管理権限のないユーザーは自分自身の問い合わせを確認できます。サポート担当者は、ユーザー、コース、カテゴリ、状態、優先度のフィルタで目的のチケットを探せます。テキスト検索は3文字以上で件名と説明を対象にします。</p>
+            </div>
+            <div class="surface category-surface">
+                <div class="surface-top"><b>サポートカテゴリ</b><span>構成例</span></div>
+                <div class="category-item"><span class="category-icon">▣</span>
+                    <div><h3>テクニカルサポート</h3>
+                        <p>アクセス、活動、ナビゲーション</p><span class="team">テクノロジーチーム</span></div>
+                </div>
+                <div class="category-item"><span class="category-icon">▤</span>
+                    <div><h3>教務</h3>
+                        <p>文書と学務案内</p><span class="team">教務チーム</span></div>
+                </div>
+                <div class="category-item"><span class="category-icon">◫</span>
+                    <div><h3>学習者サポート</h3>
+                        <p>学習環境での案内</p><span class="team">サポートチーム</span></div>
+                </div>
+            </div>
+        </section>
+        <section class="dark" id="ia">
+            <div class="shell section feature">
+                <div><span class="eyebrow">GENIAI との任意連携</span>
+                    <h2>文章作成をもっと支援。<br><em>返信の最終判断はチームが行います。</em></h2>
+                    <p>GeniAI
+                        はサポート画面内で返信文の作成を支援します。担当者が伝えたい内容を入力すると文章案が生成され、エディタに送って確認・修正してからユーザーに返信できます。</p>
+                    <p>
+                        生成時には件名、チケットの説明、および存在する場合は会話内の最新3件までのメッセージを参照します。そのため、直近のサポート文脈を考慮した提案が可能です。</p>
+                    <p>同じ連携を使って、チームが入力した説明からナレッジベース記事の下書きを作ることもできます。この機能には
+                        GeniAI のインストール、設定、API キーが必要です。</p></div>
+                <div class="ai-panel">
+                    <div class="surface-top"><b>返信作成支援</b><span class="badge">GeniAI</span></div>
+                    <label>サポート担当者の指示</label>
+                    <div class="ai-instruction">
+                        アクセス条件を確認することを説明し、活動名と表示されたメッセージのスクリーンショットを依頼してください。
+                    </div>
+                    <div class="ai-answer"><small>文章案 · 例</small>
+                        <p>Mariana さん、こんにちは。評価へのアクセスを確認するため、活動名と画面に表示されるメッセージのスクリーンショットを送っていただけますか？
+                            その情報をもとに状況を確認し、ご案内します。</p></div>
+                    <div class="ai-foot">文章案を生成 <span>→</span> エディタで確認 <span>→</span> 返信</div>
+                </div>
+            </div>
+        </section>
+        <section class="shell section" id="automacoes"><span class="eyebrow">通知と自動処理</span>
+            <div class="split-heading"><h2>チケットを<br>置き去りにしません。</h2>
+                <p>
+                    チケットの作成や返信に合わせてメール通知が行われます。さらに、各チケットに記録された情報を使う2つのスケジュールタスクがチームの運用を補助します。</p>
+            </div>
+            <div class="automation-grid">
+                <article><span class="big-number">3 <small>日</small></span>
+                    <h3>チームへのリマインダー</h3>
+                    <p>
+                        作成から3日以上経過し、最初の返信がまだないオープンまたは対応中のチケットは、カテゴリ担当者へのリマインダー対象になります。プラグインは送信を記録し、同じチケットに同じ通知を繰り返しません。</p>
+                </article>
+                <article><span class="big-number">48 <small>時間</small></span>
+                    <h3>解決後の自動クローズ</h3>
+                    <p>
+                        「解決済み」のまま48時間以上経過したチケットは、自動タスクによってクローズされます。時間は記録された解決時刻から計算されます。</p>
+                </article>
+                <article><span class="big-number mail-symbol">✉</span>
+                    <h3>文脈を含む通知</h3>
+                    <p>
+                        メールにはチケット参照、件名、カテゴリ、メッセージ、必要に応じて添付ファイルが含まれます。リンクから直接チケットを開けるため、会話を継続しやすくなります。</p>
+                </article>
+            </div>
+            <p class="note">2つのタスクはいずれも毎日午前0時に実行する設定で、Moodle 環境の cron
+                に依存します。時間条件はタスク実行時に判定されるため、指定時間ぴったりに送信・クローズされるわけではありません。</p>
+        </section>
+        <section class="soft" id="relatorios">
+            <div class="shell section"><span class="eyebrow">KOPERE BI のレポート</span>
+                <div class="split-heading"><h2>問い合わせの傾向を理解し、<br>サポートを把握。</h2>
+                    <p>
+                        プラグインのレポートファイルでは、クエリを5つのグループに整理しています。それぞれの分析で何が分かるか、サポート管理にどう活用できるかを確認できます。</p>
+                </div>
+                <div class="report-list">
+                    <details open>
+                        <summary><span><small>チケット</small><b>時系列で見る作成と解決</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p><strong>期間別に作成されたチケット。</strong>
+                            カテゴリと作成日で新規チケットを集計し、件数を表示します。特定の日に問い合わせが集中していないか確認できます。
+                        </p>
+                            <p><strong>期間別に解決したチケット。</strong>
+                                クローズ日を月とカテゴリでまとめ、完了したチケットを集計します。この違いを理解して指標を読むことが重要です。
+                            </p></div>
+                    </details>
+                    <details>
+                        <summary><span><small>カテゴリ</small><b>問い合わせが集中する場所</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p>
+                            カテゴリごとのチケット総数を件数の多い順に表示します。日付情報があるレコードについて、初回返信までの平均時間と、作成からクローズまでの平均時間も表示します。</p>
+                            <p>繰り返し発生するテーマや、より詳しい分析が必要なサポート領域を見つけるのに役立ちます。</p>
+                        </div>
+                    </details>
+                    <details>
+                        <summary><span><small>状態と優先度</small><b>分布と対応時間</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p><strong>状態別チケット。</strong> カテゴリと状態を組み合わせ、件数、初回返信の平均、クローズまでの平均を表示します。
+                        </p>
+                            <p><strong>優先度別分布。</strong>
+                                チケットを優先度でグループ化し、同じ時間指標を示します。緊急の問い合わせに期待どおりの対応ができているか確認できます。
+                            </p></div>
+                    </details>
+                    <details>
+                        <summary><span><small>ユーザー</small><b>サポート依頼が多いユーザー</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p>
+                            チケット数が多い上位10ユーザーを、識別情報、メール、依頼総数、初回返信とクローズの平均時間とともに表示します。</p>
+                            <p>
+                                クエリはユーザーが登録したチケットを対象とし、オープン中のものだけに限定しません。繰り返し必要となる案内を見つける参考になります。</p>
+                        </div>
+                    </details>
+                    <details>
+                        <summary><span><small>チームの対応</small><b>返信への参加状況</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p>プラグイン内の「Tickets by
+                            agent」レポートは、返信テーブルのレコードを作成ユーザーごとに集計します。したがって、担当されたユニークなチケット数ではなく、返信レコード数を示す指標です。</p>
+                            <p>
+                                各サポートの文脈を踏まえながら、会話への参加状況を分析する補助情報として利用してください。</p>
+                        </div>
+                    </details>
+                </div>
+                <p class="note">
+                    確認したバージョンのレポートファイルに基づく説明です。クエリはレポートに応じて6時間または1日のキャッシュを使用するため、リアルタイム指標として解釈しないでください。</p>
+            </div>
+        </section>
+        <section class="shell section feature" id="exportacao">
+            <div class="feature-copy"><span class="eyebrow">EXCEL へのエクスポート</span>
+                <h2>対応履歴を<br>独自の分析へ。</h2>
+                <p>ユーザー名、コース、件名、説明、状態、優先度、カテゴリ、メールアドレスを含むチケットを Excel
+                    ファイルに出力できます。各返信は別の列に追加され、誰がメッセージを書いたかも記録されます。</p>
+                <p>
+                    エクスポートするチケット状態を選択でき、コース文脈が指定されている場合はそれも反映されます。テキスト内容はプレーンテキストに変換されるため、環境外でも読み取りや加工がしやすくなります。</p>
+                <p>
+                    この機能にはチケット管理権限が必要です。エクスポート用の状態選択は独立しており、初期値ではオープンのチケットが選ばれます。</p>
+            </div>
+            <div class="surface export-preview">
+                <div class="surface-top"><b>tickets_export.xlsx</b><span class="badge green">Excel</span></div>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>ユーザー</th>
+                            <th>件名</th>
+                            <th>状態</th>
+                            <th>優先度</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Mariana Costa</td>
+                            <td>評価へのアクセス</td>
+                            <td>対応中</td>
+                            <td>緊急</td>
+                        </tr>
+                        <tr>
+                            <td>Rafael Lima</td>
+                            <td>修了証</td>
+                            <td>オープン</td>
+                            <td>高</td>
+                        </tr>
+                        <tr>
+                            <td>Ana Souza</td>
+                            <td>活動の提出</td>
+                            <td>解決済み</td>
+                            <td>中</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="export-fields">
+                    <span>コース</span><span>カテゴリ</span><span>メール</span><span>説明</span><span>返信 1</span><span>返信 2…</span>
+                </div>
+                <p class="caption">エクスポートされる情報のイメージです。</p></div>
+        </section>
+        <section class="soft" id="integracoes">
+            <div class="shell section"><span class="eyebrow">KOPERE エコシステムの一部</span>
+                <div class="split-heading"><h2>運用に必要なツールと<br>連携。</h2>
+                    <p>Helpdesk は既存の Moodle
+                        環境のユーザー、コース、権限を利用します。各種連携により、管理機能や返信作成をさらに補完できます。</p>
+                </div>
+                <div class="integration-grid">
+                    <article><span class="badge blue">必須依存関係</span>
+                        <h3>Kopere Dashboard</h3>
+                        <p>ユーザー選択や管理画面を支える機能など、Helpdesk が利用するコンポーネントを提供します。</p>
+                        <small>宣言されている最小バージョン: 2026070500</small><a
+                                href="https://kopere-dashboard.eduardokraus.chatgpt.site/">Dashboard を見る ↗</a>
+                    </article>
+                    <article><span class="badge blue">必須依存関係</span>
+                        <h3>Kopere BI</h3>
+                        <p>プラグインに含まれる定義を使って、サポートレポートを表示するための基盤を提供します。</p><small>宣言されている最小バージョン:
+                            2026052400</small><a href="https://moodle.org/plugins/local_kopere_bi">Kopere BI を見る
+                            ↗</a></article>
+                    <article><span class="badge gray">任意連携</span>
+                        <h3>GeniAI</h3>
+                        <p>返信や記事の文章作成支援を有効にします。インストールと API キーの設定が必要です。</p><small>AI
+                            支援なしでもサポート機能は動作します。</small><a
+                                href="https://moodle.org/plugins/local_geniai">GeniAI を見る ↗</a></article>
+                </div>
+            </div>
+        </section>
+        <section class="shell section faq" id="duvidas"><span class="eyebrow">利用を始める前に</span>
+            <h2>よくある質問。</h2>
+            <details>
+                <summary>Helpdesk は Moodle™ の外でも動作しますか？<span>+</span></summary>
+                <p>これは Moodle
+                    環境にインストールするローカルプラグインで、既存のアカウント、コース、権限を利用します。このページは製品紹介であり、あなたの教育機関に接続された実際のサポート窓口ではありません。</p>
+            </details>
+            <details>
+                <summary>人工知能の利用は必須ですか？<span>+</span></summary>
+                <p>いいえ。GeniAI は任意です。チケット作成、チームによる返信、その他のサポート機能は AI
+                    による文章生成に依存しません。</p></details>
+            <details>
+                <summary>AI が自動で返信を送信しますか？<span>+</span></summary>
+                <p>確認したフローでは AI
+                    は文章案を生成し、チームがエディタへ移します。担当者が内容を確認してから、フォームで返信操作を選択します。</p>
+            </details>
+            <details>
+                <summary>「解決済み」と「クローズ」の違いは？<span>+</span></summary>
+                <p>
+                    別々の状態です。「解決済み」は解決策を案内した状態、「クローズ」は対応サイクルを終了した状態です。日次タスクは48時間以上「解決済み」のチケットをクローズします。</p>
+            </details>
+            <details>
+                <summary>コースごとにサポートを分けられますか？<span>+</span></summary>
+                <p>
+                    プラグインはコースの文脈を保持し、チケット一覧でコースフィルタを提供し、エクスポートにもその情報を反映します。メニューをコース内だけに表示する設定も可能です。</p>
+            </details>
+            <details>
+                <summary>導入やカスタマイズの相談はできますか？<span>+</span></summary>
+                <p>サポート体制、インストール、設定、教育機関固有の要件について、Eduardo Kraus までお問い合わせください。</p>
+                <a class="text-link" href="https://eduardokraus.com/contato">プロジェクトについて相談 →</a></details>
+        </section>
+        <section class="cta shell">
+            <div><span class="eyebrow">受講者にもっと近いサポート</span>
+                <h2>一つのヘルプセンターを、<br>あなたの Moodle 環境に。</h2>
+                <p>Kopere Helpdesk で教育機関のサポートをどう整理できるか、ご相談ください。</p></div>
+            <a class="button primary" href="https://eduardokraus.com/contato">Eduardo Kraus に相談 ↗</a></section>
+</main>
+<footer>
+    <div class="shell footer-main"><a class="brand" href="#"><img src="favicon.png"
+                                                                  alt=""><span>Kopere<strong>Helpdesk</strong></span></a>
+        <p>学びにつながるサポート。</p>
+        <div><a href="https://github.com/EduardoKrausME/moodle-local_helpdesk">オープンソース ↗</a><a
+                href="https://eduardokraus.com/contato">お問い合わせ ↗</a></div>
+    </div>
+    <div class="shell footer-bottom"><span>© 2026 Eduardo Kraus · Kopere Helpdesk</span><span>Moodle™ は登録商標です。独立したオープンソースプラグインです。</span>
+    </div>
+    <div class="shell source-note">この内容は <a href="https://github.com/EduardoKrausME/moodle-local_helpdesk">プラグインリポジトリ</a>
+        のバージョン 2.4.6（2026年9月確認）に基づいています。画面とデータは説明用の例です。
+    </div>
+</footer>
+</body>
+</html>

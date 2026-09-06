@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Kopere Helpdesk | Atendimento dentro do seu Moodle</title>
-    <meta name="description" content="Conheça o Kopere Helpdesk: pedidos, equipas por categoria, base de conhecimento, GeniAI, notificações, relatórios e exportação Excel integrados ao Software Moodle.">
-    <link rel="icon" href="favicon.svg">
+    <meta name="description"
+          content="Conheça o Kopere Helpdesk: pedidos, equipas por categoria, base de conhecimento, GeniAI, notificações, relatórios e exportação Excel integrados ao Software Moodle.">
+    <link rel="icon" href="favicon.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="i18n.css">
     <script src="script.js" defer></script>
@@ -14,9 +15,27 @@
 <body>
 <a class="skip" href="#conteudo">Ir para o conteúdo</a>
 <header class="site-header">
-    <div class="shell header-inner"><a class="brand" href="#"><img src="favicon.svg" alt=""><span>Kopere<strong>Helpdesk</strong></span></a>
-        <nav aria-label="Navegação principal"><a href="#recursos">O Helpdesk</a><a href="#atendimento">Atendimento</a><a href="#relatorios">Relatórios</a><a href="#integracoes">Integrações</a></nav>
-        <div class="language-picker"><label class="sr-only" for="language-select">Idioma</label><select id="language-select" class="language-select" aria-label="Idioma"><option value="ar">العربية</option><option value="de">Deutsch</option><option value="en">English</option><option value="es">Español</option><option value="es_mx">Español (México)</option><option value="fr">Français</option><option value="id">Bahasa Indonesia</option><option value="it">Italiano</option><option value="ja">日本語</option><option value="pt">Português</option><option value="pt_br">Português (Brasil)</option><option value="ru">Русский</option><option value="sk">Slovenčina</option><option value="uk">Українська</option></select></div>
+    <div class="shell header-inner"><a class="brand" href="#"><img src="favicon.png"
+                                                                   alt=""><span>Kopere<strong>Helpdesk</strong></span></a>
+        <nav aria-label="Navegação principal"><a href="#recursos">O Helpdesk</a><a href="#atendimento">Atendimento</a><a
+                href="#relatorios">Relatórios</a><a href="#integracoes">Integrações</a></nav>
+        <div class="language-picker"><label class="sr-only" for="language-select">Idioma</label><select
+                id="language-select" class="language-select" aria-label="Idioma">
+            <option value="ar">العربية</option>
+            <option value="de">Deutsch</option>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="es_mx">Español (México)</option>
+            <option value="fr">Français</option>
+            <option value="id">Bahasa Indonesia</option>
+            <option value="it">Italiano</option>
+            <option value="ja">日本語</option>
+            <option value="pt">Português</option>
+            <option value="pt_br">Português (Brasil)</option>
+            <option value="ru">Русский</option>
+            <option value="sk">Slovenčina</option>
+            <option value="uk">Українська</option>
+        </select></div>
         <a class="button small primary" href="https://eduardokraus.com/contato">Fale com Eduardo ↗</a>
         <button class="menu-button" aria-label="Abrir menu" aria-expanded="false">☰</button>
     </div>
@@ -25,128 +44,400 @@
     <section class="hero shell">
         <div><span class="eyebrow">SUPORTE QUE FAZ PARTE DA APRENDIZAGEM</span>
             <h1>Cada dúvida merece<br>uma resposta.<br><em>Organize todas elas.</em></h1>
-            <p>Reúna o atendimento da a sua instituição dentro do Software Moodle™. Com o Kopere Helpdesk, alunos encontram ajuda, equipas acompanham cada pedido e gestores enxergam o que precisa de atenção.</p>
-            <div class="actions"><a class="button primary" href="#recursos">Conheça os recursos →</a><a class="button secondary" href="https://github.com/EduardoKrausME/moodle-local_helpdesk" target="_blank" rel="noopener">Ver código no GitHub ↗</a></div>
-            <div class="proof"><span>✓ Código aberto</span><span>✓ Integrado ao ambiente</span><span>✓ Assistência com IA</span></div>
+            <p>Reúna o atendimento da a sua instituição dentro do Software Moodle™. Com o Kopere Helpdesk, alunos
+                encontram ajuda, equipas acompanham cada pedido e gestores enxergam o que precisa de atenção.</p>
+            <div class="actions"><a class="button primary" href="#recursos">Conheça os recursos →</a><a
+                    class="button secondary" href="https://github.com/EduardoKrausME/moodle-local_helpdesk"
+                    target="_blank" rel="noopener">Ver código no GitHub ↗</a></div>
+            <div class="proof"><span>✓ Código aberto</span><span>✓ Integrado ao ambiente</span><span>✓ Assistência com IA</span>
+            </div>
         </div>
         <div class="hero-visual">
             <div class="preview">
                 <div class="windowbar"><span>● ● ●</span><span>Central de atendimento</span><span>⋯</span></div>
                 <div class="preview-inner">
-                    <div class="preview-heading"><div><small>KOPERE HELPDESK</small><h3>Olá, equipa de suporte!</h3></div><span class="avatar">EK</span></div>
-                    <div class="kpis"><div><small>Em aberto</small><strong>24</strong></div><div><small>Sem resposta</small><strong>08</strong></div><div><small>Concluídos</small><strong>156</strong></div></div>
+                    <div class="preview-heading">
+                        <div><small>KOPERE HELPDESK</small>
+                            <h3>Olá, equipa de suporte!</h3></div>
+                        <span class="avatar">EK</span></div>
+                    <div class="kpis">
+                        <div><small>Em aberto</small><strong>24</strong></div>
+                        <div><small>Sem resposta</small><strong>08</strong></div>
+                        <div><small>Concluídos</small><strong>156</strong></div>
+                    </div>
                     <div class="queue-title"><b>Pedidos que precisam da sua atenção</b><span>Prioridade</span></div>
-                    <div class="ticket-row"><span class="avatar pale">MC</span><div><b>Não consigo acessar a avaliação</b><small>Mariana Costa · Suporte técnico</small></div><span class="badge red">Urgente</span></div>
-                    <div class="ticket-row"><span class="avatar mint">RL</span><div><b>Dúvida sobre o certificado</b><small>Rafael Lima · Secretaria</small></div><span class="badge amber">Alta</span></div>
-                    <div class="ticket-row"><span class="avatar pale">AS</span><div><b>Envio da atividade final</b><small>Ana Souza · Apoio académico</small></div><span class="badge blue">Média</span></div>
-                    <div class="preview-bottom"><span>Uma conversa. Todo o contexto.</span><a href="#atendimento">Conhecer o fluxo →</a></div>
+                    <div class="ticket-row"><span class="avatar pale">MC</span>
+                        <div><b>Não consigo acessar a avaliação</b><small>Mariana Costa · Suporte técnico</small></div>
+                        <span class="badge red">Urgente</span></div>
+                    <div class="ticket-row"><span class="avatar mint">RL</span>
+                        <div><b>Dúvida sobre o certificado</b><small>Rafael Lima · Secretaria</small></div>
+                        <span class="badge amber">Alta</span></div>
+                    <div class="ticket-row"><span class="avatar pale">AS</span>
+                        <div><b>Envio da atividade final</b><small>Ana Souza · Apoio académico</small></div>
+                        <span class="badge blue">Média</span></div>
+                    <div class="preview-bottom"><span>Uma conversa. Todo o contexto.</span><a href="#atendimento">Conhecer
+                        o fluxo →</a></div>
                 </div>
             </div>
             <p class="caption">Representação ilustrativa do atendimento. Dados de demonstração.</p>
         </div>
     </section>
     <div class="trust">
-        <div class="shell trust-grid"><div><strong>4</strong><span>níveis de prioridade</span></div><div><strong>4</strong><span>estados do pedido</span></div><div><strong>5</strong><span>grupos de relatórios</span></div><div><strong>1</strong><span>central dentro do o seu ambiente</span></div></div>
-        <section class="shell intro section" id="recursos"><span class="eyebrow">MAIS CLAREZA PARA QUEM PRECISA DE AJUDA</span>
-            <div class="split-heading"><h2>O atendimento continua.<br>O contexto também.</h2><p>Quando uma dúvida chega por canais diferentes, acompanhar o que foi conversado exige tempo. O Helpdesk reúne assunto, descrição, ficheiros, respostas e alterações em um pedido que pode ser consultado ao longo de todo o atendimento.</p></div>
+        <div class="shell trust-grid">
+            <div><strong>4</strong><span>níveis de prioridade</span></div>
+            <div><strong>4</strong><span>estados do pedido</span></div>
+            <div><strong>5</strong><span>grupos de relatórios</span></div>
+            <div><strong>1</strong><span>central dentro do o seu ambiente</span></div>
+        </div>
+        <section class="shell intro section" id="recursos"><span
+                class="eyebrow">MAIS CLAREZA PARA QUEM PRECISA DE AJUDA</span>
+            <div class="split-heading"><h2>O atendimento continua.<br>O contexto também.</h2>
+                <p>Quando uma dúvida chega por canais diferentes, acompanhar o que foi conversado exige tempo. O
+                    Helpdesk reúne assunto, descrição, ficheiros, respostas e alterações em um pedido que pode ser
+                    consultado ao longo de todo o atendimento.</p></div>
             <div class="benefits">
-                <article><span class="line-icon">↔</span><h3>Uma conversa organizada</h3><p>O aluno abre a solicitação e acompanha as suas próprias demandas. A equipa responde no mesmo histórico, com os ficheiros e as informações necessários para dar continuidade.</p></article>
-                <article><span class="line-icon">◎</span><h3>A equipa certa em cada assunto</h3><p>As categorias organizam os tipos de solicitação e permitem definir quem pode responder e receber notificações sobre novos pedidos daquele grupo.</p></article>
-                <article><span class="line-icon">▤</span><h3>Visibilidade para a gestão</h3><p>Indicadores, filtros e relatórios ajudam a localizar pendências, entender a demanda e observar os tempos de primeira resposta e encerramento.</p></article>
+                <article><span class="line-icon">↔</span>
+                    <h3>Uma conversa organizada</h3>
+                    <p>O aluno abre a solicitação e acompanha as suas próprias demandas. A equipa responde no mesmo
+                        histórico, com os ficheiros e as informações necessários para dar continuidade.</p></article>
+                <article><span class="line-icon">◎</span>
+                    <h3>A equipa certa em cada assunto</h3>
+                    <p>As categorias organizam os tipos de solicitação e permitem definir quem pode responder e receber
+                        notificações sobre novos pedidos daquele grupo.</p></article>
+                <article><span class="line-icon">▤</span>
+                    <h3>Visibilidade para a gestão</h3>
+                    <p>Indicadores, filtros e relatórios ajudam a localizar pendências, entender a demanda e observar os
+                        tempos de primeira resposta e encerramento.</p></article>
             </div>
         </section>
-        <div class="section-nav"><div class="shell"><a href="#atendimento">Pedidos</a><a href="#categorias">Categorias e equipas</a><a href="#ia">Inteligência artificial</a><a href="#automacoes">Automações</a><a href="#relatorios">Relatórios</a></div></div>
+        <div class="section-nav">
+            <div class="shell"><a href="#atendimento">Pedidos</a><a href="#categorias">Categorias e equipas</a><a
+                    href="#ia">Inteligência artificial</a><a href="#automacoes">Automações</a><a href="#relatorios">Relatórios</a>
+            </div>
+        </div>
         <section class="shell section feature" id="atendimento">
-            <div class="feature-copy"><span class="eyebrow">CHAMADOS E CONVERSAS</span><h2>Da primeira dúvida<br>ao atendimento concluído.</h2>
-                <p>O pedido começa com um assunto, uma categoria, uma descrição e a prioridade. O editor permite explicar a situação com clareza, enquanto os anexos ajudam a compartilhar capturas de ecrã e documentos. Os formulários de abertura e resposta aceitam até cinco ficheiros por envio, respeitando os limites do ambiente.</p>
-                <p>O suporte pode selecionar um utilizador ao criar a solicitação, permitindo registrar um atendimento em nome de quem precisa de ajuda. Quando o pedido está associado a um curso, esse contexto acompanha a consulta.</p>
-                <h3>Responda e defina o próximo passo</h3><p>É possível responder, responder e marcar como resolvido ou responder e fechar. Mudanças de categoria, prioridade e estado ficam registradas no histórico, ajudando a entender como o atendimento evoluiu.</p><a class="text-link" href="#fluxo">Veja os estados do atendimento →</a>
+            <div class="feature-copy"><span class="eyebrow">CHAMADOS E CONVERSAS</span>
+                <h2>Da primeira dúvida<br>ao atendimento concluído.</h2>
+                <p>O pedido começa com um assunto, uma categoria, uma descrição e a prioridade. O editor permite
+                    explicar a situação com clareza, enquanto os anexos ajudam a compartilhar capturas de ecrã e
+                    documentos. Os formulários de abertura e resposta aceitam até cinco ficheiros por envio, respeitando
+                    os limites do ambiente.</p>
+                <p>O suporte pode selecionar um utilizador ao criar a solicitação, permitindo registrar um atendimento
+                    em nome de quem precisa de ajuda. Quando o pedido está associado a um curso, esse contexto acompanha
+                    a consulta.</p>
+                <h3>Responda e defina o próximo passo</h3>
+                <p>É possível responder, responder e marcar como resolvido ou responder e fechar. Mudanças de categoria,
+                    prioridade e estado ficam registradas no histórico, ajudando a entender como o atendimento
+                    evoluiu.</p><a class="text-link" href="#fluxo">Veja os estados do atendimento →</a>
             </div>
-            <div class="surface conversation"><div class="surface-top"><span>CHAMADO #1042</span><span class="badge blue">Em progresso</span></div><h3>Não consigo acessar a avaliação</h3>
-                <div class="ticket-meta">Suporte técnico <span>·</span> Curso de Gestão <span class="badge red">Urgente</span></div>
-                <div class="message"><div class="message-name"><span class="avatar pale">MC</span><strong>Mariana Costa</strong><small>Aluno</small></div><p>Concluí as atividades da unidade, mas a avaliação ainda aparece indisponível. Podem me ajudar?</p><span class="file">⌁ captura-da-avaliacao.png</span></div>
-                <div class="message support"><div class="message-name"><span class="avatar">ES</span><strong>Equipa de suporte</strong></div><p>Olá, Mariana! Vamos conferir as condições de acesso da atividade e orientar si sobre o próximo passo.</p></div>
-                <div class="history">Prioridade alterada para Urgente</div><p class="caption">Exemplo de conversa para demonstrar a organização do pedido.</p>
+            <div class="surface conversation">
+                <div class="surface-top"><span>CHAMADO #1042</span><span class="badge blue">Em progresso</span></div>
+                <h3>Não consigo acessar a avaliação</h3>
+                <div class="ticket-meta">Suporte técnico <span>·</span> Curso de Gestão <span
+                        class="badge red">Urgente</span></div>
+                <div class="message">
+                    <div class="message-name"><span class="avatar pale">MC</span><strong>Mariana Costa</strong><small>Aluno</small>
+                    </div>
+                    <p>Concluí as atividades da unidade, mas a avaliação ainda aparece indisponível. Podem me
+                        ajudar?</p><span class="file">⌁ captura-da-avaliacao.png</span></div>
+                <div class="message support">
+                    <div class="message-name"><span class="avatar">ES</span><strong>Equipa de suporte</strong></div>
+                    <p>Olá, Mariana! Vamos conferir as condições de acesso da atividade e orientar si sobre o próximo
+                        passo.</p></div>
+                <div class="history">Prioridade alterada para Urgente</div>
+                <p class="caption">Exemplo de conversa para demonstrar a organização do pedido.</p>
             </div>
         </section>
-        <section class="soft" id="fluxo"><div class="shell section compact"><span class="eyebrow">UM ESTADO PARA CADA MOMENTO</span><h2>Saiba em que ponto o atendimento está.</h2>
-            <div class="states">
-                <article><span class="badge blue">Aberto</span><h3>A solicitação chegou</h3><p>Identifique os pedidos que estão aguardando atenção e organize o início do atendimento.</p></article>
-                <article><span class="badge amber">Em progresso</span><h3>A equipa está atuando</h3><p>Mantenha a conversa em andamento enquanto a solicitação é analisada e respondida.</p></article>
-                <article><span class="badge green">Resolvido</span><h3>A solução foi encaminhada</h3><p>Diferencie o que já foi resolvido do que ainda demanda trabalho da equipa.</p></article>
-                <article><span class="badge gray">Fechado</span><h3>O ciclo foi encerrado</h3><p>Preserve o registro do atendimento concluído para futuras consultas.</p></article>
+        <section class="soft" id="fluxo">
+            <div class="shell section compact"><span class="eyebrow">UM ESTADO PARA CADA MOMENTO</span>
+                <h2>Saiba em que ponto o atendimento está.</h2>
+                <div class="states">
+                    <article><span class="badge blue">Aberto</span>
+                        <h3>A solicitação chegou</h3>
+                        <p>Identifique os pedidos que estão aguardando atenção e organize o início do atendimento.</p>
+                    </article>
+                    <article><span class="badge amber">Em progresso</span>
+                        <h3>A equipa está atuando</h3>
+                        <p>Mantenha a conversa em andamento enquanto a solicitação é analisada e respondida.</p>
+                    </article>
+                    <article><span class="badge green">Resolvido</span>
+                        <h3>A solução foi encaminhada</h3>
+                        <p>Diferencie o que já foi resolvido do que ainda demanda trabalho da equipa.</p></article>
+                    <article><span class="badge gray">Fechado</span>
+                        <h3>O ciclo foi encerrado</h3>
+                        <p>Preserve o registro do atendimento concluído para futuras consultas.</p></article>
+                </div>
+                <div class="priority-note"><b>Urgente · Alta · Média · Baixa</b>
+                    <p>A listagem ordena os pedidos por prioridade, estado e data de criação, colocando as demandas
+                        urgentes antes das demais e as mais antigas primeiro dentro da mesma combinação.</p></div>
             </div>
-            <div class="priority-note"><b>Urgente · Alta · Média · Baixa</b><p>A listagem ordena os pedidos por prioridade, estado e data de criação, colocando as demandas urgentes antes das demais e as mais antigas primeiro dentro da mesma combinação.</p></div>
-        </div></section>
+        </section>
         <section class="shell section feature reverse" id="categorias">
-            <div class="feature-copy"><span class="eyebrow">CATEGORIAS E EQUIPES</span><h2>Organize o suporte<br>como a a sua instituição trabalha.</h2>
-                <p>Crie categorias com nome e descrição para separar assuntos e definir os responsáveis pelo atendimento. Secretaria, suporte técnico e apoio académico são exemplos de como estruturar essa organização de acordo com a realidade da instituição.</p>
-                <p>Em cada categoria, selecione os utilizadores que podem responder e que devem receber os emails de novos pedidos. A gestão de categorias e o atendimento possuem permissões próprias, permitindo compor papéis com responsabilidades distintas.</p>
-                <h3>Quem pede ajuda vê os próprios pedidos</h3><p>Utilizadores sem permissão de gestão consultam as suas próprias solicitações. Para o suporte, os filtros de utilizador, curso, categoria, estado e prioridade ajudam a encontrar o atendimento desejado. A pesquisa textual considera o assunto e a descrição a partir de três caracteres.</p>
+            <div class="feature-copy"><span class="eyebrow">CATEGORIAS E EQUIPES</span>
+                <h2>Organize o suporte<br>como a a sua instituição trabalha.</h2>
+                <p>Crie categorias com nome e descrição para separar assuntos e definir os responsáveis pelo
+                    atendimento. Secretaria, suporte técnico e apoio académico são exemplos de como estruturar essa
+                    organização de acordo com a realidade da instituição.</p>
+                <p>Em cada categoria, selecione os utilizadores que podem responder e que devem receber os emails de
+                    novos pedidos. A gestão de categorias e o atendimento possuem permissões próprias, permitindo compor
+                    papéis com responsabilidades distintas.</p>
+                <h3>Quem pede ajuda vê os próprios pedidos</h3>
+                <p>Utilizadores sem permissão de gestão consultam as suas próprias solicitações. Para o suporte, os
+                    filtros de utilizador, curso, categoria, estado e prioridade ajudam a encontrar o atendimento
+                    desejado. A pesquisa textual considera o assunto e a descrição a partir de três caracteres.</p>
             </div>
-            <div class="surface category-surface"><div class="surface-top"><b>Categorias de atendimento</b><span>Exemplo de organização</span></div>
-                <div class="category-item"><span class="category-icon">▣</span><div><h3>Suporte técnico</h3><p>Acesso, atividades e navegação</p><span class="team">Equipa de tecnologia</span></div></div>
-                <div class="category-item"><span class="category-icon">▤</span><div><h3>Secretaria académica</h3><p>Documentos e orientações académicas</p><span class="team">Equipa de secretaria</span></div></div>
-                <div class="category-item"><span class="category-icon">◫</span><div><h3>Apoio ao estudante</h3><p>Orientação no ambiente de aprendizagem</p><span class="team">Equipa de atendimento</span></div></div>
+            <div class="surface category-surface">
+                <div class="surface-top"><b>Categorias de atendimento</b><span>Exemplo de organização</span></div>
+                <div class="category-item"><span class="category-icon">▣</span>
+                    <div><h3>Suporte técnico</h3>
+                        <p>Acesso, atividades e navegação</p><span class="team">Equipa de tecnologia</span></div>
+                </div>
+                <div class="category-item"><span class="category-icon">▤</span>
+                    <div><h3>Secretaria académica</h3>
+                        <p>Documentos e orientações académicas</p><span class="team">Equipa de secretaria</span></div>
+                </div>
+                <div class="category-item"><span class="category-icon">◫</span>
+                    <div><h3>Apoio ao estudante</h3>
+                        <p>Orientação no ambiente de aprendizagem</p><span class="team">Equipa de atendimento</span>
+                    </div>
+                </div>
             </div>
         </section>
-        <section class="dark" id="ia"><div class="shell section feature">
-            <div><span class="eyebrow">INTEGRAÇÃO OPCIONAL COM GENIAI</span><h2>Mais apoio para escrever.<br><em>A equipa conduz a resposta.</em></h2>
-                <p>O GeniAI auxilia na criação de respostas diretamente no atendimento. O suporte informa o que deseja comunicar e recebe uma sugestão de texto que pode enviar ao editor, revisar e ajustar antes de responder ao utilizador.</p>
-                <p>A geração considera o assunto, a descrição do pedido e, quando existem, até as três mensagens mais recentes da conversa. Assim, a sugestão pode levar em conta o contexto próximo do atendimento.</p>
-                <p>A mesma integração também auxilia na elaboração de artigos para a base de conhecimento a partir de uma descrição fornecida pela equipa. O recurso depende da instalação e configuração do GeniAI e de sua chave de API.</p>
+        <section class="dark" id="ia">
+            <div class="shell section feature">
+                <div><span class="eyebrow">INTEGRAÇÃO OPCIONAL COM GENIAI</span>
+                    <h2>Mais apoio para escrever.<br><em>A equipa conduz a resposta.</em></h2>
+                    <p>O GeniAI auxilia na criação de respostas diretamente no atendimento. O suporte informa o que
+                        deseja comunicar e recebe uma sugestão de texto que pode enviar ao editor, revisar e ajustar
+                        antes de responder ao utilizador.</p>
+                    <p>A geração considera o assunto, a descrição do pedido e, quando existem, até as três mensagens
+                        mais recentes da conversa. Assim, a sugestão pode levar em conta o contexto próximo do
+                        atendimento.</p>
+                    <p>A mesma integração também auxilia na elaboração de artigos para a base de conhecimento a partir
+                        de uma descrição fornecida pela equipa. O recurso depende da instalação e configuração do GeniAI
+                        e de sua chave de API.</p>
+                </div>
+                <div class="ai-panel">
+                    <div class="surface-top"><b>Assistência à resposta</b><span class="badge">GeniAI</span></div>
+                    <label>Orientação do suporte</label>
+                    <div class="ai-instruction">Explique que vamos verificar as condições de acesso e peça o nome da
+                        atividade e uma captura da mensagem exibida.
+                    </div>
+                    <div class="ai-answer"><small>SUGESTÃO DE TEXTO · EXEMPLO</small>
+                        <p>Olá, Mariana! Para verificarmos o acesso à sua avaliação, si pode nos informar o nome da
+                            atividade e enviar uma captura da mensagem que aparece no ecrã? Com essas informações,
+                            conseguimos analisar o que está acontecendo e orientar si.</p></div>
+                    <div class="ai-foot">Gerar sugestão <span>→</span> Revisar no editor <span>→</span> Responder</div>
+                </div>
             </div>
-            <div class="ai-panel"><div class="surface-top"><b>Assistência à resposta</b><span class="badge">GeniAI</span></div><label>Orientação do suporte</label>
-                <div class="ai-instruction">Explique que vamos verificar as condições de acesso e peça o nome da atividade e uma captura da mensagem exibida.</div>
-                <div class="ai-answer"><small>SUGESTÃO DE TEXTO · EXEMPLO</small><p>Olá, Mariana! Para verificarmos o acesso à sua avaliação, si pode nos informar o nome da atividade e enviar uma captura da mensagem que aparece no ecrã? Com essas informações, conseguimos analisar o que está acontecendo e orientar si.</p></div>
-                <div class="ai-foot">Gerar sugestão <span>→</span> Revisar no editor <span>→</span> Responder</div>
-            </div>
-        </div></section>
-        <section class="shell section" id="automacoes"><span class="eyebrow">NOTIFICAÇÕES E ROTINAS AUTOMÁTICAS</span><div class="split-heading"><h2>O pedido não precisa<br>ficar esquecido.</h2><p>A comunicação por email acompanha a abertura e as respostas. Duas tarefas agendadas complementam a rotina da equipa, usando as informações registradas em cada pedido.</p></div>
+        </section>
+        <section class="shell section" id="automacoes"><span class="eyebrow">NOTIFICAÇÕES E ROTINAS AUTOMÁTICAS</span>
+            <div class="split-heading"><h2>O pedido não precisa<br>ficar esquecido.</h2>
+                <p>A comunicação por email acompanha a abertura e as respostas. Duas tarefas agendadas complementam a
+                    rotina da equipa, usando as informações registradas em cada pedido.</p></div>
             <div class="automation-grid">
-                <article><span class="big-number">3 <small>dias</small></span><h3>Um lembrete para a equipa</h3><p>Pedidos abertos ou em progresso, criados há pelo menos três dias e ainda sem primeira resposta, podem gerar um lembrete aos responsáveis da categoria. O plugin registra o envio para não repetir esse lembrete no mesmo pedido.</p></article>
-                <article><span class="big-number">48 <small>horas</small></span><h3>Encerramento após a resolução</h3><p>Pedidos que permanecem no estado resolvido por pelo menos 48 horas são fechados pela tarefa automática. O prazo é contado a partir do momento registrado da resolução.</p></article>
-                <article><span class="big-number mail-symbol">✉</span><h3>Notificações com contexto</h3><p>Os emails incluem referências ao pedido, assunto, categoria e mensagem, além dos anexos quando aplicáveis. Os links levam ao atendimento para facilitar a continuidade da conversa.</p></article>
+                <article><span class="big-number">3 <small>dias</small></span>
+                    <h3>Um lembrete para a equipa</h3>
+                    <p>Pedidos abertos ou em progresso, criados há pelo menos três dias e ainda sem primeira resposta,
+                        podem gerar um lembrete aos responsáveis da categoria. O plugin registra o envio para não
+                        repetir esse lembrete no mesmo pedido.</p></article>
+                <article><span class="big-number">48 <small>horas</small></span>
+                    <h3>Encerramento após a resolução</h3>
+                    <p>Pedidos que permanecem no estado resolvido por pelo menos 48 horas são fechados pela tarefa
+                        automática. O prazo é contado a partir do momento registrado da resolução.</p></article>
+                <article><span class="big-number mail-symbol">✉</span>
+                    <h3>Notificações com contexto</h3>
+                    <p>Os emails incluem referências ao pedido, assunto, categoria e mensagem, além dos anexos quando
+                        aplicáveis. Os links levam ao atendimento para facilitar a continuidade da conversa.</p>
+                </article>
             </div>
-            <p class="note">As duas tarefas são configuradas para execução diária à meia-noite e dependem do cron do ambiente. Os prazos são verificados na execução, não representam envio ou fechamento no minuto exato.</p>
+            <p class="note">As duas tarefas são configuradas para execução diária à meia-noite e dependem do cron do
+                ambiente. Os prazos são verificados na execução, não representam envio ou fechamento no minuto
+                exato.</p>
         </section>
-        <section class="soft" id="relatorios"><div class="shell section"><span class="eyebrow">RELATÓRIOS COM KOPERE BI</span><div class="split-heading"><h2>Entenda a demanda.<br>Acompanhe o atendimento.</h2><p>Os ficheiros de relatórios do plugin organizam as consultas em cinco grupos. Veja o que cada análise permite observar e como essas informações podem apoiar a gestão do suporte.</p></div>
-            <div class="report-list">
-                <details open><summary><span><small>CHAMADOS</small><b>Abertura e resolução ao longo do tempo</b></span><span class="plus">+</span></summary><div><p><strong>Pedidos criados por período.</strong> Agrupa as aberturas por categoria e dia de criação, apresentando a quantidade registrada. Ajuda a localizar concentrações de demanda em datas específicas.</p><p><strong>Pedidos resolvidos por período.</strong> A consulta usa a data de fechamento, agrupada por mês e categoria, para contabilizar os pedidos encerrados. Essa distinção permite interpretar corretamente o indicador exibido.</p></div></details>
-                <details><summary><span><small>CATEGORIAS</small><b>Onde a demanda se concentra</b></span><span class="plus">+</span></summary><div><p>Apresenta o total de pedidos de cada categoria, ordenado pelo maior volume. Inclui o tempo médio de primeira resposta e o tempo médio entre a abertura e o fechamento, considerando os registros que possuem essas datas.</p><p>Essa visão ajuda a identificar assuntos recorrentes e grupos de atendimento que merecem uma análise mais próxima.</p></div></details>
-                <details><summary><span><small>ESTADO E PRIORIDADE</small><b>Distribuição e tempos de atendimento</b></span><span class="plus">+</span></summary><div><p><strong>Pedidos por estado.</strong> Combina categoria e estado para mostrar volume, média de primeira resposta e média de fechamento.</p><p><strong>Distribuição por prioridade.</strong> Agrupa os pedidos por prioridade e apresenta as mesmas medidas de tempo. Permite observar se as demandas urgentes estão recebendo a atenção esperada.</p></div></details>
-                <details><summary><span><small>USUÁRIOS</small><b>Quem mais solicita atendimento</b></span><span class="plus">+</span></summary><div><p>Lista os dez utilizadores com maior quantidade de pedidos, com identificação, email, total de solicitações e tempos médios de primeira resposta e fechamento.</p><p>A consulta considera os pedidos registrados pelo utilizador, sem restringir a contagem apenas aos que estão abertos. O resultado pode ajudar a encontrar necessidades recorrentes de orientação.</p></div></details>
-                <details><summary><span><small>ATUAÇÃO DA EQUIPE</small><b>Participação nas respostas</b></span><span class="plus">+</span></summary><div><p>O relatório denominado “Tickets por agente” no plugin conta registros na tabela de respostas, agrupados pelo utilizador que os criou. Por isso, sua leitura representa quantidade de registros de resposta, e não quantidade de pedidos únicos atribuídos.</p><p>Use essa informação como apoio à análise da participação nas conversas, considerando o contexto de cada atendimento.</p></div></details>
+        <section class="soft" id="relatorios">
+            <div class="shell section"><span class="eyebrow">RELATÓRIOS COM KOPERE BI</span>
+                <div class="split-heading"><h2>Entenda a demanda.<br>Acompanhe o atendimento.</h2>
+                    <p>Os ficheiros de relatórios do plugin organizam as consultas em cinco grupos. Veja o que cada
+                        análise permite observar e como essas informações podem apoiar a gestão do suporte.</p></div>
+                <div class="report-list">
+                    <details open>
+                        <summary><span><small>CHAMADOS</small><b>Abertura e resolução ao longo do tempo</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p><strong>Pedidos criados por período.</strong> Agrupa as aberturas por categoria e dia de
+                            criação, apresentando a quantidade registrada. Ajuda a localizar concentrações de demanda em
+                            datas específicas.</p>
+                            <p><strong>Pedidos resolvidos por período.</strong> A consulta usa a data de fechamento,
+                                agrupada por mês e categoria, para contabilizar os pedidos encerrados. Essa distinção
+                                permite interpretar corretamente o indicador exibido.</p></div>
+                    </details>
+                    <details>
+                        <summary><span><small>CATEGORIAS</small><b>Onde a demanda se concentra</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p>Apresenta o total de pedidos de cada categoria, ordenado pelo maior volume. Inclui o
+                            tempo médio de primeira resposta e o tempo médio entre a abertura e o fechamento,
+                            considerando os registros que possuem essas datas.</p>
+                            <p>Essa visão ajuda a identificar assuntos recorrentes e grupos de atendimento que merecem
+                                uma análise mais próxima.</p></div>
+                    </details>
+                    <details>
+                        <summary>
+                            <span><small>ESTADO E PRIORIDADE</small><b>Distribuição e tempos de atendimento</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p><strong>Pedidos por estado.</strong> Combina categoria e estado para mostrar volume,
+                            média de primeira resposta e média de fechamento.</p>
+                            <p><strong>Distribuição por prioridade.</strong> Agrupa os pedidos por prioridade e
+                                apresenta as mesmas medidas de tempo. Permite observar se as demandas urgentes estão
+                                recebendo a atenção esperada.</p></div>
+                    </details>
+                    <details>
+                        <summary><span><small>USUÁRIOS</small><b>Quem mais solicita atendimento</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p>Lista os dez utilizadores com maior quantidade de pedidos, com identificação, email,
+                            total de solicitações e tempos médios de primeira resposta e fechamento.</p>
+                            <p>A consulta considera os pedidos registrados pelo utilizador, sem restringir a contagem
+                                apenas aos que estão abertos. O resultado pode ajudar a encontrar necessidades
+                                recorrentes de orientação.</p></div>
+                    </details>
+                    <details>
+                        <summary><span><small>ATUAÇÃO DA EQUIPE</small><b>Participação nas respostas</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p>O relatório denominado “Tickets por agente” no plugin conta registros na tabela de
+                            respostas, agrupados pelo utilizador que os criou. Por isso, sua leitura representa
+                            quantidade de registros de resposta, e não quantidade de pedidos únicos atribuídos.</p>
+                            <p>Use essa informação como apoio à análise da participação nas conversas, considerando o
+                                contexto de cada atendimento.</p></div>
+                    </details>
+                </div>
+                <p class="note">Descrição baseada nos ficheiros de relatórios da versão consultada. As consultas
+                    utilizam cache de seis horas ou um dia, conforme o relatório, e não devem ser interpretadas como
+                    indicadores em tempo real.</p>
             </div>
-            <p class="note">Descrição baseada nos ficheiros de relatórios da versão consultada. As consultas utilizam cache de seis horas ou um dia, conforme o relatório, e não devem ser interpretadas como indicadores em tempo real.</p>
-        </div></section>
-        <section class="shell section feature" id="exportacao"><div class="feature-copy"><span class="eyebrow">EXPORTAÇÃO PARA EXCEL</span><h2>Leve o histórico<br>para a sua análise.</h2>
-            <p>Exporte os pedidos para uma folha de cálculo Excel com nome do utilizador, curso, assunto, descrição, estado, prioridade, categoria e email. As respostas são acrescentadas em colunas separadas, com a identificação de quem escreveu cada mensagem.</p>
-            <p>A exportação permite escolher os estados dos pedidos e respeita o curso quando esse contexto é informado. O conteúdo textual é convertido para texto simples, facilitando a leitura e o tratamento fora do ambiente.</p>
-            <p>O recurso exige permissão de gestão de pedidos. A seleção de estados da exportação é própria e começa, por padrão, com os pedidos abertos.</p></div>
-            <div class="surface export-preview"><div class="surface-top"><b>tickets_export.xlsx</b><span class="badge green">Excel</span></div><div class="table-scroll"><table><thead><tr><th>Utilizador</th><th>Assunto</th><th>Estado</th><th>Prioridade</th></tr></thead><tbody><tr><td>Mariana Costa</td><td>Acesso à avaliação</td><td>Em progresso</td><td>Urgente</td></tr><tr><td>Rafael Lima</td><td>Certificado</td><td>Aberto</td><td>Alta</td></tr><tr><td>Ana Souza</td><td>Envio de atividade</td><td>Resolvido</td><td>Média</td></tr></tbody></table></div>
-                <div class="export-fields"><span>Curso</span><span>Categoria</span><span>Email</span><span>Descrição</span><span>Resposta 1</span><span>Resposta 2…</span></div><p class="caption">Recorte ilustrativo das informações exportadas.</p></div>
         </section>
-        <section class="soft" id="integracoes"><div class="shell section"><span class="eyebrow">PARTE DO ECOSSISTEMA KOPERE</span><div class="split-heading"><h2>Conectado às ferramentas<br>da sua operação.</h2><p>O Helpdesk utiliza os utilizadores, cursos e permissões do próprio ambiente. As integrações complementam a experiência de gestão e a produção de respostas.</p></div>
-            <div class="integration-grid">
-                <article><span class="badge blue">Dependência obrigatória</span><h3>Kopere Dashboard</h3><p>Fornece componentes utilizados pelo Helpdesk, incluindo a seleção de utilizadores e recursos de apoio à interface de gestão.</p><small>Versão mínima declarada: 2026070500</small><a href="https://kopere-dashboard.eduardokraus.chatgpt.site/">Conhecer o Dashboard ↗</a></article>
-                <article><span class="badge blue">Dependência obrigatória</span><h3>Kopere BI</h3><p>Disponibiliza a estrutura que apresenta os relatórios do atendimento a partir das definições incluídas no plugin.</p><small>Versão mínima declarada: 2026052400</small><a href="https://moodle.org/plugins/local_kopere_bi">Conhecer o Kopere BI ↗</a></article>
-                <article><span class="badge gray">Integração opcional</span><h3>GeniAI</h3><p>Habilita a assistência para escrever respostas e artigos. Exige instalação e configuração da chave de API.</p><small>O atendimento funciona sem a assistência de IA.</small><a href="https://moodle.org/plugins/local_geniai">Conhecer o GeniAI ↗</a></article>
+        <section class="shell section feature" id="exportacao">
+            <div class="feature-copy"><span class="eyebrow">EXPORTAÇÃO PARA EXCEL</span>
+                <h2>Leve o histórico<br>para a sua análise.</h2>
+                <p>Exporte os pedidos para uma folha de cálculo Excel com nome do utilizador, curso, assunto, descrição,
+                    estado, prioridade, categoria e email. As respostas são acrescentadas em colunas separadas, com a
+                    identificação de quem escreveu cada mensagem.</p>
+                <p>A exportação permite escolher os estados dos pedidos e respeita o curso quando esse contexto é
+                    informado. O conteúdo textual é convertido para texto simples, facilitando a leitura e o tratamento
+                    fora do ambiente.</p>
+                <p>O recurso exige permissão de gestão de pedidos. A seleção de estados da exportação é própria e
+                    começa, por padrão, com os pedidos abertos.</p></div>
+            <div class="surface export-preview">
+                <div class="surface-top"><b>tickets_export.xlsx</b><span class="badge green">Excel</span></div>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Utilizador</th>
+                            <th>Assunto</th>
+                            <th>Estado</th>
+                            <th>Prioridade</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Mariana Costa</td>
+                            <td>Acesso à avaliação</td>
+                            <td>Em progresso</td>
+                            <td>Urgente</td>
+                        </tr>
+                        <tr>
+                            <td>Rafael Lima</td>
+                            <td>Certificado</td>
+                            <td>Aberto</td>
+                            <td>Alta</td>
+                        </tr>
+                        <tr>
+                            <td>Ana Souza</td>
+                            <td>Envio de atividade</td>
+                            <td>Resolvido</td>
+                            <td>Média</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="export-fields">
+                    <span>Curso</span><span>Categoria</span><span>Email</span><span>Descrição</span><span>Resposta 1</span><span>Resposta 2…</span>
+                </div>
+                <p class="caption">Recorte ilustrativo das informações exportadas.</p></div>
+        </section>
+        <section class="soft" id="integracoes">
+            <div class="shell section"><span class="eyebrow">PARTE DO ECOSSISTEMA KOPERE</span>
+                <div class="split-heading"><h2>Conectado às ferramentas<br>da sua operação.</h2>
+                    <p>O Helpdesk utiliza os utilizadores, cursos e permissões do próprio ambiente. As integrações
+                        complementam a experiência de gestão e a produção de respostas.</p></div>
+                <div class="integration-grid">
+                    <article><span class="badge blue">Dependência obrigatória</span>
+                        <h3>Kopere Dashboard</h3>
+                        <p>Fornece componentes utilizados pelo Helpdesk, incluindo a seleção de utilizadores e recursos
+                            de apoio à interface de gestão.</p><small>Versão mínima declarada: 2026070500</small><a
+                                href="https://kopere-dashboard.eduardokraus.chatgpt.site/">Conhecer o Dashboard ↗</a>
+                    </article>
+                    <article><span class="badge blue">Dependência obrigatória</span>
+                        <h3>Kopere BI</h3>
+                        <p>Disponibiliza a estrutura que apresenta os relatórios do atendimento a partir das definições
+                            incluídas no plugin.</p><small>Versão mínima declarada: 2026052400</small><a
+                                href="https://moodle.org/plugins/local_kopere_bi">Conhecer o Kopere BI ↗</a></article>
+                    <article><span class="badge gray">Integração opcional</span>
+                        <h3>GeniAI</h3>
+                        <p>Habilita a assistência para escrever respostas e artigos. Exige instalação e configuração da
+                            chave de API.</p><small>O atendimento funciona sem a assistência de IA.</small><a
+                                href="https://moodle.org/plugins/local_geniai">Conhecer o GeniAI ↗</a></article>
+                </div>
             </div>
-        </div></section>
-        <section class="shell section faq" id="duvidas"><span class="eyebrow">ANTES DE COMEÇAR</span><h2>Algumas dúvidas frequentes.</h2>
-            <details><summary>O Helpdesk funciona fora do Software Moodle™?<span>+</span></summary><p>Ele é um plugin local instalado no ambiente, utilizando suas contas, cursos e permissões. Esta página apresenta o produto; não é uma central de atendimento conectada à a sua instituição.</p></details>
-            <details><summary>É obrigatório usar inteligência artificial?<span>+</span></summary><p>Não. O GeniAI é opcional. A criação de pedidos, as respostas da equipa e os demais recursos de atendimento não dependem da geração de texto com IA.</p></details>
-            <details><summary>A IA envia a resposta automaticamente?<span>+</span></summary><p>O fluxo analisado gera uma sugestão que a equipa pode transferir ao editor. A pessoa responsável pode revisar o texto e escolher a ação de resposta no formulário.</p></details>
-            <details><summary>Qual a diferença entre resolvido e fechado?<span>+</span></summary><p>São estados separados. Resolvido indica que a solução foi encaminhada; fechado encerra o ciclo. A tarefa diária fecha pedidos que permaneceram resolvidos por pelo menos 48 horas.</p></details>
-            <details><summary>Posso separar o atendimento por curso?<span>+</span></summary><p>O plugin aceita o contexto de curso, oferece filtro por curso na consulta e considera esse contexto na exportação. Também permite configurar o menu para aparecer somente dentro dos cursos.</p></details>
-            <details><summary>Como obter ajuda para implantar ou personalizar?<span>+</span></summary><p>Entre em contato com Eduardo Kraus para conversar sobre a organização do atendimento, instalação, configuração e necessidades específicas da a sua instituição.</p><a class="text-link" href="https://eduardokraus.com/contato">Falar sobre o projeto →</a></details>
         </section>
-        <section class="cta shell"><div><span class="eyebrow">ATENDIMENTO MAIS PRÓXIMO DO ALUNO</span><h2>Uma central de ajuda.<br>Dentro do o seu ambiente.</h2><p>Converse sobre como organizar o suporte da a sua instituição com o Kopere Helpdesk.</p></div><a class="button primary" href="https://eduardokraus.com/contato">Fale com Eduardo Kraus ↗</a></section>
+        <section class="shell section faq" id="duvidas"><span class="eyebrow">ANTES DE COMEÇAR</span>
+            <h2>Algumas dúvidas frequentes.</h2>
+            <details>
+                <summary>O Helpdesk funciona fora do Software Moodle™?<span>+</span></summary>
+                <p>Ele é um plugin local instalado no ambiente, utilizando suas contas, cursos e permissões. Esta página
+                    apresenta o produto; não é uma central de atendimento conectada à a sua instituição.</p></details>
+            <details>
+                <summary>É obrigatório usar inteligência artificial?<span>+</span></summary>
+                <p>Não. O GeniAI é opcional. A criação de pedidos, as respostas da equipa e os demais recursos de
+                    atendimento não dependem da geração de texto com IA.</p></details>
+            <details>
+                <summary>A IA envia a resposta automaticamente?<span>+</span></summary>
+                <p>O fluxo analisado gera uma sugestão que a equipa pode transferir ao editor. A pessoa responsável pode
+                    revisar o texto e escolher a ação de resposta no formulário.</p></details>
+            <details>
+                <summary>Qual a diferença entre resolvido e fechado?<span>+</span></summary>
+                <p>São estados separados. Resolvido indica que a solução foi encaminhada; fechado encerra o ciclo. A
+                    tarefa diária fecha pedidos que permaneceram resolvidos por pelo menos 48 horas.</p></details>
+            <details>
+                <summary>Posso separar o atendimento por curso?<span>+</span></summary>
+                <p>O plugin aceita o contexto de curso, oferece filtro por curso na consulta e considera esse contexto
+                    na exportação. Também permite configurar o menu para aparecer somente dentro dos cursos.</p>
+            </details>
+            <details>
+                <summary>Como obter ajuda para implantar ou personalizar?<span>+</span></summary>
+                <p>Entre em contato com Eduardo Kraus para conversar sobre a organização do atendimento, instalação,
+                    configuração e necessidades específicas da a sua instituição.</p><a class="text-link"
+                                                                                        href="https://eduardokraus.com/contato">Falar
+                sobre o projeto →</a></details>
+        </section>
+        <section class="cta shell">
+            <div><span class="eyebrow">ATENDIMENTO MAIS PRÓXIMO DO ALUNO</span>
+                <h2>Uma central de ajuda.<br>Dentro do o seu ambiente.</h2>
+                <p>Converse sobre como organizar o suporte da a sua instituição com o Kopere Helpdesk.</p></div>
+            <a class="button primary" href="https://eduardokraus.com/contato">Fale com Eduardo Kraus ↗</a></section>
 </main>
-<footer><div class="shell footer-main"><a class="brand" href="#"><img src="favicon.svg" alt=""><span>Kopere<strong>Helpdesk</strong></span></a><p>Atendimento conectado à aprendizagem.</p><div><a href="https://github.com/EduardoKrausME/moodle-local_helpdesk">Código aberto ↗</a><a href="https://eduardokraus.com/contato">Contato ↗</a></div></div>
-    <div class="shell footer-bottom"><span>© 2026 Eduardo Kraus · Kopere Helpdesk</span><span>Moodle™ é uma marca registrada. Plugin independente de código aberto.</span></div>
-    <div class="shell source-note">Conteúdo baseado no <a href="https://github.com/EduardoKrausME/moodle-local_helpdesk">repositório do plugin</a>, versão 2.4.6 consultada em setembro de 2026. Interfaces e dados desta página são ilustrativos.</div>
+<footer>
+    <div class="shell footer-main"><a class="brand" href="#"><img src="favicon.png"
+                                                                  alt=""><span>Kopere<strong>Helpdesk</strong></span></a>
+        <p>Atendimento conectado à aprendizagem.</p>
+        <div><a href="https://github.com/EduardoKrausME/moodle-local_helpdesk">Código aberto ↗</a><a
+                href="https://eduardokraus.com/contato">Contato ↗</a></div>
+    </div>
+    <div class="shell footer-bottom"><span>© 2026 Eduardo Kraus · Kopere Helpdesk</span><span>Moodle™ é uma marca registrada. Plugin independente de código aberto.</span>
+    </div>
+    <div class="shell source-note">Conteúdo baseado no <a
+            href="https://github.com/EduardoKrausME/moodle-local_helpdesk">repositório do plugin</a>, versão 2.4.6
+        consultada em setembro de 2026. Interfaces e dados desta página são ilustrativos.
+    </div>
 </footer>
 </body>
 </html>

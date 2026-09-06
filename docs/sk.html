@@ -1,14 +1,425 @@
-<!doctype html><html lang="sk" data-language="sk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kopere Helpdesk | Podpora priamo vo vašom Moodle</title><meta name="description" content="Spoznajte Kopere Helpdesk: požiadavky, tímy podľa kategórií, databáza znalostí, GeniAI, upozornenia, reporty a export do Excelu integrované so softvérom Moodle."><link rel="icon" href="favicon.svg"><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="i18n.css"><script src="script.js" defer></script><script src="language.js" defer></script></head><body>
-<a class="skip" href="#conteudo">Preskočiť na obsah</a><header class="site-header"><div class="shell header-inner"><a class="brand" href="#"><img src="favicon.svg" alt=""><span>Kopere<strong>Helpdesk</strong></span></a><nav aria-label="Hlavná navigácia"><a href="#recursos">Helpdesk</a><a href="#atendimento">Podpora</a><a href="#relatorios">Reporty</a><a href="#integracoes">Integrácie</a></nav><div class="language-picker"><label class="sr-only" for="language-select">Jazyk</label><select id="language-select" class="language-select" aria-label="Jazyk"><option value="ar">العربية</option><option value="de">Deutsch</option><option value="en">English</option><option value="es">Español</option><option value="es_mx">Español (México)</option><option value="fr">Français</option><option value="id">Bahasa Indonesia</option><option value="it">Italiano</option><option value="ja">日本語</option><option value="pt">Português</option><option value="pt_br">Português (Brasil)</option><option value="ru">Русский</option><option value="sk">Slovenčina</option><option value="uk">Українська</option></select></div><a class="button small primary" href="https://eduardokraus.com/contato">Kontaktovať Eduarda ↗</a><button class="menu-button" aria-label="Otvoriť menu" aria-expanded="false">☰</button></div></header>
-<main id="conteudo"><section class="hero shell"><div><span class="eyebrow">PODPORA, KTORÁ JE SÚČASŤOU VZDELÁVANIA</span><h1>Každá otázka si zaslúži<br>odpoveď.<br><em>Usporiadajte ich všetky.</em></h1><p>Sústreďte podporu vašej inštitúcie priamo v softvéri Moodle™. S Kopere Helpdesk študenti nájdu pomoc, tímy sledujú každú požiadavku a manažéri vidia, čo si vyžaduje pozornosť.</p><div class="actions"><a class="button primary" href="#recursos">Pozrieť funkcie →</a><a class="button secondary" href="https://github.com/EduardoKrausME/moodle-local_helpdesk" target="_blank" rel="noopener">Zobraziť kód na GitHub ↗</a></div><div class="proof"><span>✓ Otvorený zdrojový kód</span><span>✓ Integrované s prostredím</span><span>✓ Pomoc s AI</span></div></div><div class="hero-visual"><div class="preview"><div class="windowbar"><span>● ● ●</span><span>Centrum podpory</span><span>⋯</span></div><div class="preview-inner"><div class="preview-heading"><div><small>KOPERE HELPDESK</small><h3>Dobrý deň, tím podpory!</h3></div><span class="avatar">EK</span></div><div class="kpis"><div><small>Otvorené</small><strong>24</strong></div><div><small>Bez odpovede</small><strong>08</strong></div><div><small>Dokončené</small><strong>156</strong></div></div><div class="queue-title"><b>Požiadavky, ktoré potrebujú vašu pozornosť</b><span>Priorita</span></div><div class="ticket-row"><span class="avatar pale">MC</span><div><b>Nemôžem pristúpiť k hodnoteniu</b><small>Mariana Costa · Technická podpora</small></div><span class="badge red">Urgentná</span></div><div class="ticket-row"><span class="avatar mint">RL</span><div><b>Otázka k certifikátu</b><small>Rafael Lima · Študijné oddelenie</small></div><span class="badge amber">Vysoká</span></div><div class="ticket-row"><span class="avatar pale">AS</span><div><b>Odovzdanie záverečnej aktivity</b><small>Ana Souza · Akademická podpora</small></div><span class="badge blue">Stredná</span></div><div class="preview-bottom"><span>Jedna konverzácia. Celý kontext.</span><a href="#atendimento">Pozrieť proces →</a></div></div></div><p class="caption">Ilustračné zobrazenie podpory. Demonštračné údaje.</p></div></section>
-<div class="trust"><div class="shell trust-grid"><div><strong>4</strong><span>úrovne priority</span></div><div><strong>4</strong><span>stavy požiadavky</span></div><div><strong>5</strong><span>skupín reportov</span></div><div><strong>1</strong><span>centrum vo vašom prostredí</span></div></div><section class="shell intro section" id="recursos"><span class="eyebrow">VIAC PREHĽADU PRE TÝCH, KTORÍ POTREBUJÚ POMOC</span><div class="split-heading"><h2>Podpora pokračuje.<br>Kontext tiež.</h2><p>Keď otázka prichádza cez rôzne kanály, sledovanie predchádzajúcej komunikácie zaberá čas. Helpdesk spája predmet, opis, súbory, odpovede a zmeny do jednej požiadavky, ktorú možno sledovať počas celého procesu podpory.</p></div><div class="benefits"><article><span class="line-icon">↔</span><h3>Jedna usporiadaná konverzácia</h3><p>Študent vytvorí požiadavku a sleduje vlastné potreby. Tím odpovedá v tom istom priebehu s potrebnými súbormi a informáciami.</p></article><article><span class="line-icon">◎</span><h3>Správny tím pre každú tému</h3><p>Kategórie organizujú typy požiadaviek a umožňujú určiť, kto môže odpovedať a dostávať upozornenia na nové požiadavky danej skupiny.</p></article><article><span class="line-icon">▤</span><h3>Prehľad pre riadenie</h3><p>Ukazovatele, filtre a reporty pomáhajú nájsť nevyriešené položky, pochopiť dopyt a sledovať čas prvej odpovede a uzavretia.</p></article></div></section>
-<div class="section-nav"><div class="shell"><a href="#atendimento">Požiadavky</a><a href="#categorias">Kategórie a tímy</a><a href="#ia">Umelá inteligencia</a><a href="#automacoes">Automatizácie</a><a href="#relatorios">Reporty</a></div></div><section class="shell section feature" id="atendimento"><div class="feature-copy"><span class="eyebrow">POŽIADAVKY A KONVERZÁCIE</span><h2>Od prvej otázky<br>po dokončenú podporu.</h2><p>Požiadavka začína predmetom, kategóriou, opisom a prioritou. Editor umožňuje jasne vysvetliť situáciu, zatiaľ čo prílohy pomáhajú zdieľať snímky obrazovky a dokumenty. Formuláre na vytvorenie a odpoveď prijímajú až päť súborov na jedno odoslanie v rámci limitov prostredia.</p><p>Pracovník podpory môže pri vytváraní požiadavky vybrať používateľa a zaregistrovať podporu v mene osoby, ktorá potrebuje pomoc. Ak je požiadavka priradená ku kurzu, tento kontext zostáva súčasťou zobrazenia.</p><h3>Odpovedzte a určte ďalší krok</h3><p>Možno odpovedať, odpovedať a označiť ako vyriešené alebo odpovedať a uzavrieť. Zmeny kategórie, priority a stavu sa zaznamenávajú v histórii, takže je možné sledovať vývoj podpory.</p><a class="text-link" href="#fluxo">Pozrieť stavy podpory →</a></div><div class="surface conversation"><div class="surface-top"><span>POŽIADAVKA #1042</span><span class="badge blue">Prebieha</span></div><h3>Nemôžem pristúpiť k hodnoteniu</h3><div class="ticket-meta">Technická podpora <span>·</span> Kurz administrácie <span class="badge red">Urgentná</span></div><div class="message"><div class="message-name"><span class="avatar pale">MC</span><strong>Mariana Costa</strong><small>Študentka</small></div><p>Dokončila som aktivity v jednotke, ale hodnotenie sa stále zobrazuje ako nedostupné. Môžete mi pomôcť?</p><span class="file">⌁ snimka-hodnotenia.png</span></div><div class="message support"><div class="message-name"><span class="avatar">ES</span><strong>Tím podpory</strong></div><p>Dobrý deň, Mariana! Skontrolujeme podmienky prístupu k aktivite a poradíme vám ďalší krok.</p></div><div class="history">Priorita zmenená na Urgentnú</div><p class="caption">Príklad konverzácie, ktorý ukazuje organizáciu požiadavky.</p></div></section>
-<section class="soft" id="fluxo"><div class="shell section compact"><span class="eyebrow">STAV PRE KAŽDÚ FÁZU</span><h2>Vždy viete, kde sa podpora nachádza.</h2><div class="states"><article><span class="badge blue">Otvorené</span><h3>Požiadavka prišla</h3><p>Identifikujte požiadavky čakajúce na pozornosť a usporiadajte začiatok podpory.</p></article><article><span class="badge amber">Prebieha</span><h3>Tím na nej pracuje</h3><p>Pokračujte v konverzácii počas analýzy a odpovedania na požiadavku.</p></article><article><span class="badge green">Vyriešené</span><h3>Riešenie bolo poskytnuté</h3><p>Oddeľte to, čo už bolo vyriešené, od toho, čo ešte vyžaduje prácu tímu.</p></article><article><span class="badge gray">Uzavreté</span><h3>Cyklus sa skončil</h3><p>Uchovajte záznam dokončenej podpory pre budúce konzultácie.</p></article></div><div class="priority-note"><b>Urgentná · Vysoká · Stredná · Nízka</b><p>Zoznam triedi požiadavky podľa priority, stavu a dátumu vytvorenia, pričom urgentné požiadavky zobrazuje ako prvé a v rovnakej kombinácii uprednostňuje staršie.</p></div></div></section>
-<section class="shell section feature reverse" id="categorias"><div class="feature-copy"><span class="eyebrow">KATEGÓRIE A TÍMY</span><h2>Usporiadajte podporu<br>podľa fungovania vašej inštitúcie.</h2><p>Vytvárajte kategórie s názvom a opisom na oddelenie tém a určenie zodpovedných osôb. Študijné oddelenie, technická podpora a akademická podpora sú príklady štruktúry prispôsobenej vašej inštitúcii.</p><p>V každej kategórii vyberte používateľov, ktorí môžu odpovedať a majú dostávať e-maily o nových požiadavkách. Správa kategórií a vybavovanie požiadaviek majú samostatné oprávnenia, čo umožňuje vytvárať roly s rozdielnymi zodpovednosťami.</p><h3>Kto žiada o pomoc, vidí svoje požiadavky</h3><p>Používatelia bez oprávnenia na správu vidia vlastné požiadavky. Pre podporu pomáhajú filtre podľa používateľa, kurzu, kategórie, stavu a priority nájsť správny záznam. Textové vyhľadávanie zahŕňa predmet a opis od troch znakov.</p></div><div class="surface category-surface"><div class="surface-top"><b>Kategórie podpory</b><span>Príklad organizácie</span></div><div class="category-item"><span class="category-icon">▣</span><div><h3>Technická podpora</h3><p>Prístup, aktivity a navigácia</p><span class="team">Technologický tím</span></div></div><div class="category-item"><span class="category-icon">▤</span><div><h3>Študijné oddelenie</h3><p>Dokumenty a akademické usmernenie</p><span class="team">Tím študijného oddelenia</span></div></div><div class="category-item"><span class="category-icon">◫</span><div><h3>Podpora študentov</h3><p>Usmernenie v prostredí vzdelávania</p><span class="team">Tím podpory</span></div></div></div></section>
-<section class="dark" id="ia"><div class="shell section feature"><div><span class="eyebrow">VOLITEĽNÁ INTEGRÁCIA GENIAI</span><h2>Viac pomoci pri písaní.<br><em>Tím má odpoveď pod kontrolou.</em></h2><p>GeniAI pomáha vytvárať odpovede priamo v procese podpory. Pracovník opíše, čo chce oznámiť, a dostane návrh textu, ktorý môže preniesť do editora, skontrolovať a upraviť pred odoslaním používateľovi.</p><p>Generovanie zohľadňuje predmet, opis požiadavky a, ak existujú, až tri najnovšie správy v konverzácii. Návrh tak môže vychádzať z najbližšieho kontextu podpory.</p><p>Rovnaká integrácia pomáha aj pri tvorbe článkov databázy znalostí z opisu poskytnutého tímom. Funkcia vyžaduje inštaláciu a konfiguráciu GeniAI a jeho API kľúča.</p></div><div class="ai-panel"><div class="surface-top"><b>Pomoc pri odpovedi</b><span class="badge">GeniAI</span></div><label>Pokyn pre podporu</label><div class="ai-instruction">Vysvetlite, že preveríme podmienky prístupu, a požiadajte o názov aktivity a snímku zobrazenej správy.</div><div class="ai-answer"><small>NÁVRH TEXTU · PRÍKLAD</small><p>Dobrý deň, Mariana! Aby sme mohli preveriť prístup k hodnoteniu, pošlite nám, prosím, názov aktivity a snímku správy zobrazenej na obrazovke. Na základe týchto informácií zistíme, čo sa deje, a poradíme vám.</p></div><div class="ai-foot">Vygenerovať návrh <span>→</span> Skontrolovať v editore <span>→</span> Odpovedať</div></div></div></section>
-<section class="shell section" id="automacoes"><span class="eyebrow">UPOZORNENIA A AUTOMATIZOVANÉ ÚLOHY</span><div class="split-heading"><h2>Požiadavka nemusí<br>zostať zabudnutá.</h2><p>E-mailová komunikácia sprevádza vytvorenie požiadavky a odpovede. Dve naplánované úlohy dopĺňajú prácu tímu s použitím informácií uložených v každej požiadavke.</p></div><div class="automation-grid"><article><span class="big-number">3 <small>dni</small></span><h3>Pripomienka pre tím</h3><p>Otvorené alebo prebiehajúce požiadavky vytvorené aspoň pred tromi dňami, ktoré stále nemajú prvú odpoveď, môžu vyvolať pripomienku pre zodpovedné osoby kategórie. Plugin zaznamená odoslanie, aby sa pripomienka pre tú istú požiadavku neopakovala.</p></article><article><span class="big-number">48 <small>hodín</small></span><h3>Uzavretie po vyriešení</h3><p>Požiadavky, ktoré zostanú v stave vyriešené najmenej 48 hodín, automatická úloha uzavrie. Čas sa počíta od zaznamenaného momentu vyriešenia.</p></article><article><span class="big-number mail-symbol">✉</span><h3>Upozornenia s kontextom</h3><p>E-maily obsahujú odkaz na požiadavku, predmet, kategóriu a správu, prípadne aj prílohy. Odkazy vedú priamo na požiadavku a uľahčujú pokračovanie konverzácie.</p></article></div><p class="note">Obe úlohy sú nastavené na každodenné spustenie o polnoci a závisia od cron prostredia. Lehoty sa kontrolujú pri spustení a neznamenajú odoslanie alebo uzavretie presne na minútu.</p></section>
-<section class="soft" id="relatorios"><div class="shell section"><span class="eyebrow">REPORTY S KOPERE BI</span><div class="split-heading"><h2>Pochopte dopyt.<br>Sledujte podporu.</h2><p>Súbory reportov pluginu organizujú dotazy do piatich skupín. Pozrite sa, čo jednotlivé analýzy ukazujú a ako môžu tieto informácie podporiť riadenie podpory.</p></div><div class="report-list"><details open><summary><span><small>POŽIADAVKY</small><b>Vytváranie a riešenie v čase</b></span><span class="plus">+</span></summary><div><p><strong>Požiadavky vytvorené podľa obdobia.</strong> Zoskupuje vytvorenia podľa kategórie a dňa a zobrazuje ich počet. Pomáha nájsť zvýšený dopyt v konkrétnych dátumoch.</p><p><strong>Požiadavky vyriešené podľa obdobia.</strong> Dotaz používa dátum uzavretia, zoskupený podľa mesiaca a kategórie, na spočítanie uzavretých požiadaviek. Toto rozlíšenie je dôležité pre správnu interpretáciu ukazovateľa.</p></div></details><details><summary><span><small>KATEGÓRIE</small><b>Kde sa sústreďuje dopyt</b></span><span class="plus">+</span></summary><div><p>Zobrazuje celkový počet požiadaviek v každej kategórii, zoradený podľa najvyššieho objemu. Zahŕňa priemerný čas prvej odpovede a priemerný čas medzi otvorením a uzavretím pre záznamy, ktoré tieto dátumy obsahujú.</p><p>Tento pohľad pomáha odhaliť opakujúce sa témy a skupiny podpory, ktoré si zaslúžia bližšiu analýzu.</p></div></details><details><summary><span><small>STAV A PRIORITA</small><b>Rozdelenie a časy podpory</b></span><span class="plus">+</span></summary><div><p><strong>Požiadavky podľa stavu.</strong> Kombinuje kategóriu a stav a zobrazuje objem, priemernú prvú odpoveď a priemerný čas uzavretia.</p><p><strong>Rozdelenie podľa priority.</strong> Zoskupuje požiadavky podľa priority a zobrazuje rovnaké časové ukazovatele. Umožňuje sledovať, či urgentné požiadavky dostávajú očakávanú pozornosť.</p></div></details><details><summary><span><small>POUŽÍVATELIA</small><b>Kto žiada o podporu najčastejšie</b></span><span class="plus">+</span></summary><div><p>Zobrazuje desať používateľov s najväčším počtom požiadaviek vrátane identifikácie, e-mailu, celkového počtu a priemerného času prvej odpovede a uzavretia.</p><p>Dotaz zohľadňuje požiadavky registrované používateľom bez obmedzenia len na otvorené. Výsledok môže odhaliť opakujúcu sa potrebu usmernenia.</p></div></details><details><summary><span><small>AKTIVITA TÍMU</small><b>Účasť na odpovediach</b></span><span class="plus">+</span></summary><div><p>Report „Tickets by agent“ v plugine počíta záznamy v tabuľke odpovedí a zoskupuje ich podľa používateľa, ktorý ich vytvoril. Predstavuje teda počet záznamov odpovedí, nie počet jedinečných pridelených požiadaviek.</p><p>Použite túto informáciu ako podporu pri analýze účasti v konverzáciách a vždy zohľadnite kontext konkrétnej podpory.</p></div></details></div><p class="note">Opis je založený na súboroch reportov kontrolovanej verzie. Dotazy používajú podľa reportu cache na šesť hodín alebo jeden deň a nemali by sa interpretovať ako ukazovatele v reálnom čase.</p></div></section>
-<section class="shell section feature" id="exportacao"><div class="feature-copy"><span class="eyebrow">EXPORT DO EXCELU</span><h2>Preneste históriu<br>do vlastnej analýzy.</h2><p>Exportujte požiadavky do tabuľky Excel s menom používateľa, kurzom, predmetom, opisom, stavom, prioritou, kategóriou a e-mailom. Odpovede sa pridajú do samostatných stĺpcov s identifikáciou autora každej správy.</p><p>Export umožňuje vybrať stavy požiadaviek a rešpektuje kurz, ak je tento kontext uvedený. Textový obsah sa prevedie na obyčajný text, čo uľahčuje čítanie a spracovanie mimo prostredia.</p><p>Funkcia vyžaduje oprávnenie na správu požiadaviek. Výber stavov pre export je samostatný a predvolene začína otvorenými požiadavkami.</p></div><div class="surface export-preview"><div class="surface-top"><b>tickets_export.xlsx</b><span class="badge green">Excel</span></div><div class="table-scroll"><table><thead><tr><th>Používateľ</th><th>Predmet</th><th>Stav</th><th>Priorita</th></tr></thead><tbody><tr><td>Mariana Costa</td><td>Prístup k hodnoteniu</td><td>Prebieha</td><td>Urgentná</td></tr><tr><td>Rafael Lima</td><td>Certifikát</td><td>Otvorené</td><td>Vysoká</td></tr><tr><td>Ana Souza</td><td>Odovzdanie aktivity</td><td>Vyriešené</td><td>Stredná</td></tr></tbody></table></div><div class="export-fields"><span>Kurz</span><span>Kategória</span><span>E-mail</span><span>Opis</span><span>Odpoveď 1</span><span>Odpoveď 2…</span></div><p class="caption">Ilustračná ukážka exportovaných informácií.</p></div></section>
-<section class="soft" id="integracoes"><div class="shell section"><span class="eyebrow">SÚČASŤ EKOSYSTÉMU KOPERE</span><div class="split-heading"><h2>Prepojené s nástrojmi<br>vašej prevádzky.</h2><p>Helpdesk používa používateľov, kurzy a oprávnenia samotného prostredia. Integrácie dopĺňajú možnosti správy a tvorby odpovedí.</p></div><div class="integration-grid"><article><span class="badge blue">Povinná závislosť</span><h3>Kopere Dashboard</h3><p>Poskytuje komponenty používané Helpdeskom vrátane výberu používateľov a prvkov podporujúcich rozhranie správy.</p><small>Deklarovaná minimálna verzia: 2026070500</small><a href="https://kopere-dashboard.eduardokraus.chatgpt.site/">Spoznať Dashboard ↗</a></article><article><span class="badge blue">Povinná závislosť</span><h3>Kopere BI</h3><p>Poskytuje štruktúru, ktorá zobrazuje reporty podpory podľa definícií zahrnutých v plugine.</p><small>Deklarovaná minimálna verzia: 2026052400</small><a href="https://moodle.org/plugins/local_kopere_bi">Spoznať Kopere BI ↗</a></article><article><span class="badge gray">Voliteľná integrácia</span><h3>GeniAI</h3><p>Zapína pomoc pri písaní odpovedí a článkov. Vyžaduje inštaláciu a konfiguráciu API kľúča.</p><small>Podpora funguje aj bez AI.</small><a href="https://moodle.org/plugins/local_geniai">Spoznať GeniAI ↗</a></article></div></div></section>
-<section class="shell section faq" id="duvidas"><span class="eyebrow">PRED ZAČIATKOM</span><h2>Niekoľko častých otázok.</h2><details><summary>Funguje Helpdesk mimo softvéru Moodle™?<span>+</span></summary><p>Ide o lokálny plugin nainštalovaný v prostredí, ktorý používa jeho účty, kurzy a oprávnenia. Táto stránka predstavuje produkt; nejde o centrum podpory pripojené k vašej inštitúcii.</p></details><details><summary>Je umelá inteligencia povinná?<span>+</span></summary><p>Nie. GeniAI je voliteľné. Vytváranie požiadaviek, odpovede tímu ani ostatné funkcie podpory nezávisia od generovania textu pomocou AI.</p></details><details><summary>Odosiela AI odpoveď automaticky?<span>+</span></summary><p>Analyzovaný proces vytvorí návrh, ktorý môže tím preniesť do editora. Zodpovedná osoba môže text skontrolovať a vo formulári vybrať spôsob odpovede.</p></details><details><summary>Aký je rozdiel medzi vyriešeným a uzavretým stavom?<span>+</span></summary><p>Ide o samostatné stavy. Vyriešené znamená, že riešenie bolo poskytnuté; uzavreté ukončuje cyklus. Denná úloha uzatvára požiadavky, ktoré zostali vyriešené aspoň 48 hodín.</p></details><details><summary>Môžem oddeliť podporu podľa kurzu?<span>+</span></summary><p>Plugin prijíma kontext kurzu, ponúka filter podľa kurzu pri zobrazení a zohľadňuje tento kontext pri exporte. Menu možno nastaviť tak, aby sa zobrazovalo iba v kurzoch.</p></details><details><summary>Ako získam pomoc s nasadením alebo prispôsobením?<span>+</span></summary><p>Kontaktujte Eduarda Krausa a preberte organizáciu podpory, inštaláciu, konfiguráciu a špecifické potreby vašej inštitúcie.</p><a class="text-link" href="https://eduardokraus.com/contato">Porozprávať sa o projekte →</a></details></section>
-<section class="cta shell"><div><span class="eyebrow">PODPORA BLIŽŠIE K ŠTUDENTOVI</span><h2>Jedno centrum pomoci.<br>Vo vašom prostredí.</h2><p>Porozprávajme sa o tom, ako usporiadať podporu vašej inštitúcie pomocou Kopere Helpdesk.</p></div><a class="button primary" href="https://eduardokraus.com/contato">Kontaktovať Eduarda Krausa ↗</a></section></main><footer><div class="shell footer-main"><a class="brand" href="#"><img src="favicon.svg" alt=""><span>Kopere<strong>Helpdesk</strong></span></a><p>Podpora prepojená so vzdelávaním.</p><div><a href="https://github.com/EduardoKrausME/moodle-local_helpdesk">Otvorený zdrojový kód ↗</a><a href="https://eduardokraus.com/contato">Kontakt ↗</a></div></div><div class="shell footer-bottom"><span>© 2026 Eduardo Kraus · Kopere Helpdesk</span><span>Moodle™ je registrovaná ochranná známka. Nezávislý open-source plugin.</span></div><div class="shell source-note">Obsah vychádza z <a href="https://github.com/EduardoKrausME/moodle-local_helpdesk">repozitára pluginu</a>, verzia 2.4.6 kontrolovaná v septembri 2026. Rozhrania a údaje na tejto stránke sú ilustračné.</div></footer></body></html>
+<!doctype html>
+<html lang="sk" data-language="sk">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Kopere Helpdesk | Podpora priamo vo vašom Moodle</title>
+    <meta name="description"
+          content="Spoznajte Kopere Helpdesk: požiadavky, tímy podľa kategórií, databáza znalostí, GeniAI, upozornenia, reporty a export do Excelu integrované so softvérom Moodle.">
+    <link rel="icon" href="favicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="i18n.css">
+    <script src="script.js" defer></script>
+    <script src="language.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#conteudo">Preskočiť na obsah</a>
+<header class="site-header">
+    <div class="shell header-inner"><a class="brand" href="#"><img src="favicon.png"
+                                                                   alt=""><span>Kopere<strong>Helpdesk</strong></span></a>
+        <nav aria-label="Hlavná navigácia"><a href="#recursos">Helpdesk</a><a href="#atendimento">Podpora</a><a
+                href="#relatorios">Reporty</a><a href="#integracoes">Integrácie</a></nav>
+        <div class="language-picker"><label class="sr-only" for="language-select">Jazyk</label><select
+                id="language-select" class="language-select" aria-label="Jazyk">
+            <option value="ar">العربية</option>
+            <option value="de">Deutsch</option>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="es_mx">Español (México)</option>
+            <option value="fr">Français</option>
+            <option value="id">Bahasa Indonesia</option>
+            <option value="it">Italiano</option>
+            <option value="ja">日本語</option>
+            <option value="pt">Português</option>
+            <option value="pt_br">Português (Brasil)</option>
+            <option value="ru">Русский</option>
+            <option value="sk">Slovenčina</option>
+            <option value="uk">Українська</option>
+        </select></div>
+        <a class="button small primary" href="https://eduardokraus.com/contato">Kontaktovať Eduarda ↗</a>
+        <button class="menu-button" aria-label="Otvoriť menu" aria-expanded="false">☰</button>
+    </div>
+</header>
+<main id="conteudo">
+    <section class="hero shell">
+        <div><span class="eyebrow">PODPORA, KTORÁ JE SÚČASŤOU VZDELÁVANIA</span>
+            <h1>Každá otázka si zaslúži<br>odpoveď.<br><em>Usporiadajte ich všetky.</em></h1>
+            <p>Sústreďte podporu vašej inštitúcie priamo v softvéri Moodle™. S Kopere Helpdesk študenti nájdu pomoc,
+                tímy sledujú každú požiadavku a manažéri vidia, čo si vyžaduje pozornosť.</p>
+            <div class="actions"><a class="button primary" href="#recursos">Pozrieť funkcie →</a><a
+                    class="button secondary" href="https://github.com/EduardoKrausME/moodle-local_helpdesk"
+                    target="_blank" rel="noopener">Zobraziť kód na GitHub ↗</a></div>
+            <div class="proof"><span>✓ Otvorený zdrojový kód</span><span>✓ Integrované s prostredím</span><span>✓ Pomoc s AI</span>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="preview">
+                <div class="windowbar"><span>● ● ●</span><span>Centrum podpory</span><span>⋯</span></div>
+                <div class="preview-inner">
+                    <div class="preview-heading">
+                        <div><small>KOPERE HELPDESK</small>
+                            <h3>Dobrý deň, tím podpory!</h3></div>
+                        <span class="avatar">EK</span></div>
+                    <div class="kpis">
+                        <div><small>Otvorené</small><strong>24</strong></div>
+                        <div><small>Bez odpovede</small><strong>08</strong></div>
+                        <div><small>Dokončené</small><strong>156</strong></div>
+                    </div>
+                    <div class="queue-title"><b>Požiadavky, ktoré potrebujú vašu pozornosť</b><span>Priorita</span>
+                    </div>
+                    <div class="ticket-row"><span class="avatar pale">MC</span>
+                        <div><b>Nemôžem pristúpiť k hodnoteniu</b><small>Mariana Costa · Technická podpora</small></div>
+                        <span class="badge red">Urgentná</span></div>
+                    <div class="ticket-row"><span class="avatar mint">RL</span>
+                        <div><b>Otázka k certifikátu</b><small>Rafael Lima · Študijné oddelenie</small></div>
+                        <span class="badge amber">Vysoká</span></div>
+                    <div class="ticket-row"><span class="avatar pale">AS</span>
+                        <div><b>Odovzdanie záverečnej aktivity</b><small>Ana Souza · Akademická podpora</small></div>
+                        <span class="badge blue">Stredná</span></div>
+                    <div class="preview-bottom"><span>Jedna konverzácia. Celý kontext.</span><a href="#atendimento">Pozrieť
+                        proces →</a></div>
+                </div>
+            </div>
+            <p class="caption">Ilustračné zobrazenie podpory. Demonštračné údaje.</p></div>
+    </section>
+    <div class="trust">
+        <div class="shell trust-grid">
+            <div><strong>4</strong><span>úrovne priority</span></div>
+            <div><strong>4</strong><span>stavy požiadavky</span></div>
+            <div><strong>5</strong><span>skupín reportov</span></div>
+            <div><strong>1</strong><span>centrum vo vašom prostredí</span></div>
+        </div>
+        <section class="shell intro section" id="recursos"><span class="eyebrow">VIAC PREHĽADU PRE TÝCH, KTORÍ POTREBUJÚ POMOC</span>
+            <div class="split-heading"><h2>Podpora pokračuje.<br>Kontext tiež.</h2>
+                <p>Keď otázka prichádza cez rôzne kanály, sledovanie predchádzajúcej komunikácie zaberá čas. Helpdesk
+                    spája predmet, opis, súbory, odpovede a zmeny do jednej požiadavky, ktorú možno sledovať počas
+                    celého procesu podpory.</p></div>
+            <div class="benefits">
+                <article><span class="line-icon">↔</span>
+                    <h3>Jedna usporiadaná konverzácia</h3>
+                    <p>Študent vytvorí požiadavku a sleduje vlastné potreby. Tím odpovedá v tom istom priebehu s
+                        potrebnými súbormi a informáciami.</p></article>
+                <article><span class="line-icon">◎</span>
+                    <h3>Správny tím pre každú tému</h3>
+                    <p>Kategórie organizujú typy požiadaviek a umožňujú určiť, kto môže odpovedať a dostávať upozornenia
+                        na nové požiadavky danej skupiny.</p></article>
+                <article><span class="line-icon">▤</span>
+                    <h3>Prehľad pre riadenie</h3>
+                    <p>Ukazovatele, filtre a reporty pomáhajú nájsť nevyriešené položky, pochopiť dopyt a sledovať čas
+                        prvej odpovede a uzavretia.</p></article>
+            </div>
+        </section>
+        <div class="section-nav">
+            <div class="shell"><a href="#atendimento">Požiadavky</a><a href="#categorias">Kategórie a tímy</a><a
+                    href="#ia">Umelá inteligencia</a><a href="#automacoes">Automatizácie</a><a href="#relatorios">Reporty</a>
+            </div>
+        </div>
+        <section class="shell section feature" id="atendimento">
+            <div class="feature-copy"><span class="eyebrow">POŽIADAVKY A KONVERZÁCIE</span>
+                <h2>Od prvej otázky<br>po dokončenú podporu.</h2>
+                <p>Požiadavka začína predmetom, kategóriou, opisom a prioritou. Editor umožňuje jasne vysvetliť
+                    situáciu, zatiaľ čo prílohy pomáhajú zdieľať snímky obrazovky a dokumenty. Formuláre na vytvorenie a
+                    odpoveď prijímajú až päť súborov na jedno odoslanie v rámci limitov prostredia.</p>
+                <p>Pracovník podpory môže pri vytváraní požiadavky vybrať používateľa a zaregistrovať podporu v mene
+                    osoby, ktorá potrebuje pomoc. Ak je požiadavka priradená ku kurzu, tento kontext zostáva súčasťou
+                    zobrazenia.</p>
+                <h3>Odpovedzte a určte ďalší krok</h3>
+                <p>Možno odpovedať, odpovedať a označiť ako vyriešené alebo odpovedať a uzavrieť. Zmeny kategórie,
+                    priority a stavu sa zaznamenávajú v histórii, takže je možné sledovať vývoj podpory.</p><a
+                        class="text-link" href="#fluxo">Pozrieť stavy podpory →</a></div>
+            <div class="surface conversation">
+                <div class="surface-top"><span>POŽIADAVKA #1042</span><span class="badge blue">Prebieha</span></div>
+                <h3>Nemôžem pristúpiť k hodnoteniu</h3>
+                <div class="ticket-meta">Technická podpora <span>·</span> Kurz administrácie <span class="badge red">Urgentná</span>
+                </div>
+                <div class="message">
+                    <div class="message-name"><span class="avatar pale">MC</span><strong>Mariana Costa</strong><small>Študentka</small>
+                    </div>
+                    <p>Dokončila som aktivity v jednotke, ale hodnotenie sa stále zobrazuje ako nedostupné. Môžete mi
+                        pomôcť?</p><span class="file">⌁ snimka-hodnotenia.png</span></div>
+                <div class="message support">
+                    <div class="message-name"><span class="avatar">ES</span><strong>Tím podpory</strong></div>
+                    <p>Dobrý deň, Mariana! Skontrolujeme podmienky prístupu k aktivite a poradíme vám ďalší krok.</p>
+                </div>
+                <div class="history">Priorita zmenená na Urgentnú</div>
+                <p class="caption">Príklad konverzácie, ktorý ukazuje organizáciu požiadavky.</p></div>
+        </section>
+        <section class="soft" id="fluxo">
+            <div class="shell section compact"><span class="eyebrow">STAV PRE KAŽDÚ FÁZU</span>
+                <h2>Vždy viete, kde sa podpora nachádza.</h2>
+                <div class="states">
+                    <article><span class="badge blue">Otvorené</span>
+                        <h3>Požiadavka prišla</h3>
+                        <p>Identifikujte požiadavky čakajúce na pozornosť a usporiadajte začiatok podpory.</p></article>
+                    <article><span class="badge amber">Prebieha</span>
+                        <h3>Tím na nej pracuje</h3>
+                        <p>Pokračujte v konverzácii počas analýzy a odpovedania na požiadavku.</p></article>
+                    <article><span class="badge green">Vyriešené</span>
+                        <h3>Riešenie bolo poskytnuté</h3>
+                        <p>Oddeľte to, čo už bolo vyriešené, od toho, čo ešte vyžaduje prácu tímu.</p></article>
+                    <article><span class="badge gray">Uzavreté</span>
+                        <h3>Cyklus sa skončil</h3>
+                        <p>Uchovajte záznam dokončenej podpory pre budúce konzultácie.</p></article>
+                </div>
+                <div class="priority-note"><b>Urgentná · Vysoká · Stredná · Nízka</b>
+                    <p>Zoznam triedi požiadavky podľa priority, stavu a dátumu vytvorenia, pričom urgentné požiadavky
+                        zobrazuje ako prvé a v rovnakej kombinácii uprednostňuje staršie.</p></div>
+            </div>
+        </section>
+        <section class="shell section feature reverse" id="categorias">
+            <div class="feature-copy"><span class="eyebrow">KATEGÓRIE A TÍMY</span>
+                <h2>Usporiadajte podporu<br>podľa fungovania vašej inštitúcie.</h2>
+                <p>Vytvárajte kategórie s názvom a opisom na oddelenie tém a určenie zodpovedných osôb. Študijné
+                    oddelenie, technická podpora a akademická podpora sú príklady štruktúry prispôsobenej vašej
+                    inštitúcii.</p>
+                <p>V každej kategórii vyberte používateľov, ktorí môžu odpovedať a majú dostávať e-maily o nových
+                    požiadavkách. Správa kategórií a vybavovanie požiadaviek majú samostatné oprávnenia, čo umožňuje
+                    vytvárať roly s rozdielnymi zodpovednosťami.</p>
+                <h3>Kto žiada o pomoc, vidí svoje požiadavky</h3>
+                <p>Používatelia bez oprávnenia na správu vidia vlastné požiadavky. Pre podporu pomáhajú filtre podľa
+                    používateľa, kurzu, kategórie, stavu a priority nájsť správny záznam. Textové vyhľadávanie zahŕňa
+                    predmet a opis od troch znakov.</p></div>
+            <div class="surface category-surface">
+                <div class="surface-top"><b>Kategórie podpory</b><span>Príklad organizácie</span></div>
+                <div class="category-item"><span class="category-icon">▣</span>
+                    <div><h3>Technická podpora</h3>
+                        <p>Prístup, aktivity a navigácia</p><span class="team">Technologický tím</span></div>
+                </div>
+                <div class="category-item"><span class="category-icon">▤</span>
+                    <div><h3>Študijné oddelenie</h3>
+                        <p>Dokumenty a akademické usmernenie</p><span class="team">Tím študijného oddelenia</span></div>
+                </div>
+                <div class="category-item"><span class="category-icon">◫</span>
+                    <div><h3>Podpora študentov</h3>
+                        <p>Usmernenie v prostredí vzdelávania</p><span class="team">Tím podpory</span></div>
+                </div>
+            </div>
+        </section>
+        <section class="dark" id="ia">
+            <div class="shell section feature">
+                <div><span class="eyebrow">VOLITEĽNÁ INTEGRÁCIA GENIAI</span>
+                    <h2>Viac pomoci pri písaní.<br><em>Tím má odpoveď pod kontrolou.</em></h2>
+                    <p>GeniAI pomáha vytvárať odpovede priamo v procese podpory. Pracovník opíše, čo chce oznámiť, a
+                        dostane návrh textu, ktorý môže preniesť do editora, skontrolovať a upraviť pred odoslaním
+                        používateľovi.</p>
+                    <p>Generovanie zohľadňuje predmet, opis požiadavky a, ak existujú, až tri najnovšie správy v
+                        konverzácii. Návrh tak môže vychádzať z najbližšieho kontextu podpory.</p>
+                    <p>Rovnaká integrácia pomáha aj pri tvorbe článkov databázy znalostí z opisu poskytnutého tímom.
+                        Funkcia vyžaduje inštaláciu a konfiguráciu GeniAI a jeho API kľúča.</p></div>
+                <div class="ai-panel">
+                    <div class="surface-top"><b>Pomoc pri odpovedi</b><span class="badge">GeniAI</span></div>
+                    <label>Pokyn pre podporu</label>
+                    <div class="ai-instruction">Vysvetlite, že preveríme podmienky prístupu, a požiadajte o názov
+                        aktivity a snímku zobrazenej správy.
+                    </div>
+                    <div class="ai-answer"><small>NÁVRH TEXTU · PRÍKLAD</small>
+                        <p>Dobrý deň, Mariana! Aby sme mohli preveriť prístup k hodnoteniu, pošlite nám, prosím, názov
+                            aktivity a snímku správy zobrazenej na obrazovke. Na základe týchto informácií zistíme, čo
+                            sa deje, a poradíme vám.</p></div>
+                    <div class="ai-foot">Vygenerovať návrh <span>→</span> Skontrolovať v editore <span>→</span>
+                        Odpovedať
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="shell section" id="automacoes"><span class="eyebrow">UPOZORNENIA A AUTOMATIZOVANÉ ÚLOHY</span>
+            <div class="split-heading"><h2>Požiadavka nemusí<br>zostať zabudnutá.</h2>
+                <p>E-mailová komunikácia sprevádza vytvorenie požiadavky a odpovede. Dve naplánované úlohy dopĺňajú
+                    prácu tímu s použitím informácií uložených v každej požiadavke.</p></div>
+            <div class="automation-grid">
+                <article><span class="big-number">3 <small>dni</small></span>
+                    <h3>Pripomienka pre tím</h3>
+                    <p>Otvorené alebo prebiehajúce požiadavky vytvorené aspoň pred tromi dňami, ktoré stále nemajú prvú
+                        odpoveď, môžu vyvolať pripomienku pre zodpovedné osoby kategórie. Plugin zaznamená odoslanie,
+                        aby sa pripomienka pre tú istú požiadavku neopakovala.</p></article>
+                <article><span class="big-number">48 <small>hodín</small></span>
+                    <h3>Uzavretie po vyriešení</h3>
+                    <p>Požiadavky, ktoré zostanú v stave vyriešené najmenej 48 hodín, automatická úloha uzavrie. Čas sa
+                        počíta od zaznamenaného momentu vyriešenia.</p></article>
+                <article><span class="big-number mail-symbol">✉</span>
+                    <h3>Upozornenia s kontextom</h3>
+                    <p>E-maily obsahujú odkaz na požiadavku, predmet, kategóriu a správu, prípadne aj prílohy. Odkazy
+                        vedú priamo na požiadavku a uľahčujú pokračovanie konverzácie.</p></article>
+            </div>
+            <p class="note">Obe úlohy sú nastavené na každodenné spustenie o polnoci a závisia od cron prostredia.
+                Lehoty sa kontrolujú pri spustení a neznamenajú odoslanie alebo uzavretie presne na minútu.</p>
+        </section>
+        <section class="soft" id="relatorios">
+            <div class="shell section"><span class="eyebrow">REPORTY S KOPERE BI</span>
+                <div class="split-heading"><h2>Pochopte dopyt.<br>Sledujte podporu.</h2>
+                    <p>Súbory reportov pluginu organizujú dotazy do piatich skupín. Pozrite sa, čo jednotlivé analýzy
+                        ukazujú a ako môžu tieto informácie podporiť riadenie podpory.</p></div>
+                <div class="report-list">
+                    <details open>
+                        <summary><span><small>POŽIADAVKY</small><b>Vytváranie a riešenie v čase</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p><strong>Požiadavky vytvorené podľa obdobia.</strong> Zoskupuje vytvorenia podľa
+                            kategórie a dňa a zobrazuje ich počet. Pomáha nájsť zvýšený dopyt v konkrétnych dátumoch.
+                        </p>
+                            <p><strong>Požiadavky vyriešené podľa obdobia.</strong> Dotaz používa dátum uzavretia,
+                                zoskupený podľa mesiaca a kategórie, na spočítanie uzavretých požiadaviek. Toto
+                                rozlíšenie je dôležité pre správnu interpretáciu ukazovateľa.</p></div>
+                    </details>
+                    <details>
+                        <summary><span><small>KATEGÓRIE</small><b>Kde sa sústreďuje dopyt</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p>Zobrazuje celkový počet požiadaviek v každej kategórii, zoradený podľa najvyššieho
+                            objemu. Zahŕňa priemerný čas prvej odpovede a priemerný čas medzi otvorením a uzavretím pre
+                            záznamy, ktoré tieto dátumy obsahujú.</p>
+                            <p>Tento pohľad pomáha odhaliť opakujúce sa témy a skupiny podpory, ktoré si zaslúžia
+                                bližšiu analýzu.</p></div>
+                    </details>
+                    <details>
+                        <summary><span><small>STAV A PRIORITA</small><b>Rozdelenie a časy podpory</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p><strong>Požiadavky podľa stavu.</strong> Kombinuje kategóriu a stav a zobrazuje objem,
+                            priemernú prvú odpoveď a priemerný čas uzavretia.</p>
+                            <p><strong>Rozdelenie podľa priority.</strong> Zoskupuje požiadavky podľa priority a
+                                zobrazuje rovnaké časové ukazovatele. Umožňuje sledovať, či urgentné požiadavky
+                                dostávajú očakávanú pozornosť.</p></div>
+                    </details>
+                    <details>
+                        <summary><span><small>POUŽÍVATELIA</small><b>Kto žiada o podporu najčastejšie</b></span><span
+                                class="plus">+</span></summary>
+                        <div><p>Zobrazuje desať používateľov s najväčším počtom požiadaviek vrátane identifikácie,
+                            e-mailu, celkového počtu a priemerného času prvej odpovede a uzavretia.</p>
+                            <p>Dotaz zohľadňuje požiadavky registrované používateľom bez obmedzenia len na otvorené.
+                                Výsledok môže odhaliť opakujúcu sa potrebu usmernenia.</p></div>
+                    </details>
+                    <details>
+                        <summary><span><small>AKTIVITA TÍMU</small><b>Účasť na odpovediach</b></span><span class="plus">+</span>
+                        </summary>
+                        <div><p>Report „Tickets by agent“ v plugine počíta záznamy v tabuľke odpovedí a zoskupuje ich
+                            podľa používateľa, ktorý ich vytvoril. Predstavuje teda počet záznamov odpovedí, nie počet
+                            jedinečných pridelených požiadaviek.</p>
+                            <p>Použite túto informáciu ako podporu pri analýze účasti v konverzáciách a vždy zohľadnite
+                                kontext konkrétnej podpory.</p></div>
+                    </details>
+                </div>
+                <p class="note">Opis je založený na súboroch reportov kontrolovanej verzie. Dotazy používajú podľa
+                    reportu cache na šesť hodín alebo jeden deň a nemali by sa interpretovať ako ukazovatele v reálnom
+                    čase.</p></div>
+        </section>
+        <section class="shell section feature" id="exportacao">
+            <div class="feature-copy"><span class="eyebrow">EXPORT DO EXCELU</span>
+                <h2>Preneste históriu<br>do vlastnej analýzy.</h2>
+                <p>Exportujte požiadavky do tabuľky Excel s menom používateľa, kurzom, predmetom, opisom, stavom,
+                    prioritou, kategóriou a e-mailom. Odpovede sa pridajú do samostatných stĺpcov s identifikáciou
+                    autora každej správy.</p>
+                <p>Export umožňuje vybrať stavy požiadaviek a rešpektuje kurz, ak je tento kontext uvedený. Textový
+                    obsah sa prevedie na obyčajný text, čo uľahčuje čítanie a spracovanie mimo prostredia.</p>
+                <p>Funkcia vyžaduje oprávnenie na správu požiadaviek. Výber stavov pre export je samostatný a predvolene
+                    začína otvorenými požiadavkami.</p></div>
+            <div class="surface export-preview">
+                <div class="surface-top"><b>tickets_export.xlsx</b><span class="badge green">Excel</span></div>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Používateľ</th>
+                            <th>Predmet</th>
+                            <th>Stav</th>
+                            <th>Priorita</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Mariana Costa</td>
+                            <td>Prístup k hodnoteniu</td>
+                            <td>Prebieha</td>
+                            <td>Urgentná</td>
+                        </tr>
+                        <tr>
+                            <td>Rafael Lima</td>
+                            <td>Certifikát</td>
+                            <td>Otvorené</td>
+                            <td>Vysoká</td>
+                        </tr>
+                        <tr>
+                            <td>Ana Souza</td>
+                            <td>Odovzdanie aktivity</td>
+                            <td>Vyriešené</td>
+                            <td>Stredná</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="export-fields">
+                    <span>Kurz</span><span>Kategória</span><span>E-mail</span><span>Opis</span><span>Odpoveď 1</span><span>Odpoveď 2…</span>
+                </div>
+                <p class="caption">Ilustračná ukážka exportovaných informácií.</p></div>
+        </section>
+        <section class="soft" id="integracoes">
+            <div class="shell section"><span class="eyebrow">SÚČASŤ EKOSYSTÉMU KOPERE</span>
+                <div class="split-heading"><h2>Prepojené s nástrojmi<br>vašej prevádzky.</h2>
+                    <p>Helpdesk používa používateľov, kurzy a oprávnenia samotného prostredia. Integrácie dopĺňajú
+                        možnosti správy a tvorby odpovedí.</p></div>
+                <div class="integration-grid">
+                    <article><span class="badge blue">Povinná závislosť</span>
+                        <h3>Kopere Dashboard</h3>
+                        <p>Poskytuje komponenty používané Helpdeskom vrátane výberu používateľov a prvkov podporujúcich
+                            rozhranie správy.</p><small>Deklarovaná minimálna verzia: 2026070500</small><a
+                                href="https://kopere-dashboard.eduardokraus.chatgpt.site/">Spoznať Dashboard ↗</a>
+                    </article>
+                    <article><span class="badge blue">Povinná závislosť</span>
+                        <h3>Kopere BI</h3>
+                        <p>Poskytuje štruktúru, ktorá zobrazuje reporty podpory podľa definícií zahrnutých v
+                            plugine.</p><small>Deklarovaná minimálna verzia: 2026052400</small><a
+                                href="https://moodle.org/plugins/local_kopere_bi">Spoznať Kopere BI ↗</a></article>
+                    <article><span class="badge gray">Voliteľná integrácia</span>
+                        <h3>GeniAI</h3>
+                        <p>Zapína pomoc pri písaní odpovedí a článkov. Vyžaduje inštaláciu a konfiguráciu API kľúča.</p>
+                        <small>Podpora funguje aj bez AI.</small><a href="https://moodle.org/plugins/local_geniai">Spoznať
+                            GeniAI ↗</a></article>
+                </div>
+            </div>
+        </section>
+        <section class="shell section faq" id="duvidas"><span class="eyebrow">PRED ZAČIATKOM</span>
+            <h2>Niekoľko častých otázok.</h2>
+            <details>
+                <summary>Funguje Helpdesk mimo softvéru Moodle™?<span>+</span></summary>
+                <p>Ide o lokálny plugin nainštalovaný v prostredí, ktorý používa jeho účty, kurzy a oprávnenia. Táto
+                    stránka predstavuje produkt; nejde o centrum podpory pripojené k vašej inštitúcii.</p></details>
+            <details>
+                <summary>Je umelá inteligencia povinná?<span>+</span></summary>
+                <p>Nie. GeniAI je voliteľné. Vytváranie požiadaviek, odpovede tímu ani ostatné funkcie podpory nezávisia
+                    od generovania textu pomocou AI.</p></details>
+            <details>
+                <summary>Odosiela AI odpoveď automaticky?<span>+</span></summary>
+                <p>Analyzovaný proces vytvorí návrh, ktorý môže tím preniesť do editora. Zodpovedná osoba môže text
+                    skontrolovať a vo formulári vybrať spôsob odpovede.</p></details>
+            <details>
+                <summary>Aký je rozdiel medzi vyriešeným a uzavretým stavom?<span>+</span></summary>
+                <p>Ide o samostatné stavy. Vyriešené znamená, že riešenie bolo poskytnuté; uzavreté ukončuje cyklus.
+                    Denná úloha uzatvára požiadavky, ktoré zostali vyriešené aspoň 48 hodín.</p></details>
+            <details>
+                <summary>Môžem oddeliť podporu podľa kurzu?<span>+</span></summary>
+                <p>Plugin prijíma kontext kurzu, ponúka filter podľa kurzu pri zobrazení a zohľadňuje tento kontext pri
+                    exporte. Menu možno nastaviť tak, aby sa zobrazovalo iba v kurzoch.</p></details>
+            <details>
+                <summary>Ako získam pomoc s nasadením alebo prispôsobením?<span>+</span></summary>
+                <p>Kontaktujte Eduarda Krausa a preberte organizáciu podpory, inštaláciu, konfiguráciu a špecifické
+                    potreby vašej inštitúcie.</p><a class="text-link" href="https://eduardokraus.com/contato">Porozprávať
+                sa o projekte →</a></details>
+        </section>
+        <section class="cta shell">
+            <div><span class="eyebrow">PODPORA BLIŽŠIE K ŠTUDENTOVI</span>
+                <h2>Jedno centrum pomoci.<br>Vo vašom prostredí.</h2>
+                <p>Porozprávajme sa o tom, ako usporiadať podporu vašej inštitúcie pomocou Kopere Helpdesk.</p></div>
+            <a class="button primary" href="https://eduardokraus.com/contato">Kontaktovať Eduarda Krausa ↗</a></section>
+</main>
+<footer>
+    <div class="shell footer-main"><a class="brand" href="#"><img src="favicon.png"
+                                                                  alt=""><span>Kopere<strong>Helpdesk</strong></span></a>
+        <p>Podpora prepojená so vzdelávaním.</p>
+        <div><a href="https://github.com/EduardoKrausME/moodle-local_helpdesk">Otvorený zdrojový kód ↗</a><a
+                href="https://eduardokraus.com/contato">Kontakt ↗</a></div>
+    </div>
+    <div class="shell footer-bottom"><span>© 2026 Eduardo Kraus · Kopere Helpdesk</span><span>Moodle™ je registrovaná ochranná známka. Nezávislý open-source plugin.</span>
+    </div>
+    <div class="shell source-note">Obsah vychádza z <a href="https://github.com/EduardoKrausME/moodle-local_helpdesk">repozitára
+        pluginu</a>, verzia 2.4.6 kontrolovaná v septembri 2026. Rozhrania a údaje na tejto stránke sú ilustračné.
+    </div>
+</footer>
+</body>
+</html>
