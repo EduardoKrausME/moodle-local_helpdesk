@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="local/helpdesk/db" VERSION="20250219" COMMENT="Database schema for local_helpdesk plugin"
+<XMLDB PATH="local/helpdesk/db" VERSION="20260919" COMMENT="Database schema for local_helpdesk plugin"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
@@ -45,7 +45,9 @@
                 <FIELD NAME="createdat" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="Timestamp of ticket creation"/>
                 <FIELD NAME="updatedat" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="Timestamp of last update"/>
                 <FIELD NAME="answeredat" TYPE="int" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Timestamp when it was answered"/>
+                <FIELD NAME="resolvedat" TYPE="int" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Timestamp when it was resolved"/>
                 <FIELD NAME="closedat" TYPE="int" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Timestamp when it was closed"/>
+                <FIELD NAME="remindedat" TYPE="int" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Timestamp when the unanswered reminder was sent"/>
             </FIELDS>
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>

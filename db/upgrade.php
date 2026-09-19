@@ -139,5 +139,50 @@ function xmldb_local_helpdesk_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2025040803, "local", "helpdesk");
     }
 
+    if ($oldversion < 2026091900) {
+        $table = new xmldb_table("local_helpdesk_ticket");
+
+        // Add 'resolvedat' to 'local_helpdesk_ticket'.
+        $field = new xmldb_field(
+            "resolvedat",
+            XMLDB_TYPE_INTEGER,
+            "20",
+            null,
+            null,
+            null,
+            null,
+            "answeredat"
+        );
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Add 'remindedat' to 'local_helpdesk_ticket'.
+        $field = new xmldb_field(
+            "remindedat",
+            XMLDB_TYPE_INTEGER,
+            "20",
+            null,
+            null,
+            null,
+            null,
+            "closedat"
+        );
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Backfill tickets that were already resolved before the new field existed.
+        $DB->execute(
+            "UPDATE {local_helpdesk_ticket}
+                SET resolvedat = updatedat
+              WHERE status = :status
+                AND (resolvedat IS NULL OR resolvedat = 0)",
+            ["status" => "resolved"]
+        );
+
+        upgrade_plugin_savepoint(true, 2026091900, "local", "helpdesk");
+    }
+
     return true;
 }
