@@ -56,7 +56,7 @@ class response_controller {
             $now = time();
             $issupportreply = $hasticketmanage && (int)$ticket->get_userid() !== (int)$USER->id;
 
-            // answeredat means the first real message from support, not a user reply or a status log.
+            // Answeredat means the first real message from support, not a user reply or a status log.
             if ($issupportreply && !$ticket->get_answeredat()) {
                 $ticket->set_answeredat($now);
                 $ticket->set_updatedat($now);
