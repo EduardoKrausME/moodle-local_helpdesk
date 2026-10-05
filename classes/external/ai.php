@@ -113,7 +113,7 @@ class ai extends external_api {
         $instructions = trim($params["message"]);
 
         if (!$responses) {
-            $promptkey = core_text::strlen($instructions) > 10
+            $promptkey = \core_text::strlen($instructions) > 10
                 ? "geniai_ticket_prompt_1"
                 : "geniai_ticket_prompt_2";
             $promptdata = [
@@ -140,7 +140,7 @@ class ai extends external_api {
                 ];
             }
 
-            $promptkey = core_text::strlen($instructions) > 10
+            $promptkey = \core_text::strlen($instructions) > 10
                 ? "geniai_ticket_prompt_3"
                 : "geniai_ticket_prompt_4";
             $messages[] = [
@@ -164,7 +164,7 @@ class ai extends external_api {
         } catch (Throwable $e) {
             return [
                 "success" => false,
-                "error" => $e->getMessage(),
+                "error" => s($e->getMessage()),
             ];
         }
     }
@@ -220,7 +220,7 @@ class ai extends external_api {
         self::validate_context($context);
 
         $instructions = trim($params["message"]);
-        if (core_text::strlen($instructions) <= 10) {
+        if (\core_text::strlen($instructions) <= 10) {
             return [
                 "success" => false,
                 "error" => get_string("knowledgebase_prompt_short", "local_helpdesk"),
@@ -248,7 +248,7 @@ class ai extends external_api {
         } catch (Throwable $e) {
             return [
                 "success" => false,
-                "error" => $e->getMessage(),
+                "error" => s($e->getMessage()),
             ];
         }
     }
