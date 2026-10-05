@@ -73,9 +73,9 @@ $string['findticket'] = 'Search in subject and text';
 $string['finduser'] = 'Select a User';
 $string['geniai_btn_knowledgebase_create'] = 'Create a knowledge base with AI';
 $string['geniai_btn_response_create'] = 'Create a response with AI';
-$string['geniai_create_knowledgebase_desc'] = 'Describe in detail the content you want to generate. GeniAI will use this information to create an accurate and relevant text for your knowledge base.';
+$string['geniai_create_knowledgebase_desc'] = 'Describe in detail the content you want to generate. AI Bridge will use this information to create an accurate and relevant text for your knowledge base.';
 $string['geniai_create_knowledgebase_message'] = 'Create a message based on the text above.';
-$string['geniai_create_response_desc'] = 'Describe what you want to generate. GeniAI will use all conversations as a basis to create a response, but you need to define which data you want to write.';
+$string['geniai_create_response_desc'] = 'Describe what you want to generate. AI Bridge will use all conversations as a basis to create a response, but you need to define which data you want to write.';
 $string['geniai_create_response_message'] = 'Create a message based on the text above.';
 $string['geniai_knowledgebase_prompt'] = 'You are a chatbot specialized in creating knowledge bases for Moodle. Your goal is to generate clear, well-structured, and engaging content using a professional and persuasive first-person tone. Each response should be detailed and thorough, ensuring that any user can easily understand the provided information.
 
@@ -86,7 +86,7 @@ Moodle URL: "{$a->site_url}"
 
 Return only in the language "{$a->userlang}", no titles, and only in MARKDOWN format.';
 $string['geniai_like_message'] = 'Liked the message? Click here to close and send it to the Editor.';
-$string['geniai_missing'] = 'Install and configure the <a href="{$a}" target="_blank">GenIA</a> plugin to enable AI-powered responses.';
+$string['geniai_missing'] = 'Install and configure the <a href="{$a}" target="_blank">AI Bridge</a> plugin to enable AI-powered responses.';
 $string['geniai_ticket_prompt_1'] = 'You are a chatbot that suggests responses to Moodle tickets to solve course or Moodle issues in a cheerful, lively, and first-person manner.
 You love responding with inspiring messages, avoiding lists, and providing detailed explanations while being very attentive to details.
 
