@@ -66,7 +66,7 @@ class response_form extends \moodleform {
             $button = $OUTPUT->render_from_template("local_helpdesk/response-form-ia", [
                 "ticketid" => $ticket->get_idkey(),
             ]);
-            $mform->addElement("static", "create_local_ai_bridge", get_string("geniai_title", "local_helpdesk"), $button);
+            $mform->addElement("static", "create_local_ai_bridge", get_string("ai_title", "local_helpdesk"), $button);
         }
 
         $mform->addElement("filemanager", "attachment", get_string("attachment", "local_helpdesk"), null, [
