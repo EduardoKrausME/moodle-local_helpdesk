@@ -24,13 +24,14 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2026100300;
-$plugin->release = '2.4.9';
-$plugin->requires = 2021041900;
+$plugin->version = 2026100500;
+$plugin->release = '2.5.0';
+$plugin->requires = 2024100700;
 $plugin->maturity = MATURITY_STABLE;
 $plugin->component = "local_helpdesk";
 
 $plugin->dependencies = [
     "local_kopere_dashboard" => 2026100100,
     "local_kopere_bi" => 2026052400,
+    "local_ai_bridge" => 2026093001,
 ];
