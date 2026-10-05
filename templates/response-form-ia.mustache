@@ -25,7 +25,7 @@
 }}
 
 <button class="btn btn-success" type="button" disabled
-     id="geniai_btn_response_create">{{#str}}geniai_btn_response_create, local_helpdesk{{/str}}</button>
+     id="ai_btn_response_create">{{#str}}geniai_btn_response_create, local_helpdesk{{/str}}</button>
 
 <div class="d-none" id="modal-response-form-ia">
     <div>{{#str}}geniai_create_response_desc, local_helpdesk{{/str}}</div>
@@ -44,7 +44,7 @@
 require(["jquery", "core/ajax", "core/notification", "core/modal_factory", "editor_tiny/editor"],
 function($, Ajax, Notification, ModalFactory, tiny) {
 
-    $("#geniai_btn_response_create").prop("disabled", false);
+    $("#ai_btn_response_create").prop("disabled", false);
 
     $("#ia-message").on("input", function() {
         let messageLength = $(this).val().length;
@@ -53,7 +53,7 @@ function($, Ajax, Notification, ModalFactory, tiny) {
 
     var modal = false;
 
-    $("#geniai_btn_response_create").click(function() {
+    $("#ai_btn_response_create").click(function() {
         if (modal) {
             modal.show();
         } else {
@@ -73,7 +73,7 @@ function($, Ajax, Notification, ModalFactory, tiny) {
 
                 $("#modal-response-form-ia").remove();
 
-                $("#create-message").click(geniaiCompletions);
+                $("#create-message").click(aiCompletions);
 
                 $("#save-close").click(function() {
                     var editor = tiny.getInstanceForElementId("id_message");
@@ -87,7 +87,7 @@ function($, Ajax, Notification, ModalFactory, tiny) {
         }
     });
 
-    function geniaiCompletions() {
+    function aiCompletions() {
         $("#save-close").hide();
 
         let count = 0;
@@ -101,7 +101,7 @@ function($, Ajax, Notification, ModalFactory, tiny) {
         }, 30000);
 
         Ajax.call([{
-            methodname: "local_helpdesk_geniai_tickets",
+            methodname: "local_helpdesk_ai_tickets",
             args: {
                 ticketid: "{{{ticketid}}}",
                 message: $("#ia-message").val(),
