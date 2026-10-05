@@ -75,7 +75,7 @@ When AI Bridge is configured, the plugin can also assist with drafting knowledge
 
 AI-assisted writing is routed through the required **AI Bridge** dependency.
 
-When the AI Bridge purpose `helpdesk` has an enabled route for the current tenant and user, support staff can request a suggested response directly from the ticket reply form.
+When the AI Bridge purposes `helpdesk-ticket-response` and `helpdesk-knowledgebase` have enabled routes for the current tenant and user, support staff can request a suggested response directly from the ticket reply form.
 
 The generated text is not sent automatically. It is returned to the support workflow so the team can review, edit and decide whether to use it.
 
