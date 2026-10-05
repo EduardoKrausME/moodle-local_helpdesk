@@ -51,4 +51,5 @@ $functions = [
         "type" => "read",
         "ajax" => true,
         "capabilities" => "local/helpdesk:knowledgebase_manage",
-    ],];
+    ],
+];
