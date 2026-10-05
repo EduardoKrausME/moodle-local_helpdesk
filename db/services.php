@@ -34,13 +34,21 @@ $functions = [
         "ajax" => true,
         "capabilities" => "local/helpdesk:ticketmanage",
     ],
-    "local_helpdesk_geniai_tickets" => [
-        "classpath" => "local/helpdesk/classes/external/geniai.php",
-        "classname" => "\\local_helpdesk\\external\\geniai",
+    "local_helpdesk_ai_tickets" => [
+        "classpath" => "local/helpdesk/classes/external/ai.php",
+        "classname" => "\\local_helpdesk\\external\\ai",
         "methodname" => "tickets",
-        "description" => "get the completions tickets of the geniai",
+        "description" => "Generate a suggested ticket response through AI Bridge",
         "type" => "read",
         "ajax" => true,
         "capabilities" => "local/helpdesk:ticketmanage",
     ],
-];
+    "local_helpdesk_ai_knowledgebase" => [
+        "classpath" => "local/helpdesk/classes/external/ai.php",
+        "classname" => "\\local_helpdesk\\external\\ai",
+        "methodname" => "knowledgebase",
+        "description" => "Generate knowledge-base content through AI Bridge",
+        "type" => "read",
+        "ajax" => true,
+        "capabilities" => "local/helpdesk:knowledgebase_manage",
+    ],];
