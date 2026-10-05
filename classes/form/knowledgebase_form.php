@@ -75,7 +75,7 @@ class knowledgebase_form extends \moodleform {
 
         // AI assistance is routed through local_ai_bridge.
         $button = $OUTPUT->render_from_template("local_helpdesk/knowledgebase-form-ia", []);
-        $mform->addElement("static", "create_local_ai_bridge", get_string("geniai_title", "local_helpdesk"), $button);
+        $mform->addElement("static", "create_local_ai_bridge", get_string("ai_title", "local_helpdesk"), $button);
 
         // Submit button.
         if (isset($this->_customdata["id"])) {
