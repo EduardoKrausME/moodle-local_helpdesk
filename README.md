@@ -23,7 +23,7 @@ Kopere Helpdesk brings the support workflow into Moodle and keeps the request, c
 * A built-in knowledge base can be maintained alongside the ticket system.
 * Tickets can be exported for analysis outside Moodle.
 * Reports are provided through Kopere BI.
-* Optional GeniAI integration can assist with writing replies and knowledge-base articles.
+* AI Bridge integration can assist with writing replies and knowledge-base articles.
 * Scheduled tasks remind support teams about unanswered tickets and automatically close resolved tickets after the configured workflow period.
 
 ## Ticket workflow
@@ -69,23 +69,23 @@ Kopere Helpdesk includes a knowledge base for publishing reusable support conten
 
 Articles contain a title, content, author and optional category. They can be organized alongside ticket categories so recurring questions can be documented and reused by the support team.
 
-When GeniAI is configured, the plugin can also assist with drafting knowledge-base content from instructions provided by the user.
+When AI Bridge is configured, the plugin can also assist with drafting knowledge-base content from instructions provided by the user.
 
-## AI-assisted replies with GeniAI
+## AI-assisted replies with AI Bridge
 
-The integration with **GeniAI** is optional.
+AI-assisted writing is routed through the required **AI Bridge** dependency.
 
-When GeniAI is installed and configured with an API key, support staff can request a suggested response directly from the ticket reply form.
+When the AI Bridge purpose `helpdesk` has an enabled route for the current tenant and user, support staff can request a suggested response directly from the ticket reply form.
 
 The generated text is not sent automatically. It is returned to the support workflow so the team can review, edit and decide whether to use it.
 
 The integration can use the ticket content and conversation context to help prepare a more relevant reply.
 
-GeniAI can also assist with drafting knowledge-base articles.
+AI Bridge can also assist with drafting knowledge-base articles.
 
 More information:
 
-https://moodle.org/plugins/local_geniai
+https://github.com/EduardoKrausME/moodle-local_ai_bridge
 
 ## Reports
 
