@@ -45,8 +45,11 @@ require_once("{$CFG->libdir}/externallib.php");
  * @package local_helpdesk\external
  */
 class ai extends external_api {
-    /** AI Bridge purpose used by Helpdesk. */
-    private const PURPOSE = 'helpdesk';
+    /** AI Bridge purpose used for ticket-response drafting. */
+    private const PURPOSE_TICKET = 'helpdesk-ticket-response';
+
+    /** AI Bridge purpose used for knowledge-base drafting. */
+    private const PURPOSE_KNOWLEDGEBASE = 'helpdesk-knowledgebase';
 
     /**
      * Ticket response generation parameters.
@@ -114,8 +117,8 @@ class ai extends external_api {
 
         if (!$responses) {
             $promptkey = \core_text::strlen($instructions) > 10
-                ? "geniai_ticket_prompt_1"
-                : "geniai_ticket_prompt_2";
+                ? "ai_ticket_prompt_1"
+                : "ai_ticket_prompt_2";
             $promptdata = [
                 "userfullname" => $userfullname,
                 "userticket" => "# {$ticket->get_subject()}\n\n{$ticketmessage}",
@@ -141,8 +144,8 @@ class ai extends external_api {
             }
 
             $promptkey = \core_text::strlen($instructions) > 10
-                ? "geniai_ticket_prompt_3"
-                : "geniai_ticket_prompt_4";
+                ? "ai_ticket_prompt_3"
+                : "ai_ticket_prompt_4";
             $messages[] = [
                 "role" => "user",
                 "content" => get_string($promptkey, "local_helpdesk", [
@@ -153,7 +156,7 @@ class ai extends external_api {
         }
 
         try {
-            $result = ai_bridge_api::generate(self::PURPOSE, $messages);
+            $result = ai_bridge_api::generate(self::PURPOSE_TICKET, $messages);
             $html = self::markdown_to_html($result->text, $context);
             $html = preg_replace('/<h\d.*?>(.*?)<\/h\d>/s', '<p><strong>$1</strong></p>', $html) ?? $html;
 
@@ -230,7 +233,7 @@ class ai extends external_api {
         $userlang = $SESSION->lang ?? $USER->lang;
         $messages = [[
             "role" => "user",
-            "content" => get_string("geniai_knowledgebase_prompt", "local_helpdesk", [
+            "content" => get_string("ai_knowledgebase_prompt", "local_helpdesk", [
                 "site_fullname" => $SITE->fullname,
                 "site_url" => $CFG->wwwroot,
                 "message" => $instructions,
@@ -239,7 +242,7 @@ class ai extends external_api {
         ]];
 
         try {
-            $result = ai_bridge_api::generate(self::PURPOSE, $messages);
+            $result = ai_bridge_api::generate(self::PURPOSE_KNOWLEDGEBASE, $messages);
             return [
                 "success" => self::markdown_to_html($result->text, $context),
                 "raw" => $result->text,
