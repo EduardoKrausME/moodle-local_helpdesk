@@ -24,7 +24,6 @@
 
 namespace local_helpdesk\form;
 
-use context_system;
 use local_helpdesk\model\category;
 
 defined('MOODLE_INTERNAL') || die();
@@ -45,7 +44,7 @@ class knowledgebase_form extends \moodleform {
      * @throws \dml_exception
      */
     public function definition() {
-        global $OUTPUT, $CFG, $PAGE;
+        global $OUTPUT;
 
         $mform = $this->_form;
 
@@ -74,22 +73,9 @@ class knowledgebase_form extends \moodleform {
         $mform->setType("description", PARAM_RAW);
         $mform->addRule("description", null, "required");
 
-        // IA.
-        $apikey = get_config("local_geniai", "apikey");
-        if (isset($apikey[20])) {
-            $button = $OUTPUT->render_from_template("local_helpdesk/knowledgebase-form-ia", []);
-            $mform->addElement("static", "create_local_geniai", get_string("geniai_title", "local_helpdesk"), $button);
-        } else {
-            if (file_exists("{$CFG->dirroot}/local/geniai/lib.php")) {
-                $link = "{$CFG->wwwroot}/admin/settings.php?section=local_geniai";
-            } else {
-                $link = "https://moodle.org/plugins/local_geniai";
-            }
-
-            $message = get_string("geniai_missing", "local_helpdesk", $link);
-            $message = $PAGE->get_renderer("core")->render(new \core\output\notification($message, "warning"));
-            $mform->addElement("static", "missing_local_geniai", get_string("geniai_title", "local_helpdesk"), $message);
-        }
+        // AI assistance is routed through local_ai_bridge.
+        $button = $OUTPUT->render_from_template("local_helpdesk/knowledgebase-form-ia", []);
+        $mform->addElement("static", "create_local_ai_bridge", get_string("geniai_title", "local_helpdesk"), $button);
 
         // Submit button.
         if (isset($this->_customdata["id"])) {
