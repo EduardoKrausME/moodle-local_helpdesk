@@ -22,8 +22,24 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die;
+
 $string['addcategory'] = '追加 新規 カテゴリ';
 $string['addticket'] = '追加 チケット';
+$string['ai_btn_knowledgebase_create'] = 'AIでナレッジベースを作成';
+$string['ai_btn_response_create'] = 'AIで返信を作成';
+$string['ai_create_knowledgebase_desc'] = '生成したい内容を詳しく説明してください。AI Bridge はこの情報を使用して、ナレッジベース用の正確で関連性の高い文章を作成します。';
+$string['ai_create_knowledgebase_message'] = '上記のテキストに基づいてメッセージを作成してください。';
+$string['ai_create_response_desc'] = '生成したい内容を説明してください。AI Bridge はすべての会話を基に返信を作成しますが、書きたい情報を指定する必要があります。';
+$string['ai_create_response_message'] = '上記のテキストに基づいてメッセージを作成してください。';
+$string['ai_knowledgebase_prompt'] = 'あなたは Moodle のナレッジベース作成を専門とするチャットボットです。明確で構成された専門的な一人称の内容を生成してください。\\n\\n次の内容について記事を作成してください:\\nMoodle 名: "{$a->site_fullname}"\\nMoodle URL: "{$a->site_url}"\\n"{$a->message}"\\n\\n"{$a->userlang}" の言語のみ、タイトルなし、MARKDOWN のみで返してください。';
+$string['ai_like_message'] = 'メッセージが気に入りましたか？ここをクリックして閉じ、エディタへ送信します。';
+$string['ai_missing'] = 'AI による返信を有効にするには、<a href="{$a}" target="_blank">AI Bridge</a> プラグインをインストールして設定してください。';
+$string['ai_ticket_prompt_1'] = 'あなたは Moodle チケットへの返信案を、明確で親しみやすい一人称で作成するチャットボットです。\\n\\n{$a->userfullname} からの質問: "{$a->userticket}"\\n\\n作成 返信 サポートから提供された手順を使用して:\\n"{$a->message}"\\n\\n"{$a->userlang}" の言語のみ、MARKDOWN のみで返してください。';
+$string['ai_ticket_prompt_2'] = 'あなたは Moodle チケットへの返信案を、明確で親しみやすい一人称で作成するチャットボットです。\\n\\n作成 返信:\\n\\n{$a->userfullname} からの質問: "{$a->userticket}"';
+$string['ai_ticket_prompt_3'] = 'あなたは Moodle チケットへの返信案を、明確で親しみやすい一人称で作成するチャットボットです。\\n\\n作成 返信 この履歴に基づいて サポートから提供された手順を使用して:\\n"{$a->message}"\\n\\n"{$a->userlang}" の言語のみ、MARKDOWN のみで返してください。';
+$string['ai_ticket_prompt_4'] = 'あなたは Moodle チケットへの返信案を、明確で親しみやすい一人称で作成するチャットボットです。\\n\\n作成 返信 この履歴に基づいて.\\n\\n"{$a->userlang}" の言語のみ、MARKDOWN のみで返してください。';
+$string['ai_title'] = '人工知能';
 $string['attachment'] = '添付ファイル';
 $string['avg_closing_time'] = '平均 終了';
 $string['avg_first_response_time'] = '平均 返信';
@@ -71,20 +87,6 @@ $string['exporttickets'] = 'エクスポート チケット';
 $string['findcourse'] = '選択 コース';
 $string['findticket'] = '検索 件名 本文';
 $string['finduser'] = '選択 ユーザ';
-$string['ai_btn_knowledgebase_create'] = 'AIでナレッジベースを作成';
-$string['ai_btn_response_create'] = 'AIで返信を作成';
-$string['ai_create_knowledgebase_desc'] = '生成したい内容を詳しく説明してください。AI Bridge はこの情報を使用して、ナレッジベース用の正確で関連性の高い文章を作成します。';
-$string['ai_create_knowledgebase_message'] = '上記のテキストに基づいてメッセージを作成してください。';
-$string['ai_create_response_desc'] = '生成したい内容を説明してください。AI Bridge はすべての会話を基に返信を作成しますが、書きたい情報を指定する必要があります。';
-$string['ai_create_response_message'] = '上記のテキストに基づいてメッセージを作成してください。';
-$string['ai_knowledgebase_prompt'] = 'あなたは Moodle のナレッジベース作成を専門とするチャットボットです。明確で構成された専門的な一人称の内容を生成してください。\\n\\n次の内容について記事を作成してください:\\nMoodle 名: "{$a->site_fullname}"\\nMoodle URL: "{$a->site_url}"\\n"{$a->message}"\\n\\n"{$a->userlang}" の言語のみ、タイトルなし、MARKDOWN のみで返してください。';
-$string['ai_like_message'] = 'メッセージが気に入りましたか？ここをクリックして閉じ、エディタへ送信します。';
-$string['ai_missing'] = 'AI による返信を有効にするには、<a href="{$a}" target="_blank">AI Bridge</a> プラグインをインストールして設定してください。';
-$string['ai_ticket_prompt_1'] = 'あなたは Moodle チケットへの返信案を、明確で親しみやすい一人称で作成するチャットボットです。\\n\\n{$a->userfullname} からの質問: "{$a->userticket}"\\n\\n作成 返信 サポートから提供された手順を使用して:\\n"{$a->message}"\\n\\n"{$a->userlang}" の言語のみ、MARKDOWN のみで返してください。';
-$string['ai_ticket_prompt_2'] = 'あなたは Moodle チケットへの返信案を、明確で親しみやすい一人称で作成するチャットボットです。\\n\\n作成 返信:\\n\\n{$a->userfullname} からの質問: "{$a->userticket}"';
-$string['ai_ticket_prompt_3'] = 'あなたは Moodle チケットへの返信案を、明確で親しみやすい一人称で作成するチャットボットです。\\n\\n作成 返信 この履歴に基づいて サポートから提供された手順を使用して:\\n"{$a->message}"\\n\\n"{$a->userlang}" の言語のみ、MARKDOWN のみで返してください。';
-$string['ai_ticket_prompt_4'] = 'あなたは Moodle チケットへの返信案を、明確で親しみやすい一人称で作成するチャットボットです。\\n\\n作成 返信 この履歴に基づいて.\\n\\n"{$a->userlang}" の言語のみ、MARKDOWN のみで返してください。';
-$string['ai_title'] = '人工知能';
 $string['helpdesk:categorydelete'] = 'カテゴリの削除を許可します。';
 $string['helpdesk:categorymanage'] = 'ヘルプデスクカテゴリの管理を許可します。';
 $string['helpdesk:knowledgebase_delete'] = 'ナレッジベースの記事を削除します。';

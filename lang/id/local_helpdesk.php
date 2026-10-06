@@ -22,8 +22,24 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die;
+
 $string['addcategory'] = 'Tambah Baru Kategori';
 $string['addticket'] = 'Tambah Tiket';
+$string['ai_btn_knowledgebase_create'] = 'Buat basis pengetahuan dengan AI';
+$string['ai_btn_response_create'] = 'Buat tanggapan dengan AI';
+$string['ai_create_knowledgebase_desc'] = 'Jelaskan secara rinci konten yang ingin Anda buat. AI Bridge akan menggunakan informasi ini untuk membuat teks yang akurat dan relevan untuk basis pengetahuan.';
+$string['ai_create_knowledgebase_message'] = 'Buat pesan berdasarkan teks di atas.';
+$string['ai_create_response_desc'] = 'Jelaskan apa yang ingin Anda buat. AI Bridge akan menggunakan semua percakapan sebagai dasar untuk membuat tanggapan, tetapi Anda perlu menentukan data yang ingin ditulis.';
+$string['ai_create_response_message'] = 'Buat pesan berdasarkan teks di atas.';
+$string['ai_knowledgebase_prompt'] = 'Anda adalah chatbot khusus basis pengetahuan Moodle. Buat konten yang jelas, terstruktur, dan profesional dengan sudut pandang orang pertama.\\n\\nBuat artikel basis pengetahuan tentang:\\nNama Moodle: "{$a->site_fullname}"\\nURL Moodle: "{$a->site_url}"\\n"{$a->message}"\\n\\nKembalikan hanya dalam bahasa "{$a->userlang}", tanpa judul, dan hanya dalam MARKDOWN.';
+$string['ai_like_message'] = 'Suka pesannya? Klik di sini untuk menutup dan mengirimkannya ke Editor.';
+$string['ai_missing'] = 'Instal dan konfigurasikan plugin <a href="{$a}" target="_blank">AI Bridge</a> untuk mengaktifkan tanggapan bertenaga AI.';
+$string['ai_ticket_prompt_1'] = 'Anda adalah chatbot yang menyarankan tanggapan tiket Moodle dengan jelas, ramah, dan memakai sudut pandang orang pertama.\\n\\nPertanyaan pengguna {$a->userfullname}: "{$a->userticket}"\\n\\nBuat tanggapan menggunakan instruksi yang diberikan oleh Dukungan:\\n"{$a->message}"\\n\\nKembalikan hanya dalam bahasa "{$a->userlang}" dan hanya dalam MARKDOWN.';
+$string['ai_ticket_prompt_2'] = 'Anda adalah chatbot yang menyarankan tanggapan tiket Moodle dengan jelas, ramah, dan memakai sudut pandang orang pertama.\\n\\nBuat tanggapan:\\n\\nPertanyaan pengguna {$a->userfullname}: "{$a->userticket}"';
+$string['ai_ticket_prompt_3'] = 'Anda adalah chatbot yang menyarankan tanggapan tiket Moodle dengan jelas, ramah, dan memakai sudut pandang orang pertama.\\n\\nBuat tanggapan berdasarkan riwayat ini menggunakan instruksi yang diberikan oleh Dukungan:\\n"{$a->message}"\\n\\nKembalikan hanya dalam bahasa "{$a->userlang}" dan hanya dalam MARKDOWN.';
+$string['ai_ticket_prompt_4'] = 'Anda adalah chatbot yang menyarankan tanggapan tiket Moodle dengan jelas, ramah, dan memakai sudut pandang orang pertama.\\n\\nBuat tanggapan berdasarkan riwayat ini.\\n\\nKembalikan hanya dalam bahasa "{$a->userlang}" dan hanya dalam MARKDOWN.';
+$string['ai_title'] = 'Kecerdasan buatan';
 $string['attachment'] = 'Lampiran';
 $string['avg_closing_time'] = 'Rata-rata Ditutup';
 $string['avg_first_response_time'] = 'Rata-rata tanggapan';
@@ -71,20 +87,6 @@ $string['exporttickets'] = 'Ekspor Tiket';
 $string['findcourse'] = 'Pilih Kursus';
 $string['findticket'] = 'Cari Subjek teks';
 $string['finduser'] = 'Pilih Pengguna';
-$string['ai_btn_knowledgebase_create'] = 'Buat basis pengetahuan dengan AI';
-$string['ai_btn_response_create'] = 'Buat tanggapan dengan AI';
-$string['ai_create_knowledgebase_desc'] = 'Jelaskan secara rinci konten yang ingin Anda buat. AI Bridge akan menggunakan informasi ini untuk membuat teks yang akurat dan relevan untuk basis pengetahuan.';
-$string['ai_create_knowledgebase_message'] = 'Buat pesan berdasarkan teks di atas.';
-$string['ai_create_response_desc'] = 'Jelaskan apa yang ingin Anda buat. AI Bridge akan menggunakan semua percakapan sebagai dasar untuk membuat tanggapan, tetapi Anda perlu menentukan data yang ingin ditulis.';
-$string['ai_create_response_message'] = 'Buat pesan berdasarkan teks di atas.';
-$string['ai_knowledgebase_prompt'] = 'Anda adalah chatbot khusus basis pengetahuan Moodle. Buat konten yang jelas, terstruktur, dan profesional dengan sudut pandang orang pertama.\\n\\nBuat artikel basis pengetahuan tentang:\\nNama Moodle: "{$a->site_fullname}"\\nURL Moodle: "{$a->site_url}"\\n"{$a->message}"\\n\\nKembalikan hanya dalam bahasa "{$a->userlang}", tanpa judul, dan hanya dalam MARKDOWN.';
-$string['ai_like_message'] = 'Suka pesannya? Klik di sini untuk menutup dan mengirimkannya ke Editor.';
-$string['ai_missing'] = 'Instal dan konfigurasikan plugin <a href="{$a}" target="_blank">AI Bridge</a> untuk mengaktifkan tanggapan bertenaga AI.';
-$string['ai_ticket_prompt_1'] = 'Anda adalah chatbot yang menyarankan tanggapan tiket Moodle dengan jelas, ramah, dan memakai sudut pandang orang pertama.\\n\\nPertanyaan pengguna {$a->userfullname}: "{$a->userticket}"\\n\\nBuat tanggapan menggunakan instruksi yang diberikan oleh Dukungan:\\n"{$a->message}"\\n\\nKembalikan hanya dalam bahasa "{$a->userlang}" dan hanya dalam MARKDOWN.';
-$string['ai_ticket_prompt_2'] = 'Anda adalah chatbot yang menyarankan tanggapan tiket Moodle dengan jelas, ramah, dan memakai sudut pandang orang pertama.\\n\\nBuat tanggapan:\\n\\nPertanyaan pengguna {$a->userfullname}: "{$a->userticket}"';
-$string['ai_ticket_prompt_3'] = 'Anda adalah chatbot yang menyarankan tanggapan tiket Moodle dengan jelas, ramah, dan memakai sudut pandang orang pertama.\\n\\nBuat tanggapan berdasarkan riwayat ini menggunakan instruksi yang diberikan oleh Dukungan:\\n"{$a->message}"\\n\\nKembalikan hanya dalam bahasa "{$a->userlang}" dan hanya dalam MARKDOWN.';
-$string['ai_ticket_prompt_4'] = 'Anda adalah chatbot yang menyarankan tanggapan tiket Moodle dengan jelas, ramah, dan memakai sudut pandang orang pertama.\\n\\nBuat tanggapan berdasarkan riwayat ini.\\n\\nKembalikan hanya dalam bahasa "{$a->userlang}" dan hanya dalam MARKDOWN.';
-$string['ai_title'] = 'Kecerdasan buatan';
 $string['helpdesk:categorydelete'] = 'Mengizinkan penghapusan kategori.';
 $string['helpdesk:categorymanage'] = 'Mengizinkan pengelolaan kategori Helpdesk.';
 $string['helpdesk:knowledgebase_delete'] = 'Menghapus artikel di basis pengetahuan.';

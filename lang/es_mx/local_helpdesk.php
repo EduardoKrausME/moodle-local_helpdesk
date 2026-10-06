@@ -22,8 +22,24 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die;
+
 $string['addcategory'] = 'Añadir Nueva Categoría';
 $string['addticket'] = 'Añadir Ticket';
+$string['ai_btn_knowledgebase_create'] = 'Crear una base de conocimiento con IA';
+$string['ai_btn_response_create'] = 'Crear una respuesta con IA';
+$string['ai_create_knowledgebase_desc'] = 'Describa con detalle el contenido que desea generar. AI Bridge usará esta información para crear un texto preciso y relevante para la base de conocimiento.';
+$string['ai_create_knowledgebase_message'] = 'Crear un mensaje basado en el texto anterior.';
+$string['ai_create_response_desc'] = 'Describa lo que desea generar. AI Bridge usará todas las conversaciones como base para crear una respuesta, pero debe definir qué datos desea escribir.';
+$string['ai_create_response_message'] = 'Crear un mensaje basado en el texto anterior.';
+$string['ai_knowledgebase_prompt'] = 'Eres un chatbot especializado en crear bases de conocimiento para Moodle. Genera contenido claro, bien estructurado y profesional en primera persona.\\n\\nAhora, crea un artículo de base de conocimiento sobre:\\nNombre de Moodle: "{$a->site_fullname}"\\nURL de Moodle: "{$a->site_url}"\\n"{$a->message}"\\n\\nDevuelve solo en el idioma "{$a->userlang}", sin títulos, y únicamente en MARKDOWN.';
+$string['ai_like_message'] = '¿Le gustó el mensaje? Haga clic aquí para cerrar y enviarlo al Editor.';
+$string['ai_missing'] = 'Instale y configure el plugin <a href="{$a}" target="_blank">AI Bridge</a> para habilitar respuestas con IA.';
+$string['ai_ticket_prompt_1'] = 'Eres un chatbot que sugiere respuestas a tickets de Moodle de forma clara, alegre y en primera persona.\\n\\nPregunta del usuario {$a->userfullname}: "{$a->userticket}"\\n\\nCrear respuesta usando las instrucciones proporcionadas por Soporte:\\n"{$a->message}"\\n\\nDevuelve solo en el idioma "{$a->userlang}" y únicamente en MARKDOWN.';
+$string['ai_ticket_prompt_2'] = 'Eres un chatbot que sugiere respuestas a tickets de Moodle de forma clara, alegre y en primera persona.\\n\\nCrear respuesta:\\n\\nPregunta del usuario {$a->userfullname}: "{$a->userticket}"';
+$string['ai_ticket_prompt_3'] = 'Eres un chatbot que sugiere respuestas a tickets de Moodle de forma clara, alegre y en primera persona.\\n\\nCrear respuesta con base en este historial usando las instrucciones proporcionadas por Soporte:\\n"{$a->message}"\\n\\nDevuelve solo en el idioma "{$a->userlang}" y únicamente en MARKDOWN.';
+$string['ai_ticket_prompt_4'] = 'Eres un chatbot que sugiere respuestas a tickets de Moodle de forma clara, alegre y en primera persona.\\n\\nCrear respuesta con base en este historial.\\n\\nDevuelve solo en el idioma "{$a->userlang}" y únicamente en MARKDOWN.';
+$string['ai_title'] = 'Inteligencia artificial';
 $string['attachment'] = 'Adjuntos';
 $string['avg_closing_time'] = 'Promedio Cerrado';
 $string['avg_first_response_time'] = 'Promedio respuesta';
@@ -71,20 +87,6 @@ $string['exporttickets'] = 'Exportar Tickets';
 $string['findcourse'] = 'Seleccionar Curso';
 $string['findticket'] = 'Buscar Asunto texto';
 $string['finduser'] = 'Seleccionar Usuario';
-$string['ai_btn_knowledgebase_create'] = 'Crear una base de conocimiento con IA';
-$string['ai_btn_response_create'] = 'Crear una respuesta con IA';
-$string['ai_create_knowledgebase_desc'] = 'Describa con detalle el contenido que desea generar. AI Bridge usará esta información para crear un texto preciso y relevante para la base de conocimiento.';
-$string['ai_create_knowledgebase_message'] = 'Crear un mensaje basado en el texto anterior.';
-$string['ai_create_response_desc'] = 'Describa lo que desea generar. AI Bridge usará todas las conversaciones como base para crear una respuesta, pero debe definir qué datos desea escribir.';
-$string['ai_create_response_message'] = 'Crear un mensaje basado en el texto anterior.';
-$string['ai_knowledgebase_prompt'] = 'Eres un chatbot especializado en crear bases de conocimiento para Moodle. Genera contenido claro, bien estructurado y profesional en primera persona.\\n\\nAhora, crea un artículo de base de conocimiento sobre:\\nNombre de Moodle: "{$a->site_fullname}"\\nURL de Moodle: "{$a->site_url}"\\n"{$a->message}"\\n\\nDevuelve solo en el idioma "{$a->userlang}", sin títulos, y únicamente en MARKDOWN.';
-$string['ai_like_message'] = '¿Le gustó el mensaje? Haga clic aquí para cerrar y enviarlo al Editor.';
-$string['ai_missing'] = 'Instale y configure el plugin <a href="{$a}" target="_blank">AI Bridge</a> para habilitar respuestas con IA.';
-$string['ai_ticket_prompt_1'] = 'Eres un chatbot que sugiere respuestas a tickets de Moodle de forma clara, alegre y en primera persona.\\n\\nPregunta del usuario {$a->userfullname}: "{$a->userticket}"\\n\\nCrear respuesta usando las instrucciones proporcionadas por Soporte:\\n"{$a->message}"\\n\\nDevuelve solo en el idioma "{$a->userlang}" y únicamente en MARKDOWN.';
-$string['ai_ticket_prompt_2'] = 'Eres un chatbot que sugiere respuestas a tickets de Moodle de forma clara, alegre y en primera persona.\\n\\nCrear respuesta:\\n\\nPregunta del usuario {$a->userfullname}: "{$a->userticket}"';
-$string['ai_ticket_prompt_3'] = 'Eres un chatbot que sugiere respuestas a tickets de Moodle de forma clara, alegre y en primera persona.\\n\\nCrear respuesta con base en este historial usando las instrucciones proporcionadas por Soporte:\\n"{$a->message}"\\n\\nDevuelve solo en el idioma "{$a->userlang}" y únicamente en MARKDOWN.';
-$string['ai_ticket_prompt_4'] = 'Eres un chatbot que sugiere respuestas a tickets de Moodle de forma clara, alegre y en primera persona.\\n\\nCrear respuesta con base en este historial.\\n\\nDevuelve solo en el idioma "{$a->userlang}" y únicamente en MARKDOWN.';
-$string['ai_title'] = 'Inteligencia artificial';
 $string['helpdesk:categorydelete'] = 'Permite eliminar categorías.';
 $string['helpdesk:categorymanage'] = 'Permite gestionar las categorías del Helpdesk.';
 $string['helpdesk:knowledgebase_delete'] = 'Eliminar artículos en la base de conocimiento.';
