@@ -155,6 +155,10 @@ The plugin currently defines the following Moodle capabilities:
 
 These capabilities can be assigned through normal Moodle roles.
 
+## MCP integration
+
+When the optional [local_mcp](https://github.com/EduardoKrausME/moodle-local_mcp) plugin is installed, Helpdesk automatically exposes MCP READ and WRITE tools for tickets, replies, categories, knowledge-base articles and ticket statistics, using the connected Moodle user's permissions. See [MCP integration documentation](docs/mcp.md) for the complete tool list, security rules and setup.
+
 ## Contributing
 
 Contributions are welcome.

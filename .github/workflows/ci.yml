@@ -70,6 +70,13 @@ jobs:
         ref: master
         path: extra-plugins/ai_bridge
 
+    - name: Check out MCP server (optional integration tests)
+      uses: actions/checkout@v4
+      with:
+        repository: EduardoKrausME/moodle-local_mcp
+        ref: master
+        path: extra-plugins/mcp
+
     - name: Setup PHP ${{ matrix.config.php }}
       uses: shivammathur/setup-php@v2
       with:
