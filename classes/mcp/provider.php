@@ -31,7 +31,11 @@ use local_mcp\extension\write_provider_interface;
  * The integration is optional; no hard dependency on local_mcp is required.
  */
 final class provider implements read_provider_interface, write_provider_interface {
-    /** @return \local_mcp\read\tool_interface[] */
+    /**
+     * get_read_tools
+     *
+     * @return read_tool[]
+     */
     public function get_read_tools(): array {
         return [
             new read_tool('list_tickets'),
@@ -42,7 +46,11 @@ final class provider implements read_provider_interface, write_provider_interfac
         ];
     }
 
-    /** @return \local_mcp\write\tool_interface[] */
+    /**
+     * get_write_tools
+     *
+     * @return write_tool[]
+     */
     public function get_write_tools(): array {
         return [
             new write_tool('create_ticket'),
