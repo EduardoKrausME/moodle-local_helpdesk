@@ -8,11 +8,11 @@
 //
 // Moodle is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
  * Tests for the optional Helpdesk MCP provider.
@@ -45,6 +45,7 @@ final class mcp_provider_test extends \advanced_testcase {
     /**
      * Verify provider tools and JSON Schema contracts.
      *
+     * @covers \local_helpdesk\mcp\provider
      * @return void Result.
      */
     public function test_discovery_and_schemas(): void {
@@ -83,6 +84,7 @@ final class mcp_provider_test extends \advanced_testcase {
     /**
      * Verify that ticket ownership is enforced.
      *
+     * @covers \local_helpdesk\mcp\read_tool
      * @return void Result.
      */
     public function test_ticket_reads_do_not_expose_other_users_tickets(): void {
