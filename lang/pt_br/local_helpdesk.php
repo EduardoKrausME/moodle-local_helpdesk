@@ -135,6 +135,14 @@ $string['mailticket_update_message'] = '<p><strong>{[moodle.fullname]}</strong> 
 $string['mailticket_user_message'] = '<p><strong>{[moodle.fullname]}</strong> >> <strong>{[event.tiketidlink]}</strong> >> <strong>{[event.categorylink]}</strong> >> <strong>{[event.subjectlink]}</strong> - Ticket <strong>#{[event.tiketidlink]}</strong></p>\\n<p>Olá {[to.fullname]},</p>\\n<p>Equipe de suporte: Mensagem</p>\\n<blockquote style="border-left: 4px solid #9E9E9E;padding-left: 7px;">\\n{[event.text]}\\n{[event.attachment]}\\n</blockquote>\\n<p>Ver Ticket #{[event.tiketidlink]}.</p>\\n<p>Atenciosamente,<br>\\nEquipe de suporte</p>';
 $string['markticketasclosed'] = 'Ticket Fechado';
 $string['markticketasresolved'] = 'Ticket Resolvido';
+$string["mcp_banner_badge"] = "INTEGRAÇÃO COM IA";
+$string["mcp_banner_benefit_control"] = "Confirmação obrigatória para alterações";
+$string["mcp_banner_benefit_discovery"] = "Descoberta automática de ferramentas";
+$string["mcp_banner_benefit_security"] = "Permissões do Moodle respeitadas";
+$string["mcp_banner_cta"] = "Conhecer o Moodle MCP";
+$string["mcp_banner_description"] = "Instale o local_mcp para disponibilizar os recursos do Helpdesk ao ChatGPT, respeitando as permissões do Moodle.";
+$string["mcp_banner_dismiss"] = "Não mostrar novamente";
+$string["mcp_banner_title"] = "Use o Helpdesk com o ChatGPT";
 $string['notification_manager'] = 'Gerenciar mensagens';
 $string['pluginname'] = 'Helpdesk';
 $string['priority'] = 'Prioridade';

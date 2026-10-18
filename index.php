@@ -51,6 +51,8 @@ if ($courseid) {
 }
 $PAGE->set_context($context);
 $PAGE->set_url(new moodle_url("/local/helpdesk/index.php"));
+
+\local_helpdesk\mcp_banner::dismiss_if_requested($PAGE->url);
 $PAGE->set_title(get_string("tickets", "local_helpdesk"));
 $PAGE->set_heading(get_string("tickets", "local_helpdesk"));
 
@@ -240,6 +242,10 @@ if ($action == "add") {
 }
 
 echo $OUTPUT->header();
+if (\local_helpdesk\mcp_banner::should_show()) {
+    echo \local_helpdesk\mcp_banner::render($OUTPUT, $PAGE->url);
+}
+
 if ($hasticketmanage) {
     $templatecontexttop = [
         "all_open_tickets" => $DB->get_field_select("local_helpdesk_ticket",

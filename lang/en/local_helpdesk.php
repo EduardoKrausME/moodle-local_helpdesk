@@ -191,6 +191,14 @@ $string['mailticket_user_message'] = '<p><strong>{[moodle.fullname]}</strong> >>
 Support Team</p>';
 $string['markticketasclosed'] = 'Mark Ticket as Closed';
 $string['markticketasresolved'] = 'Mark Ticket as Resolved';
+$string["mcp_banner_badge"] = "AI INTEGRATION";
+$string["mcp_banner_benefit_control"] = "Confirmation required for write actions";
+$string["mcp_banner_benefit_discovery"] = "Automatic tool discovery";
+$string["mcp_banner_benefit_security"] = "Moodle permissions enforced";
+$string["mcp_banner_cta"] = "Explore Moodle MCP";
+$string["mcp_banner_description"] = "Install local_mcp to expose Helpdesk features to ChatGPT through native Moodle permissions.";
+$string["mcp_banner_dismiss"] = "Do not show this again";
+$string["mcp_banner_title"] = "Bring Helpdesk into ChatGPT";
 $string['notification_manager'] = 'Manage Messages';
 $string['pluginname'] = 'Helpdesk';
 $string['priority'] = 'Priority';
