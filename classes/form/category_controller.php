@@ -72,9 +72,9 @@ class category_controller {
             ]);
         }
 
-        echo $OUTPUT->header();
+        \local_helpdesk\output\page::header();
         $form->display();
-        echo $OUTPUT->footer();
+        \local_helpdesk\output\page::finish();
         die;
     }
 
@@ -117,10 +117,10 @@ class category_controller {
             ]);
         }
 
-        echo $OUTPUT->header();
+        \local_helpdesk\output\page::header();
         echo $OUTPUT->heading(get_string("updatecategory", "local_helpdesk"));
         $form->display();
-        echo $OUTPUT->footer();
+        \local_helpdesk\output\page::finish();
         die;
     }
 
