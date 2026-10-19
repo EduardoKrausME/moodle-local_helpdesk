@@ -76,6 +76,8 @@ if (!$hasview) {
     $hasview = has_capability("local/helpdesk:view", $context);
 }
 
+\local_helpdesk\output\page::start();
+
 // Add HelpDesk secondary nav.
 if ($hasticketmanage) {
     local_helpdesk_set_secondarynav();
@@ -108,7 +110,7 @@ if ($action == "delete") {
             \core\output\notification::NOTIFY_SUCCESS);
     }
 
-    echo $OUTPUT->header();
+    \local_helpdesk\output\page::header();
 
     $cancelurl = new moodle_url("/local/helpdesk/ticket.php", ["id" => $ticket->get_idkey()]);
     $continueurl = new moodle_url("/local/helpdesk/ticket.php",
@@ -124,7 +126,7 @@ if ($action == "delete") {
         $continuebutton,
         $cancelurl);
 
-    echo $OUTPUT->footer();
+    \local_helpdesk\output\page::finish();
     die;
 }
 
@@ -219,7 +221,7 @@ foreach ($responses as $response) {
 $templatecontext["allfiles_count"] = count($templatecontext["allfiles"]);
 $templatecontext["has_closed"] = $ticket->has_closed();
 
-echo $OUTPUT->header();
+\local_helpdesk\output\page::header();
 
 echo \html_writer::start_tag("div", ["class" => "ticket-details row"]);
 echo \html_writer::start_tag("div", ["class" => "col-md-7 col-lg-8 col-xxl-9"]);
@@ -243,4 +245,4 @@ echo \html_writer::end_tag("div");
 
 $PAGE->requires->js_call_amd("local_helpdesk/ticket", "init", [$ticket->get_idkey()]);
 
-echo $OUTPUT->footer();
+\local_helpdesk\output\page::finish();
