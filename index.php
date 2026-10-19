@@ -64,6 +64,8 @@ if (!$hasticketview) {
 
 require_capability("local/helpdesk:view", $context);
 
+\local_helpdesk\output\page::start();
+
 // Add HelpDesk secondary nav.
 if ($hasticketmanage) {
     local_helpdesk_set_secondarynav();
@@ -241,7 +243,7 @@ if ($action == "add") {
     }
 }
 
-echo $OUTPUT->header();
+\local_helpdesk\output\page::header();
 if (\local_helpdesk\mcp_banner::should_show()) {
     echo \local_helpdesk\mcp_banner::render($OUTPUT, $PAGE->url);
 }
@@ -262,4 +264,4 @@ if ($hasticketmanage) {
 echo $OUTPUT->render_from_template("local_helpdesk/index", $templatecontext);
 $PAGE->requires->js_call_amd("local_helpdesk/index", "init");
 
-echo $OUTPUT->footer();
+\local_helpdesk\output\page::finish();
