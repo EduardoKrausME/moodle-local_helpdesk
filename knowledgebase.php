@@ -59,6 +59,8 @@ if (!$hasview) {
     $hasview = has_capability("local/helpdesk:knowledgebase_view", $context);
 }
 
+\local_helpdesk\output\page::start();
+
 // Add HelpDesk secondary nav.
 if ($hasknowledgebasemanage) {
     local_helpdesk_set_secondarynav();
@@ -92,7 +94,7 @@ if ($hasknowledgebasemanage) {
                 \core\output\notification::NOTIFY_SUCCESS);
         }
 
-        echo $OUTPUT->header();
+        \local_helpdesk\output\page::header();
 
         $cancelurl = new moodle_url("/local/helpdesk/knowledgebase.php");
         $continueurl = new moodle_url("/local/helpdesk/knowledgebase.php",
@@ -108,7 +110,7 @@ if ($hasknowledgebasemanage) {
             $continuebutton,
             $cancelurl);
 
-        echo $OUTPUT->footer();
+        \local_helpdesk\output\page::finish();
         die;
     }
     if (optional_param("action", false, PARAM_TEXT) == "import") {
@@ -146,7 +148,7 @@ if ($id) {
     $PAGE->navbar->add($knowledgebase->get_category()->get_name());
     $PAGE->navbar->add($knowledgebase->get_title());
 
-    echo $OUTPUT->header();
+    \local_helpdesk\output\page::header();
 
     $templatecontext = [
         "has_manage" => $hasknowledgebasemanage,
@@ -157,9 +159,9 @@ if ($id) {
         "content" => $knowledgebase->get_description(),
     ];
     echo $OUTPUT->render_from_template("local_helpdesk/knowledgebase_view", $templatecontext);
-    echo $OUTPUT->footer();
+    \local_helpdesk\output\page::finish();
 } else {
-    echo $OUTPUT->header();
+    \local_helpdesk\output\page::header();
 
     $templatecontext = [
         "categorys" => [],
@@ -219,5 +221,5 @@ if ($id) {
 
     echo $OUTPUT->render_from_template("local_helpdesk/knowledgebase", $templatecontext);
 
-    echo $OUTPUT->footer();
+    \local_helpdesk\output\page::finish();
 }
