@@ -43,6 +43,8 @@ $PAGE->navbar->add(get_string("categories", "local_helpdesk"), new moodle_url("/
 require_login(null, false);
 require_capability("local/helpdesk:ticketmanage", $context);
 
+\local_helpdesk\output\page::start();
+
 // Add HelpDesk secondary nav.
 local_helpdesk_set_secondarynav();
 
@@ -107,7 +109,7 @@ if ($actionform == "add") {
             \core\output\notification::NOTIFY_SUCCESS);
     }
 
-    echo $OUTPUT->header();
+    \local_helpdesk\output\page::header();
 
     $cancelurl = new moodle_url("/local/helpdesk/categories.php");
     $continueurl = new moodle_url("/local/helpdesk/categories.php",
@@ -123,7 +125,7 @@ if ($actionform == "add") {
         $continuebutton,
         $cancelurl);
 
-    echo $OUTPUT->footer();
+    \local_helpdesk\output\page::finish();
     die;
 } else {
     $categories = category::get_all();
@@ -141,6 +143,6 @@ if ($actionform == "add") {
     }
 }
 
-echo $OUTPUT->header();
+\local_helpdesk\output\page::header();
 echo $OUTPUT->render_from_template("local_helpdesk/categories", $templatecontext);
-echo $OUTPUT->footer();
+\local_helpdesk\output\page::finish();
