@@ -8,11 +8,11 @@
 //
 // Moodle is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
  * Helpdesk layout selector.
@@ -33,6 +33,8 @@ use local_kopere_dashboard\output\layout;
  */
 class page {
     /**
+     * Determine whether the current page belongs inside Kopere Dashboard.
+     *
      * @param context|null $context Page context.
      * @return bool
      */
@@ -46,6 +48,8 @@ class page {
     }
 
     /**
+     * Start buffering only when the dashboard layout is selected.
+     *
      * @return void
      */
     public static function start(): void {
@@ -58,6 +62,8 @@ class page {
     }
 
     /**
+     * Render the standard Moodle page header for standalone views.
+     *
      * @return void
      */
     public static function header(): void {
@@ -68,6 +74,8 @@ class page {
     }
 
     /**
+     * Finish rendering in the selected page layout.
+     *
      * @return void
      */
     public static function finish(): void {
