@@ -8,11 +8,11 @@
 //
 // Moodle is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
  * Helpdesk dashboard integration tests.
@@ -29,6 +29,8 @@ use context_system;
 use local_helpdesk\output\page;
 
 /**
+ * Verify support menu registration and capabilities for different roles.
+ *
  * @covers \local_helpdesk\menu
  * @covers \local_helpdesk\capabilities_provider
  * @covers \local_helpdesk\output\page
