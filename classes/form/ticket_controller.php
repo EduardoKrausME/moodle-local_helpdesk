@@ -88,9 +88,9 @@ class ticket_controller {
 
         $PAGE->set_title(get_string("addticket", "local_helpdesk"));
         $PAGE->set_heading(get_string("addticket", "local_helpdesk"));
-        echo $OUTPUT->header();
+        \local_helpdesk\output\page::header();
         $form->display();
-        echo $OUTPUT->footer();
+        \local_helpdesk\output\page::finish();
         die;
     }
 
@@ -160,9 +160,9 @@ class ticket_controller {
 
         $PAGE->set_title(get_string("editticket", "local_helpdesk"));
         $PAGE->set_heading(get_string("editticket", "local_helpdesk"));
-        echo $OUTPUT->header();
+        \local_helpdesk\output\page::header();
         $form->display();
-        echo $OUTPUT->footer();
+        \local_helpdesk\output\page::finish();
         die;
     }
 }
