@@ -62,7 +62,9 @@ if (!$hasticketview) {
     $hasticketview = has_capability("local/helpdesk:view", $context);
 }
 
-require_capability("local/helpdesk:view", $context);
+if (!$hasticketview) {
+    require_capability("local/helpdesk:view", $context);
+}
 
 \local_helpdesk\output\page::start();
 
