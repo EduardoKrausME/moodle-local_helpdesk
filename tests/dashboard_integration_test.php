@@ -62,6 +62,25 @@ final class dashboard_integration_test extends advanced_testcase {
     }
 
     /**
+     * Render staff content in the standard Kopere Dashboard card without escaping HTML.
+     */
+    public function test_dashboard_card_wraps_helpdesk_content(): void {
+        global $OUTPUT;
+
+        $this->resetAfterTest();
+        $this->setAdminUser();
+
+        $content = '<form action="/local/helpdesk/index.php"><input name="subject"></form>';
+        $html = $OUTPUT->render_from_template("local_helpdesk/dashboard_card", [
+            "content" => $content,
+        ]);
+
+        $this->assertStringContainsString('class="kopere_dashboard-card"', $html);
+        $this->assertStringContainsString($content, $html);
+        $this->assertSame(1, substr_count($html, 'class="kopere_dashboard-card"'));
+    }
+
+    /**
      * All registered Helpdesk capabilities are exposed without duplicates.
      */
     public function test_capabilities_provider(): void {
