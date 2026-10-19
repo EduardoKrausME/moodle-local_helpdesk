@@ -81,7 +81,9 @@ class page {
     public static function finish(): void {
         global $PAGE, $OUTPUT;
         if (self::uses_dashboard()) {
-            $content = ob_get_clean();
+            $content = $OUTPUT->render_from_template("local_helpdesk/dashboard_card", [
+                "content" => ob_get_clean(),
+            ]);
             layout::page_render($PAGE->context, $content, true, "kopere-helpdesk-page");
             return;
         }
