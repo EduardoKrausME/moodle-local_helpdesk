@@ -116,7 +116,7 @@ class ai extends external_api {
         $instructions = trim($params["message"]);
 
         if (!$responses) {
-            $promptkey = \core_text::strlen($instructions) > 10
+            $promptkey = strlen($instructions) > 10
                 ? "ai_ticket_prompt_1"
                 : "ai_ticket_prompt_2";
             $promptdata = [
@@ -143,7 +143,7 @@ class ai extends external_api {
                 ];
             }
 
-            $promptkey = \core_text::strlen($instructions) > 10
+            $promptkey = strlen($instructions) > 10
                 ? "ai_ticket_prompt_3"
                 : "ai_ticket_prompt_4";
             $messages[] = [
@@ -223,7 +223,7 @@ class ai extends external_api {
         self::validate_context($context);
 
         $instructions = trim($params["message"]);
-        if (\core_text::strlen($instructions) <= 10) {
+        if (strlen($instructions) <= 10) {
             return [
                 "success" => false,
                 "error" => get_string("knowledgebase_prompt_short", "local_helpdesk"),

@@ -228,7 +228,7 @@ final class write_tool extends base_tool {
             }
             $titlefield = $this->operation === 'create_ticket' ? 'subject' : 'title';
             $title = trim(clean_param((string)($arguments[$titlefield] ?? ''), PARAM_TEXT));
-            if ($title === '' || \core_text::strlen($title) > 255) {
+            if ($title === '' || strlen($title) > 255) {
                 throw new api_exception('invalid_title', 400);
             }
             if (trim(strip_tags((string)($arguments['description'] ?? ''))) === '') {
