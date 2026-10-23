@@ -49,6 +49,10 @@ class send_message extends send_events {
 
         require_once("{$CFG->dirroot}/login/lib.php");
 
+        // Load notification templates before applying substitutions.
+        $this->subject = (string)($this->koperedashboardevents->subject ?? "");
+        $this->message = (string)($this->koperedashboardevents->message ?? "");
+
         $this->subject = $this->replace_date($this->subject);
         $this->message = $this->replace_date($this->message);
 
@@ -100,7 +104,7 @@ class send_message extends send_events {
 
             if (isset($this->event->other["password"])) {
                 $userto->password = $this->event->other["password"];
-            } else if (strpos($this->message, "{[to.password]}")) {
+            } else if (strpos($this->message, "{[to.password]}") !== false) {
                 $newpassword = $this->login_generate_password($userto);
                 $userto->password = "{$CFG->wwwroot}/login/forgot_password.php?token={$newpassword}";
             } else if (isset($USER->tmp_password)) {
