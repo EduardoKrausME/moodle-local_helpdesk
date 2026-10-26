@@ -25,41 +25,25 @@
 use core\navigation\views\secondary;
 
 /**
- * Add a single Helpdesk link for learners in the regular Moodle navigation.
+ * Add a Helpdesk link to the legacy Moodle navigation tree.
  *
- * Support agents use the Kopere Dashboard menu instead.
+ * The primary navigation hook exposes the same link in the top bar on Boost.
  *
  * @param global_navigation $nav Moodle navigation.
  * @return void
  */
 function local_helpdesk_extend_navigation(global_navigation $nav) {
-    global $COURSE, $SITE;
-
-    if (!isloggedin() || isguestuser()) {
+    if (!\local_helpdesk\navigation::should_show()) {
         return;
     }
 
-    $context = context_system::instance();
-    if ((!has_capability("local/helpdesk:view", $context)
-            && !has_capability("local/helpdesk:viewall", $context))
-        || has_capability("local/helpdesk:ticketmanage", $context)) {
+    if ($nav->find("helpdesk_menu", null)) {
         return;
     }
 
-    $setting = get_config("local_helpdesk", "menu");
-    if ($setting === "none") {
-        return;
-    }
-
-    $incourse = isset($COURSE->id) && $COURSE->id != $SITE->id;
-    if (($setting === "course" || $setting === false) && !$incourse) {
-        return;
-    }
-
-    $params = $incourse ? ["courseid" => $COURSE->id] : [];
     $nav->add(
         get_string("pluginname", "local_helpdesk"),
-        new moodle_url("/local/helpdesk/index.php", $params),
+        \local_helpdesk\navigation::get_url(),
         navigation_node::TYPE_CUSTOM,
         null,
         "helpdesk_menu"
