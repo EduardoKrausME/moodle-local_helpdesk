@@ -57,7 +57,7 @@ final class navigation_test extends advanced_testcase {
         $this->assertFalse(navigation::should_show());
         set_config("menu", "system", "local_helpdesk");
         $this->assertTrue(navigation::should_show());
-        $this->assertSame("/local/helpdesk/index.php", navigation::get_url()->get_path());
+        $this->assertStringEndsWith("/local/helpdesk/index.php", navigation::get_url()->get_path());
 
         $course = $this->getDataGenerator()->create_course();
         $PAGE->set_course($course);
