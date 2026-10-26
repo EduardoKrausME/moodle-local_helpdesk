@@ -24,8 +24,6 @@
 
 namespace local_helpdesk\local;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Checks whether a supported AI Bridge installation is available.
  */
