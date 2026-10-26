@@ -113,7 +113,7 @@ The schedule can be reviewed or changed through Moodle's scheduled task administ
 
 The reminder task records that the reminder was sent so the same unanswered-ticket reminder is not repeatedly sent for the same ticket.
 
-After installation, verify that Moodle cron is running correctly because the reminder and automatic-closing workflows depend on scheduled tasks.
+Reminder and automatic-closing workflows depend on correctly scheduled Moodle cron tasks.
 
 ## Configuration
 
