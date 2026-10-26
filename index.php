@@ -118,7 +118,9 @@ if ($courseid) {
 $userfullname = get_string("finduser", "local_helpdesk");
 if ($finduser) {
     $user = $DB->get_record("user", ["id" => $finduser]);
-    $userfullname = fullname($user);
+    if ($user) {
+        $userfullname = fullname($user);
+    }
 }
 
 $templatecontext = [

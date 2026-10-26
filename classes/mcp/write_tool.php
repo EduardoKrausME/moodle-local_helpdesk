@@ -26,6 +26,7 @@ namespace local_helpdesk\mcp;
 use context;
 use context_course;
 use context_system;
+use local_helpdesk\access;
 use local_helpdesk\mail\ticket_mail;
 use local_helpdesk\model\knowledgebase;
 use local_helpdesk\model\response;
@@ -221,6 +222,12 @@ final class write_tool extends base_tool {
     private function validate_input(array $arguments, authenticated_identity $identity): void {
         global $DB;
 
+        // The inherited "view" permission must not let read-only staff mutate tickets through MCP.
+        if ($this->operation === 'create_ticket'
+                && !access::can_create(context_system::instance(), $identity->userid)) {
+            throw new api_exception('permission_denied', 403);
+        }
+
         if (in_array($this->operation, ['create_ticket', 'create_article'], true)) {
             $categoryid = (int)($arguments['categoryid'] ?? 0);
             if (!$categoryid || !$DB->record_exists('local_helpdesk_category', ['id' => $categoryid])) {
@@ -251,6 +258,12 @@ final class write_tool extends base_tool {
             $item = self::require_ticket((int)($arguments['ticketid'] ?? 0));
             if ($this->operation === 'reply_ticket') {
                 read_tool::assert_ticket_access((int)$item->get_userid(), $identity, (int)$item->get_courseid());
+                $ticketcontext = $item->get_courseid()
+                    ? context_course::instance((int)$item->get_courseid(), MUST_EXIST)
+                    : context_system::instance();
+                if (!access::can_reply($item, $ticketcontext, $identity->userid)) {
+                    throw new api_exception('permission_denied', 403);
+                }
                 if ($item->get_status() === ticket::STATUS_CLOSED) {
                     throw new api_exception('ticket_closed', 409);
                 }

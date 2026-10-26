@@ -52,6 +52,7 @@ final class viewall_access_test extends advanced_testcase {
         $this->assertTrue(access::can_view_ticket($ticket, $context));
         $this->assertFalse(access::can_create($context));
         $this->assertFalse(access::can_reply($ticket, $context));
+        $this->assertFalse(access::can_reply(new ticket(["userid" => $viewer->id]), $context));
         $this->assertFalse(has_capability("local/helpdesk:ticketmanage", $context));
 
         $definition = menu::get_definition($context);
