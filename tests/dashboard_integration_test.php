@@ -44,8 +44,21 @@ final class dashboard_integration_test extends advanced_testcase {
         $context = context_system::instance();
         $this->setAdminUser();
         $this->assertTrue(page::uses_dashboard($context));
-        $this->setUser($this->getDataGenerator()->create_user());
+        $user = $this->getDataGenerator()->create_user();
+        $roleid = $this->getDataGenerator()->create_role();
+        assign_capability("local/helpdesk:view", CAP_ALLOW, $roleid, $context->id);
+        role_assign($roleid, $user->id, $context->id);
+        $this->setUser($user);
         $this->assertFalse(page::uses_dashboard($context));
+
+        // The Dashboard sidebar should expose Helpdesk even on reportcard/my.php.
+        set_config("menu", "course", "local_helpdesk");
+        $definition = menu::get_definition($context);
+        $this->assertSame("local/helpdesk:view", $definition["items"][0]["capability"]);
+        $this->assertSame([], $definition["items"][0]["children"]);
+        $this->assertSame("/local/helpdesk/index.php", $definition["items"][0]["url"]->get_path());
+
+        set_config("menu", "none", "local_helpdesk");
         $this->assertSame([], menu::get_definition($context));
     }
 
@@ -59,6 +72,13 @@ final class dashboard_integration_test extends advanced_testcase {
         $this->assertSame("tools", $definition["category"]);
         $this->assertSame("local/helpdesk:ticketmanage", $definition["items"][0]["capability"]);
         $this->assertNotEmpty($definition["items"][0]["children"]);
+        $settings = array_filter($definition["items"][0]["children"], static function(array $child): bool {
+            return $child["url"]->get_path() === "/admin/settings.php";
+        });
+        $this->assertCount(1, $settings);
+        $setting = reset($settings);
+        $this->assertSame("moodle/site:config", $setting["capability"]);
+        $this->assertSame("local_helpdesk", $setting["url"]->get_param("section"));
     }
 
     /**
