@@ -87,6 +87,7 @@ final class dashboard_integration_test extends advanced_testcase {
         $definitions = capabilities_provider::get_capabilities();
         $this->assertEqualsCanonicalizing([
             "local/helpdesk:view",
+            "local/helpdesk:viewall",
             "local/helpdesk:ticketmanage",
             "local/helpdesk:categorymanage",
             "local/helpdesk:categorydelete",

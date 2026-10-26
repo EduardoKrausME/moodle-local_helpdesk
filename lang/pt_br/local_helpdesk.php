@@ -233,3 +233,4 @@ $string['ticketupdated'] = 'Ticket atualizada com sucesso';
 $string['updatecategory'] = 'Atualizar Categoria';
 $string['userid'] = 'ID Usuário';
 $string['viewticket'] = 'Ver Ticket';
+$string['helpdesk:viewall'] = 'Visualizar todos os chamados e suas conversas, sem permissão para responder, alterar ou exportar.';

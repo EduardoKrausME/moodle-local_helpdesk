@@ -33,6 +33,11 @@ $capabilities = [
             "student" => CAP_ALLOW,
         ],
     ],
+    "local/helpdesk:viewall" => [
+        "captype" => "read",
+        "contextlevel" => CONTEXT_SYSTEM,
+        "archetypes" => [],
+    ],
     "local/helpdesk:ticketmanage" => [
         "captype" => "write",
         "contextlevel" => CONTEXT_SYSTEM,
