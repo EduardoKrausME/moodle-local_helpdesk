@@ -29,6 +29,7 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 use local_ai_bridge\api as ai_bridge_api;
+use local_helpdesk\local\ai_bridge;
 use local_helpdesk\model\response;
 use Throwable;
 
@@ -102,6 +103,15 @@ class ai extends external_api {
         $context = \context_system::instance();
         require_capability("local/helpdesk:ticketmanage", $context);
         self::validate_context($context);
+
+        if (!ai_bridge::is_available()) {
+            return [
+                "success" => false,
+                "error" => get_string("ai_missing", "local_helpdesk",
+                    "https://github.com/EduardoKrausME/moodle-local_ai_bridge"),
+            ];
+        }
+
 
         $ticket = \local_helpdesk\model\ticket::get_by_id($params["ticketid"]);
         $responses = response::get_all(null, [
@@ -221,6 +231,15 @@ class ai extends external_api {
         $context = \context_system::instance();
         require_capability("local/helpdesk:knowledgebase_manage", $context);
         self::validate_context($context);
+
+        if (!ai_bridge::is_available()) {
+            return [
+                "success" => false,
+                "error" => get_string("ai_missing", "local_helpdesk",
+                    "https://github.com/EduardoKrausME/moodle-local_ai_bridge"),
+            ];
+        }
+
 
         $instructions = trim($params["message"]);
         if (strlen($instructions) <= 10) {
