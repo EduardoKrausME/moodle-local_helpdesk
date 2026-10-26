@@ -194,9 +194,8 @@ final class read_tool implements tool_interface {
         }
         if ($courseid) {
             $context = \context_course::instance($courseid, MUST_EXIST);
-            $allowed = $support
-                ? access::can_view_all($context, $identity->userid)
-                : has_capability('local/helpdesk:view', $context, $identity->userid);
+            $allowed = access::can_view_all($context, $identity->userid)
+                || (!$support && has_capability('local/helpdesk:view', $context, $identity->userid));
             if (!$allowed) {
                 throw new api_exception('permission_denied', 403);
             }
