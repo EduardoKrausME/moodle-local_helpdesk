@@ -114,18 +114,19 @@ final class mcp_provider_test extends \advanced_testcase {
         $this->expectException(\local_mcp\exception\api_exception::class);
         $read->execute(['ticketid' => $ticketid], $outsider);
     }
+
     /**
      * Viewall permits reading other people's tickets but not creating new tickets through MCP.
      *
-     * @covers \\local_helpdesk\\mcp\\read_tool
-     * @covers \\local_helpdesk\\mcp\\write_tool
+     * @covers \local_helpdesk\mcp\read_tool
+     * @covers \local_helpdesk\mcp\write_tool
      */
     public function test_viewall_read_only_mcp_access(): void {
         global $DB;
         $this->require_mcp();
         $this->resetAfterTest();
 
-        $context = \\context_system::instance();
+        $context = \context_system::instance();
         $viewer = $this->getDataGenerator()->create_user();
         $roleid = $this->getDataGenerator()->create_role();
         assign_capability('local/helpdesk:viewall', CAP_ALLOW, $roleid, $context->id);
@@ -148,7 +149,7 @@ final class mcp_provider_test extends \advanced_testcase {
         $item = (new read_tool('get_ticket'))->execute(['ticketid' => $ticketid], $identity);
         $this->assertSame('Readonly MCP ticket', $item['subject']);
 
-        $this->expectException(\\local_mcp\\exception\\api_exception::class);
+        $this->expectException(\local_mcp\exception\api_exception::class);
         (new write_tool('create_ticket'))->preview([
             'categoryid' => $categoryid,
             'subject' => 'Must not create',
