@@ -73,7 +73,7 @@ When AI Bridge is configured, the plugin can also assist with drafting knowledge
 
 ## AI-assisted replies with AI Bridge
 
-AI-assisted writing is routed through the required **AI Bridge** dependency.
+AI-assisted writing is available through the optional **AI Bridge** integration. Without AI Bridge, Helpdesk works normally and hides the AI-assisted writing controls.
 
 When the AI Bridge purposes `helpdesk-ticket-response` and `helpdesk-knowledgebase` have enabled routes for the current tenant and user, support staff can request a suggested response directly from the ticket reply form.
 
