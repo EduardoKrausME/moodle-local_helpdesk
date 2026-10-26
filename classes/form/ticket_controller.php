@@ -25,6 +25,7 @@
 namespace local_helpdesk\form;
 
 use context_system;
+use local_helpdesk\access;
 use local_helpdesk\mail\ticket_mail;
 use moodle_url;
 use local_helpdesk\model\ticket;
@@ -44,6 +45,10 @@ class ticket_controller {
      */
     public function insert_ticket() {
         global $PAGE, $OUTPUT, $USER;
+
+        if (!access::can_create($PAGE->context)) {
+            throw new \required_capability_exception($PAGE->context, "local/helpdesk:view", "nopermissions", "");
+        }
 
         $hasticketmanage = has_capability("local/helpdesk:ticketmanage", context_system::instance());
         $form = new ticket_form(null, ["has_ticketmanage" => $hasticketmanage]);
@@ -108,6 +113,7 @@ class ticket_controller {
     public function update_ticket($ticketid) {
         global $PAGE, $OUTPUT;
 
+        require_capability("local/helpdesk:ticketmanage", $PAGE->context);
         $ticket = ticket::get_by_id($ticketid);
 
         $form = new ticket_form(null, ["ticket" => $ticket]);

@@ -123,6 +123,7 @@ $string['helpdesk:knowledgebase_manage'] = 'Manage articles in the knowledge bas
 $string['helpdesk:knowledgebase_view'] = 'View articles in the knowledge base';
 $string['helpdesk:ticketmanage'] = 'Allows managing the Helpdesk, including responding to and closing tickets.';
 $string['helpdesk:view'] = 'Allows viewing Helpdesk tickets and creating them for oneself.';
+$string['helpdesk:viewall'] = 'View all Helpdesk tickets and conversation history without permission to reply, modify, or export.';
 $string['helpdesk_manage_users'] = 'View users with permission to manage this role category';
 $string['index_top_all_open_tickets'] = 'All Open Tickets';
 $string['index_top_completed_tickets'] = 'Completed Tickets';

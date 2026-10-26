@@ -94,6 +94,7 @@ $string['helpdesk:knowledgebase_manage'] = 'Gerenciar artigos na base de conheci
 $string['helpdesk:knowledgebase_view'] = 'Ver artigos na base de conhecimento.';
 $string['helpdesk:ticketmanage'] = 'Permite gerenciar o Helpdesk, incluindo responder e fechar tickets.';
 $string['helpdesk:view'] = 'Permite visualizar tickets do Helpdesk e criá-los para si mesmo.';
+$string['helpdesk:viewall'] = 'Visualizar todos os chamados e suas conversas, sem permissão para responder, alterar ou exportar.';
 $string['helpdesk_manage_users'] = 'Ver usuários com permissão para gerenciar esta categoria de papel';
 $string['index_top_all_open_tickets'] = 'All Aberto Tickets';
 $string['index_top_completed_tickets'] = 'Concluídos Tickets';

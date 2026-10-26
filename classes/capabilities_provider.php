@@ -35,7 +35,7 @@ class capabilities_provider {
      */
     public static function get_capabilities(): array {
         $definitions = [];
-        foreach (["view", "ticketmanage", "categorymanage", "categorydelete"] as $name) {
+        foreach (["view", "viewall", "ticketmanage", "categorymanage", "categorydelete"] as $name) {
             $capability = "local/helpdesk:{$name}";
             $description = get_string("helpdesk:{$name}", "local_helpdesk");
             $definitions[$capability] = [

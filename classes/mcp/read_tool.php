@@ -25,6 +25,7 @@ namespace local_helpdesk\mcp;
 
 use context;
 use context_system;
+use local_helpdesk\access;
 use local_helpdesk\model\ticket;
 use local_mcp\exception\api_exception;
 use local_mcp\read\tool_interface;
@@ -79,9 +80,9 @@ final class read_tool implements tool_interface {
     public function get_description(): string {
         $descriptions = [
             'list_tickets' => 'Search paginated tickets. Non-support users only see their own tickets; '
-                . 'support users may filter by user, category, priority and status.',
+                . 'support or read-only viewall users may filter by user, category, priority and status.',
             'get_ticket' => 'Get one ticket by database ID or public idkey, including message history. '
-                . 'Only its owner or Helpdesk support may read it.',
+                . 'Its owner, Helpdesk support or users with viewall permission may read it.',
             'list_categories' => 'Return the available ticket and knowledge-base categories.',
             'list_articles' => 'Read or search Helpdesk knowledge-base articles, optionally by category.',
             'ticket_stats' => 'Aggregate ticket counts by status and priority for Helpdesk support.',
@@ -188,14 +189,14 @@ final class read_tool implements tool_interface {
     public static function assert_ticket_access(int $ownerid, authenticated_identity $identity,
             int $courseid = 0): void {
         $support = $ownerid !== $identity->userid;
-        if ($support && !has_capability('local/helpdesk:ticketmanage',
-                context_system::instance(), $identity->userid)) {
+        if ($support && !access::can_view_all(context_system::instance(), $identity->userid)) {
             throw new api_exception('permission_denied', 403);
         }
         if ($courseid) {
             $context = \context_course::instance($courseid, MUST_EXIST);
-            $capability = $support ? 'local/helpdesk:ticketmanage' : 'local/helpdesk:view';
-            if (!has_capability($capability, $context, $identity->userid)) {
+            $allowed = access::can_view_all($context, $identity->userid)
+                || (!$support && has_capability('local/helpdesk:view', $context, $identity->userid));
+            if (!$allowed) {
                 throw new api_exception('permission_denied', 403);
             }
         }
@@ -224,7 +225,7 @@ final class read_tool implements tool_interface {
     private function list_tickets(array $arguments, authenticated_identity $identity): array {
         global $DB;
         [$limit, $offset] = self::pagination($arguments);
-        $support = has_capability('local/helpdesk:ticketmanage', context_system::instance(), $identity->userid);
+        $support = access::can_view_all(context_system::instance(), $identity->userid);
         $where = [];
         $params = [];
         if (!$support) {

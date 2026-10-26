@@ -24,6 +24,7 @@
 
 namespace local_helpdesk\form;
 
+use local_helpdesk\access;
 use local_helpdesk\mail\ticket_mail;
 use local_helpdesk\model\response;
 use local_helpdesk\model\ticket;
@@ -47,6 +48,13 @@ class response_controller {
      */
     public function insert_response($ticket, $hasticketmanage) {
         global $USER;
+
+        $context = $ticket->get_courseid()
+            ? \context_course::instance($ticket->get_courseid())
+            : \context_system::instance();
+        if (!access::can_reply($ticket, $context)) {
+            throw new \required_capability_exception($context, "local/helpdesk:view", "nopermissions", "");
+        }
 
         $form = new response_form(null, ["ticket" => $ticket, "hasticketmanage" => $hasticketmanage]);
 

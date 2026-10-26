@@ -23,6 +23,7 @@
  */
 
 use core\output\notification;
+use local_helpdesk\access;
 use local_helpdesk\form\response_controller;
 use local_helpdesk\model\category;
 use local_helpdesk\model\response;
@@ -48,13 +49,10 @@ if (!$ticket) {
     die;
 }
 
-if ($ticket->get_courseid()) {
-    $context = context_course::instance($ticket->get_courseid());
-    require_login($ticket->get_courseid(), false);
-} else {
-    $context = context_system::instance();
-    require_login();
-}
+$context = $ticket->get_courseid()
+    ? context_course::instance($ticket->get_courseid())
+    : context_system::instance();
+require_login();
 $PAGE->set_context($context);
 $PAGE->set_url(new moodle_url("/local/helpdesk/ticket.php?id={$ticketid}"));
 $PAGE->set_title($ticket->get_subject());
@@ -64,17 +62,14 @@ $PAGE->requires->jquery();
 $PAGE->requires->jquery_plugin("ui");
 $PAGE->requires->jquery_plugin("ui-css");
 
-if ($USER->id != $ticket->get_userid()) {
-    require_capability("local/helpdesk:ticketmanage", $context);
-} else {
-    require_capability("local/helpdesk:view", $context);
+if (!access::can_view_ticket($ticket, $context)) {
+    throw new required_capability_exception($context, "local/helpdesk:viewall", "nopermissions", "");
 }
 
-$hasview = $hasticketmanage = has_capability("local/helpdesk:ticketmanage", $context);
+$hasticketmanage = has_capability("local/helpdesk:ticketmanage", $context);
+$canreply = access::can_reply($ticket, $context);
+$hasuserdetails = $hasticketmanage || (int)$USER->id === (int)$ticket->get_userid();
 $hasticketdelete = is_siteadmin();
-if (!$hasview) {
-    $hasview = has_capability("local/helpdesk:view", $context);
-}
 
 \local_helpdesk\output\page::start();
 
@@ -132,6 +127,10 @@ if ($action == "delete") {
 
 $newstatus = optional_param("newstatus", false, PARAM_TEXT);
 if ($newstatus && in_array($newstatus, [ticket::STATUS_CLOSED, ticket::STATUS_RESOLVED])) {
+    if (!$canreply) {
+        throw new required_capability_exception($context, "local/helpdesk:view", "nopermissions", "");
+    }
+    require_sesskey();
     $ticket->change_status($newstatus);
     redirect(new moodle_url("/local/helpdesk/ticket.php?id={$ticketid}"));
 }
@@ -161,10 +160,11 @@ $templatecontext = [
     "user_fullname" => fullname($ticket->get_user()),
     "user_picture" => (new user_picture($ticket->get_user()))->get_url($PAGE),
 
-    "detail" => [
+    "has_userdetails" => $hasuserdetails,
+    "detail" => $hasuserdetails ? [
         "list_courses" => profile::list_courses($ticket->get_user()->id),
         "get_user_info" => profile::get_user_info($ticket->get_user()),
-    ],
+    ] : [],
 
     "id" => $ticket->get_id(),
     "idkey" => $ticket->get_idkey(),
@@ -179,6 +179,7 @@ $templatecontext = [
     "description" => $ticket->get_description(),
 
     "hasticketmanage" => $hasticketmanage,
+    "can_reply" => $canreply,
     "has_ticketdelete" => $hasticketdelete,
     "delete_url" => new moodle_url("/local/helpdesk/ticket.php", [
         "id" => $ticket->get_idkey(),
@@ -229,12 +230,12 @@ echo \html_writer::start_tag("div", ["class" => "col-md-7 col-lg-8 col-xxl-9"]);
 echo $OUTPUT->render_from_template("local_helpdesk/ticket", $templatecontext);
 
 // Closed ticket not answered.
-if ($ticket->get_status() != ticket::STATUS_CLOSED) {
+if ($ticket->get_status() != ticket::STATUS_CLOSED && $canreply) {
     echo \html_writer::start_tag("div", ["class" => "response-message card"]);
     $responsecontroller = new response_controller();
     $responsecontroller->insert_response($ticket, $hasticketmanage);
     echo \html_writer::end_tag("div");
-} else {
+} else if ($ticket->get_status() == ticket::STATUS_CLOSED) {
     $message = get_string("ticketclosed", "local_helpdesk");
     echo $PAGE->get_renderer("core")->render(new notification($message, "success"));
 }

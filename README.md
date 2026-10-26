@@ -183,3 +183,13 @@ For implementation, customization or professional Moodle support:
 
 https://eduardokraus.com/contato
 
+### Read-only ticket access (issue #35)
+
+Assign `local/helpdesk:viewall` to a system-level staff role to allow the complete ticket list,
+filters, ticket conversations and attachments without granting `local/helpdesk:ticketmanage`.
+The new capability is **read-only** and is not granted to any standard role by default. It
+takes precedence over `local/helpdesk:view` for ticket creation and replies unless the user
+also has `local/helpdesk:ticketmanage`. Bulk export, ticket edits, status changes and support
+replies still require their existing permissions. For Kopere Dashboard integration, also
+assign `local/kopere_dashboard:view`; otherwise Helpdesk uses its regular Moodle page.
+After deploying the update, run the Moodle plugin upgrade to register the new capability.

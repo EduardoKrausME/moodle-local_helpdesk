@@ -40,7 +40,8 @@ function local_helpdesk_extend_navigation(global_navigation $nav) {
     }
 
     $context = context_system::instance();
-    if (!has_capability("local/helpdesk:view", $context)
+    if ((!has_capability("local/helpdesk:view", $context)
+            && !has_capability("local/helpdesk:viewall", $context))
         || has_capability("local/helpdesk:ticketmanage", $context)) {
         return;
     }
@@ -81,14 +82,39 @@ function local_helpdesk_extend_navigation(global_navigation $nav) {
  * @throws require_login_exception
  */
 function local_helpdesk_pluginfile($course, $cm, context $context, $filearea, $args, $forcedownload, array $options = []) {
+    global $DB;
 
     require_login($course, true, $cm);
 
-    if (!has_capability("local/helpdesk:view", $context)) {
+    if ($context->contextlevel !== CONTEXT_SYSTEM
+        || !in_array($filearea, ["ticket", "response"], true)) {
         return false;
     }
 
-    $itemid = array_shift($args);
+    $itemid = (int)array_shift($args);
+    if (!$itemid) {
+        return false;
+    }
+
+    // Authorise the specific ticket, not just the Helpdesk file area.
+    if ($filearea === "ticket") {
+        $ticketrecord = $DB->get_record("local_helpdesk_ticket", ["id" => $itemid]);
+    } else {
+        $response = \local_helpdesk\model\response::get_by_id($itemid);
+        $ticketrecord = $response
+            ? $DB->get_record("local_helpdesk_ticket", ["id" => $response->get_ticketid()])
+            : null;
+    }
+    $ticket = $ticketrecord ? new \local_helpdesk\model\ticket($ticketrecord) : null;
+    if (!$ticket) {
+        return false;
+    }
+    $ticketcontext = $ticket->get_courseid()
+        ? context_course::instance($ticket->get_courseid())
+        : context_system::instance();
+    if (!\local_helpdesk\access::can_view_ticket($ticket, $ticketcontext)) {
+        return false;
+    }
 
     // Extract the filename / filepath from the $args array.
     $filename = array_pop($args); // The last item in the $args array.

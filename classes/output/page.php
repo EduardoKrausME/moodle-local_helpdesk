@@ -43,7 +43,8 @@ class page {
 
         $context = $context ?? $PAGE->context;
         return class_exists(layout::class)
-            && has_capability("local/helpdesk:ticketmanage", $context)
+            && (has_capability("local/helpdesk:ticketmanage", $context)
+                || has_capability("local/helpdesk:viewall", $context))
             && has_capability("local/kopere_dashboard:view", context_system::instance());
     }
 
