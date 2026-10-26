@@ -39,7 +39,8 @@ class menu {
      * @return array
      */
     public static function get_definition(context $context): array {
-        if (!has_capability("local/helpdesk:ticketmanage", $context)) {
+        $canmanage = has_capability("local/helpdesk:ticketmanage", $context);
+        if (!$canmanage && !has_capability("local/helpdesk:viewall", $context)) {
             return [];
         }
 
@@ -53,12 +54,14 @@ class menu {
                 ],
                 "icon" => "confirmation_number",
             ],
-            [
+        ];
+        if ($canmanage) {
+            $children[] = [
                 "title" => get_string("knowledgebase_name", "local_helpdesk"),
                 "url" => new moodle_url("/local/helpdesk/knowledgebase.php"),
                 "icon" => "menu_book",
-            ],
-        ];
+            ];
+        }
 
         if (has_capability("moodle/site:config", $context)) {
             $children[] = [
@@ -91,7 +94,7 @@ class menu {
                         new moodle_url("/local/helpdesk/knowledgebase.php"),
                     ],
                     "icon" => "support_agent",
-                    "capability" => "local/helpdesk:ticketmanage",
+                    "capability" => $canmanage ? "local/helpdesk:ticketmanage" : "local/helpdesk:viewall",
                     "children" => $children,
                 ],
             ],

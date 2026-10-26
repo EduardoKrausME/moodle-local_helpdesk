@@ -84,7 +84,7 @@
             </select>
         </div>
 
-        {{#has_manage}}
+        {{#has_viewall}}
             <div class="area-find">
                 <label for="find_priority">{{#str}}ticketpriority, local_helpdesk{{/str}}: </label>
                 <select name="find_priority" id="find_priority">
@@ -94,7 +94,7 @@
                     {{/priority_options}}
                 </select>
             </div>
-        {{/has_manage}}
+        {{/has_viewall}}
 
         <div class="area-find">
             <label for="find_category">{{#str}}ticketcategory, local_helpdesk{{/str}}: </label>
@@ -111,11 +111,17 @@
             {{{find_course}}}
         </div>
 
-        {{#has_manage}}
+        {{#has_user_filter}}
             <div class="area-find">
-                {{{find_user}}}
+                {{#has_manage}}
+                    {{{find_user}}}
+                {{/has_manage}}
+                {{^has_manage}}
+                    <label for="find_user">{{#str}}finduser, local_helpdesk{{/str}} (ID): </label>
+                    <input type="number" min="1" id="find_user" name="find_user" value="{{find_user_id}}">
+                {{/has_manage}}
             </div>
-        {{/has_manage}}
+        {{/has_user_filter}}
         <input type="submit" value="{{#str}}search{{/str}}">
     </div>
 </form>
@@ -165,8 +171,10 @@
 </table>
 
 <div class="control-buttons">
-    <a href="?action=add&courseid={{courseid}}"
-       class="btn btn-info text-nowrap">{{#str}}addticket, local_helpdesk{{/str}}</a>
+    {{#can_create}}
+        <a href="?action=add&courseid={{courseid}}"
+           class="btn btn-info text-nowrap">{{#str}}addticket, local_helpdesk{{/str}}</a>
+    {{/can_create}}
 
     <div style="width: 100%"></div>
     {{#has_manage}}
