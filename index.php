@@ -22,6 +22,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use local_helpdesk\access;
 use local_helpdesk\form\ticket_controller;
 use local_helpdesk\model\category;
 use local_helpdesk\model\category_users;
@@ -42,13 +43,8 @@ $courseid = optional_param("courseid", false, PARAM_INT);
 $finduser = optional_param("find_user", false, PARAM_INT);
 $search = optional_param("search", "", PARAM_TEXT);
 
-if ($courseid) {
-    $context = context_course::instance($courseid);
-    require_login($courseid, false);
-} else {
-    $context = context_system::instance();
-    require_login(null, false);
-}
+$context = $courseid ? context_course::instance($courseid) : context_system::instance();
+require_login();
 $PAGE->set_context($context);
 $PAGE->set_url(new moodle_url("/local/helpdesk/index.php"));
 
@@ -56,14 +52,12 @@ $PAGE->set_url(new moodle_url("/local/helpdesk/index.php"));
 $PAGE->set_title(get_string("tickets", "local_helpdesk"));
 $PAGE->set_heading(get_string("tickets", "local_helpdesk"));
 
-$hasticketview = $hasticketmanage = has_capability("local/helpdesk:ticketmanage", $context);
+$hasticketmanage = has_capability("local/helpdesk:ticketmanage", $context);
+$hasviewall = access::can_view_all($context);
+$cancreate = access::can_create($context);
 $hascategorymanage = has_capability("local/helpdesk:categorymanage", $context);
-if (!$hasticketview) {
-    $hasticketview = has_capability("local/helpdesk:view", $context);
-}
-
-if (!$hasticketview) {
-    require_capability("local/helpdesk:view", $context);
+if (!$cancreate && !$hasviewall) {
+    throw new required_capability_exception($context, "local/helpdesk:view", "nopermissions", "");
 }
 
 \local_helpdesk\output\page::start();
@@ -133,6 +127,8 @@ $templatecontext = [
     "category_options" => $categoryoptions,
     "find_course" => \local_helpdesk\util\filter::create_filter_course($coursefullname, $courseid),
     "find_user" => $hasticketmanage ? \local_helpdesk\util\filter::create_filter_user($userfullname, $finduser) : "",
+    "find_user_id" => $finduser ?: "",
+    "has_user_filter" => $hasviewall,
     "tickets" => [],
 
     "courseid" => $courseid,
@@ -140,15 +136,21 @@ $templatecontext = [
     "search" => $search,
 
     "has_manage" => $hasticketmanage,
+    "has_viewall" => $hasviewall,
+    "can_create" => $cancreate,
     "has_categorymanage" => $hascategorymanage,
     "has_siteconfig" => has_capability("moodle/site:config", $context),
     "has_ticketdelete" => is_siteadmin(),
 ];
 
 if ($action == "add") {
+    if (!$cancreate) {
+        throw new required_capability_exception($context, "local/helpdesk:view", "nopermissions", "");
+    }
     $controller = new ticket_controller();
     $controller->insert_ticket();
-} else if ($action == "edit" && $ticketid && $hasticketmanage) {
+} else if ($action == "edit") {
+    require_capability("local/helpdesk:ticketmanage", $context);
     $controller = new ticket_controller();
     $controller->update_ticket($ticketid);
 } else {
@@ -170,7 +172,7 @@ if ($action == "add") {
         $params["courseid"] = $courseid;
     }
 
-    if (!$hasticketmanage) {
+    if (!$hasviewall) {
         $params["userid"] = $USER->id;
     } else if ($finduser) {
         $params["userid"] = $finduser;

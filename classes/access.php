@@ -70,8 +70,11 @@ final class access {
      * @return bool
      */
     public static function can_create(context $context, ?int $userid = null): bool {
-        return has_capability("local/helpdesk:ticketmanage", $context, $userid)
-            || has_capability("local/helpdesk:view", $context, $userid);
+        if (has_capability("local/helpdesk:ticketmanage", $context, $userid)) {
+            return true;
+        }
+        return !has_capability("local/helpdesk:viewall", $context, $userid)
+            && has_capability("local/helpdesk:view", $context, $userid);
     }
 
     /**
@@ -87,6 +90,9 @@ final class access {
 
         if (has_capability("local/helpdesk:ticketmanage", $context, $userid)) {
             return true;
+        }
+        if (has_capability("local/helpdesk:viewall", $context, $userid)) {
+            return false;
         }
         $userid = $userid ?? (int)$USER->id;
         return (int)$ticket->get_userid() === $userid
