@@ -33,5 +33,4 @@ $plugin->component = "local_helpdesk";
 $plugin->dependencies = [
     "local_kopere_dashboard" => 2026101900,
     "local_kopere_bi" => 2026101900,
-    "local_ai_bridge" => 2026093001,
 ];

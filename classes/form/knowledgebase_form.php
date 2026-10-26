@@ -24,6 +24,7 @@
 
 namespace local_helpdesk\form;
 
+use local_helpdesk\local\ai_bridge;
 use local_helpdesk\model\category;
 
 defined('MOODLE_INTERNAL') || die();
@@ -73,9 +74,11 @@ class knowledgebase_form extends \moodleform {
         $mform->setType("description", PARAM_RAW);
         $mform->addRule("description", null, "required");
 
-        // AI assistance is routed through local_ai_bridge.
-        $button = $OUTPUT->render_from_template("local_helpdesk/knowledgebase-form-ia", []);
-        $mform->addElement("static", "create_local_ai_bridge", get_string("ai_title", "local_helpdesk"), $button);
+        // Only show AI assistance when the optional AI Bridge is installed.
+        if (ai_bridge::is_available()) {
+            $button = $OUTPUT->render_from_template("local_helpdesk/knowledgebase-form-ia", []);
+            $mform->addElement("static", "create_local_ai_bridge", get_string("ai_title", "local_helpdesk"), $button);
+        }
 
         // Submit button.
         if (isset($this->_customdata["id"])) {

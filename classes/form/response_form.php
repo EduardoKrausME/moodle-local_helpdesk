@@ -24,6 +24,7 @@
 
 namespace local_helpdesk\form;
 
+use local_helpdesk\local\ai_bridge;
 use local_helpdesk\model\ticket;
 
 defined('MOODLE_INTERNAL') || die();
@@ -60,7 +61,7 @@ class response_form extends \moodleform {
         $mform->setType("message", PARAM_RAW);
         $mform->addRule("message", null, "required");
 
-        if ($this->_customdata["hasticketmanage"]) {
+        if ($this->_customdata["hasticketmanage"] && ai_bridge::is_available()) {
             /** @var ticket $ticket */
             $ticket = $this->_customdata["ticket"];
             $button = $OUTPUT->render_from_template("local_helpdesk/response-form-ia", [
