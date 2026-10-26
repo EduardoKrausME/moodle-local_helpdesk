@@ -55,14 +55,6 @@ class menu {
                 "icon" => "confirmation_number",
             ],
         ];
-        if ($canmanage) {
-            $children[] = [
-                "title" => get_string("knowledgebase_name", "local_helpdesk"),
-                "url" => new moodle_url("/local/helpdesk/knowledgebase.php"),
-                "icon" => "menu_book",
-            ];
-        }
-
         if (has_capability("moodle/site:config", $context)) {
             $children[] = [
                 "title" => get_string("categories", "local_helpdesk"),
@@ -91,7 +83,6 @@ class menu {
                         new moodle_url("/local/helpdesk/index.php"),
                         new moodle_url("/local/helpdesk/ticket.php"),
                         new moodle_url("/local/helpdesk/categories.php"),
-                        new moodle_url("/local/helpdesk/knowledgebase.php"),
                     ],
                     "icon" => "support_agent",
                     "capability" => $canmanage ? "local/helpdesk:ticketmanage" : "local/helpdesk:viewall",

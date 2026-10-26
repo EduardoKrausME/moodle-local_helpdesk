@@ -41,7 +41,6 @@ final class provider implements read_provider_interface, write_provider_interfac
             new read_tool('list_tickets'),
             new read_tool('get_ticket'),
             new read_tool('list_categories'),
-            new read_tool('list_articles'),
             new read_tool('ticket_stats'),
         ];
     }
@@ -56,7 +55,6 @@ final class provider implements read_provider_interface, write_provider_interfac
             new write_tool('create_ticket'),
             new write_tool('reply_ticket'),
             new write_tool('update_ticket'),
-            new write_tool('create_article'),
         ];
     }
 }

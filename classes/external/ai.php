@@ -49,9 +49,6 @@ class ai extends external_api {
     /** AI Bridge purpose used for ticket-response drafting. */
     private const PURPOSE_TICKET = 'helpdesk-ticket-response';
 
-    /** AI Bridge purpose used for knowledge-base drafting. */
-    private const PURPOSE_KNOWLEDGEBASE = 'helpdesk-knowledgebase';
-
     /**
      * Ticket response generation parameters.
      *
@@ -172,99 +169,6 @@ class ai extends external_api {
 
             return [
                 "success" => $html,
-                "error" => false,
-            ];
-        } catch (Throwable $e) {
-            return [
-                "success" => false,
-                "error" => s($e->getMessage()),
-            ];
-        }
-    }
-
-    /**
-     * Knowledge-base generation parameters.
-     *
-     * @return external_function_parameters
-     */
-    public static function knowledgebase_parameters() {
-        return new external_function_parameters([
-            "message" => new external_value(PARAM_TEXT, "Knowledge-base instructions"),
-        ]);
-    }
-
-    /**
-     * Allow knowledge-base generation from AJAX.
-     *
-     * @return bool
-     */
-    public static function knowledgebase_is_allowed_from_ajax() {
-        return true;
-    }
-
-    /**
-     * Knowledge-base generation return structure.
-     *
-     * @return external_single_structure
-     */
-    public static function knowledgebase_returns() {
-        return new external_single_structure([
-            "raw" => new external_value(PARAM_RAW, "Raw Markdown", VALUE_OPTIONAL),
-            "success" => new external_value(PARAM_RAW, "Generated content", VALUE_OPTIONAL),
-            "error" => new external_value(PARAM_RAW, "Error message", VALUE_OPTIONAL),
-        ]);
-    }
-
-    /**
-     * Generate knowledge-base content through AI Bridge.
-     *
-     * @param string $message Instructions for the content.
-     * @return array
-     */
-    public static function knowledgebase($message) {
-        global $CFG, $SESSION, $SITE, $USER;
-
-        $params = self::validate_parameters(self::knowledgebase_parameters(), [
-            "message" => $message,
-        ]);
-
-        $context = \context_system::instance();
-        require_capability("local/helpdesk:knowledgebase_manage", $context);
-        self::validate_context($context);
-
-        if (!ai_bridge::is_available()) {
-            return [
-                "success" => false,
-                "error" => get_string("ai_missing", "local_helpdesk",
-                    "https://github.com/EduardoKrausME/moodle-local_ai_bridge"),
-            ];
-        }
-
-
-        $instructions = trim($params["message"]);
-        if (strlen($instructions) <= 10) {
-            return [
-                "success" => false,
-                "error" => get_string("knowledgebase_prompt_short", "local_helpdesk"),
-            ];
-        }
-
-        $userlang = $SESSION->lang ?? $USER->lang;
-        $messages = [[
-            "role" => "user",
-            "content" => get_string("ai_knowledgebase_prompt", "local_helpdesk", [
-                "site_fullname" => $SITE->fullname,
-                "site_url" => $CFG->wwwroot,
-                "message" => $instructions,
-                "userlang" => $userlang,
-            ]),
-        ]];
-
-        try {
-            $result = ai_bridge_api::generate(self::PURPOSE_KNOWLEDGEBASE, $messages);
-            return [
-                "success" => self::markdown_to_html($result->text, $context),
-                "raw" => $result->text,
                 "error" => false,
             ];
         } catch (Throwable $e) {

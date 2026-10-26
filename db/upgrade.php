@@ -184,5 +184,15 @@ function xmldb_local_helpdesk_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2026091900, "local", "helpdesk");
     }
 
+    if ($oldversion < 2026102602) {
+        // The knowledge base is retired; dropping this table also deletes stored articles.
+        $table = new xmldb_table("local_helpdesk_knowledgebase");
+        if ($dbman->table_exists($table)) {
+            $dbman->drop_table($table);
+        }
+
+        upgrade_plugin_savepoint(true, 2026102602, "local", "helpdesk");
+    }
+
     return true;
 }

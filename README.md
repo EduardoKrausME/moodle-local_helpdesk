@@ -20,10 +20,9 @@ Kopere Helpdesk brings the support workflow into Moodle and keeps the request, c
 * Ticket history records changes made during the support process.
 * Support teams can filter tickets by user, course, category, status and priority.
 * Text search is available for ticket subjects and descriptions.
-* A built-in knowledge base can be maintained alongside the ticket system.
 * Tickets can be exported for analysis outside Moodle.
 * Reports are provided through Kopere BI.
-* AI Bridge integration can assist with writing replies and knowledge-base articles.
+* AI Bridge integration can assist with writing ticket replies.
 * Scheduled tasks remind support teams about unanswered tickets and automatically close resolved tickets after the configured workflow period.
 
 ## Ticket workflow
@@ -63,25 +62,15 @@ Each category can have users assigned to answer requests and receive notificatio
 
 This makes it possible to route different types of requests to the appropriate team without creating separate support systems outside Moodle.
 
-## Knowledge base
-
-Kopere Helpdesk includes a knowledge base for publishing reusable support content.
-
-Articles contain a title, content, author and optional category. They can be organized alongside ticket categories so recurring questions can be documented and reused by the support team.
-
-When AI Bridge is configured, the plugin can also assist with drafting knowledge-base content from instructions provided by the user.
-
 ## AI-assisted replies with AI Bridge
 
 AI-assisted writing is available through the optional **AI Bridge** integration. Without AI Bridge, Helpdesk works normally and hides the AI-assisted writing controls.
 
-When the AI Bridge purposes `helpdesk-ticket-response` and `helpdesk-knowledgebase` have enabled routes for the current tenant and user, support staff can request a suggested response directly from the ticket reply form.
+When the AI Bridge purpose `helpdesk-ticket-response` has an enabled route for the current tenant and user, support staff can request a suggested response directly from the ticket reply form.
 
 The generated text is not sent automatically. It is returned to the support workflow so the team can review, edit and decide whether to use it.
 
 The integration can use the ticket content and conversation context to help prepare a more relevant reply.
-
-AI Bridge can also assist with drafting knowledge-base articles.
 
 More information:
 
@@ -157,7 +146,15 @@ These capabilities can be assigned through normal Moodle roles.
 
 ## MCP integration
 
-When the optional [local_mcp](https://eduardokrausme.github.io/moodle-local_mcp/) plugin is installed, Helpdesk automatically exposes MCP READ and WRITE tools for tickets, replies, categories, knowledge-base articles and ticket statistics, using the connected Moodle user's permissions. See [MCP integration documentation](docs/mcp.md) for the complete tool list, security rules and setup.
+When the optional [local_mcp](https://eduardokrausme.github.io/moodle-local_mcp/) plugin is installed, Helpdesk automatically exposes MCP READ and WRITE tools for tickets, replies, categories and ticket statistics, using the connected Moodle user's permissions. See [MCP integration documentation](docs/mcp.md) for the complete tool list, security rules and setup.
+
+## Removed knowledge base
+
+Starting with build `2026102602`, the knowledge-base feature is no longer included.
+Upgrading an existing site permanently drops the
+`local_helpdesk_knowledgebase` table and its article data.
+**Back up the database before upgrading.** Tickets, replies and categories
+are preserved.
 
 ## Contributing
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="local/helpdesk/db" VERSION="20260919" COMMENT="Database schema for local_helpdesk plugin"
+<XMLDB PATH="local/helpdesk/db" VERSION="20261026" COMMENT="Database schema for local_helpdesk plugin"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
@@ -68,22 +68,6 @@
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
                 <KEY NAME="ticketid_fk" TYPE="foreign" FIELDS="ticketid" REFTABLE="local_helpdesk_ticket" REFFIELDS="id"/>
-                <KEY NAME="userid_fk" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
-            </KEYS>
-        </TABLE>
-        <TABLE NAME="local_helpdesk_knowledgebase" COMMENT="Stores knowledge base articles">
-            <FIELDS>
-                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-                <FIELD NAME="title" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Article title"/>
-                <FIELD NAME="description" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Article description"/>
-                <FIELD NAME="categoryid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Associated category"/>
-                <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="User who created the article"/>
-                <FIELD NAME="createdat" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="Timestamp of article creation"/>
-                <FIELD NAME="updatedat" TYPE="int" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Timestamp of last update"/>
-            </FIELDS>
-            <KEYS>
-                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-                <KEY NAME="category_fk" TYPE="foreign" FIELDS="categoryid" REFTABLE="local_helpdesk_category" REFFIELDS="id"/>
                 <KEY NAME="userid_fk" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
             </KEYS>
         </TABLE>

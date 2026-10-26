@@ -66,7 +66,6 @@ final class read_tool implements tool_interface {
             'list_tickets' => 'List Helpdesk tickets',
             'get_ticket' => 'Get Helpdesk ticket and replies',
             'list_categories' => 'List Helpdesk categories',
-            'list_articles' => 'Search Helpdesk knowledge-base articles',
             'ticket_stats' => 'Get Helpdesk ticket statistics',
         ];
         return $names[$this->operation];
@@ -83,8 +82,7 @@ final class read_tool implements tool_interface {
                 . 'support or read-only viewall users may filter by user, category, priority and status.',
             'get_ticket' => 'Get one ticket by database ID or public idkey, including message history. '
                 . 'Its owner, Helpdesk support or users with viewall permission may read it.',
-            'list_categories' => 'Return the available ticket and knowledge-base categories.',
-            'list_articles' => 'Read or search Helpdesk knowledge-base articles, optionally by category.',
+            'list_categories' => 'Return the available ticket categories.',
             'ticket_stats' => 'Aggregate ticket counts by status and priority for Helpdesk support.',
         ];
         return $descriptions[$this->operation];
@@ -116,13 +114,6 @@ final class read_tool implements tool_interface {
                     'description' => 'Numeric database ID or public idkey.'],
                     'response_limit' => ['type' => 'integer', 'minimum' => 1, 'maximum' => 100],
                     'response_offset' => ['type' => 'integer', 'minimum' => 0]];
-                break;
-            case 'list_articles':
-                $properties = $page + [
-                    'articleid' => ['type' => 'integer', 'minimum' => 1],
-                    'categoryid' => ['type' => 'integer', 'minimum' => 1],
-                    'search' => ['type' => 'string', 'maxLength' => 255],
-                ];
                 break;
             default:
                 $properties = [];
@@ -170,8 +161,6 @@ final class read_tool implements tool_interface {
                 return $this->get_ticket($arguments, $identity);
             case 'list_categories':
                 return $this->list_categories();
-            case 'list_articles':
-                return $this->list_articles($arguments);
             case 'ticket_stats':
                 return $this->ticket_stats();
         }
@@ -324,49 +313,6 @@ final class read_tool implements tool_interface {
             $categories[] = (array)$category;
         }
         return ['categories' => $categories];
-    }
-
-    /**
-     * Return knowledge-base articles.
-     *
-     * @param array $arguments Validated input arguments.
-     * @return array Result.
-     */
-    private function list_articles(array $arguments): array {
-        global $DB;
-        if (!empty($arguments['articleid'])) {
-            $article = $DB->get_record('local_helpdesk_knowledgebase',
-                ['id' => (int)$arguments['articleid']], '*', IGNORE_MISSING);
-            if (!$article) {
-                throw new api_exception('article_not_found', 404);
-            }
-            return ['articles' => [(array)$article], 'total' => 1];
-        }
-        [$limit, $offset] = self::pagination($arguments);
-        $where = [];
-        $params = [];
-        if (isset($arguments['categoryid'])) {
-            $where[] = 'a.categoryid = :categoryid';
-            $params['categoryid'] = (int)$arguments['categoryid'];
-        }
-        if (!empty($arguments['search'])) {
-            $search = '%' . $DB->sql_like_escape(trim($arguments['search'])) . '%';
-            $where[] = '(' . $DB->sql_like('a.title', ':title') .
-                ' OR ' . $DB->sql_like('a.description', ':description') . ')';
-            $params['title'] = $search;
-            $params['description'] = $search;
-        }
-        $sqlwhere = $where ? ' WHERE ' . implode(' AND ', $where) : '';
-        $total = $DB->count_records_sql('SELECT COUNT(*) FROM {local_helpdesk_knowledgebase} a' .
-            $sqlwhere, $params);
-        $records = $DB->get_records_sql(
-            'SELECT a.id, a.title, a.description, a.categoryid, a.userid, a.createdat, a.updatedat '
-            . 'FROM {local_helpdesk_knowledgebase} a' . $sqlwhere . ' ORDER BY a.id DESC',
-            $params, $offset, $limit
-        );
-        return ['articles' => array_values(array_map(static function($r) {
-            return (array)$r;
-        }, $records)), 'total' => (int)$total, 'offset' => $offset, 'limit' => $limit];
     }
 
     /**

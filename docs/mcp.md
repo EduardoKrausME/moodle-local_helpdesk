@@ -14,7 +14,6 @@ Use the OAuth or token authentication and READ/WRITE MCP endpoints supplied by
 | `helpdesk_list_tickets` | Paginated, searchable tickets. Regular users only see their own. |
 | `helpdesk_get_ticket` | Full ticket details and response history; owner or support only. |
 | `helpdesk_list_categories` | Helpdesk categories. |
-| `helpdesk_list_articles` | Knowledge-base article search and reading. |
 | `helpdesk_ticket_stats` | Aggregate ticket counts, support only. |
 
 READ tools use `local/helpdesk:view`; aggregate statistics require
@@ -28,14 +27,11 @@ unless the connected user has support permission.
 | `helpdesk_create_ticket` | `local/helpdesk:view` | Open a ticket as the connected user and send standard notifications. |
 | `helpdesk_reply_ticket` | `local/helpdesk:view` | Reply to own ticket or a ticket accessible to support; sends notifications. |
 | `helpdesk_update_ticket` | `local/helpdesk:ticketmanage` | Update status, priority or category, retaining audit history. |
-| `helpdesk_create_article` | `moodle/site:config` | Publish an administrator-created knowledge-base article. |
 
 All writes require `local_mcp` confirmation and support a side-effect-free
 preview. No tool accepts a forged author ID. Ticket and reply creation reuse the
 Helpdesk models and mail notifications; HTML is sanitized before being saved.
-No destructive/delete operation is exposed. Article creation is restricted to
-administrators because Helpdesk's current `db/access.php` does not register
-separate knowledge-base management capabilities.
+No destructive/delete operation is exposed.
 
 The MCP provider is intentionally optional: without `local_mcp`, the normal
 Helpdesk UI, web service and cron tasks continue operating unchanged.

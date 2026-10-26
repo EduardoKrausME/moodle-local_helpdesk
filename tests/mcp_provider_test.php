@@ -62,11 +62,11 @@ final class mcp_provider_test extends \advanced_testcase {
         }, $writes);
         $this->assertSame([
             'helpdesk_list_tickets', 'helpdesk_get_ticket', 'helpdesk_list_categories',
-            'helpdesk_list_articles', 'helpdesk_ticket_stats',
+            'helpdesk_ticket_stats',
         ], $readnames);
         $this->assertSame([
             'helpdesk_create_ticket', 'helpdesk_reply_ticket',
-            'helpdesk_update_ticket', 'helpdesk_create_article',
+            'helpdesk_update_ticket',
         ], $writenames);
         foreach (array_merge($reads, $writes) as $tool) {
             $schema = $tool->get_input_schema();
@@ -78,8 +78,7 @@ final class mcp_provider_test extends \advanced_testcase {
             $this->assertSame('object', $schema['type']);
             $this->assertFalse($schema['additionalProperties']);
         }
-        $this->assertSame('local/helpdesk:ticketmanage', $reads[4]->get_required_capability());
-        $this->assertSame('moodle/site:config', $writes[3]->get_required_capability());
+        $this->assertSame('local/helpdesk:ticketmanage', $reads[3]->get_required_capability());
     }
 
     /**

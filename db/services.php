@@ -43,13 +43,4 @@ $functions = [
         "ajax" => true,
         "capabilities" => "local/helpdesk:ticketmanage",
     ],
-    "local_helpdesk_ai_knowledgebase" => [
-        "classpath" => "local/helpdesk/classes/external/ai.php",
-        "classname" => "\\local_helpdesk\\external\\ai",
-        "methodname" => "knowledgebase",
-        "description" => "Generate knowledge-base content through AI Bridge",
-        "type" => "read",
-        "ajax" => true,
-        "capabilities" => "local/helpdesk:knowledgebase_manage",
-    ],
 ];

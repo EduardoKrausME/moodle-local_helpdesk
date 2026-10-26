@@ -28,7 +28,6 @@ use context_course;
 use context_system;
 use local_helpdesk\access;
 use local_helpdesk\mail\ticket_mail;
-use local_helpdesk\model\knowledgebase;
 use local_helpdesk\model\response;
 use local_helpdesk\model\ticket;
 use local_mcp\exception\api_exception;
@@ -70,7 +69,6 @@ final class write_tool extends base_tool {
             'create_ticket' => 'Create Helpdesk ticket',
             'reply_ticket' => 'Reply to Helpdesk ticket',
             'update_ticket' => 'Change Helpdesk ticket status, priority or category',
-            'create_article' => 'Create Helpdesk knowledge-base article',
         ];
         return $names[$this->operation];
     }
@@ -88,7 +86,6 @@ final class write_tool extends base_tool {
                 . 'Automatically advances the first support reply to in progress and sends emails.',
             'update_ticket' => 'Support users can change status, priority or category. '
                 . 'Status and priority updates use Helpdesk model audit history.',
-            'create_article' => 'Create a knowledge-base article as an administrator with HTML content.',
         ];
         return $descriptions[$this->operation];
     }
@@ -105,8 +102,6 @@ final class write_tool extends base_tool {
                 return 'local/helpdesk:view';
             case 'update_ticket':
                 return 'local/helpdesk:ticketmanage';
-            case 'create_article':
-                return 'moodle/site:config';
         }
         throw new \coding_exception('Unknown Helpdesk MCP tool.');
     }
@@ -150,13 +145,6 @@ final class write_tool extends base_tool {
                     'priority' => ['type' => 'string', 'enum' => ['low', 'medium', 'high', 'urgent']],
                     'categoryid' => ['type' => 'integer', 'minimum' => 1],
                 ], ['ticketid']);
-            case 'create_article':
-                return $this->object_schema([
-                    'categoryid' => ['type' => 'integer', 'minimum' => 1],
-                    'title' => ['type' => 'string', 'minLength' => 1, 'maxLength' => 255],
-                    'description' => ['type' => 'string', 'minLength' => 1,
-                        'description' => 'Sanitized HTML article content.'],
-                ], ['categoryid', 'title', 'description']);
         }
         throw new \coding_exception('Unknown Helpdesk MCP tool.');
     }
@@ -180,7 +168,7 @@ final class write_tool extends base_tool {
     public function preview(array $arguments, authenticated_identity $identity): array {
         $this->validate_input($arguments, $identity);
         $result = ['operation' => $this->get_name(), 'requires_confirmation' => true];
-        foreach (['ticketid', 'categoryid', 'courseid', 'status', 'priority', 'subject', 'title'] as $field) {
+        foreach (['ticketid', 'categoryid', 'courseid', 'status', 'priority', 'subject'] as $field) {
             if (isset($arguments[$field])) {
                 $result[$field] = $arguments[$field];
             }
@@ -206,8 +194,6 @@ final class write_tool extends base_tool {
                 return $this->reply_ticket($arguments, $identity);
             case 'update_ticket':
                 return $this->update_ticket($arguments);
-            case 'create_article':
-                return $this->create_article($arguments, $identity);
         }
         throw new \coding_exception('Unknown Helpdesk MCP tool.');
     }
@@ -228,13 +214,12 @@ final class write_tool extends base_tool {
             throw new api_exception('permission_denied', 403);
         }
 
-        if (in_array($this->operation, ['create_ticket', 'create_article'], true)) {
+        if ($this->operation === 'create_ticket') {
             $categoryid = (int)($arguments['categoryid'] ?? 0);
             if (!$categoryid || !$DB->record_exists('local_helpdesk_category', ['id' => $categoryid])) {
                 throw new api_exception('invalid_category', 400);
             }
-            $titlefield = $this->operation === 'create_ticket' ? 'subject' : 'title';
-            $title = trim(clean_param((string)($arguments[$titlefield] ?? ''), PARAM_TEXT));
+            $title = trim(clean_param((string)($arguments['subject'] ?? ''), PARAM_TEXT));
             if ($title === '' || strlen($title) > 255) {
                 throw new api_exception('invalid_title', 400);
             }
@@ -417,26 +402,5 @@ final class write_tool extends base_tool {
         return ['id' => (int)$item->get_id(), 'idkey' => (int)$item->get_idkey(),
             'status' => $item->get_status(), 'priority' => $item->get_priority(),
             'categoryid' => (int)$item->get_categoryid(), 'changed' => $changed];
-    }
-
-    /**
-     * Create a knowledge-base article.
-     *
-     * @param array $arguments Validated input arguments.
-     * @param authenticated_identity $identity Authenticated MCP user.
-     * @return array Result.
-     */
-    private function create_article(array $arguments, authenticated_identity $identity): array {
-        $now = time();
-        $article = new knowledgebase([
-            'title' => trim(clean_param($arguments['title'], PARAM_TEXT)),
-            'description' => clean_param($arguments['description'], PARAM_CLEANHTML),
-            'categoryid' => (int)$arguments['categoryid'],
-            'userid' => $identity->userid,
-            'createdat' => $now,
-            'updatedat' => $now,
-        ]);
-        $article->save();
-        return ['id' => (int)$article->get_id(), 'title' => $article->get_title(), 'created' => true];
     }
 }
