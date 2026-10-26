@@ -98,14 +98,14 @@ function local_helpdesk_pluginfile($course, $cm, context $context, $filearea, $a
 
     // Authorise the specific ticket, not just the Helpdesk file area.
     if ($filearea === "ticket") {
-        $ticketrecord = $DB->get_record("local_helpdesk_ticket", ["id" => $itemid], "id");
+        $ticketrecord = $DB->get_record("local_helpdesk_ticket", ["id" => $itemid]);
     } else {
         $response = \local_helpdesk\model\response::get_by_id($itemid);
         $ticketrecord = $response
-            ? $DB->get_record("local_helpdesk_ticket", ["id" => $response->get_ticketid()], "id")
+            ? $DB->get_record("local_helpdesk_ticket", ["id" => $response->get_ticketid()])
             : null;
     }
-    $ticket = $ticketrecord ? \local_helpdesk\model\ticket::get_by_id($ticketrecord->id) : null;
+    $ticket = $ticketrecord ? new \local_helpdesk\model\ticket($ticketrecord) : null;
     if (!$ticket) {
         return false;
     }
