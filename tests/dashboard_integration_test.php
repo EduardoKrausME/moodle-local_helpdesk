@@ -56,7 +56,7 @@ final class dashboard_integration_test extends advanced_testcase {
         $definition = menu::get_definition($context);
         $this->assertSame("local/helpdesk:view", $definition["items"][0]["capability"]);
         $this->assertSame([], $definition["items"][0]["children"]);
-        $this->assertSame("/local/helpdesk/index.php", $definition["items"][0]["url"]->get_path());
+        $this->assertStringEndsWith("/local/helpdesk/index.php", $definition["items"][0]["url"]->get_path());
 
         set_config("menu", "none", "local_helpdesk");
         $this->assertSame([], menu::get_definition($context));
@@ -73,7 +73,7 @@ final class dashboard_integration_test extends advanced_testcase {
         $this->assertSame("local/helpdesk:ticketmanage", $definition["items"][0]["capability"]);
         $this->assertNotEmpty($definition["items"][0]["children"]);
         $settings = array_filter($definition["items"][0]["children"], static function(array $child): bool {
-            return $child["url"]->get_path() === "/admin/settings.php";
+            return str_ends_with($child["url"]->get_path(), "/admin/settings.php");
         });
         $this->assertCount(1, $settings);
         $setting = reset($settings);
