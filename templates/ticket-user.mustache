@@ -91,6 +91,7 @@
                 </div>
                 <div class="ml-3">
                     <h6 class="mb-0">{{{user_fullname}}}</h6>
+                    {{#has_userdetails}}
                     {{#user.phone1}}
                         <div class="text-secondary">{{{user.phone1}}}</div>
                     {{/user.phone1}}
@@ -99,6 +100,7 @@
                             <div class="text-secondary">{{{user.phone2}}}</div>
                         {{/user.phone2}}
                     {{/user.phone1}}
+                    {{/has_userdetails}}
                 </div>
             </div>
         </div>
@@ -106,8 +108,10 @@
             <div id="profile-tabs" style="display: none">
                 <ul>
                     <li><a href="#tabs-1">{{#str}}ticketid, local_helpdesk{{/str}}</a></li>
+                    {{#has_userdetails}}
                     <li><a href="#tabs-2">{{#str}}user{{/str}}</a></li>
                     <li><a href="#tabs-4">{{#str}}courses{{/str}}</a></li>
+                    {{/has_userdetails}}
                 </ul>
                 <div id="tabs-1" class="about-list pt-3">
                     <div class="d-flex justify-content-between align-items-center">
@@ -198,12 +202,14 @@
                          style="display:none"
                          id="local_helpdesk_ticket_column"></div>
                 </div>
+                {{#has_userdetails}}
                 <div id="tabs-2" class="info">
                     {{{detail.get_user_info}}}
                 </div>
                 <div class="personalDev" id="tabs-4">
                     {{{detail.list_courses}}}
                 </div>
+                {{/has_userdetails}}
 
 
             </div>
