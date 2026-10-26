@@ -68,6 +68,7 @@ if (!access::can_view_ticket($ticket, $context)) {
 
 $hasticketmanage = has_capability("local/helpdesk:ticketmanage", $context);
 $canreply = access::can_reply($ticket, $context);
+$hasuserdetails = $hasticketmanage || (int)$USER->id === (int)$ticket->get_userid();
 $hasticketdelete = is_siteadmin();
 
 \local_helpdesk\output\page::start();
@@ -159,10 +160,11 @@ $templatecontext = [
     "user_fullname" => fullname($ticket->get_user()),
     "user_picture" => (new user_picture($ticket->get_user()))->get_url($PAGE),
 
-    "detail" => [
+    "has_userdetails" => $hasuserdetails,
+    "detail" => $hasuserdetails ? [
         "list_courses" => profile::list_courses($ticket->get_user()->id),
         "get_user_info" => profile::get_user_info($ticket->get_user()),
-    ],
+    ] : [],
 
     "id" => $ticket->get_id(),
     "idkey" => $ticket->get_idkey(),
