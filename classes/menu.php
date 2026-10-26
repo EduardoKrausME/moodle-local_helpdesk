@@ -40,31 +40,57 @@ class menu {
      */
     public static function get_definition(context $context): array {
         $canmanage = has_capability("local/helpdesk:ticketmanage", $context);
-        if (!$canmanage && !has_capability("local/helpdesk:viewall", $context)) {
+        $canviewall = has_capability("local/helpdesk:viewall", $context);
+        $canconfigure = has_capability("moodle/site:config", $context);
+        $canview = has_capability("local/helpdesk:view", $context);
+
+        // The site menu setting also controls learner visibility in the Dashboard.
+        // Staff must retain the management entry even when the public menu is disabled.
+        $showlearner = $canview && get_config("local_helpdesk", "menu") !== "none";
+        if (!$canmanage && !$canviewall && !$canconfigure && !$showlearner) {
             return [];
         }
 
-        $children = [
-            [
+        $ticketurl = new moodle_url("/local/helpdesk/index.php");
+        $settingsurl = new moodle_url("/admin/settings.php", ["section" => "local_helpdesk"]);
+        $children = [];
+
+        if ($canmanage || $canviewall) {
+            $children[] = [
                 "title" => get_string("tickets", "local_helpdesk"),
-                "url" => new moodle_url("/local/helpdesk/index.php"),
+                "url" => $ticketurl,
                 "activeurls" => [
-                    new moodle_url("/local/helpdesk/index.php"),
+                    $ticketurl,
                     new moodle_url("/local/helpdesk/ticket.php"),
                 ],
                 "icon" => "confirmation_number",
-            ],
-        ];
-        if (has_capability("moodle/site:config", $context)) {
+            ];
+        }
+
+        if ($canmanage) {
+            $children[] = [
+                "title" => get_string("knowledgebase_name", "local_helpdesk"),
+                "url" => new moodle_url("/local/helpdesk/knowledgebase.php"),
+                "icon" => "menu_book",
+            ];
+        }
+
+        if ($canconfigure) {
             $children[] = [
                 "title" => get_string("categories", "local_helpdesk"),
                 "url" => new moodle_url("/local/helpdesk/categories.php"),
                 "icon" => "category",
                 "capability" => "moodle/site:config",
             ];
+            $children[] = [
+                "title" => get_string("settings"),
+                "url" => $settingsurl,
+                "icon" => "settings",
+                "capability" => "moodle/site:config",
+            ];
         }
 
-        if (has_capability("local/kopere_bi:view", $context)) {
+        if (($canmanage || $canviewall) && has_capability("local/kopere_bi:view", $context)) {
             $children[] = [
                 "title" => get_string("report_general_reports_page_title", "local_helpdesk"),
                 "url" => new moodle_url("/local/helpdesk/report.php"),
@@ -73,19 +99,28 @@ class menu {
             ];
         }
 
+        // Learners get a direct Helpdesk entry. Staff retain their existing submenu.
+        $parenturl = ($canmanage || $canviewall || $showlearner) ? $ticketurl : $settingsurl;
+        $capability = $canmanage ? "local/helpdesk:ticketmanage"
+            : ($canviewall ? "local/helpdesk:viewall"
+                : ($showlearner ? "local/helpdesk:view" : "moodle/site:config"));
+
         return [
             "category" => subplugin_manager::CAT_TOOLS,
             "items" => [
                 [
                     "title" => get_string("pluginname", "local_helpdesk"),
-                    "url" => new moodle_url("/local/helpdesk/index.php"),
+                    "url" => $parenturl,
                     "activeurls" => [
+                        $parenturl,
                         new moodle_url("/local/helpdesk/index.php"),
                         new moodle_url("/local/helpdesk/ticket.php"),
                         new moodle_url("/local/helpdesk/categories.php"),
+                        new moodle_url("/local/helpdesk/knowledgebase.php"),
+                        $settingsurl,
                     ],
                     "icon" => "support_agent",
-                    "capability" => $canmanage ? "local/helpdesk:ticketmanage" : "local/helpdesk:viewall",
+                    "capability" => $capability,
                     "children" => $children,
                 ],
             ],
