@@ -109,7 +109,6 @@ class ai extends external_api {
             ];
         }
 
-
         $ticket = \local_helpdesk\model\ticket::get_by_id($params["ticketid"]);
         $responses = response::get_all(null, [
             "ticketid" => $ticket->get_id(),
