@@ -27,6 +27,6 @@ defined('MOODLE_INTERNAL') || die();
 $callbacks = [
     [
         'hook' => \core\hook\navigation\primary_extend::class,
-        'callback' => \local_helpdesk\navigation::class . '::extend_primary',
+        'callback' => '\\local_helpdesk\\navigation::extend_primary',
     ],
 ];
