@@ -69,6 +69,7 @@ final class navigation_test extends advanced_testcase {
         $hook = new primary_extend($primary);
         navigation::extend_primary($hook);
         navigation::extend_primary($hook);
+        $this->assertLessThanOrEqual(1, count($primary->get_children_key_list()));
         return $primary->find('helpdesk_menu', navigation_node::TYPE_CUSTOM) ?: null;
     }
 
@@ -102,7 +103,7 @@ final class navigation_test extends advanced_testcase {
         $this->setup_page($course);
         $node = $this->get_helpdesk_node();
         $this->assertNotNull($node);
-        $this->assertSame((string)$course->id, $node->action->get_param('courseid'));
+        $this->assertSame((int)$course->id, (int)$node->action->get_param('courseid'));
     }
 
     /**
@@ -122,7 +123,18 @@ final class navigation_test extends advanced_testcase {
         $this->setup_page($course);
         $node = $this->get_helpdesk_node();
         $this->assertNotNull($node);
-        $this->assertSame((string)$course->id, $node->action->get_param('courseid'));
+        $this->assertSame((int)$course->id, (int)$node->action->get_param('courseid'));
+    }
+
+    /**
+     * Ordinary logged-in users retain the Helpdesk link after Dashboard integration.
+     */
+    public function test_regular_user_sees_system_menu(): void {
+        $this->resetAfterTest();
+        $this->setUser($this->getDataGenerator()->create_user());
+        set_config('menu', 'system', 'local_helpdesk');
+        $this->setup_page();
+        $this->assertNotNull($this->get_helpdesk_node());
     }
 
     /**
