@@ -25,45 +25,13 @@
 use core\navigation\views\secondary;
 
 /**
- * Add a single Helpdesk link for learners in the regular Moodle navigation.
- *
- * Support agents use the Kopere Dashboard menu instead.
+ * Keep the legacy Helpdesk navigation in sync with the primary navigation hook.
  *
  * @param global_navigation $nav Moodle navigation.
  * @return void
  */
 function local_helpdesk_extend_navigation(global_navigation $nav) {
-    global $COURSE, $SITE;
-
-    if (!isloggedin() || isguestuser()) {
-        return;
-    }
-
-    $context = context_system::instance();
-    if ((!has_capability("local/helpdesk:view", $context)
-            && !has_capability("local/helpdesk:viewall", $context))
-        || has_capability("local/helpdesk:ticketmanage", $context)) {
-        return;
-    }
-
-    $setting = get_config("local_helpdesk", "menu");
-    if ($setting === "none") {
-        return;
-    }
-
-    $incourse = isset($COURSE->id) && $COURSE->id != $SITE->id;
-    if (($setting === "course" || $setting === false) && !$incourse) {
-        return;
-    }
-
-    $params = $incourse ? ["courseid" => $COURSE->id] : [];
-    $nav->add(
-        get_string("pluginname", "local_helpdesk"),
-        new moodle_url("/local/helpdesk/index.php", $params),
-        navigation_node::TYPE_CUSTOM,
-        null,
-        "helpdesk_menu"
-    );
+    \local_helpdesk\navigation::extend_global($nav);
 }
 
 /**
