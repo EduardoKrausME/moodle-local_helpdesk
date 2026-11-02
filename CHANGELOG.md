@@ -2,6 +2,21 @@
 
 This changelog documents the two most recent published releases of `local_helpdesk`, based on the Git differences between their release tags. Changes made after tag `3.0.1` are not included.
 
+## 3.0.3 - 2026-10-27
+
+- Removed the helpdesk knowledge-base feature, including its database table, bundled knowledge-base content, forms, routes and MCP integration.
+- Resolved Moodle Code Checker violations in AI Bridge integration classes and refreshed dependency and README documentation.
+
+**Full comparison:** [3.0.2...3.0.3](https://github.com/EduardoKrausME/moodle-local_helpdesk/compare/3.0.2...3.0.3)
+
+## 3.0.2 - 2026-10-26
+
+- Added a read-only `viewall` capability for helpdesk tickets, with authorization checks for ticket lists, details, attachments and MCP tools.
+- Limited unrelated profile information visible to read-only observers and added permission regression tests.
+- Made the AI Bridge integration optional, including its forms and external services.
+
+**Full comparison:** [3.0.1...3.0.2](https://github.com/EduardoKrausME/moodle-local_helpdesk/compare/3.0.1...3.0.2)
+
 ## [3.0.1] - 2026-10-23
 
 ### Fixed
