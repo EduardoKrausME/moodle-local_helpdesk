@@ -80,11 +80,11 @@ https://github.com/EduardoKrausME/moodle-local_ai_bridge
 
 Kopere Helpdesk integrates with **Kopere BI** and currently provides report definitions grouped into five areas:
 
-1. **Tickets** — ticket creation and resolution over time.
-2. **Categories** — demand and service indicators by category.
-3. **Status and Priority** — distribution of tickets and service times.
-4. **Users** — users generating the highest volume of support requests.
-5. **Support activity** — participation in ticket responses.
+1. **Tickets** - ticket creation and resolution over time.
+2. **Categories** - demand and service indicators by category.
+3. **Status and Priority** - distribution of tickets and service times.
+4. **Users** - users generating the highest volume of support requests.
+5. **Support activity** - participation in ticket responses.
 
 These reports are intended to help support managers identify demand patterns, pending work and service performance.
 

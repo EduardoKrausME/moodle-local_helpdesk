@@ -57,9 +57,9 @@
         ja: ['ブラウザーの言語は', 'このページを次の言語で表示'],
         pt: ['O seu navegador parece estar configurado para', 'Ver esta página em'],
         pt_br: ['Seu navegador parece estar configurado para', 'Ver esta página em'],
-        ru: ['Похоже, язык вашего браузера —', 'Открыть эту страницу на'],
+        ru: ['Похоже, язык вашего браузера -', 'Открыть эту страницу на'],
         sk: ['Zdá sa, že váš prehliadač je nastavený na', 'Zobraziť túto stránku v jazyku'],
-        uk: ['Схоже, мова вашого браузера —', 'Відкрити цю сторінку мовою']
+        uk: ['Схоже, мова вашого браузера -', 'Відкрити цю сторінку мовою']
     };
 
 
