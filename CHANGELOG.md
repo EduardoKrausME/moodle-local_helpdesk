@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.0.4 - 2026-11-21
+
+- Added helpdesk navigation integration through Moodle hooks and a navigation class.
+- Added navigation regression tests and updated translated documentation.
+
+**Comparison:** [3.0.3...3.0.4](https://github.com/EduardoKrausME/moodle-local_helpdesk/compare/3.0.3...3.0.4)
+
 This changelog documents the two most recent published releases of `local_helpdesk`, based on the Git differences between their release tags. Changes made after tag `3.0.1` are not included.
 
 ## 3.0.3 - 2026-10-27
