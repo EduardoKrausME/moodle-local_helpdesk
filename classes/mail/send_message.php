@@ -60,11 +60,11 @@ class send_message extends send_events {
         $COURSE->link = "<a href='{$CFG->wwwroot}' target=\"_blank\">{$CFG->wwwroot}</a>";
         $COURSE->url = $CFG->wwwroot;
 
-        // Moodle: {[ moodle.??? ]}.
+        // Replace Moodle-level placeholders in the email subject and body.
         $this->subject = $this->replace_tag($this->subject, $COURSE, "moodle");
         $this->message = $this->replace_tag($this->message, $COURSE, "moodle");
 
-        // Events: {[ event.??? ]}.
+        // Replace event-level placeholders in the email subject and body.
         $this->subject = $this->replace_tag($this->subject, $this->event, "event");
         $this->message = $this->replace_tag($this->message, $this->event, "event");
 
@@ -85,7 +85,7 @@ class send_message extends send_events {
         $this->subject = self::replace_tag_user($this->subject, $userfrom, "from");
         $this->message = self::replace_tag_user($this->message, $userfrom, "from");
 
-        // Admins: {[ admin.??? ]}.
+        // Replace administrator placeholders in the email subject and body.
         $this->subject = self::replace_tag_user($this->subject, $userfrom, "admin");
         $this->message = self::replace_tag_user($this->message, $userfrom, "admin");
 

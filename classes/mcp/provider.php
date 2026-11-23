@@ -21,6 +21,7 @@
  * @copyright 2026 Eduardo Kraus
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 namespace local_helpdesk\mcp;
 
 use local_mcp\extension\read_provider_interface;

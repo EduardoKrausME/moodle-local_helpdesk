@@ -55,10 +55,13 @@ class reports {
         // Install reports pages.
         $pagefiles = glob("{$CFG->dirroot}/local/helpdesk/db/files/page-*.json");
         foreach ($pagefiles as $pagefile) {
+            // phpcs:disable Generic.CodeAnalysis.EmptyStatement.DetectedCatch
             try {
                 \local_kopere_bi\install\reports::from_file($pagefile);
-            } catch (dml_exception $e) { // phpcs:disable
+            } catch (dml_exception $e) {
+                // Missing report dependencies must not prevent Helpdesk installation.
             }
+            // phpcs:enable Generic.CodeAnalysis.EmptyStatement.DetectedCatch
         }
     }
 }
